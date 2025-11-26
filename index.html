@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniele Raimondi - Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .location {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .about {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .highlight-box p {
+            color: #444;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 30px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #667eea;
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #667eea;
+        }
+
+        .experience-item h3 {
+            font-size: 1.3em;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .experience-item .company {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.05em;
+        }
+
+        .experience-item .period {
+            color: #888;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            padding: 35px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .project-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+            gap: 12px;
+        }
+
+        .project-link::after {
+            content: '→';
+            font-size: 1.2em;
+        }
+
+        .education-list {
+            margin-top: 25px;
+        }
+
+        .education-item {
+            background: #f9fafb;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .education-item h3 {
+            font-size: 1.2em;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .education-item .university {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 3px solid #667eea;
+        }
+
+        .skill-category h3 {
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            color: #667eea;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .skill-category li:before {
+            content: "▸ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.15em;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline {
+                padding-left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Daniele Raimondi</h1>
+            <p class="subtitle">Senior Data Scientist | Finance & Crypto | Machine Learning</p>
+            <p class="location">🇨🇭 Basel, Switzerland | 🇮🇹 Milan, Italy</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section about">
+            <h2>About</h2>
+            <p>
+                Data scientist passionate about Finance, Crypto, and Machine Learning. Currently working as Senior Data Scientist 
+                at MDPI in Basel, with extensive experience in retail analytics, risk management, and trading systems development.
+            </p>
+            <div class="highlight-box">
+                <p>
+                    🏃🏼 <strong>Former Italian National Team Athlete:</strong> I had the honor of competing as a 400m runner 
+                    in the Italian Major Athletics National Team, bringing the same discipline and determination to data science.
+                </p>
+            </div>
+            <p>
+                🤖 <strong>HFT & Trading Systems:</strong> Experience in implementing High-Frequency Trading machines for market 
+                making and developing automated trading systems using Python. Specialized in Bitcoin data science, sentiment 
+                analysis, and betting exchange analytics.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Senior Data Scientist</h3>
+                    <p class="company">MDPI - Basel, Switzerland 🇨🇭</p>
+                    <p class="period">2023 - Present</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Lead Data Scientist</h3>
+                    <p class="company">Esselunga - Milan, Italy 🇮🇹</p>
+                    <p class="period">2017 - 2023</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Finance and Risk Analyst</h3>
+                    <p class="company">Accenture - Milan, Italy 🇮🇹</p>
+                    <p class="period">2017</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Risk Management Analyst</h3>
+                    <p class="company">Fiditalia - Milan, Italy 🇮🇹</p>
+                    <p class="period">2016 - 2017</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Bitcoin DataScience</h3>
+                    <p>
+                        Comprehensive data science projects analyzing Bitcoin market dynamics, price patterns, and trading signals. 
+                        Advanced statistical analysis and machine learning models for cryptocurrency markets.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Cryptocurrency</span>
+                    </div>
+                    <a href="https://github.com/DanieleRaimondi/bitcoin_datascience" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Sentiment Analysis Bitcoin</h3>
+                    <p>
+                        NLP project analyzing Bitcoin sentiment to predict market reversals in advance. Processes social media, 
+                        news, and forum data to extract sentiment indicators for trading decisions.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">NLP</span>
+                        <span class="tag">Sentiment Analysis</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Bitcoin</span>
+                    </div>
+                    <a href="https://github.com/DanieleRaimondi/Sentiment_Analysis_Bitcoin" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Betting Exchange Scrapers</h3>
+                    <p>
+                        Automated scrapers for betting exchange odds and live football match statistics. Real-time data collection 
+                        system for sports analytics and live betting strategies.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">Web Scraping</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Sports Analytics</span>
+                        <span class="tag">Real-time Data</span>
+                    </div>
+                    <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Education</h2>
+            <div class="education-list">
+                <div class="education-item">
+                    <h3>Master's Degree - Business Intelligence and Big Data Analytics</h3>
+                    <p class="university">University of Milan Bicocca</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>Master of Science - Statistics (Insurance and Financial Markets)</h3>
+                    <p class="university">University of Milan Bicocca</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>Bachelor of Science - Statistics</h3>
+                    <p class="university">University of Milan Bicocca</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>R</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <ul>
+                        <li>Scikit-learn</li>
+                        <li>TensorFlow</li>
+                        <li>NLP / Sentiment Analysis</li>
+                        <li>Time Series Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Finance & Trading</h3>
+                    <ul>
+                        <li>HFT Systems</li>
+                        <li>Market Making</li>
+                        <li>Risk Management</li>
+                        <li>Cryptocurrency</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Engineering</h3>
+                    <ul>
+                        <li>Web Scraping</li>
+                        <li>Big Data Analytics</li>
+                        <li>ETL Pipelines</li>
+                        <li>Business Intelligence</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p style="font-size: 1.2em; margin-bottom: 10px;">Daniele Raimondi</p>
+            <p style="opacity: 0.9;">Data Scientist | Finance & Crypto Enthusiast</p>
+            <div class="contact-links">
+                <a href="https://github.com/DanieleRaimondi" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/danieleraimondi" target="_blank">LinkedIn</a>
+                <a href="https://www.kaggle.com/danieleraimondi" target="_blank">Kaggle</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
