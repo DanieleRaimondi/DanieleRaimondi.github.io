@@ -18,14 +18,11 @@
     <meta name="geo.position" content="47.5596;7.5886">
     <meta name="ICBM" content="47.5596, 7.5886">
     
-    <!-- Favicon universale (legacy/compat) -->
+    <!-- Favicon -->
     <link rel="icon" href="/assets/favicon.ico" sizes="any">
-    <!-- PNG per i browser moderni -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <!-- Apple iOS (Homescreen/Bookmarks) -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <!-- Android Chrome (icone grandi) -->
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png">
     
@@ -110,51 +107,51 @@
             height: 100vh;
             background: #0a0a0a;
             color: white;
-            padding: 40px 30px;
+            padding: 32px 24px;
             overflow-y: auto;
             z-index: 1000;
         }
 
         .sidebar-profile {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 28px;
         }
 
         .sidebar-photo {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             border: 4px solid #00d4aa;
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .sidebar h1 {
-            font-size: 1.4em;
-            margin-bottom: 8px;
+            font-size: 1.35em;
+            margin-bottom: 6px;
             font-weight: 700;
         }
 
         .sidebar .role {
             color: #00d4aa;
-            font-size: 0.95em;
+            font-size: 0.9em;
             font-weight: 500;
         }
 
         .sidebar nav {
-            margin: 40px 0;
+            margin: 28px 0;
         }
 
         .sidebar nav a {
             display: block;
             color: #999;
             text-decoration: none;
-            padding: 12px 0;
-            font-size: 0.95em;
+            padding: 8px 0;
+            font-size: 0.92em;
             transition: all 0.3s;
             border-left: 3px solid transparent;
-            padding-left: 15px;
-            margin-left: -15px;
+            padding-left: 12px;
+            margin-left: -12px;
         }
 
         .sidebar nav a:hover {
@@ -163,37 +160,37 @@
         }
 
         .sidebar-info {
-            margin-top: 40px;
-            padding-top: 30px;
+            margin-top: 28px;
+            padding-top: 22px;
             border-top: 1px solid #2a2a2a;
         }
 
         .sidebar-info-item {
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .sidebar-info-item .label {
             color: #666;
-            font-size: 0.85em;
+            font-size: 0.8em;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .sidebar-info-item .value {
             color: white;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         .sidebar-social {
-            margin-top: 30px;
+            margin-top: 22px;
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .sidebar-social a {
             color: #666;
-            font-size: 1.3em;
+            font-size: 1.2em;
             transition: color 0.3s;
         }
 
@@ -211,59 +208,36 @@
             height: 100vh;
             background: #ffffff;
             border-left: 1px solid #e0e0e0;
-            padding: 40px 30px;
+            padding: 32px 24px;
             overflow-y: auto;
             z-index: 900;
         }
 
         .right-sidebar-section {
-            margin-bottom: 40px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+        }
+
+        .right-sidebar-section + .right-sidebar-section {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
         }
 
         .right-sidebar-section h2 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
             font-weight: 700;
             color: #0a0a0a;
         }
 
         .right-sidebar-section p {
-            font-size: 0.95em;
+            font-size: 0.9em;
             color: #444;
         }
 
-        .sidebar-education-card {
-            background: #fafafa;
-            border-radius: 10px;
-            padding: 15px 18px;
-            margin-bottom: 15px;
-            border-left: 4px solid #00d4aa;
-        }
-
-        .sidebar-education-card h3 {
-            font-size: 1em;
-            margin-bottom: 5px;
-            font-weight: 700;
-            color: #0a0a0a;
-        }
-
-        .sidebar-education-card .university {
-            font-size: 0.9em;
-            color: #00a67e;
-            margin-bottom: 3px;
-            font-weight: 600;
-        }
-
-        .sidebar-education-card .year {
-            font-size: 0.85em;
-            color: #777;
-        }
-
-        /* Background + experience in right sidebar */
-
         .right-sidebar-section h3.sidebar-subtitle {
-            font-size: 1.05em;
-            margin: 18px 0 10px;
+            font-size: 0.95em;
+            margin: 16px 0 8px;
             font-weight: 700;
             color: #333;
             text-transform: uppercase;
@@ -277,8 +251,8 @@
         }
 
         .sidebar-experience-item {
-            margin-bottom: 16px;
-            padding-bottom: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #eee;
         }
 
@@ -288,19 +262,46 @@
         }
 
         .sidebar-experience-role {
-            font-size: 0.98em;
+            font-size: 0.92em;
             font-weight: 700;
             color: #0a0a0a;
         }
 
         .sidebar-experience-company {
-            font-size: 0.9em;
+            font-size: 0.87em;
             color: #00a67e;
             font-weight: 600;
         }
 
         .sidebar-experience-dates {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .sidebar-education-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            border-left: 3px solid #00d4aa;
+        }
+
+        .sidebar-education-card h3 {
+            font-size: 0.95em;
+            margin-bottom: 4px;
+            font-weight: 700;
+            color: #0a0a0a;
+        }
+
+        .sidebar-education-card .university {
             font-size: 0.85em;
+            color: #00a67e;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .sidebar-education-card .year {
+            font-size: 0.8em;
             color: #777;
         }
 
@@ -318,7 +319,7 @@
         .hero-section {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: white;
-            padding: 100px 60px;
+            padding: 80px 56px;
             width: 100%;
             overflow-x: hidden;
         }
@@ -328,8 +329,8 @@
         }
 
         .hero-content h2 {
-            font-size: 3.5em;
-            margin-bottom: 25px;
+            font-size: 3.1em;
+            margin-bottom: 20px;
             font-weight: 800;
             line-height: 1.2;
             background: linear-gradient(135deg, #00d4aa 0%, #00a67e 100%);
@@ -339,44 +340,44 @@
         }
 
         .hero-content .tagline {
-            font-size: 1.4em;
+            font-size: 1.25em;
             color: #bbb;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 24px;
+            line-height: 1.5;
         }
 
         .hero-highlights {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
+            gap: 22px;
+            margin-top: 32px;
         }
 
         .highlight-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 10px;
             border-left: 3px solid #00d4aa;
         }
 
         .highlight-item .icon {
-            font-size: 2em;
-            margin-bottom: 10px;
+            font-size: 1.7em;
+            margin-bottom: 8px;
         }
 
         .highlight-item h3 {
-            font-size: 1.1em;
-            margin-bottom: 8px;
+            font-size: 1em;
+            margin-bottom: 6px;
             color: #00d4aa;
         }
 
         .highlight-item p {
             color: #999;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         section {
-            padding: 80px 60px;
+            padding: 56px 56px;
             max-width: 1400px;
             width: 100%;
             overflow-x: hidden;
@@ -387,137 +388,181 @@
         }
 
         h2.section-title {
-            font-size: 2.8em;
-            margin-bottom: 15px;
+            font-size: 2.4em;
+            margin-bottom: 10px;
             font-weight: 800;
             color: #0a0a0a;
         }
 
         .section-subtitle {
-            font-size: 1.2em;
+            font-size: 1.05em;
             color: #666;
-            margin-bottom: 60px;
-            max-width: 800px;
+            margin-bottom: 36px;
+            max-width: 780px;
+        }
+
+        /* Compact experience summary in main */
+
+        .experience-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 10px;
+            padding: 18px 18px 16px;
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e8e8e8;
+        }
+
+        .experience-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 4px;
+            color: #0a0a0a;
+            font-weight: 700;
+        }
+
+        .experience-card .company {
+            font-size: 0.92em;
+            color: #00a67e;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .experience-card .period {
+            font-size: 0.84em;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .experience-card p {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.5;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .project-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s;
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
             border: 1px solid #e0e0e0;
         }
 
         .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 12px 40px rgba(0, 212, 170, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 28px rgba(0, 212, 170, 0.18);
             border-color: #00d4aa;
         }
 
         .project-card img {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
             display: block;
         }
 
         .project-content {
-            padding: 35px;
+            padding: 26px;
         }
 
         .project-card h3 {
-            font-size: 1.6em;
-            margin-bottom: 18px;
+            font-size: 1.35em;
+            margin-bottom: 12px;
             color: #0a0a0a;
             font-weight: 700;
         }
 
         .project-card p {
             color: #555;
-            margin-bottom: 25px;
-            line-height: 1.8;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            font-size: 0.95em;
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 18px;
         }
 
         .tag {
             background: #f5f5f5;
             color: #333;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.85em;
+            font-size: 0.8em;
             font-weight: 600;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: #00d4aa;
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s;
-            padding: 12px 24px;
+            padding: 9px 18px;
             background: #f0fdf9;
             border-radius: 8px;
+            font-size: 0.9em;
         }
 
         .project-link:hover {
-            gap: 15px;
+            gap: 12px;
             background: #00d4aa;
             color: white;
         }
 
         .project-link::after {
             content: '→';
-            font-size: 1.3em;
+            font-size: 1.1em;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 26px;
         }
 
         .skill-card {
             background: white;
-            padding: 35px;
+            padding: 26px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
             transition: all 0.3s;
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 22px rgba(0, 212, 170, 0.15);
         }
 
         .skill-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 25px;
+            font-size: 1.25em;
+            margin-bottom: 16px;
             color: #0a0a0a;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .skill-card h3::before {
             content: '';
-            width: 5px;
-            height: 30px;
+            width: 4px;
+            height: 26px;
             background: linear-gradient(to bottom, #00d4aa, #00a67e);
             border-radius: 3px;
         }
@@ -527,9 +572,9 @@
         }
 
         .skill-card li {
-            padding: 12px 0;
+            padding: 8px 0;
             color: #444;
-            font-size: 1.05em;
+            font-size: 0.95em;
             border-bottom: 1px solid #f0f0f0;
             transition: all 0.2s;
         }
@@ -540,58 +585,58 @@
 
         .skill-card li:hover {
             color: #00d4aa;
-            padding-left: 10px;
+            padding-left: 6px;
         }
 
         .passions-section {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: white;
-            padding: 80px 60px;
+            padding: 56px 56px 48px;
             width: 100%;
             overflow-x: hidden;
         }
 
         .passions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 16px;
+            margin-top: 26px;
         }
 
         .passion-item {
             text-align: center;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: all 0.3s;
+            padding: 14px 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            transition: all 0.25s;
         }
 
         .passion-item:hover {
-            background: rgba(0, 212, 170, 0.1);
-            transform: translateY(-5px);
+            background: rgba(0, 212, 170, 0.16);
+            transform: translateY(-3px);
         }
 
         .passion-item .icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
+            font-size: 1.6em;
+            margin-bottom: 6px;
         }
 
         .passion-item h3 {
-            font-size: 1.1em;
+            font-size: 0.9em;
             color: #00d4aa;
         }
 
         footer {
             background: #0a0a0a;
             color: white;
-            padding: 60px;
+            padding: 40px;
             text-align: center;
             width: 100%;
         }
 
         footer p {
-            color: #666;
-            font-size: 0.95em;
+            color: #777;
+            font-size: 0.9em;
         }
 
         /* RESPONSIVE */
@@ -601,7 +646,7 @@
                 position: relative;
                 width: 100%;
                 height: auto;
-                padding: 30px 20px;
+                padding: 24px 20px;
             }
 
             .right-sidebar {
@@ -610,7 +655,7 @@
                 height: auto;
                 border-left: none;
                 border-top: 1px solid #e0e0e0;
-                padding: 30px 20px;
+                padding: 24px 20px;
             }
 
             .main-content {
@@ -620,11 +665,11 @@
             }
 
             .hero-section, section, .passions-section {
-                padding: 60px 30px;
+                padding: 40px 24px;
             }
 
             .hero-content h2 {
-                font-size: 2.5em;
+                font-size: 2.4em;
             }
 
             .hero-highlights {
@@ -633,10 +678,6 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
-            }
-
-            footer {
-                width: 100%;
             }
         }
     </style>
@@ -652,6 +693,7 @@
         </div>
 
         <nav>
+            <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#passions">Passions</a>
@@ -772,6 +814,51 @@
             </div>
         </section>
 
+        <section id="experience">
+            <h2 class="section-title">Experience Snapshot</h2>
+            <p class="section-subtitle">
+                A quick overview of leadership across academic publishing, retail analytics, and financial services.
+            </p>
+            <div class="experience-compact">
+                <div class="experience-card">
+                    <h3>Senior Data Scientist & Tech Lead</h3>
+                    <p class="company">MDPI · Basel, Switzerland 🇨🇭</p>
+                    <p class="period">2023 – Present</p>
+                    <p>
+                        Leading Data Intelligence products, designing LLM and GenAI pipelines, and delivering
+                        AI and Data Science solutions across a multimillion-record scholarly dataset.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3>Lead Data Scientist</h3>
+                    <p class="company">Esselunga · Milan, Italy 🇮🇹</p>
+                    <p class="period">2017 – 2023</p>
+                    <p>
+                        Drove ML initiatives in retail, from churn prediction to pricing and geospatial analysis,
+                        managing end-to-end pipelines on millions of daily transactions.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3>Finance and Risk Analyst</h3>
+                    <p class="company">Accenture · Milan, Italy 🇮🇹</p>
+                    <p class="period">2017</p>
+                    <p>
+                        Built quantitative risk models and portfolio analyses to support strategic decisions
+                        for financial services clients.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3>Risk Management Analyst</h3>
+                    <p class="company">Fiditalia · Milan, Italy 🇮🇹</p>
+                    <p class="period">2016 – 2017</p>
+                    <p>
+                        Developed credit risk and fraud detection models, automating reporting
+                        for consumer lending portfolios.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="projects">
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">
@@ -783,8 +870,8 @@
                     <div class="project-content">
                         <h3>Bitcoin DataScience</h3>
                         <p>
-                            Comprehensive data science framework for analyzing Bitcoin market dynamics, price patterns, and trading signals. 
-                            Advanced statistical analysis and machine learning models for cryptocurrency markets with predictive analytics.
+                            Data Science framework for analyzing Bitcoin market dynamics, price patterns,
+                            and trading signals with predictive models.
                         </p>
                         <div class="tech-tags">
                             <span class="tag">Python</span>
@@ -801,8 +888,8 @@
                     <div class="project-content">
                         <h3>Sentiment Analysis Bitcoin</h3>
                         <p>
-                            NLP system analyzing Bitcoin sentiment from social media, news, and forums to predict market reversals. 
-                            Real-time sentiment indicators for trading decisions with advanced natural language processing.
+                            NLP pipeline aggregating sentiment from social media and news to detect Bitcoin trend reversals
+                            and support trading decisions.
                         </p>
                         <div class="tech-tags">
                             <span class="tag">NLP</span>
@@ -819,8 +906,8 @@
                     <div class="project-content">
                         <h3>Betting Exchange Scrapers</h3>
                         <p>
-                            Real-time web scraping system for betting exchange odds and live football statistics. 
-                            Automated data collection pipeline for sports analytics and betting strategy optimization.
+                            Real-time scraping and data pipeline for betting exchange odds and live football statistics
+                            to power sports analytics strategies.
                         </p>
                         <div class="tech-tags">
                             <span class="tag">Web Scraping</span>
@@ -911,7 +998,7 @@
 
         <section id="passions" class="passions-section">
             <h2 class="section-title" style="color: white;">Beyond Work</h2>
-            <p class="section-subtitle" style="color: #999;">
+            <p class="section-subtitle" style="color: #bbb;">
                 Passions and interests that drive continuous learning and curiosity.
             </p>
             <div class="passions-grid">
@@ -948,7 +1035,7 @@
 
         <footer>
             <p>© 2025 Daniele Raimondi · Senior Data Scientist & Tech Lead</p>
-            <p style="margin-top: 10px;">Basel, Switzerland 🇨🇭</p>
+            <p style="margin-top: 6px;">Basel, Switzerland 🇨🇭</p>
         </footer>
     </main>
 </body>
