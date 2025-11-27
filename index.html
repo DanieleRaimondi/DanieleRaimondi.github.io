@@ -1,179 +1,1026 @@
-<section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">
-            Open-source contributions in cryptocurrency analytics, trading systems, and quantitative finance.
-        </p>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="assets/Thermomodel.png" alt="Data Science Project on Bitcoin">
-                <div class="project-content">
-                    <h3>Bitcoin DataScience</h3>
-                    <p>
-                        Comprehensive data science framework for analyzing Bitcoin market dynamics, price patterns, and trading signals. 
-                        Advanced statistical analysis and machine learning models for cryptocurrency markets with predictive analytics.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Pandas</span>
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag">Time Series</span>
-                    </div>
-                    <a href="https://github.com/DanieleRaimondi/bitcoin_datascience" class="project-link" target="_blank">View Project</a>
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Daniele Raimondi - Senior Data Scientist & AI Tech Lead | Basel, Switzerland</title>
+    <meta name="description" content="Senior Data Scientist and AI Tech Lead at MDPI in Basel, Switzerland. Specializing in LLM pipelines, GenAI, Machine Learning, and Quantitative Finance. Former Italian National Team athlete.">
+    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
+    <meta name="author" content="Daniele Raimondi">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://danieleraimondi.github.io/">
+    
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="CH-BS">
+    <meta name="geo.placename" content="Basel">
+    <meta name="geo.position" content="47.5596;7.5886">
+    <meta name="ICBM" content="47.5596, 7.5886">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://danieleraimondi.github.io/">
+    <meta property="og:title" content="Daniele Raimondi - Senior Data Scientist & AI Tech Lead">
+    <meta property="og:description" content="Senior Data Scientist and AI Tech Lead specializing in LLM pipelines, GenAI, and Machine Learning at MDPI in Basel, Switzerland.">
+    <meta property="og:image" content="https://danieleraimondi.github.io/assets/profile.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://danieleraimondi.github.io/">
+    <meta property="twitter:title" content="Daniele Raimondi - Senior Data Scientist & AI Tech Lead">
+    <meta property="twitter:description" content="Senior Data Scientist and AI Tech Lead specializing in LLM pipelines, GenAI, and Machine Learning at MDPI in Basel, Switzerland.">
+    <meta property="twitter:image" content="https://danieleraimondi.github.io/assets/profile.jpg">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Daniele Raimondi",
+      "jobTitle": "Senior Data Scientist & AI Tech Lead",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "MDPI"
+      },
+      "url": "https://danieleraimondi.github.io/",
+      "sameAs": [
+        "https://www.linkedin.com/in/danieleraimondi92",
+        "https://github.com/DanieleRaimondi",
+        "https://www.kaggle.com/danieleraimondi"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Basel",
+        "addressCountry": "CH"
+      },
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "University of Milan Bicocca"
+        }
+      ],
+      "knowsAbout": ["Machine Learning", "Artificial Intelligence", "Data Science", "LLM", "GenAI", "Python", "Quantitative Finance", "Statistics"],
+      "description": "Senior Data Scientist and AI Tech Lead specializing in LLM pipelines, GenAI, Machine Learning, and Quantitative Finance."
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: #0a0a0a;
+            color: white;
+            padding: 40px 30px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar-profile {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sidebar-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid #00d4aa;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h1 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .sidebar .role {
+            color: #00d4aa;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .sidebar nav {
+            margin: 40px 0;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            padding: 12px 0;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            padding-left: 15px;
+            margin-left: -15px;
+        }
+
+        .sidebar nav a:hover {
+            color: white;
+            border-left-color: #00d4aa;
+        }
+
+        .sidebar-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .sidebar-info-item {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-info-item .label {
+            color: #666;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-info-item .value {
+            color: white;
+            font-size: 0.95em;
+        }
+
+        .sidebar-social {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .sidebar-social a {
+            color: #666;
+            font-size: 1.3em;
+            transition: color 0.3s;
+        }
+
+        .sidebar-social a:hover {
+            color: #00d4aa;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            width: calc(100% - 280px);
+            overflow-x: hidden;
+            background: #fafafa;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            padding: 100px 60px;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #00d4aa 0%, #00a67e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.4em;
+            color: #bbb;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .highlight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 3px solid #00d4aa;
+        }
+
+        .highlight-item .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #00d4aa;
+        }
+
+        .highlight-item p {
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        section {
+            padding: 80px 60px;
+            max-width: 1400px;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        h2.section-title {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: #0a0a0a;
+        }
+
+        .section-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 800px;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #00d4aa, #00a67e);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -59px;
+            top: 50px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00d4aa;
+            border: 4px solid #fafafa;
+            box-shadow: 0 0 0 4px #00d4aa;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .experience-item h3 {
+            font-size: 1.8em;
+            color: #0a0a0a;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .experience-item .company {
+            font-size: 1.2em;
+            color: #00d4aa;
+            font-weight: 600;
+        }
+
+        .experience-item .period {
+            background: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .experience-item li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .experience-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00d4aa;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 12px 40px rgba(0, 212, 170, 0.2);
+            border-color: #00d4aa;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-content {
+            padding: 35px;
+        }
+
+        .project-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 18px;
+            color: #0a0a0a;
+            font-weight: 700;
+        }
+
+        .project-card p {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background: #f5f5f5;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #00d4aa;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            padding: 12px 24px;
+            background: #f0fdf9;
+            border-radius: 8px;
+        }
+
+        .project-link:hover {
+            gap: 15px;
+            background: #00d4aa;
+            color: white;
+        }
+
+        .project-link::after {
+            content: '→';
+            font-size: 1.3em;
+        }
+
+        .education-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .education-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #00d4aa;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.15);
+        }
+
+        .education-card h3 {
+            font-size: 1.5em;
+            color: #0a0a0a;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .education-card .university {
+            color: #00d4aa;
+            font-weight: 600;
+            font-size: 1.15em;
+            margin-bottom: 8px;
+        }
+
+        .education-card .year {
+            color: #888;
+            font-size: 0.95em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.15);
+        }
+
+        .skill-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            color: #0a0a0a;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-card h3::before {
+            content: '';
+            width: 5px;
+            height: 30px;
+            background: linear-gradient(to bottom, #00d4aa, #00a67e);
+            border-radius: 3px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 12px 0;
+            color: #444;
+            font-size: 1.05em;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s;
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-card li:hover {
+            color: #00d4aa;
+            padding-left: 10px;
+        }
+
+        .passions-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            padding: 80px 60px;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .passions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .passion-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .passion-item:hover {
+            background: rgba(0, 212, 170, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .passion-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .passion-item h3 {
+            font-size: 1.1em;
+            color: #00d4aa;
+        }
+
+        footer {
+            background: #0a0a0a;
+            color: white;
+            padding: 60px;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 30px 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .hero-section, section {
+                padding: 60px 30px;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5em;
+            }
+
+            .hero-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body itemscope itemtype="https://schema.org/Person">
+    <aside class="sidebar">
+        <div class="sidebar-profile">
+            <img src="assets/profile.jpg" alt="Daniele Raimondi - Senior Data Scientist and AI Tech Lead" class="sidebar-photo" itemprop="image">
+            <h1 itemprop="name">Daniele Raimondi</h1>
+            <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
+        </div>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#passions">Passions</a>
+        </nav>
+
+        <div class="sidebar-info">
+            <div class="sidebar-info-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <div class="label">Location</div>
+                <div class="value">
+                    <span itemprop="addressLocality">Basel</span>, 
+                    <span itemprop="addressCountry">Switzerland</span> 🇨🇭
                 </div>
             </div>
+            <div class="sidebar-info-item">
+                <div class="label">Current Role</div>
+                <div class="value">Senior Data Scientist - AI</div>
+            </div>
+            <div class="sidebar-info-item">
+                <div class="label">Specialization</div>
+                <div class="value">ML · AI · Finance</div>
+            </div>
+        </div>
 
-            <div class="project-card">
-                <img src="assets/BitcoinSentiment.png" alt="Bitcoin Sentiment Analysis Project">
-                <div class="project-content">
-                    <h3>Sentiment Analysis Bitcoin</h3>
-                    <p>
-                        NLP system analyzing Bitcoin sentiment from social media, news, and forums to predict market reversals. 
-                        Real-time sentiment indicators for trading decisions with advanced natural language processing.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tag">NLP</span>
-                        <span class="tag">Sentiment Analysis</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">NLTK</span>
+        <div class="sidebar-social">
+            <a href="https://github.com/DanieleRaimondi" target="_blank" title="GitHub" itemprop="sameAs" rel="noopener">⚡</a>
+            <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" title="LinkedIn" itemprop="sameAs" rel="noopener">💼</a>
+            <a href="https://www.kaggle.com/danieleraimondi" target="_blank" title="Kaggle" itemprop="sameAs" rel="noopener">📊</a>
+        </div>
+    </aside>
+
+    <main class="main-content" role="main">
+        <section class="hero-section" aria-label="Introduction">
+            <div class="hero-content">
+                <h2>Data Scientist & Tech Lead</h2>
+                <p class="tagline">
+                    Building end-to-end AI solutions and leading data intelligence products at scale. 
+                    Specializing in LLM pipelines, GenAI, machine learning, and quantitative finance. 
+                    Former Italian National Team athlete bringing performance-driven mindset to data science.
+                </p>
+
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <div class="icon">🚀</div>
+                        <h3>Tech Leadership</h3>
+                        <p>Leading Data Intelligence products</p>
                     </div>
-                    <a href="https://github.com/DanieleRaimondi/Sentiment_Analysis_Bitcoin" class="project-link" target="_blank">View Project</a>
+                    <div class="highlight-item">
+                        <div class="icon">🤖</div>
+                        <h3>AI Solutions</h3>
+                        <p>LLM pipelines, GenAI, ML at scale</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">💱</div>
+                        <h3>Financial Markets</h3>
+                        <p>Building quantitative finance models and analytics</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="project-card">
-                <img src="assets/BettingDataScience.png" alt="Betting Exchange Scrapers Project">
-                <div class="project-content">
-                    <h3>Betting Exchange Scrapers</h3>
-                    <p>
-                        Real-time web scraping system for betting exchange odds and live football statistics. 
-                        Automated data collection pipeline for sports analytics and betting strategy optimization.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tag">Web Scraping</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">BeautifulSoup</span>
-                        <span class="tag">Real-time</span>
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">
+                Combining quantitative finance expertise with cutting-edge AI to solve complex problems at scale.
+            </p>
+            <div class="experience-item">
+                <p>
+                    I am a Senior Data Scientist and Tech Lead at MDPI in Basel, Switzerland, where I lead Data Intelligence products 
+                    and develop end-to-end AI solutions. My expertise spans LLM pipelines, GenAI, classification, clustering, 
+                    causal inference, graph ML, time series forecasting, and vector database applications—all built in Python 
+                    and deployed via Streamlit and Superset.
+                </p>
+                <p style="margin-top: 15px;">
+                    With a Master's in Economic Statistics specializing in Financial Markets and Insurance from the University of Milan, 
+                    and a subsequent Master's in Data Science from University of Bicocca (2021), I combine strong quantitative foundations 
+                    with practical machine learning expertise. My career spans risk management, retail analytics at Esselunga where I led 
+                    the data science team for over six years, and now academic publishing technology.
+                </p>
+                <p style="margin-top: 15px;">
+                    Beyond technology, I was a member of the Italian National Athletics Team, competing in 400m and 4x400m events. 
+                    This athletic background instilled discipline and performance optimization principles that I apply to building 
+                    scalable, high-impact data solutions.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">
+                Leading data science initiatives across academic publishing, retail, and financial services.
+            </p>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Senior Data Scientist & Tech Lead</h3>
+                            <p class="company">MDPI · Basel, Switzerland 🇨🇭</p>
+                        </div>
+                        <span class="period">2023 - Present</span>
                     </div>
-                    <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank">View Project</a>
+                    <ul>
+                        <li>Leading Data Intelligence products and serving as Tech Lead for the data science group</li>
+                        <li>Developing end-to-end AI and statistical solutions: LLM pipelines, GenAI, classification, clustering, causal inference, alerting systems, graph ML, time series forecasting, vector database applications</li>
+                        <li>Building production systems fully in Python, deployed via Streamlit and Superset</li>
+                        <li>Managing large-scale datasets including a multimillion-record scholarly database</li>
+                        <li>Representing the company at international conferences and technical events</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Lead Data Scientist</h3>
+                            <p class="company">Esselunga · Milan, Italy 🇮🇹</p>
+                        </div>
+                        <span class="period">2017 - 2023</span>
+                    </div>
+                    <ul>
+                        <li>Project manager for the company's Data Science and Machine Learning initiatives</li>
+                        <li>Created actionable insights influencing strategic business decisions across the organization</li>
+                        <li>Developed and deployed ML models: customer churn prediction, segmentation, geo-spatial analysis, dynamic pricing strategies, time series forecasting, causal inference</li>
+                        <li>Implemented production systems for anomaly detection, NLP, DataOps, and MLOps</li>
+                        <li>Managed end-to-end ML pipelines processing millions of transactions daily</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Finance and Risk Analyst</h3>
+                            <p class="company">Accenture · Milan, Italy 🇮🇹</p>
+                        </div>
+                        <span class="period">2017</span>
+                    </div>
+                    <ul>
+                        <li>Conducted comprehensive financial risk assessments for investment portfolios</li>
+                        <li>Developed quantitative models for portfolio optimization and risk management</li>
+                        <li>Delivered analytical insights for strategic decision-making in financial services</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Risk Management Analyst</h3>
+                            <p class="company">Fiditalia · Milan, Italy 🇮🇹</p>
+                        </div>
+                        <span class="period">2016 - 2017</span>
+                    </div>
+                    <ul>
+                        <li>Developed credit risk models and automated reporting systems</li>
+                        <li>Implemented statistical methods for fraud detection in consumer lending</li>
+                        <li>Conducted portfolio risk assessment and optimization</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills">
-        <h2 class="section-title">Technical Expertise</h2>
-        <p class="section-subtitle">
-            Full-stack data science capabilities from research to production deployment.
-        </p>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>AI & Machine Learning</h3>
-                <ul>
-                    <li>LLM Pipelines & GenAI</li>
-                    <li>Classification & Clustering</li>
-                    <li>Causal Inference</li>
-                    <li>Time Series Forecasting</li>
-                    <li>Graph Machine Learning</li>
-                    <li>NLP & Sentiment Analysis</li>
-                </ul>
-            </div>
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">
+                Open-source contributions in cryptocurrency analytics, trading systems, and quantitative finance.
+            </p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="assets/Thermomodel.png" alt="Data Science Project on Bitcoin">
+                    <div class="project-content">
+                        <h3>Bitcoin DataScience</h3>
+                        <p>
+                            Comprehensive data science framework for analyzing Bitcoin market dynamics, price patterns, and trading signals. 
+                            Advanced statistical analysis and machine learning models for cryptocurrency markets with predictive analytics.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Time Series</span>
+                        </div>
+                        <a href="https://github.com/DanieleRaimondi/bitcoin_datascience" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
 
-            <div class="skill-card">
-                <h3>Programming & Tools</h3>
-                <ul>
-                    <li>Python (Advanced)</li>
-                    <li>SQL & Database Systems</li>
-                    <li>Streamlit & Superset</li>
-                    <li>Git & Version Control</li>
-                    <li>Docker & Deployment</li>
-                </ul>
-            </div>
+                <div class="project-card">
+                    <img src="assets/BitcoinSentiment.png" alt="Bitcoin Sentiment Analysis Project">
+                    <div class="project-content">
+                        <h3>Sentiment Analysis Bitcoin</h3>
+                        <p>
+                            NLP system analyzing Bitcoin sentiment from social media, news, and forums to predict market reversals. 
+                            Real-time sentiment indicators for trading decisions with advanced natural language processing.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">NLP</span>
+                            <span class="tag">Sentiment Analysis</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">NLTK</span>
+                        </div>
+                        <a href="https://github.com/DanieleRaimondi/Sentiment_Analysis_Bitcoin" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
 
-            <div class="skill-card">
-                <h3>Data Engineering</h3>
-                <ul>
-                    <li>ETL Pipelines</li>
-                    <li>Vector Databases</li>
-                    <li>Big Data Processing</li>
-                    <li>DataOps & MLOps</li>
-                    <li>Alerting Systems</li>
-                </ul>
+                <div class="project-card">
+                    <img src="assets/BettingDataScience.png" alt="Betting Exchange Scrapers Project">
+                    <div class="project-content">
+                        <h3>Betting Exchange Scrapers</h3>
+                        <p>
+                            Real-time web scraping system for betting exchange odds and live football statistics. 
+                            Automated data collection pipeline for sports analytics and betting strategy optimization.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Web Scraping</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">BeautifulSoup</span>
+                            <span class="tag">Real-time</span>
+                        </div>
+                        <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="skill-card">
-                <h3>Quantitative Finance</h3>
-                <ul>
-                    <li>Risk Management</li>
-                    <li>Portfolio Optimization</li>
-                    <li>Pricing Strategies</li>
-                    <li>Financial Modeling</li>
-                    <li>Market Analysis</li>
-                </ul>
-            </div>
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">
+                Advanced degrees in statistics, data science, and quantitative methods from University of Milan Bicocca.
+            </p>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Master's Degree - Data Science</h3>
+                    <p class="university">University of Milan Bicocca</p>
+                    <p class="year">2021</p>
+                </div>
 
-            <div class="skill-card">
-                <h3>Frameworks & Libraries</h3>
-                <ul>
-                    <li>Pandas / Polars / NumPy</li>
-                    <li>Scikit-learn</li>
-                    <li>TensorFlow / PyTorch</li>
-                    <li>LangChain & Vector DBs</li>
-                    <li>Plotly & Visualization</li>
-                </ul>
-            </div>
+                <div class="education-card">
+                    <h3>Master of Science - Economic Statistics</h3>
+                    <p class="university">University of Milan Bicocca</p>
+                    <p class="year">Specialization: Financial Markets & Insurance</p>
+                </div>
 
-            <div class="skill-card">
-                <h3>Business Analytics</h3>
-                <ul>
-                    <li>Customer Segmentation</li>
-                    <li>Churn Prediction</li>
-                    <li>Geo-spatial Analysis</li>
-                    <li>Anomaly Detection</li>
-                    <li>A/B Testing</li>
-                </ul>
+                <div class="education-card">
+                    <h3>Bachelor of Science - Statistics</h3>
+                    <p class="university">University of Milan Bicocca</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="passions" class="passions-section">
-        <h2 class="section-title" style="color: white;">Beyond Work</h2>
-        <p class="section-subtitle" style="color: #999;">
-            Passions and interests that drive continuous learning and curiosity.
-        </p>
-        <div class="passions-grid">
-            <div class="passion-item">
-                <div class="icon">📊</div>
-                <h3>Data Science</h3>
-            </div>
-            <div class="passion-item">
-                <div class="icon">💹</div>
-                <h3>Finance & Investing</h3>
-            </div>
-            <div class="passion-item">
-                <div class="icon">🌍</div>
-                <h3>Macroeconomics</h3>
-            </div>
-            <div class="passion-item">
-                <div class="icon">🪙</div>
-                <h3>Numismatics</h3>
-            </div>
-            <div class="passion-item">
-                <div class="icon">🎱</div>
-                <h3>Billiards</h3>
-            </div>
-            <div class="passion-item">
-                <div class="icon">🎵</div>
-                <h3>Italodance</h3>
-            </div>
-            <div class="passion-item">
-                <div class="icon">🏃‍♂️</div>
-                <h3>Athletics</h3>
-            </div>
-        </div>
-    </section>
+        <section id="skills">
+            <h2 class="section-title">Technical Expertise</h2>
+            <p class="section-subtitle">
+                Full-stack data science capabilities from research to production deployment.
+            </p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>AI & Machine Learning</h3>
+                    <ul>
+                        <li>LLM Pipelines & GenAI</li>
+                        <li>Classification & Clustering</li>
+                        <li>Causal Inference</li>
+                        <li>Time Series Forecasting</li>
+                        <li>Graph Machine Learning</li>
+                        <li>NLP & Sentiment Analysis</li>
+                    </ul>
+                </div>
 
-    <footer>
-        <p>© 2025 Daniele Raimondi · Senior Data Scientist & Tech Lead</p>
-        <p style="margin-top: 8px;">Basel, Switzerland 🇨🇭</p>
-    </footer>
-</main>
+                <div class="skill-card">
+                    <h3>Programming & Tools</h3>
+                    <ul>
+                        <li>Python (Advanced)</li>
+                        <li>SQL & Database Systems</li>
+                        <li>Streamlit & Superset</li>
+                        <li>Git & Version Control</li>
+                        <li>Docker & Deployment</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Data Engineering</h3>
+                    <ul>
+                        <li>ETL Pipelines</li>
+                        <li>Vector Databases</li>
+                        <li>Big Data Processing</li>
+                        <li>DataOps & MLOps</li>
+                        <li>Alerting Systems</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Quantitative Finance</h3>
+                    <ul>
+                        <li>Risk Management</li>
+                        <li>Portfolio Optimization</li>
+                        <li>Pricing Strategies</li>
+                        <li>Financial Modeling</li>
+                        <li>Market Analysis</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Frameworks & Libraries</h3>
+                    <ul>
+                        <li>Pandas / Polars / NumPy</li>
+                        <li>Scikit-learn</li>
+                        <li>TensorFlow / PyTorch</li>
+                        <li>LangChain & Vector DBs</li>
+                        <li>Plotly & Visualization</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Business Analytics</h3>
+                    <ul>
+                        <li>Customer Segmentation</li>
+                        <li>Churn Prediction</li>
+                        <li>Geo-spatial Analysis</li>
+                        <li>Anomaly Detection</li>
+                        <li>A/B Testing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="passions" class="passions-section">
+            <h2 class="section-title" style="color: white;">Beyond Work</h2>
+            <p class="section-subtitle" style="color: #999;">
+                Passions and interests that drive continuous learning and curiosity.
+            </p>
+            <div class="passions-grid">
+                <div class="passion-item">
+                    <div class="icon">📊</div>
+                    <h3>Data Science</h3>
+                </div>
+                <div class="passion-item">
+                    <div class="icon">💹</div>
+                    <h3>Finance & Investing</h3>
+                </div>
+                <div class="passion-item">
+                    <div class="icon">🌍</div>
+                    <h3>Macroeconomics</h3>
+                </div>
+                <div class="passion-item">
+                    <div class="icon">🪙</div>
+                    <h3>Numismatics</h3>
+                </div>
+                <div class="passion-item">
+                    <div class="icon">🎱</div>
+                    <h3>Billiards</h3>
+                </div>
+                <div class="passion-item">
+                    <div class="icon">🎵</div>
+                    <h3>Italodance</h3>
+                </div>
+                <div class="passion-item">
+                    <div class="icon">🏃‍♂️</div>
+                    <h3>Athletics</h3>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Daniele Raimondi · Senior Data Scientist & Tech Lead</p>
+            <p style="margin-top: 10px;">Basel, Switzerland 🇨🇭</p>
+        </footer>
+    </main>
+</body>
+</html>
