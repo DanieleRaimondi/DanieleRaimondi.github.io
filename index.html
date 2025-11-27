@@ -19,12 +19,7 @@
     <meta name="ICBM" content="47.5596, 7.5886">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -83,6 +78,7 @@
         html {
             overflow-x: hidden;
             scroll-behavior: smooth;
+            width: 100%;
         }
 
         body {
@@ -93,6 +89,7 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            width: 100%;
         }
 
         .sidebar {
@@ -199,6 +196,7 @@
             min-height: 100vh;
             width: calc(100% - 280px);
             overflow-x: hidden;
+            background: #fafafa;
         }
 
         .hero-section {
@@ -385,7 +383,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
         }
 
@@ -404,15 +402,11 @@
             border-color: #00d4aa;
         }
 
-        .project-header {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .project-icon {
-            font-size: 3.5em;
-            margin-bottom: 15px;
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
         }
 
         .project-content {
@@ -512,7 +506,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 35px;
         }
 
@@ -578,7 +572,7 @@
 
         .passions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -710,7 +704,7 @@
                     <div class="highlight-item">
                         <div class="icon">🚀</div>
                         <h3>Tech Leadership</h3>
-                        <p>Leading Data Intelligence products and tech teams</p>
+                        <p>Leading Data Intelligence products in the company</p>
                     </div>
                     <div class="highlight-item">
                         <div class="icon">🤖</div>
@@ -718,9 +712,9 @@
                         <p>LLM pipelines, GenAI, ML at scale</p>
                     </div>
                     <div class="highlight-item">
-                        <div class="icon">📊</div>
-                        <h3>Big Data</h3>
-                        <p>Managing multimillion-record databases</p>
+                        <div class="icon">💱</div>
+                        <h3>Financial Markets</h3>
+                        <p>Building quantitative finance models and analytics</p>
                     </div>
                 </div>
             </div>
@@ -831,7 +825,7 @@
             </p>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="assets/Thermomodel.png" alt="Bitcoin DataScience Project" style="width: 100%; height: 200px; object-fit: cover; display: block;">
+                    <img src="assets/Thermomodel.png" alt="Data Science Project on Bitcoin">
                     <div class="project-content">
                         <h3>Bitcoin DataScience</h3>
                         <p>
@@ -849,9 +843,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">📊</div>
-                    </div>
+                    <img src="assets/BitcoinSentiment.png" alt="Bitcoin Sentiment Analysis Project">
                     <div class="project-content">
                         <h3>Sentiment Analysis Bitcoin</h3>
                         <p>
@@ -869,9 +861,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">⚽</div>
-                    </div>
+                    <img src="assets/BettingDataScience.png" alt="Betting Exchange Scrapers Project">
                     <div class="project-content">
                         <h3>Betting Exchange Scrapers</h3>
                         <p>
