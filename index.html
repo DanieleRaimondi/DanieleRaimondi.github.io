@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +17,12 @@
     <meta name="geo.placename" content="Basel">
     <meta name="geo.position" content="47.5596;7.5886">
     <meta name="ICBM" content="47.5596, 7.5886">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -629,12 +635,12 @@
         }
     </style>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/Person">
     <aside class="sidebar">
         <div class="sidebar-profile">
-            <img src="profile.jpg" alt="Daniele Raimondi" class="sidebar-photo">
-            <h1>Daniele Raimondi</h1>
-            <p class="role">Senior Data Scientist</p>
+            <img src="profile.jpg" alt="Daniele Raimondi - Senior Data Scientist and AI Tech Lead" class="sidebar-photo" itemprop="image">
+            <h1 itemprop="name">Daniele Raimondi</h1>
+            <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
         </div>
 
         <nav>
@@ -647,9 +653,12 @@
         </nav>
 
         <div class="sidebar-info">
-            <div class="sidebar-info-item">
+            <div class="sidebar-info-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                 <div class="label">Location</div>
-                <div class="value">Basel, Switzerland 🇨🇭</div>
+                <div class="value">
+                    <span itemprop="addressLocality">Basel</span>, 
+                    <span itemprop="addressCountry">Switzerland</span> 🇨🇭
+                </div>
             </div>
             <div class="sidebar-info-item">
                 <div class="label">Current Role</div>
@@ -662,14 +671,14 @@
         </div>
 
         <div class="sidebar-social">
-            <a href="https://github.com/DanieleRaimondi" target="_blank" title="GitHub">⚡</a>
-            <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" title="LinkedIn">💼</a>
-            <a href="https://www.kaggle.com/danieleraimondi" target="_blank" title="Kaggle">📊</a>
+            <a href="https://github.com/DanieleRaimondi" target="_blank" title="GitHub" itemprop="sameAs" rel="noopener">⚡</a>
+            <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" title="LinkedIn" itemprop="sameAs" rel="noopener">💼</a>
+            <a href="https://www.kaggle.com/danieleraimondi" target="_blank" title="Kaggle" itemprop="sameAs" rel="noopener">📊</a>
         </div>
     </aside>
 
-    <main class="main-content">
-        <section class="hero-section">
+    <main class="main-content" role="main">
+        <section class="hero-section" aria-label="Introduction">
             <div class="hero-content">
                 <h2>Data Scientist & Tech Lead</h2>
                 <p class="tagline">
