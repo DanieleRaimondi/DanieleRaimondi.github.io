@@ -20,18 +20,14 @@
     
     <!-- Favicon universale (legacy/compat) -->
     <link rel="icon" href="/assets/favicon.ico" sizes="any">
-
     <!-- PNG per i browser moderni -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-
     <!-- Apple iOS (Homescreen/Bookmarks) -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-
     <!-- Android Chrome (icone grandi) -->
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png">
-
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -263,6 +259,51 @@
             color: #777;
         }
 
+        /* Background + experience in right sidebar */
+
+        .right-sidebar-section h3.sidebar-subtitle {
+            font-size: 1.05em;
+            margin: 18px 0 10px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .sidebar-experience-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-experience-item {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-experience-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .sidebar-experience-role {
+            font-size: 0.98em;
+            font-weight: 700;
+            color: #0a0a0a;
+        }
+
+        .sidebar-experience-company {
+            font-size: 0.9em;
+            color: #00a67e;
+            font-weight: 600;
+        }
+
+        .sidebar-experience-dates {
+            font-size: 0.85em;
+            color: #777;
+        }
+
         /* MAIN CONTENT (CENTER) */
 
         .main-content {
@@ -357,103 +398,6 @@
             color: #666;
             margin-bottom: 60px;
             max-width: 800px;
-        }
-
-        .experience-timeline {
-            position: relative;
-            padding-left: 50px;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #00d4aa, #00a67e);
-        }
-
-        .experience-item {
-            position: relative;
-            margin-bottom: 60px;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: -59px;
-            top: 50px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #00d4aa;
-            border: 4px solid #fafafa;
-            box-shadow: 0 0 0 4px #00d4aa;
-        }
-
-        .experience-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.15);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .experience-item h3 {
-            font-size: 1.8em;
-            color: #0a0a0a;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .experience-item .company {
-            font-size: 1.2em;
-            color: #00d4aa;
-            font-weight: 600;
-        }
-
-        .experience-item .period {
-            background: #f0f0f0;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.9em;
-            color: #666;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .experience-item ul {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .experience-item li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .experience-item li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: #00d4aa;
-            font-weight: bold;
-            font-size: 1.2em;
         }
 
         .projects-grid {
@@ -708,8 +652,6 @@
         </div>
 
         <nav>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#passions">Passions</a>
@@ -746,9 +688,34 @@
         <div class="right-sidebar-section" id="background">
             <h2>Background</h2>
             <p>
-                Senior Data Scientist & Tech Lead in Basel, building end-to-end AI and data products across LLM pipelines,
-                GenAI, ML, and quantitative finance, with experience in retail, risk, and academic publishing.
+                Senior Data Scientist & Tech Lead in Basel, leading Data Intelligence products and
+                end-to-end AI solutions across LLM pipelines, GenAI, ML, and quantitative finance,
+                with experience in retail, risk, and academic publishing.
             </p>
+
+            <h3 class="sidebar-subtitle">Experience</h3>
+            <ul class="sidebar-experience-list">
+                <li class="sidebar-experience-item">
+                    <div class="sidebar-experience-role">Senior Data Scientist & Tech Lead</div>
+                    <div class="sidebar-experience-company">MDPI · Basel, Switzerland 🇨🇭</div>
+                    <div class="sidebar-experience-dates">2023 – Present</div>
+                </li>
+                <li class="sidebar-experience-item">
+                    <div class="sidebar-experience-role">Lead Data Scientist</div>
+                    <div class="sidebar-experience-company">Esselunga · Milan, Italy 🇮🇹</div>
+                    <div class="sidebar-experience-dates">2017 – 2023</div>
+                </li>
+                <li class="sidebar-experience-item">
+                    <div class="sidebar-experience-role">Finance and Risk Analyst</div>
+                    <div class="sidebar-experience-company">Accenture · Milan, Italy 🇮🇹</div>
+                    <div class="sidebar-experience-dates">2017</div>
+                </li>
+                <li class="sidebar-experience-item">
+                    <div class="sidebar-experience-role">Risk Management Analyst</div>
+                    <div class="sidebar-experience-company">Fiditalia · Milan, Italy 🇮🇹</div>
+                    <div class="sidebar-experience-dates">2016 – 2017</div>
+                </li>
+            </ul>
         </div>
 
         <div class="right-sidebar-section" id="education-sidebar">
@@ -801,104 +768,6 @@
                         <h3>Financial Markets</h3>
                         <p>Building quantitative finance models and analytics</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">
-                Combining quantitative finance expertise with cutting-edge AI to solve complex problems at scale.
-            </p>
-            <div class="experience-item">
-                <p>
-                    I am a Senior Data Scientist and Tech Lead at MDPI in Basel, Switzerland, where I lead Data Intelligence products 
-                    and develop end-to-end AI solutions. My expertise spans LLM pipelines, GenAI, classification, clustering, 
-                    causal inference, graph ML, time series forecasting, and vector database applications—all built in Python 
-                    and deployed via Streamlit and Superset.
-                </p>
-                <p style="margin-top: 15px;">
-                    With a Master's in Economic Statistics specializing in Financial Markets and Insurance from the University of Milan, 
-                    and a subsequent Master's in Data Science from University of Bicocca (2021), I combine strong quantitative foundations 
-                    with practical machine learning expertise. My career spans risk management, retail analytics at Esselunga where I led 
-                    the data science team for over six years, and now academic publishing technology.
-                </p>
-                <p style="margin-top: 15px;">
-                    Beyond technology, I was a member of the Italian National Athletics Team, competing in 400m and 4x400m events. 
-                    This athletic background instilled discipline and performance optimization principles that I apply to building 
-                    scalable, high-impact data solutions.
-                </p>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="section-subtitle">
-                Leading data science initiatives across academic publishing, retail, and financial services.
-            </p>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Senior Data Scientist & Tech Lead</h3>
-                            <p class="company">MDPI · Basel, Switzerland 🇨🇭</p>
-                        </div>
-                        <span class="period">2023 - Present</span>
-                    </div>
-                    <ul>
-                        <li>Leading Data Intelligence products and serving as Tech Lead for the data science group</li>
-                        <li>Developing end-to-end AI and statistical solutions: LLM pipelines, GenAI, classification, clustering, causal inference, alerting systems, graph ML, time series forecasting, vector database applications</li>
-                        <li>Building production systems fully in Python, deployed via Streamlit and Superset</li>
-                        <li>Managing large-scale datasets including a multimillion-record scholarly database</li>
-                        <li>Representing the company at international conferences and technical events</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Lead Data Scientist</h3>
-                            <p class="company">Esselunga · Milan, Italy 🇮🇹</p>
-                        </div>
-                        <span class="period">2017 - 2023</span>
-                    </div>
-                    <ul>
-                        <li>Project manager for the company's Data Science and Machine Learning initiatives</li>
-                        <li>Created actionable insights influencing strategic business decisions across the organization</li>
-                        <li>Developed and deployed ML models: customer churn prediction, segmentation, geo-spatial analysis, dynamic pricing strategies, time series forecasting, causal inference</li>
-                        <li>Implemented production systems for anomaly detection, NLP, DataOps, and MLOps</li>
-                        <li>Managed end-to-end ML pipelines processing millions of transactions daily</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Finance and Risk Analyst</h3>
-                            <p class="company">Accenture · Milan, Italy 🇮🇹</p>
-                        </div>
-                        <span class="period">2017</span>
-                    </div>
-                    <ul>
-                        <li>Conducted comprehensive financial risk assessments for investment portfolios</li>
-                        <li>Developed quantitative models for portfolio optimization and risk management</li>
-                        <li>Delivered analytical insights for strategic decision-making in financial services</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Risk Management Analyst</h3>
-                            <p class="company">Fiditalia · Milan, Italy 🇮🇹</p>
-                        </div>
-                        <span class="period">2016 - 2017</span>
-                    </div>
-                    <ul>
-                        <li>Developed credit risk models and automated reporting systems</li>
-                        <li>Implemented statistical methods for fraud detection in consumer lending</li>
-                        <li>Conducted portfolio risk assessment and optimization</li>
-                    </ul>
                 </div>
             </div>
         </section>
