@@ -7,7 +7,7 @@
     <!-- SEO Meta Tags -->
     <title>Daniele Raimondi - Senior Data Scientist & AI Tech Lead | Basel, Switzerland</title>
     <meta name="description" content="Senior Data Scientist and AI Tech Lead at MDPI in Basel, Switzerland. Specializing in LLM pipelines, GenAI, Machine Learning, and Quantitative Finance. Former Italian National Team athlete.">
-    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning, Athletics, Data Science, 400m, 4x400m, Esselunga, Cryptocurrency, Bitcoin, Trading Systems, Financial Markets, Risk Management, Data Intelligence, Academic Publishing, Retail Analytics, Data Solutions, Data Analytics">
+    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
     <meta name="author" content="Daniele Raimondi">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://danieleraimondi.github.io/">
@@ -189,13 +189,22 @@
         }
 
         .sidebar-social a {
-            color: #666;
-            font-size: 1.2em;
-            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .sidebar-social a:hover {
-            color: #00d4aa;
+        .sidebar-social img {
+            width: 22px;
+            height: 22px;
+            display: block;
+            border-radius: 4px;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .sidebar-social a:hover img {
+            transform: translateY(-1px) scale(1.05);
+            filter: brightness(1.1);
         }
 
         /* RIGHT SIDEBAR */
@@ -325,7 +334,7 @@
         }
 
         .hero-content {
-            max-width: 100%;   /* <-- usiamo tutta la larghezza disponibile */
+            max-width: 100%;
         }
 
         .hero-content h2 {
@@ -398,10 +407,10 @@
             font-size: 1.05em;
             color: #666;
             margin-bottom: 36px;
-            max-width: 100%;
+            max-width: 100%; /* niente più strozzatura a 780px */
         }
 
-        /* Compact experience summary in main */
+        /* Experience snapshot */
 
         .experience-compact {
             display: grid;
@@ -442,6 +451,8 @@
             color: #555;
             line-height: 1.5;
         }
+
+        /* Projects */
 
         .projects-grid {
             display: grid;
@@ -530,6 +541,8 @@
             font-size: 1.1em;
         }
 
+        /* Skills */
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -587,6 +600,8 @@
             color: #00d4aa;
             padding-left: 6px;
         }
+
+        /* Passions */
 
         .passions-section {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -719,9 +734,15 @@
         </div>
 
         <div class="sidebar-social">
-            <a href="https://github.com/DanieleRaimondi" target="_blank" title="GitHub" itemprop="sameAs" rel="noopener">⚡</a>
-            <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" title="LinkedIn" itemprop="sameAs" rel="noopener">💼</a>
-            <a href="https://www.kaggle.com/danieleraimondi" target="_blank" title="Kaggle" itemprop="sameAs" rel="noopener">📊</a>
+            <a href="https://github.com/DanieleRaimondi" target="_blank" title="GitHub" itemprop="sameAs" rel="noopener">
+                <img src="assets/github.png" alt="GitHub logo">
+            </a>
+            <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" title="LinkedIn" itemprop="sameAs" rel="noopener">
+                <img src="assets/linkedin.jpeg" alt="LinkedIn logo">
+            </a>
+            <a href="https://www.kaggle.com/danieleraimondi" target="_blank" title="Kaggle" itemprop="sameAs" rel="noopener">
+                <img src="assets/kaggle.png" alt="Kaggle logo">
+            </a>
         </div>
     </aside>
 
