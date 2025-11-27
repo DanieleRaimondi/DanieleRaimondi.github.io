@@ -18,8 +18,20 @@
     <meta name="geo.position" content="47.5596;7.5886">
     <meta name="ICBM" content="47.5596, 7.5886">
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <!-- Favicon universale (legacy/compat) -->
+    <link rel="icon" href="/assets/favicon.ico" sizes="any">
+
+    <!-- PNG per i browser moderni -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+
+    <!-- Apple iOS (Homescreen/Bookmarks) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <!-- Android Chrome (icone grandi) -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png">
+
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -91,6 +103,8 @@
             padding: 0;
             width: 100%;
         }
+
+        /* LEFT SIDEBAR */
 
         .sidebar {
             position: fixed;
@@ -191,10 +205,71 @@
             color: #00d4aa;
         }
 
+        /* RIGHT SIDEBAR */
+
+        .right-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: #ffffff;
+            border-left: 1px solid #e0e0e0;
+            padding: 40px 30px;
+            overflow-y: auto;
+            z-index: 900;
+        }
+
+        .right-sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .right-sidebar-section h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #0a0a0a;
+        }
+
+        .right-sidebar-section p {
+            font-size: 0.95em;
+            color: #444;
+        }
+
+        .sidebar-education-card {
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 15px 18px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00d4aa;
+        }
+
+        .sidebar-education-card h3 {
+            font-size: 1em;
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: #0a0a0a;
+        }
+
+        .sidebar-education-card .university {
+            font-size: 0.9em;
+            color: #00a67e;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .sidebar-education-card .year {
+            font-size: 0.85em;
+            color: #777;
+        }
+
+        /* MAIN CONTENT (CENTER) */
+
         .main-content {
             margin-left: 280px;
+            margin-right: 300px;
             min-height: 100vh;
-            width: calc(100% - 280px);
+            width: calc(100% - 580px);
             overflow-x: hidden;
             background: #fafafa;
         }
@@ -466,44 +541,6 @@
             font-size: 1.3em;
         }
 
-        .education-grid {
-            display: grid;
-            gap: 30px;
-        }
-
-        .education-card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #00d4aa;
-            transition: all 0.3s;
-        }
-
-        .education-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 30px rgba(0, 212, 170, 0.15);
-        }
-
-        .education-card h3 {
-            font-size: 1.5em;
-            color: #0a0a0a;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .education-card .university {
-            color: #00d4aa;
-            font-weight: 600;
-            font-size: 1.15em;
-            margin-bottom: 8px;
-        }
-
-        .education-card .year {
-            color: #888;
-            font-size: 0.95em;
-        }
-
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -613,6 +650,8 @@
             font-size: 0.95em;
         }
 
+        /* RESPONSIVE */
+
         @media (max-width: 1024px) {
             .sidebar {
                 position: relative;
@@ -621,12 +660,22 @@
                 padding: 30px 20px;
             }
 
+            .right-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-left: none;
+                border-top: 1px solid #e0e0e0;
+                padding: 30px 20px;
+            }
+
             .main-content {
                 margin-left: 0;
+                margin-right: 0;
                 width: 100%;
             }
 
-            .hero-section, section {
+            .hero-section, section, .passions-section {
                 padding: 60px 30px;
             }
 
@@ -649,6 +698,8 @@
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Person">
+
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-profile">
             <img src="assets/profile.jpg" alt="Daniele Raimondi - Senior Data Scientist and AI Tech Lead" class="sidebar-photo" itemprop="image">
@@ -660,9 +711,9 @@
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
-            <a href="#education">Education</a>
             <a href="#skills">Skills</a>
             <a href="#passions">Passions</a>
+            <a href="#education-sidebar">Education</a>
         </nav>
 
         <div class="sidebar-info">
@@ -690,6 +741,40 @@
         </div>
     </aside>
 
+    <!-- RIGHT SIDEBAR -->
+    <aside class="right-sidebar">
+        <div class="right-sidebar-section" id="background">
+            <h2>Background</h2>
+            <p>
+                Senior Data Scientist & Tech Lead in Basel, building end-to-end AI and data products across LLM pipelines,
+                GenAI, ML, and quantitative finance, with experience in retail, risk, and academic publishing.
+            </p>
+        </div>
+
+        <div class="right-sidebar-section" id="education-sidebar">
+            <h2>Education</h2>
+
+            <div class="sidebar-education-card">
+                <h3>Master's Degree - Data Science</h3>
+                <p class="university">University of Milan Bicocca</p>
+                <p class="year">2021</p>
+            </div>
+
+            <div class="sidebar-education-card">
+                <h3>Master of Science - Economic Statistics</h3>
+                <p class="university">University of Milan Bicocca</p>
+                <p class="year">Specialization: Financial Markets & Insurance</p>
+            </div>
+
+            <div class="sidebar-education-card">
+                <h3>Bachelor of Science - Statistics</h3>
+                <p class="university">University of Milan Bicocca</p>
+                <p class="year">—</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
     <main class="main-content" role="main">
         <section class="hero-section" aria-label="Introduction">
             <div class="hero-content">
@@ -876,31 +961,6 @@
                         </div>
                         <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank">View Project</a>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="education">
-            <h2 class="section-title">Education</h2>
-            <p class="section-subtitle">
-                Advanced degrees in statistics, data science, and quantitative methods from University of Milan Bicocca.
-            </p>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3>Master's Degree - Data Science</h3>
-                    <p class="university">University of Milan Bicocca</p>
-                    <p class="year">2021</p>
-                </div>
-
-                <div class="education-card">
-                    <h3>Master of Science - Economic Statistics</h3>
-                    <p class="university">University of Milan Bicocca</p>
-                    <p class="year">Specialization: Financial Markets & Insurance</p>
-                </div>
-
-                <div class="education-card">
-                    <h3>Bachelor of Science - Statistics</h3>
-                    <p class="university">University of Milan Bicocca</p>
                 </div>
             </div>
         </section>
