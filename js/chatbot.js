@@ -131,6 +131,7 @@
     
     if (!message) return;
 
+    // Frontend throttling (ridotto)
     const timeSinceLastRequest = Date.now() - lastRequestTime;
     if (timeSinceLastRequest < MIN_REQUEST_INTERVAL_MS) {
       const waitSeconds = Math.ceil((MIN_REQUEST_INTERVAL_MS - timeSinceLastRequest) / 1000);
@@ -160,6 +161,9 @@
     const loadingId = addTypingIndicator();
 
     try {
+      console.log('🚀 Sending request to:', API_URL);
+      console.log('📦 Payload:', { messages: conversationHistory, sessionId });
+
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -169,21 +173,36 @@
         })
       });
 
+      console.log('📡 Response status:', response.status);
+      console.log('📡 Response headers:', [...response.headers.entries()]);
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        if (response.status === 429) throw new Error('rate_limit');
-        if (response.status === 403) {
-          removeMessage(loadingId);
-          const lang = detectLanguage(message);
-          const guardedMessage = lang === 'it' 
-            ? "Mi dispiace, ma preferisco non rispondere a domande su informazioni personali sensibili come stipendio, finanze personali, indirizzi o dati privati. Posso invece parlarti della mia esperienza professionale, progetti, competenze tecniche e percorso di carriera. C'è qualcos'altro su cui posso aiutarti?"
-            : "I'm sorry, but I prefer not to answer questions about sensitive personal information such as salary, personal finances, addresses, or private data. However, I can tell you about my professional experience, projects, technical skills, and career path. Is there something else I can help you with?";
-          addMessage('assistant', guardedMessage);
-          conversationHistory.push({ role: 'assistant', content: guardedMessage });
+        console.error('❌ Error response:', errorData);
+        
+        removeMessage(loadingId);
+        
+        // Gestione guardrails (403)
+        if (response.status === 403 && errorData.message) {
+          addMessage('assistant', errorData.message);
+          conversationHistory.push({ role: 'assistant', content: errorData.message });
           localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
           return;
         }
-        throw new Error(errorData.error || 'API error');
+        
+        // Gestione rate limit (429)
+        if (response.status === 429) {
+          const lang = detectLanguage(message);
+          const msg = lang === 'it' 
+            ? `⚠️ Limite raggiunto. ${errorData.message || 'Riprova più tardi.'}`
+            : `⚠️ Rate limit. ${errorData.message || 'Try again later.'}`;
+          addMessage('assistant', msg);
+          conversationHistory.pop(); // Rimuovi ultimo messaggio
+          return;
+        }
+        
+        // Altri errori
+        throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
       }
 
       removeMessage(loadingId);
@@ -215,7 +234,7 @@
                     document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
                   }
                 } catch (e) {
-                  console.error('JSON parse error:', e);
+                  console.error('JSON parse error:', e, 'Data:', data);
                 }
               }
             }
@@ -246,22 +265,34 @@
                 document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
               }
             } catch (e) {
-              console.error('JSON parse error:', e);
+              console.error('JSON parse error:', e, 'Data:', data);
             }
           }
         }
       }
       
+      console.log('✅ Full response received:', fullResponse.substring(0, 100) + '...');
+      
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('❌ Fetch error:', error);
+      console.error('❌ Error type:', error.constructor.name);
+      console.error('❌ Error message:', error.message);
+      console.error('❌ Error stack:', error.stack);
+      
       removeMessage(loadingId);
       
-      if (error.message !== 'rate_limit' && retryCount < MAX_RETRIES) {
+      // Retry logic
+      if (retryCount < MAX_RETRIES) {
         const waitTime = Math.pow(2, retryCount) * 1000;
-        addMessage('assistant', `⚠️ Retrying in ${waitTime/1000}s / Riprovo tra ${waitTime/1000}s...`);
+        const lang = detectLanguage(message);
+        const retryMsg = lang === 'it'
+          ? `⚠️ Riprovo tra ${waitTime/1000}s...`
+          : `⚠️ Retrying in ${waitTime/1000}s...`;
+        addMessage('assistant', retryMsg);
+        
         setTimeout(() => {
           conversationHistory.pop();
           sendMessage(retryCount + 1);
@@ -269,11 +300,15 @@
         return;
       }
       
-      if (error.message === 'rate_limit') {
-        addMessage('assistant', '⚠️ Daily limit reached / Limite giornaliero raggiunto.');
-      } else {
-        addMessage('assistant', '❌ Error / Errore. Try again / Riprova.');
-      }
+      // Errore finale
+      const lang = detectLanguage(message);
+      const errorMsg = lang === 'it' 
+        ? `❌ Errore: ${error.message}. Riprova o contatta l'amministratore.`
+        : `❌ Error: ${error.message}. Try again or contact the administrator.`;
+      
+      addMessage('assistant', errorMsg);
+      conversationHistory.pop();
+      
     } finally {
       sendButton.disabled = false;
       chatInput.disabled = false;
