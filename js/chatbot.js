@@ -5,8 +5,8 @@
   let sessionId = null;
   let requestCount = 0;
   let lastRequestTime = Date.now();
-  const MAX_REQUESTS_PER_MINUTE = 5;
-  const MIN_REQUEST_INTERVAL_MS = 3000;
+  const MAX_REQUESTS_PER_MINUTE = 7;
+  const MIN_REQUEST_INTERVAL_MS = 1500;
 
   const SUGGESTED_QUESTIONS = {
     en: [
