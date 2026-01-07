@@ -5,8 +5,8 @@
   let sessionId = null;
   let requestCount = 0;
   let lastRequestTime = Date.now();
-  const MAX_REQUESTS_PER_MINUTE = 7;
-  const MIN_REQUEST_INTERVAL_MS = 1500;
+  const MAX_REQUESTS_PER_MINUTE = 15;
+  const MIN_REQUEST_INTERVAL_MS = 1000;
 
   const SUGGESTED_QUESTIONS = {
     en: [
@@ -54,7 +54,7 @@
       }
     });
 
-    // ⭐ MINIMIZE/MAXIMIZE
+    // MINIMIZE/MAXIMIZE
     const minimizeBtn = document.getElementById('chat-minimize');
     const chatContainer = document.querySelector('.chat-container');
     const chatHeader = document.querySelector('.chat-header');
@@ -172,6 +172,17 @@
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         if (response.status === 429) throw new Error('rate_limit');
+        if (response.status === 403) {
+          removeMessage(loadingId);
+          const lang = detectLanguage(message);
+          const guardedMessage = lang === 'it' 
+            ? "Mi dispiace, ma preferisco non rispondere a domande su informazioni personali sensibili come stipendio, finanze personali, indirizzi o dati privati. Posso invece parlarti della mia esperienza professionale, progetti, competenze tecniche e percorso di carriera. C'è qualcos'altro su cui posso aiutarti?"
+            : "I'm sorry, but I prefer not to answer questions about sensitive personal information such as salary, personal finances, addresses, or private data. However, I can tell you about my professional experience, projects, technical skills, and career path. Is there something else I can help you with?";
+          addMessage('assistant', guardedMessage);
+          conversationHistory.push({ role: 'assistant', content: guardedMessage });
+          localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
+          return;
+        }
         throw new Error(errorData.error || 'API error');
       }
 
@@ -186,7 +197,6 @@
       while (true) {
         const { done, value } = await reader.read();
         if (done) {
-          // Processa ultimo buffer
           if (buffer.trim()) {
             const lines = buffer.split('\n');
             for (const line of lines) {
@@ -216,7 +226,6 @@
         const chunk = decoder.decode(value, { stream: true });
         buffer += chunk;
         
-        // Processa righe complete
         let newlineIndex;
         while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
           const line = buffer.slice(0, newlineIndex).trim();
