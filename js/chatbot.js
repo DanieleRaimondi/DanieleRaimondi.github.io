@@ -3,10 +3,7 @@
   const API_URL = 'https://ai-twin-backend.vercel.app/api/chat';
   let conversationHistory = [];
   let sessionId = null;
-  let requestCount = 0;
   let lastRequestTime = Date.now();
-  const MAX_REQUESTS_PER_MINUTE = 15;
-  const MIN_REQUEST_INTERVAL_MS = 1000;
 
   const SUGGESTED_QUESTIONS = {
     en: [
@@ -131,23 +128,8 @@
     
     if (!message) return;
 
-    // Frontend throttling (ridotto)
-    const timeSinceLastRequest = Date.now() - lastRequestTime;
-    if (timeSinceLastRequest < MIN_REQUEST_INTERVAL_MS) {
-      const waitSeconds = Math.ceil((MIN_REQUEST_INTERVAL_MS - timeSinceLastRequest) / 1000);
-      addMessage('assistant', `⏱️ Please wait ${waitSeconds} seconds / Attendi ${waitSeconds} secondi`);
-      return;
-    }
-
+    // ⭐ RATE LIMITING FRONTEND COMPLETAMENTE DISABILITATO
     const now = Date.now();
-    if (now - lastRequestTime > 60000) requestCount = 0;
-    
-    if (requestCount >= MAX_REQUESTS_PER_MINUTE) {
-      addMessage('assistant', '⚠️ Too many messages / Troppi messaggi. Wait a minute / Attendi un minuto.');
-      return;
-    }
-
-    requestCount++;
     lastRequestTime = now;
 
     document.getElementById('suggestions')?.remove();
@@ -174,7 +156,6 @@
       });
 
       console.log('📡 Response status:', response.status);
-      console.log('📡 Response headers:', [...response.headers.entries()]);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -190,18 +171,17 @@
           return;
         }
         
-        // Gestione rate limit (429)
+        // Gestione rate limit (429) - NON dovrebbe mai succedere ora
         if (response.status === 429) {
           const lang = detectLanguage(message);
           const msg = lang === 'it' 
-            ? `⚠️ Limite raggiunto. ${errorData.message || 'Riprova più tardi.'}`
-            : `⚠️ Rate limit. ${errorData.message || 'Try again later.'}`;
+            ? `⚠️ Errore server. ${errorData.message || 'Riprova più tardi.'}`
+            : `⚠️ Server error. ${errorData.message || 'Try again later.'}`;
           addMessage('assistant', msg);
-          conversationHistory.pop(); // Rimuovi ultimo messaggio
+          conversationHistory.pop();
           return;
         }
         
-        // Altri errori
         throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
       }
 
@@ -271,16 +251,13 @@
         }
       }
       
-      console.log('✅ Full response received:', fullResponse.substring(0, 100) + '...');
+      console.log('✅ Full response received');
       
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
 
     } catch (error) {
       console.error('❌ Fetch error:', error);
-      console.error('❌ Error type:', error.constructor.name);
-      console.error('❌ Error message:', error.message);
-      console.error('❌ Error stack:', error.stack);
       
       removeMessage(loadingId);
       
@@ -303,8 +280,8 @@
       // Errore finale
       const lang = detectLanguage(message);
       const errorMsg = lang === 'it' 
-        ? `❌ Errore: ${error.message}. Riprova o contatta l'amministratore.`
-        : `❌ Error: ${error.message}. Try again or contact the administrator.`;
+        ? `❌ Errore: ${error.message}. Riprova.`
+        : `❌ Error: ${error.message}. Try again.`;
       
       addMessage('assistant', errorMsg);
       conversationHistory.pop();
