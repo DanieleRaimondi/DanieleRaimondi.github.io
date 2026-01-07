@@ -53,6 +53,38 @@
         sendMessage();
       }
     });
+
+    // ⭐ MINIMIZE/MAXIMIZE
+    const minimizeBtn = document.getElementById('chat-minimize');
+    const chatContainer = document.querySelector('.chat-container');
+    const chatHeader = document.querySelector('.chat-header');
+    
+    if (minimizeBtn && chatContainer && chatHeader) {
+      let isMinimized = localStorage.getItem('chatbot_minimized') === 'true';
+      if (isMinimized) {
+        chatContainer.classList.add('minimized');
+        minimizeBtn.textContent = '□';
+        minimizeBtn.title = 'Maximize';
+      }
+      
+      minimizeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMinimize();
+      });
+      
+      chatHeader.addEventListener('click', (e) => {
+        if (chatContainer.classList.contains('minimized') && e.target.closest('.chat-header')) {
+          toggleMinimize();
+        }
+      });
+      
+      function toggleMinimize() {
+        const isCurrentlyMinimized = chatContainer.classList.toggle('minimized');
+        minimizeBtn.textContent = isCurrentlyMinimized ? '□' : '−';
+        minimizeBtn.title = isCurrentlyMinimized ? 'Maximize' : 'Minimize';
+        localStorage.setItem('chatbot_minimized', isCurrentlyMinimized);
+      }
+    }
   }
 
   function detectLanguage(text) {
@@ -153,14 +185,43 @@
       
       while (true) {
         const { done, value } = await reader.read();
-        if (done) break;
+        if (done) {
+          // Processa ultimo buffer
+          if (buffer.trim()) {
+            const lines = buffer.split('\n');
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const data = line.slice(6).trim();
+                if (data === '[DONE]') continue;
+                
+                try {
+                  const parsed = JSON.parse(data);
+                  const content = parsed.content || '';
+                  fullResponse += content;
+                  
+                  const msgElement = document.getElementById(messageId);
+                  if (msgElement) {
+                    msgElement.textContent = fullResponse;
+                    document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+                  }
+                } catch (e) {
+                  console.error('JSON parse error:', e);
+                }
+              }
+            }
+          }
+          break;
+        }
         
         const chunk = decoder.decode(value, { stream: true });
         buffer += chunk;
-        const lines = buffer.split('\n');
-        buffer = lines.pop() || ''; 
         
-        for (const line of lines) {
+        // Processa righe complete
+        let newlineIndex;
+        while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
+          const line = buffer.slice(0, newlineIndex).trim();
+          buffer = buffer.slice(newlineIndex + 1);
+          
           if (line.startsWith('data: ')) {
             const data = line.slice(6).trim();
             if (data === '[DONE]') continue;
@@ -175,7 +236,9 @@
                 msgElement.textContent = fullResponse;
                 document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
               }
-            } catch (e) {}
+            } catch (e) {
+              console.error('JSON parse error:', e);
+            }
           }
         }
       }
