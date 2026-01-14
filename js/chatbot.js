@@ -7,14 +7,14 @@
 
   const SUGGESTED_QUESTIONS = {
     en: [
-      "What's your experience in AI and data science?",
+      "What's your experience in AI and Data Science?",
       "Tell me about your athletic career as a national athlete",
-      "What projects have you built with machine learning?"
+      "What projects have you built with Machine Learning?"
     ],
     it: [
-      "Qual è la tua esperienza in AI e data science?",
+      "Qual è la tua esperienza in AI e Data Science?",
       "Raccontami della tua carriera da atleta nazionale",
-      "Quali progetti hai sviluppato con machine learning?"
+      "Quali progetti hai sviluppato con Machine Learning?"
     ]
   };
 
