@@ -18,10 +18,10 @@
     ]
   };
 
-  // Avatar URLs - usa le tue immagini reali
+  // Avatar URLs - AGGIORNATO con profile2.jpeg
   const AVATARS = {
-    assistant: 'assets/profile2.jpeg',      // La tua foto
-    user: 'assets/user-avatar.png'        // Icona utente generica
+    assistant: 'assets/profile2.jpeg',      // La tua foto (zoom volto)
+    user: 'assets/user-avatar.svg'          // Icona utente generica
   };
 
   function initChatbot() {
@@ -168,7 +168,6 @@
         
         removeMessage(loadingId);
         
-        // Gestione guardrails (403)
         if (response.status === 403 && errorData.message) {
           addMessage('assistant', errorData.message);
           conversationHistory.push({ role: 'assistant', content: errorData.message });
@@ -176,7 +175,6 @@
           return;
         }
         
-        // Gestione rate limit (429)
         if (response.status === 429) {
           const lang = detectLanguage(message);
           const msg = lang === 'it' 
@@ -258,7 +256,6 @@
       
       removeMessage(loadingId);
       
-      // Retry logic
       if (retryCount < MAX_RETRIES) {
         const waitTime = Math.pow(2, retryCount) * 1000;
         const lang = detectLanguage(message);
@@ -274,7 +271,6 @@
         return;
       }
       
-      // Errore finale
       const lang = detectLanguage(message);
       const errorMsg = lang === 'it' 
         ? `❌ Errore: ${error.message}. Riprova.`
