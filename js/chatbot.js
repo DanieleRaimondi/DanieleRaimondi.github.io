@@ -18,6 +18,12 @@
     ]
   };
 
+  // Avatar URLs - usa le tue immagini reali
+  const AVATARS = {
+    assistant: 'assets/profile2.jpeg',      // La tua foto
+    user: 'assets/user-avatar.png'        // Icona utente generica
+  };
+
   function initChatbot() {
     sessionId = localStorage.getItem('chatbot_sessionId');
     if (!sessionId) {
@@ -101,7 +107,7 @@
     
     const title = document.createElement('div');
     title.className = 'suggestions-title';
-    title.textContent = lang === 'it' ? 'Domande suggerite:' : 'Suggested questions:';
+    title.textContent = lang === 'it' ? '💡 Domande suggerite:' : '💡 Suggested questions:';
     suggestionsDiv.appendChild(title);
     
     SUGGESTED_QUESTIONS[lang].forEach(question => {
@@ -128,7 +134,6 @@
     
     if (!message) return;
 
-    // ⭐ RATE LIMITING FRONTEND COMPLETAMENTE DISABILITATO
     const now = Date.now();
     lastRequestTime = now;
 
@@ -171,7 +176,7 @@
           return;
         }
         
-        // Gestione rate limit (429) - NON dovrebbe mai succedere ora
+        // Gestione rate limit (429)
         if (response.status === 429) {
           const lang = detectLanguage(message);
           const msg = lang === 'it' 
@@ -208,11 +213,7 @@
                   const content = parsed.content || '';
                   fullResponse += content;
                   
-                  const msgElement = document.getElementById(messageId);
-                  if (msgElement) {
-                    msgElement.textContent = fullResponse;
-                    document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
-                  }
+                  updateMessageContent(messageId, fullResponse);
                 } catch (e) {
                   console.error('JSON parse error:', e, 'Data:', data);
                 }
@@ -239,11 +240,7 @@
               const content = parsed.content || '';
               fullResponse += content;
               
-              const msgElement = document.getElementById(messageId);
-              if (msgElement) {
-                msgElement.textContent = fullResponse;
-                document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
-              }
+              updateMessageContent(messageId, fullResponse);
             } catch (e) {
               console.error('JSON parse error:', e, 'Data:', data);
             }
@@ -300,7 +297,18 @@
     
     messageDiv.id = messageId;
     messageDiv.className = 'chat-message assistant-message typing-indicator-container';
-    messageDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+    
+    messageDiv.innerHTML = `
+      <img src="${AVATARS.assistant}" alt="Daniele" class="message-avatar">
+      <div class="typing-bubble">
+        <span class="typing-text">Daniele is typing</span>
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    `;
     
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -314,11 +322,32 @@
     
     messageDiv.id = messageId;
     messageDiv.className = `chat-message ${role}-message`;
-    messageDiv.textContent = content;
+    
+    const avatar = role === 'user' ? AVATARS.user : AVATARS.assistant;
+    const time = new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+    
+    messageDiv.innerHTML = `
+      <img src="${avatar}" alt="${role}" class="message-avatar">
+      <div class="message-content">
+        <div class="message-bubble">${content || ''}</div>
+        <div class="message-time">${time}</div>
+      </div>
+    `;
     
     chatMessages.appendChild(messageDiv);
     if (scrollToBottom) chatMessages.scrollTop = chatMessages.scrollHeight;
     return messageId;
+  }
+
+  function updateMessageContent(messageId, content) {
+    const messageDiv = document.getElementById(messageId);
+    if (messageDiv) {
+      const bubble = messageDiv.querySelector('.message-bubble');
+      if (bubble) {
+        bubble.textContent = content;
+        document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+      }
+    }
   }
 
   function removeMessage(messageId) {
@@ -327,11 +356,16 @@
   }
 
   function clearConversation() {
-    if (confirm('Clear conversation? / Cancellare conversazione?')) {
+    const lang = conversationHistory.some(m => m.role === 'user' && detectLanguage(m.content) === 'it') ? 'it' : 'en';
+    const confirmMsg = lang === 'it' 
+      ? 'Cancellare la conversazione?' 
+      : 'Clear conversation?';
+    
+    if (confirm(confirmMsg)) {
       conversationHistory = [];
       localStorage.removeItem('chatbot_history');
       document.getElementById('chat-messages').innerHTML = '';
-      addMessage('assistant', "Hi! I'm Daniele's AI twin. (Puoi scrivermi anche in italiano!)");
+      addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, data science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
       renderSuggestedQuestions();
     }
   }
