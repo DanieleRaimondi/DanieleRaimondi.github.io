@@ -913,13 +913,13 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            padding: 0.5rem 0.9rem;
+            padding: 0.45rem 0.75rem;
             border-radius: 10px;
             transition: all 0.2s;
             line-height: 1;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
         }
 
@@ -949,7 +949,7 @@
         .chat-container.minimized {
             height: 70px;
             max-height: 70px;
-            width: 320px;
+            width: 280px;
         }
 
         .chat-container.minimized .chat-messages,
@@ -976,9 +976,9 @@
             display: none;
         }
 
+        /* NASCONDE IL PULSANTE CLEAR QUANDO MINIMIZZATO */
         .chat-container.minimized .clear-btn {
-            font-size: 0.75rem;
-            padding: 0.4rem 0.7rem;
+            display: none;
         }
 
         .chat-container.minimized .minimize-btn {
