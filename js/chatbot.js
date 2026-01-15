@@ -361,7 +361,7 @@
       conversationHistory = [];
       localStorage.removeItem('chatbot_history');
       document.getElementById('chat-messages').innerHTML = '';
-      addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, data science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
+      addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, Data Science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
       renderSuggestedQuestions();
     }
   }
