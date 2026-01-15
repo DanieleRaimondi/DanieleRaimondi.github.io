@@ -225,7 +225,7 @@
             outline: none;
         }
 
-        /* RIGHT SIDEBAR */
+    /* RIGHT SIDEBAR */
 
         .right-sidebar {
             position: fixed;
@@ -1124,6 +1124,383 @@
         .chat-messages::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
         .chat-messages::-webkit-scrollbar-thumb:hover { background: #555; }
 
+        /* ===== AI CHATBOT STYLES ===== */
+
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            max-height: 650px;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #f0f2f5;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #00d4aa 0%, #00a67e 100%);
+            color: white;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chat-header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+        }
+
+        .chat-header-text h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chat-header-text .status {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        .chat-header-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .clear-btn, .minimize-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .clear-btn:hover, .minimize-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Chatbot minimizzato */
+        .chat-container.minimized {
+            height: 70px;
+            max-height: 70px;
+            width: 320px;
+        }
+
+        .chat-container.minimized .chat-messages,
+        .chat-container.minimized .chat-input-container,
+        .chat-container.minimized .chat-disclaimer {
+            display: none;
+        }
+
+        .chat-container.minimized .chat-header {
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            height: 450px;
+            overflow-y: auto;
+            padding: 1.25rem;
+            background: #e5ddd5;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.03) 10px, rgba(255,255,255,.03) 20px);
+            flex: 1;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            animation: slideIn 0.3s ease-out;
+            align-items: flex-end;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .message-content {
+            max-width: 75%;
+            position: relative;
+        }
+
+        .message-bubble {
+            padding: 0.65rem 0.9rem;
+            border-radius: 8px;
+            word-wrap: break-word;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-content {
+            margin-left: auto;
+        }
+
+        .user-message .message-bubble {
+            background: #d9fdd3;
+            color: #111;
+            border-bottom-right-radius: 2px;
+        }
+
+        .assistant-message .message-bubble {
+            background: white;
+            color: #111;
+            border-bottom-left-radius: 2px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: #667781;
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator-container {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            align-items: flex-end;
+        }
+
+        .typing-bubble {
+            background: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border-bottom-left-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .typing-text {
+            font-size: 0.85rem;
+            color: #667781;
+            font-style: italic;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #90949c;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        /* Suggested Questions */
+        .suggested-questions {
+            margin: 1rem 0;
+            padding: 0;
+        }
+
+        .suggestions-title {
+            font-weight: 600;
+            color: #54656f;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .suggestion-btn {
+            display: block;
+            width: 100%;
+            margin: 0.5rem auto;
+            max-width: 85%;
+            padding: 0.75rem 1rem;
+            background: white;
+            border: 1px solid #d1d7db;
+            border-radius: 8px;
+            color: #111;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            font-family: inherit;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+
+        .suggestion-btn:hover {
+            background: #f5f6f6;
+            border-color: #00d4aa;
+            transform: translateX(4px);
+        }
+
+        /* Input Area */
+        .chat-input-container {
+            display: flex;
+            padding: 0.75rem 1rem;
+            background: #f0f2f5;
+            border-top: 1px solid #e9edef;
+            gap: 0.75rem;
+            align-items: flex-end;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: white;
+            resize: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            max-height: 100px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        #chat-input:focus {
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0,212,170,0.2);
+        }
+
+        #chat-input:disabled {
+            background: #f5f6f6;
+            cursor: not-allowed;
+        }
+
+        #chat-send {
+            padding: 0.75rem 1.25rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00a67e 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,212,170,0.3);
+        }
+
+        #chat-send:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,212,170,0.4);
+        }
+
+        #chat-send:disabled {
+            background: #c6c9cc;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .chat-disclaimer {
+            padding: 0.5rem 1rem;
+            text-align: center;
+            background: #f0f2f5;
+            border-top: 1px solid #e9edef;
+            font-size: 0.7rem;
+            color: #667781;
+        }
+
+        .chat-disclaimer a {
+            color: #00a67e;
+            text-decoration: none;
+        }
+
+        .chat-disclaimer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Scrollbar personalizzata */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                max-height: 80vh;
+                border-radius: 16px 16px 0 0;
+            }
+            
+            .chat-messages {
+                height: 350px;
+            }
+            
+            .message-content {
+                max-width: 80%;
+            }
+            
+            .suggestion-btn {
+                font-size: 0.8rem;
+                padding: 0.65rem 0.85rem;
+            }
+        }
+
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Person">
@@ -1175,25 +1552,35 @@
         </div>
     </aside>
 
-    <!-- RIGHT SIDEBAR -->
-     <!-- AI Chatbot Section -->
+<!-- RIGHT SIDEBAR -->
+    
+    <!-- AI Chatbot Section -->
     <div class="chat-container">
         <div class="chat-header">
-            <h3>💬 Ask Me Anything</h3>
+            <div class="chat-header-info">
+                <img src="assets/profile.jpg" alt="Daniele" class="chat-header-avatar">
+                <div class="chat-header-text">
+                    <h3>Daniele Raimondi</h3>
+                    <span class="status">AI Twin • Ask me anything!</span>
+                </div>
+            </div>
             <div class="chat-header-buttons">
                 <button id="chat-minimize" class="minimize-btn" title="Minimize">−</button>
                 <button id="chat-clear" class="clear-btn" title="Clear conversation">🗑️</button>
             </div>
         </div>
+        
         <div class="chat-messages" id="chat-messages"></div>
+        
         <div class="chat-input-container">
             <textarea 
-            id="chat-input" 
-            placeholder="Ask about my work, projects, or career..."
-            rows="2"
+                id="chat-input" 
+                placeholder="Ask about my work, projects, or career..."
+                rows="2"
             ></textarea>
             <button id="chat-send">Send</button>
         </div>
+        
         <div class="chat-disclaimer">
             <small>💡 Conversations stored for analytics. <a href="https://ai-twin-backend.vercel.app/api/admin?action=privacy">Privacy</a></small>
         </div>
@@ -1312,7 +1699,7 @@
                     <span class="sidebar-pill-text">
                         <span class="sidebar-pill-title">EIC Summit – Houston</span>
                         <span class="sidebar-pill-meta">
-                            Speaker on AI at MDPI’s EIC Summit in Houston.
+                            Speaker on AI at MDPI's EIC Summit in Houston.
                         </span>
                         <span class="sidebar-pill-links">
                             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7345715886734897152/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7345715886734897152%29" target="_blank" rel="noopener">LinkedIn</a>
@@ -1326,7 +1713,7 @@
                     <span class="sidebar-pill-text">
                         <span class="sidebar-pill-title">EIC Summit – Paris</span>
                         <span class="sidebar-pill-meta">
-                            Speaker on AI at MDPI’s EIC Summit in Paris.
+                            Speaker on AI at MDPI's EIC Summit in Paris.
                         </span>
                         <span class="sidebar-pill-links">
                             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7341724783098695681/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7341724783098695681%29" target="_blank" rel="noopener">LinkedIn</a>
@@ -1341,7 +1728,7 @@
                     <span class="sidebar-pill-text">
                         <span class="sidebar-pill-title">EIC Summit – Barcelona</span>
                         <span class="sidebar-pill-meta">
-                            Speaker on AI at MDPI’s EIC Summit in Barcelona.
+                            Speaker on AI at MDPI's EIC Summit in Barcelona.
                         </span>
                         <span class="sidebar-pill-links">
                             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7333020940362055680/" target="_blank" rel="noopener">LinkedIn</a>
@@ -1731,7 +2118,8 @@
             <p style="margin-top: 6px;">Basel, Switzerland 🇨🇭</p>
         </footer>
     </main>
+    
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20250107"></script>
+    <script src="js/chatbot.js?v=20250115"></script>
 </body>
 </html>
