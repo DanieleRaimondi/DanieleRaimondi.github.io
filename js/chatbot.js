@@ -112,12 +112,22 @@
       const btn = document.createElement('button');
       btn.className = 'suggestion-btn';
       btn.textContent = question;
-      btn.onclick = () => {
-        if (isProcessing) return; // ⭐ Previeni doppi click
-        document.getElementById('chat-input').value = question;
-        document.getElementById('suggestions')?.remove();
-        handleSendClick(); // ⭐ Usa handleSendClick invece di sendMessage
-      };
+      
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isProcessing) return;
+        
+        const suggestionsEl = document.getElementById('suggestions');
+        if (suggestionsEl) suggestionsEl.remove();
+        
+        const chatInput = document.getElementById('chat-input');
+        chatInput.value = question;
+        
+        handleSendClick();
+      });
+      
       suggestionsDiv.appendChild(btn);
     });
     
@@ -125,7 +135,6 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Gestione del click del bottone Send
   function handleSendClick() {
     if (isProcessing) return;
     
@@ -135,19 +144,17 @@
     if (!message) return;
     
     chatInput.value = '';
-    sendMessage(message, 0); // Passa il messaggio come parametro
+    sendMessage(message, 0);
   }
 
-  // ⭐riceve il messaggio come parametro
   async function sendMessage(message, retryCount = 0) {
     const MAX_RETRIES = 3;
     const sendButton = document.getElementById('chat-send');
     const chatInput = document.getElementById('chat-input');
     
-    if (isProcessing && retryCount === 0) return; // Previene invii multipli
+    if (isProcessing && retryCount === 0) return;
     
     if (retryCount === 0) {
-      // Prima chiamata: setup UI
       isProcessing = true;
       document.getElementById('suggestions')?.remove();
       sendButton.disabled = true;
@@ -160,9 +167,6 @@
     const loadingId = retryCount === 0 ? addTypingIndicator() : null;
 
     try {
-      console.log('🚀 Sending request to:', API_URL);
-      console.log('📦 Payload:', { messages: conversationHistory, sessionId });
-
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -172,11 +176,8 @@
         })
       });
 
-      console.log('📡 Response status:', response.status);
-
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error('❌ Error response:', errorData);
         
         if (loadingId) removeMessage(loadingId);
         
@@ -204,12 +205,12 @@
           chatInput.focus();
           return;
         }
-        
+
         if (response.status === 503) {
           const lang = detectLanguage(message);
           const msg = errorData.message || (lang === 'it' 
-            ? '⚠️ Servizio temporaneamente non disponibile. Riprova tra qualche minuto.'
-            : '⚠️ Service temporarily unavailable. Please try again in a few minutes.');
+            ? '⚠️ Servizio AI temporaneamente non disponibile. Riprova tra qualche minuto.'
+            : '⚠️ AI service temporarily unavailable. Please try again in a few minutes.');
           addMessage('assistant', msg);
           conversationHistory.pop();
           isProcessing = false;
@@ -218,7 +219,7 @@
           chatInput.focus();
           return;
         }
-
+        
         throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
       }
 
@@ -246,7 +247,7 @@
                   fullResponse += content;
                   updateMessageContent(messageId, fullResponse);
                 } catch (e) {
-                  console.error('JSON parse error:', e, 'Data:', data);
+                  console.error('JSON parse error:', e);
                 }
               }
             }
@@ -272,19 +273,17 @@
               fullResponse += content;
               updateMessageContent(messageId, fullResponse);
             } catch (e) {
-              console.error('JSON parse error:', e, 'Data:', data);
+              console.error('JSON parse error:', e);
             }
           }
         }
       }
       
-      console.log('✅ Full response received');
-      
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
 
     } catch (error) {
-      console.error('❌ Fetch error:', error);
+      console.error('Fetch error:', error);
       
       if (loadingId) removeMessage(loadingId);
       
@@ -296,13 +295,12 @@
           : `⚠️ Retrying in ${waitTime/1000}s...`;
         addMessage('assistant', retryMsg);
         
-        // ⭐ IMPORTANTE: Rimuove il messaggio retry prima del prossimo tentativo
         setTimeout(() => {
           const lastMsg = document.getElementById('chat-messages').lastElementChild;
           if (lastMsg && lastMsg.textContent.includes('Retry')) {
             lastMsg.remove();
           }
-          sendMessage(message, retryCount + 1); // Passa sempre il messaggio originale
+          sendMessage(message, retryCount + 1);
         }, waitTime);
         return;
       }
