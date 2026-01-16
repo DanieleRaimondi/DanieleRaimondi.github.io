@@ -205,6 +205,20 @@
           return;
         }
         
+        if (response.status === 503) {
+          const lang = detectLanguage(message);
+          const msg = errorData.message || (lang === 'it' 
+            ? '⚠️ Servizio temporaneamente non disponibile. Riprova tra qualche minuto.'
+            : '⚠️ Service temporarily unavailable. Please try again in a few minutes.');
+          addMessage('assistant', msg);
+          conversationHistory.pop();
+          isProcessing = false;
+          sendButton.disabled = false;
+          chatInput.disabled = false;
+          chatInput.focus();
+          return;
+        }
+
         throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
       }
 
