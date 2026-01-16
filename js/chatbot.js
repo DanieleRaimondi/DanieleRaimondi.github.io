@@ -3,7 +3,7 @@
   const API_URL = 'https://ai-twin-backend.vercel.app/api/chat';
   let conversationHistory = [];
   let sessionId = null;
-  let isProcessing = false; // ⭐ Flag per prevenire doppi invii
+  let isProcessing = false;
 
   const SUGGESTED_QUESTIONS = {
     en: [
@@ -125,7 +125,7 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // ⭐ NUOVA FUNZIONE: Gestisce il click del bottone Send
+  // Gestione del click del bottone Send
   function handleSendClick() {
     if (isProcessing) return;
     
@@ -135,16 +135,16 @@
     if (!message) return;
     
     chatInput.value = '';
-    sendMessage(message, 0); // ⭐ Passa il messaggio come parametro
+    sendMessage(message, 0); // Passa il messaggio come parametro
   }
 
-  // ⭐ MODIFICATA: Ora riceve il messaggio come parametro
+  // ⭐riceve il messaggio come parametro
   async function sendMessage(message, retryCount = 0) {
     const MAX_RETRIES = 3;
     const sendButton = document.getElementById('chat-send');
     const chatInput = document.getElementById('chat-input');
     
-    if (isProcessing && retryCount === 0) return; // ⭐ Previeni invii multipli
+    if (isProcessing && retryCount === 0) return; // Previene invii multipli
     
     if (retryCount === 0) {
       // Prima chiamata: setup UI
@@ -282,13 +282,13 @@
           : `⚠️ Retrying in ${waitTime/1000}s...`;
         addMessage('assistant', retryMsg);
         
-        // ⭐ IMPORTANTE: Rimuovi il messaggio retry prima del prossimo tentativo
+        // ⭐ IMPORTANTE: Rimuove il messaggio retry prima del prossimo tentativo
         setTimeout(() => {
           const lastMsg = document.getElementById('chat-messages').lastElementChild;
           if (lastMsg && lastMsg.textContent.includes('Retry')) {
             lastMsg.remove();
           }
-          sendMessage(message, retryCount + 1); // ⭐ Passa sempre il messaggio originale
+          sendMessage(message, retryCount + 1); // Passa sempre il messaggio originale
         }, waitTime);
         return;
       }
