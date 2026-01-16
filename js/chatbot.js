@@ -3,7 +3,7 @@
   const API_URL = 'https://ai-twin-backend.vercel.app/api/chat';
   let conversationHistory = [];
   let sessionId = null;
-  let lastRequestTime = Date.now();
+  let isProcessing = false; // ⭐ Flag per prevenire doppi invii
 
   const SUGGESTED_QUESTIONS = {
     en: [
@@ -18,10 +18,9 @@
     ]
   };
 
-  // Avatar URLs - AGGIORNATO con profile2.jpeg
   const AVATARS = {
-    assistant: 'assets/profile2.jpeg',      // La tua foto (zoom volto)
-    user: 'assets/user-avatar.svg'          // Icona utente generica
+    assistant: 'assets/profile2.jpeg',
+    user: 'assets/user-avatar.svg'
   };
 
   function initChatbot() {
@@ -48,16 +47,15 @@
       renderSuggestedQuestions();
     }
 
-    document.getElementById('chat-send').addEventListener('click', sendMessage);
+    document.getElementById('chat-send').addEventListener('click', () => handleSendClick());
     document.getElementById('chat-clear').addEventListener('click', clearConversation);
     document.getElementById('chat-input').addEventListener('keypress', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
-        sendMessage();
+        handleSendClick();
       }
     });
 
-    // MINIMIZE/MAXIMIZE
     const minimizeBtn = document.getElementById('chat-minimize');
     const chatContainer = document.querySelector('.chat-container');
     const chatHeader = document.querySelector('.chat-header');
@@ -115,9 +113,10 @@
       btn.className = 'suggestion-btn';
       btn.textContent = question;
       btn.onclick = () => {
+        if (isProcessing) return; // ⭐ Previeni doppi click
         document.getElementById('chat-input').value = question;
         document.getElementById('suggestions')?.remove();
-        sendMessage();
+        handleSendClick(); // ⭐ Usa handleSendClick invece di sendMessage
       };
       suggestionsDiv.appendChild(btn);
     });
@@ -126,26 +125,39 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  async function sendMessage(retryCount = 0) {
-    const MAX_RETRIES = 3;
+  // ⭐ NUOVA FUNZIONE: Gestisce il click del bottone Send
+  function handleSendClick() {
+    if (isProcessing) return;
+    
     const chatInput = document.getElementById('chat-input');
-    const sendButton = document.getElementById('chat-send');
     const message = chatInput.value.trim();
     
     if (!message) return;
-
-    const now = Date.now();
-    lastRequestTime = now;
-
-    document.getElementById('suggestions')?.remove();
-    sendButton.disabled = true;
-    chatInput.disabled = true;
-
-    addMessage('user', message);
+    
     chatInput.value = '';
-    conversationHistory.push({ role: 'user', content: message });
+    sendMessage(message, 0); // ⭐ Passa il messaggio come parametro
+  }
 
-    const loadingId = addTypingIndicator();
+  // ⭐ MODIFICATA: Ora riceve il messaggio come parametro
+  async function sendMessage(message, retryCount = 0) {
+    const MAX_RETRIES = 3;
+    const sendButton = document.getElementById('chat-send');
+    const chatInput = document.getElementById('chat-input');
+    
+    if (isProcessing && retryCount === 0) return; // ⭐ Previeni invii multipli
+    
+    if (retryCount === 0) {
+      // Prima chiamata: setup UI
+      isProcessing = true;
+      document.getElementById('suggestions')?.remove();
+      sendButton.disabled = true;
+      chatInput.disabled = true;
+      
+      addMessage('user', message);
+      conversationHistory.push({ role: 'user', content: message });
+    }
+
+    const loadingId = retryCount === 0 ? addTypingIndicator() : null;
 
     try {
       console.log('🚀 Sending request to:', API_URL);
@@ -166,29 +178,37 @@
         const errorData = await response.json().catch(() => ({}));
         console.error('❌ Error response:', errorData);
         
-        removeMessage(loadingId);
+        if (loadingId) removeMessage(loadingId);
         
         if (response.status === 403 && errorData.message) {
           addMessage('assistant', errorData.message);
           conversationHistory.push({ role: 'assistant', content: errorData.message });
           localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
+          isProcessing = false;
+          sendButton.disabled = false;
+          chatInput.disabled = false;
+          chatInput.focus();
           return;
         }
         
         if (response.status === 429) {
           const lang = detectLanguage(message);
           const msg = lang === 'it' 
-            ? `⚠️ Errore server. ${errorData.message || 'Riprova più tardi.'}`
-            : `⚠️ Server error. ${errorData.message || 'Try again later.'}`;
+            ? `⚠️ Troppi tentativi. ${errorData.message || 'Attendi un momento.'}`
+            : `⚠️ Too many requests. ${errorData.message || 'Please wait a moment.'}`;
           addMessage('assistant', msg);
           conversationHistory.pop();
+          isProcessing = false;
+          sendButton.disabled = false;
+          chatInput.disabled = false;
+          chatInput.focus();
           return;
         }
         
         throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
       }
 
-      removeMessage(loadingId);
+      if (loadingId) removeMessage(loadingId);
       const messageId = addMessage('assistant', '', false);
       let fullResponse = '';
       
@@ -210,7 +230,6 @@
                   const parsed = JSON.parse(data);
                   const content = parsed.content || '';
                   fullResponse += content;
-                  
                   updateMessageContent(messageId, fullResponse);
                 } catch (e) {
                   console.error('JSON parse error:', e, 'Data:', data);
@@ -237,7 +256,6 @@
               const parsed = JSON.parse(data);
               const content = parsed.content || '';
               fullResponse += content;
-              
               updateMessageContent(messageId, fullResponse);
             } catch (e) {
               console.error('JSON parse error:', e, 'Data:', data);
@@ -254,7 +272,7 @@
     } catch (error) {
       console.error('❌ Fetch error:', error);
       
-      removeMessage(loadingId);
+      if (loadingId) removeMessage(loadingId);
       
       if (retryCount < MAX_RETRIES) {
         const waitTime = Math.pow(2, retryCount) * 1000;
@@ -264,9 +282,13 @@
           : `⚠️ Retrying in ${waitTime/1000}s...`;
         addMessage('assistant', retryMsg);
         
+        // ⭐ IMPORTANTE: Rimuovi il messaggio retry prima del prossimo tentativo
         setTimeout(() => {
-          conversationHistory.pop();
-          sendMessage(retryCount + 1);
+          const lastMsg = document.getElementById('chat-messages').lastElementChild;
+          if (lastMsg && lastMsg.textContent.includes('Retry')) {
+            lastMsg.remove();
+          }
+          sendMessage(message, retryCount + 1); // ⭐ Passa sempre il messaggio originale
         }, waitTime);
         return;
       }
@@ -280,9 +302,12 @@
       conversationHistory.pop();
       
     } finally {
-      sendButton.disabled = false;
-      chatInput.disabled = false;
-      chatInput.focus();
+      if (retryCount >= MAX_RETRIES || retryCount === 0) {
+        isProcessing = false;
+        sendButton.disabled = false;
+        chatInput.disabled = false;
+        chatInput.focus();
+      }
     }
   }
 
