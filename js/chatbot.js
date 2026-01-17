@@ -389,18 +389,11 @@
   }
 
   function clearConversation() {
-    const lang = conversationHistory.some(m => m.role === 'user' && detectLanguage(m.content) === 'it') ? 'it' : 'en';
-    const confirmMsg = lang === 'it' 
-      ? 'Cancellare la conversazione?' 
-      : 'Clear conversation?';
-    
-    if (confirm(confirmMsg)) {
-      conversationHistory = [];
-      localStorage.removeItem('chatbot_history');
-      document.getElementById('chat-messages').innerHTML = '';
-      addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, Data Science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
-      renderSuggestedQuestions();
-    }
+    conversationHistory = [];
+    localStorage.removeItem('chatbot_history');
+    document.getElementById('chat-messages').innerHTML = '';
+    addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, Data Science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
+    renderSuggestedQuestions();
   }
 
   if (document.readyState === 'loading') {
