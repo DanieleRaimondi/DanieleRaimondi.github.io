@@ -13,6 +13,14 @@
     <link rel="canonical" href="https://danieleraimondi.github.io/">
     <meta name="theme-color" content="#0a0a0a">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Preconnect to chatbot backend -->
+    <link rel="preconnect" href="https://ai-twin-backend.vercel.app">
+
     <!-- Geo Targeting -->
     <meta name="geo.region" content="CH-BS">
     <meta name="geo.placename" content="Basel">
@@ -26,6 +34,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png">
+    <link rel="manifest" href="/manifest.json">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -647,7 +656,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 24px;
         }
 
@@ -1352,7 +1361,7 @@
                 </div>
             </div>
             <div class="chat-header-buttons">
-                <button id="chat-minimize" class="minimize-btn" title="Minimize">−</button>
+                <button id="chat-minimize" class="minimize-btn" title="Minimize" aria-label="Minimize chat">−</button>
                 <button id="chat-clear" class="clear-btn" title="Clear conversation">Clear</button>
             </div>
         </div>
@@ -1364,6 +1373,7 @@
                 id="chat-input" 
                 placeholder="Ask about my work, projects, or career..."
                 rows="2"
+                aria-label="Type your message"
             ></textarea>
             <button id="chat-send">Send</button>
         </div>
@@ -1720,7 +1730,7 @@
             </p>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="assets/Thermomodel.png" alt="Data Science framework analyzing Bitcoin market dynamics">
+                    <img src="assets/Thermomodel.png" alt="Data Science framework analyzing Bitcoin market dynamics" loading="lazy">
                     <div class="project-content">
                         <h3>Bitcoin DataScience</h3>
                         <p>
@@ -1739,7 +1749,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/Chatbot.png" alt="AI Twin chatbot interface with conversational AI capabilities">
+                    <img src="assets/Chatbot.png" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy">
                     <div class="project-content">
                         <h3>AI Twin</h3>
                         <p>
@@ -1760,7 +1770,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/BitcoinSentiment.png" alt="Sentiment analysis pipeline on Bitcoin news and social media">
+                    <img src="assets/BitcoinSentiment.png" alt="Sentiment analysis pipeline on Bitcoin news and social media" loading="lazy">
                     <div class="project-content">
                         <h3>Sentiment Analysis Bitcoin</h3>
                         <p>
@@ -1779,7 +1789,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/BettingDataScience.png" alt="Betting exchange scrapers and live football data pipeline">
+                    <img src="assets/BettingDataScience.png" alt="Betting exchange scrapers and live football data pipeline" loading="lazy">
                     <div class="project-content">
                         <h3>Betting Exchange Scrapers</h3>
                         <p>
@@ -1798,7 +1808,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/MusicClassifier.png" alt="Handcrafted Music Embeddings for Genre Classification and Similarity Search">
+                    <img src="assets/MusicClassifier.png" alt="Handcrafted Music Embeddings for Genre Classification and Similarity Search" loading="lazy">
                     <div class="project-content">
                         <h3>Music Classification</h3>
                         <p>
@@ -1911,12 +1921,12 @@
         </section>
 
         <footer>
-            <p>© 2025 Daniele Raimondi · Senior Data Scientist</p>
+            <p>© 2026 Daniele Raimondi · Senior Data Scientist</p>
             <p style="margin-top: 6px;">Basel, Switzerland 🇨🇭</p>
         </footer>
     </main>
     
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20250116"></script>
+    <script src="js/chatbot.js?v=20260315"></script>
 </body>
 </html>
