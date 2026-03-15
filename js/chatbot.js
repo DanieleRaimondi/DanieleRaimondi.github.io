@@ -4,6 +4,52 @@
   let conversationHistory = [];
   let sessionId = null;
   let isProcessing = false;
+  let currentAbortController = null;
+  let retryTimeout = null;
+
+  // ─── Markdown renderer (safe, DOM-based — no innerHTML with user content) ───
+
+  function renderMarkdown(text) {
+    const fragment = document.createDocumentFragment();
+    const lines = text.split('\n');
+    lines.forEach((line, lineIndex) => {
+      if (lineIndex > 0) fragment.appendChild(document.createElement('br'));
+      const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
+      let lastIndex = 0;
+      let match;
+      while ((match = regex.exec(line)) !== null) {
+        if (match.index > lastIndex) {
+          fragment.appendChild(document.createTextNode(line.slice(lastIndex, match.index)));
+        }
+        if (match[2] !== undefined) {
+          const el = document.createElement('strong');
+          el.textContent = match[2];
+          fragment.appendChild(el);
+        } else if (match[3] !== undefined) {
+          const el = document.createElement('em');
+          el.textContent = match[3];
+          fragment.appendChild(el);
+        } else if (match[4] !== undefined) {
+          const el = document.createElement('code');
+          el.className = 'inline-code';
+          el.textContent = match[4];
+          fragment.appendChild(el);
+        }
+        lastIndex = regex.lastIndex;
+      }
+      if (lastIndex < line.length) {
+        fragment.appendChild(document.createTextNode(line.slice(lastIndex)));
+      }
+    });
+    return fragment;
+  }
+
+  // ─── Auto-resize textarea ──────────────────────────────────────────────────
+
+  function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+  }
 
   const SUGGESTED_QUESTIONS = {
     en: [
@@ -56,6 +102,9 @@
       }
     });
 
+    const chatInputEl = document.getElementById('chat-input');
+    chatInputEl.addEventListener('input', () => autoResizeTextarea(chatInputEl));
+
     const minimizeBtn = document.getElementById('chat-minimize');
     const chatContainer = document.querySelector('.chat-container');
     const chatHeader = document.querySelector('.chat-header');
@@ -65,6 +114,7 @@
       if (isMinimized) {
         chatContainer.classList.add('minimized');
         minimizeBtn.textContent = '□';
+        minimizeBtn.setAttribute('aria-label', 'Maximize chat');
         minimizeBtn.title = 'Maximize';
       }
       
@@ -82,6 +132,7 @@
       function toggleMinimize() {
         const isCurrentlyMinimized = chatContainer.classList.toggle('minimized');
         minimizeBtn.textContent = isCurrentlyMinimized ? '□' : '−';
+        minimizeBtn.setAttribute('aria-label', isCurrentlyMinimized ? 'Maximize chat' : 'Minimize chat');
         minimizeBtn.title = isCurrentlyMinimized ? 'Maximize' : 'Minimize';
         localStorage.setItem('chatbot_minimized', isCurrentlyMinimized);
       }
@@ -124,6 +175,7 @@
         
         const chatInput = document.getElementById('chat-input');
         chatInput.value = question;
+        autoResizeTextarea(chatInput);
         
         handleSendClick();
       });
@@ -144,6 +196,7 @@
     if (!message) return;
     
     chatInput.value = '';
+    chatInput.style.height = 'auto';
     sendMessage(message, 0);
   }
 
@@ -151,86 +204,88 @@
     const MAX_RETRIES = 3;
     const sendButton = document.getElementById('chat-send');
     const chatInput = document.getElementById('chat-input');
-    
+    let willRetry = false;
+
     if (isProcessing && retryCount === 0) return;
-    
+
     if (retryCount === 0) {
       isProcessing = true;
       document.getElementById('suggestions')?.remove();
       sendButton.disabled = true;
       chatInput.disabled = true;
-      
+
       addMessage('user', message);
       conversationHistory.push({ role: 'user', content: message });
     }
 
-    const loadingId = retryCount === 0 ? addTypingIndicator() : null;
+    // Offline check
+    if (!navigator.onLine) {
+      const lang = detectLanguage(message);
+      addMessage('assistant', lang === 'it'
+        ? '⚠️ Nessuna connessione internet. Controlla la rete e riprova.'
+        : '⚠️ No internet connection. Check your network and try again.');
+      conversationHistory.pop();
+      return; // finally handles cleanup
+    }
+
+    const loadingId = addTypingIndicator();
 
     try {
+      currentAbortController = new AbortController();
+
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           messages: conversationHistory,
           sessionId: sessionId
-        })
+        }),
+        signal: currentAbortController.signal
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        
-        if (loadingId) removeMessage(loadingId);
-        
+
+        removeMessage(loadingId);
+
         if (response.status === 403 && errorData.message) {
           addMessage('assistant', errorData.message);
           conversationHistory.push({ role: 'assistant', content: errorData.message });
-          localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
-          isProcessing = false;
-          sendButton.disabled = false;
-          chatInput.disabled = false;
-          chatInput.focus();
+          trimAndSaveHistory();
           return;
         }
-        
+
         if (response.status === 429) {
           const lang = detectLanguage(message);
-          const msg = lang === 'it' 
+          const msg = lang === 'it'
             ? `⚠️ Troppi tentativi. ${errorData.message || 'Attendi un momento.'}`
             : `⚠️ Too many requests. ${errorData.message || 'Please wait a moment.'}`;
           addMessage('assistant', msg);
           conversationHistory.pop();
-          isProcessing = false;
-          sendButton.disabled = false;
-          chatInput.disabled = false;
-          chatInput.focus();
           return;
         }
 
         if (response.status === 503) {
           const lang = detectLanguage(message);
-          const msg = errorData.message || (lang === 'it' 
+          const msg = errorData.message || (lang === 'it'
             ? '⚠️ Servizio AI temporaneamente non disponibile. Riprova tra qualche minuto.'
             : '⚠️ AI service temporarily unavailable. Please try again in a few minutes.');
           addMessage('assistant', msg);
           conversationHistory.pop();
-          isProcessing = false;
-          sendButton.disabled = false;
-          chatInput.disabled = false;
-          chatInput.focus();
           return;
         }
-        
+
         throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
       }
 
-      if (loadingId) removeMessage(loadingId);
+      removeMessage(loadingId);
       const messageId = addMessage('assistant', '', false);
       let fullResponse = '';
-      
+
       const reader = response.body.getReader();
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
-      
+
       while (true) {
         const { done, value } = await reader.read();
         if (done) {
@@ -240,7 +295,6 @@
               if (line.startsWith('data: ')) {
                 const data = line.slice(6).trim();
                 if (data === '[DONE]') continue;
-                
                 try {
                   const parsed = JSON.parse(data);
                   const content = parsed.content || '';
@@ -254,19 +308,18 @@
           }
           break;
         }
-        
+
         const chunk = decoder.decode(value, { stream: true });
         buffer += chunk;
-        
+
         let newlineIndex;
         while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
           const line = buffer.slice(0, newlineIndex).trim();
           buffer = buffer.slice(newlineIndex + 1);
-          
+
           if (line.startsWith('data: ')) {
             const data = line.slice(6).trim();
             if (data === '[DONE]') continue;
-            
             try {
               const parsed = JSON.parse(data);
               const content = parsed.content || '';
@@ -278,43 +331,53 @@
           }
         }
       }
-      
+
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       trimAndSaveHistory();
 
     } catch (error) {
+      // User cleared chat during request — discard silently
+      if (error.name === 'AbortError') return;
+
       console.error('Fetch error:', error);
-      
-      if (loadingId) removeMessage(loadingId);
-      
+
+      removeMessage(loadingId);
+
       if (retryCount < MAX_RETRIES) {
+        willRetry = true;
         const waitTime = Math.pow(2, retryCount) * 1000;
         const lang = detectLanguage(message);
         const retryMsg = lang === 'it'
-          ? `⚠️ Riprovo tra ${waitTime/1000}s...`
-          : `⚠️ Retrying in ${waitTime/1000}s...`;
+          ? `⚠️ Riprovo tra ${waitTime / 1000}s...`
+          : `⚠️ Retrying in ${waitTime / 1000}s...`;
         addMessage('assistant', retryMsg);
-        
-        setTimeout(() => {
-          const lastMsg = document.getElementById('chat-messages').lastElementChild;
-          if (lastMsg && lastMsg.textContent.includes('Retry')) {
-            lastMsg.remove();
+
+        retryTimeout = setTimeout(() => {
+          retryTimeout = null;
+          const chatMsgs = document.getElementById('chat-messages');
+          for (let i = chatMsgs.children.length - 1; i >= 0; i--) {
+            const el = chatMsgs.children[i];
+            if (el.textContent.includes('Riprovo') || el.textContent.includes('Retrying')) {
+              el.remove();
+              break;
+            }
           }
           sendMessage(message, retryCount + 1);
         }, waitTime);
         return;
       }
-      
+
       const lang = detectLanguage(message);
-      const errorMsg = lang === 'it' 
+      const errorMsg = lang === 'it'
         ? `❌ Errore: ${error.message}. Riprova.`
         : `❌ Error: ${error.message}. Try again.`;
-      
+
       addMessage('assistant', errorMsg);
       conversationHistory.pop();
-      
+
     } finally {
-      if (retryCount >= MAX_RETRIES || retryCount === 0) {
+      // Only reset UI when truly done (not when a retry is scheduled)
+      if (!willRetry) {
         isProcessing = false;
         sendButton.disabled = false;
         chatInput.disabled = false;
@@ -352,13 +415,13 @@
     const chatMessages = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
     const messageId = 'msg-' + Date.now() + '-' + Math.random();
-    
+
     messageDiv.id = messageId;
     messageDiv.className = `chat-message ${role}-message`;
-    
+
     const avatar = role === 'user' ? AVATARS.user : AVATARS.assistant;
     const time = new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
-    
+
     messageDiv.innerHTML = `
       <img src="${avatar}" alt="${role}" class="message-avatar">
       <div class="message-content">
@@ -366,11 +429,10 @@
         <div class="message-time">${time}</div>
       </div>
     `;
-    
-    // Set content via textContent to prevent XSS
+
     const bubble = messageDiv.querySelector('.message-bubble');
-    if (bubble) bubble.textContent = content || '';
-    
+    if (bubble && content) bubble.appendChild(renderMarkdown(content));
+
     chatMessages.appendChild(messageDiv);
     if (scrollToBottom) chatMessages.scrollTop = chatMessages.scrollHeight;
     return messageId;
@@ -381,7 +443,8 @@
     if (messageDiv) {
       const bubble = messageDiv.querySelector('.message-bubble');
       if (bubble) {
-        bubble.textContent = content;
+        bubble.innerHTML = '';
+        bubble.appendChild(renderMarkdown(content));
         document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
       }
     }
@@ -412,6 +475,27 @@
   }
 
   function clearConversation() {
+    // Abort any in-flight request
+    if (currentAbortController) {
+      currentAbortController.abort();
+      currentAbortController = null;
+    }
+    // Cancel any scheduled retry
+    if (retryTimeout) {
+      clearTimeout(retryTimeout);
+      retryTimeout = null;
+    }
+
+    isProcessing = false;
+    const sendButton = document.getElementById('chat-send');
+    const chatInput = document.getElementById('chat-input');
+    if (sendButton) sendButton.disabled = false;
+    if (chatInput) {
+      chatInput.disabled = false;
+      chatInput.style.height = 'auto';
+      chatInput.focus();
+    }
+
     conversationHistory = [];
     localStorage.removeItem('chatbot_history');
     document.getElementById('chat-messages').innerHTML = '';
