@@ -26,7 +26,7 @@
   function initChatbot() {
     sessionId = localStorage.getItem('chatbot_sessionId');
     if (!sessionId) {
-      sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
       localStorage.setItem('chatbot_sessionId', sessionId);
     }
 
@@ -280,7 +280,7 @@
       }
       
       conversationHistory.push({ role: 'assistant', content: fullResponse });
-      localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
+      trimAndSaveHistory();
 
     } catch (error) {
       console.error('Fetch error:', error);
@@ -362,10 +362,14 @@
     messageDiv.innerHTML = `
       <img src="${avatar}" alt="${role}" class="message-avatar">
       <div class="message-content">
-        <div class="message-bubble">${content || ''}</div>
+        <div class="message-bubble"></div>
         <div class="message-time">${time}</div>
       </div>
     `;
+    
+    // Set content via textContent to prevent XSS
+    const bubble = messageDiv.querySelector('.message-bubble');
+    if (bubble) bubble.textContent = content || '';
     
     chatMessages.appendChild(messageDiv);
     if (scrollToBottom) chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -386,6 +390,25 @@
   function removeMessage(messageId) {
     const msg = document.getElementById(messageId);
     if (msg) msg.remove();
+  }
+
+  // Keep conversation history under localStorage limits (~50 messages max)
+  function trimAndSaveHistory() {
+    const MAX_MESSAGES = 50;
+    if (conversationHistory.length > MAX_MESSAGES) {
+      conversationHistory = conversationHistory.slice(-MAX_MESSAGES);
+    }
+    try {
+      localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
+    } catch (e) {
+      // localStorage full — trim more aggressively
+      conversationHistory = conversationHistory.slice(-20);
+      try {
+        localStorage.setItem('chatbot_history', JSON.stringify(conversationHistory));
+      } catch (_) {
+        localStorage.removeItem('chatbot_history');
+      }
+    }
   }
 
   function clearConversation() {
