@@ -146,10 +146,10 @@
             background-attachment: fixed;
             display: grid;
             gap: 18px;
-            grid-template-columns: minmax(0, 1fr) 330px;
+            grid-template-columns: 330px minmax(0, 1fr);
             grid-template-areas:
-                "main sidebar"
-                "main right";
+                "sidebar main"
+                "right main";
             align-items: start;
         }
 
@@ -1386,7 +1386,7 @@
 
         @media (max-width: 1400px) {
             body {
-                grid-template-columns: minmax(0, 1fr) 300px;
+                grid-template-columns: 300px minmax(0, 1fr);
                 padding: 14px;
             }
 
@@ -1403,8 +1403,8 @@
             body {
                 grid-template-columns: 1fr;
                 grid-template-areas:
-                    "main"
                     "sidebar"
+                    "main"
                     "right";
                 gap: 14px;
                 padding: 12px;
