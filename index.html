@@ -577,7 +577,7 @@
 
         .hero-highlights {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(6, minmax(0, 1fr));
             gap: 18px;
             margin-top: 4px;
         }
@@ -624,6 +624,7 @@
             padding: 17px;
             border-radius: var(--radius-md);
             border: 1px solid #d4e1f0;
+            grid-column: span 2;
             transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
 
@@ -659,7 +660,7 @@
         .hero-metrics {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
             margin-top: 2px;
         }
@@ -1535,6 +1536,20 @@
             }
         }
 
+        @media (max-width: 1320px) {
+            .hero-highlights {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero-pillar {
+                grid-column: auto;
+            }
+
+            .hero-pillar:last-of-type {
+                grid-column: 1 / -1;
+            }
+        }
+
         @media (max-width: 1120px) {
             body {
                 grid-template-columns: 1fr;
@@ -1738,15 +1753,13 @@
             <img src="assets/profile.jpg" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image">
             <h1 itemprop="name">Daniele Raimondi</h1>
             <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
+            <p class="sidebar-summary">I design and scale end-to-end AI and Data Science products that transform complex data into measurable decisions.
+                My work spans LLM pipelines, GenAI systems, machine learning, and quantitative finance -- always with a production-first mindset.
+                Former Italian National Team athlete: discipline and high-performance execution in every project.</p>
         </div>
 
-        <p class="sidebar-summary">I design and scale end-to-end AI and Data Science products that transform complex data into measurable decisions.
-            My work spans LLM pipelines, GenAI systems, machine learning, and quantitative finance — always with a production-first mindset.
-            Former Italian National Team athlete: discipline and high-performance execution in every project.</p>
-
         <nav aria-label="Primary">
-            <a href="#background">Background</a>
-            <a href="#experience">Experience</a>
+            <a href="#experience-sidebar">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#passions">Passions</a>
@@ -1824,15 +1837,8 @@
     </div>
 
     <aside class="right-sidebar">
-        <div class="right-sidebar-section" id="background">
-            <h2>Background</h2>
-            <p>
-                Senior Data Scientist in Basel, leading Data Intelligence products and
-                end-to-end AI solutions across LLM pipelines, GenAI, ML, and quantitative finance,
-                with experience in retail, risk, and academic publishing.
-            </p>
-
-            <h3 class="sidebar-subtitle">Experience</h3>
+        <div class="right-sidebar-section" id="experience-sidebar">
+            <h2>Experience</h2>
             <ul class="sidebar-experience-list">
                 <li class="sidebar-experience-item">
                     <div class="sidebar-experience-role">Senior Data Scientist</div>
@@ -2138,51 +2144,6 @@
             </div>
         </section>
 
-        <section id="experience" class="section-alt">
-            <h2 class="section-title">Experience Snapshot</h2>
-            <p class="section-subtitle">
-                Leadership across publishing, retail, and finance, from experimentation to deployed AI products.
-            </p>
-            <div class="experience-compact">
-                <div class="experience-card">
-                    <h3>Senior Data Scientist</h3>
-                    <p class="company">MDPI · Basel, Switzerland 🇨🇭</p>
-                    <p class="period">2023 – Present</p>
-                    <p>
-                        Leading Data Intelligence products, designing LLM and GenAI pipelines, and delivering
-                        AI and Data Science solutions across a multimillion-record scholarly dataset.
-                    </p>
-                </div>
-                <div class="experience-card">
-                    <h3>Lead Data Scientist</h3>
-                    <p class="company">Esselunga · Milan, Italy 🇮🇹</p>
-                    <p class="period">2017 – 2023</p>
-                    <p>
-                        Drove ML initiatives in retail, from churn prediction to pricing and geospatial analysis,
-                        managing end-to-end pipelines on millions of daily transactions.
-                    </p>
-                </div>
-                <div class="experience-card">
-                    <h3>Finance and Risk Analyst</h3>
-                    <p class="company">Accenture · Milan, Italy 🇮🇹</p>
-                    <p class="period">2017</p>
-                    <p>
-                        Built quantitative risk models and portfolio analyses to support strategic decisions
-                        for financial services clients.
-                    </p>
-                </div>
-                <div class="experience-card">
-                    <h3>Risk Management Analyst</h3>
-                    <p class="company">Fiditalia · Milan, Italy 🇮🇹</p>
-                    <p class="period">2016 – 2017</p>
-                    <p>
-                        Developed credit risk and fraud detection models, automating reporting
-                        for consumer lending portfolios.
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <section id="projects">
             <h2 class="section-title">Some Projects</h2>
             <p class="section-subtitle">
@@ -2400,7 +2361,7 @@
         // Right sidebar is fixed on desktop — its sections are always "in viewport".
         // Only run the observer on elements inside .main-content to avoid false positives.
         const mainContent = document.querySelector('.main-content');
-        const rightSidebarIds = new Set(['background', 'education-sidebar']);
+        const rightSidebarIds = new Set(['experience-sidebar', 'education-sidebar']);
 
         const visibilityMap = {};
 
