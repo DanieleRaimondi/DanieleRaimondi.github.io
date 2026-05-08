@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Preconnect to chatbot backend -->
     <link rel="preconnect" href="https://ai-twin-backend.vercel.app">
@@ -97,18 +97,18 @@
 
     <style>
         :root {
-            --bg: #f0f4fb;
-            --surface: #ffffff;
-            --surface-alt: #f5f8fd;
-            --text: #0e1e30;
-            --muted: #4f6279;
-            --line: #d4e1f0;
-            --accent: #2d7bd6;
-            --accent-strong: #1f5fb4;
-            --accent-soft: #bfdbfe;
-            --warm: #4a91e8;
-            --hero-bg: #245387;
-            --hero-bg-soft: #2f6ba8;
+            --bg: #f3ede2;
+            --surface: #fffdf8;
+            --surface-alt: #f7f2e8;
+            --text: #1a1f2a;
+            --muted: #596172;
+            --line: #d8cfc0;
+            --accent: #1f4f8f;
+            --accent-strong: #14386a;
+            --accent-soft: #d8e3f6;
+            --warm: #b15d32;
+            --hero-bg: #0f2340;
+            --hero-bg-soft: #1d3a67;
             --shadow-soft: 0 8px 28px rgba(14, 30, 60, 0.08);
             --shadow-strong: 0 16px 42px rgba(10, 20, 50, 0.16);
             --radius-md: 14px;
@@ -130,7 +130,7 @@
         }
 
         body {
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Public Sans', sans-serif;
             line-height: 1.7;
             color: var(--text);
             margin: 0;
@@ -140,16 +140,14 @@
             min-height: 100vh;
             width: 100%;
             background:
-                radial-gradient(circle at 10% 8%, rgba(0, 102, 204, 0.12), transparent 32%),
-                radial-gradient(circle at 85% 12%, rgba(0, 84, 212, 0.10), transparent 36%),
-                linear-gradient(180deg, var(--bg) 0%, var(--bg) 45%, #e8eff9 100%);
+                radial-gradient(circle at 7% 10%, rgba(31, 79, 143, 0.12), transparent 34%),
+                radial-gradient(circle at 86% 10%, rgba(177, 93, 50, 0.14), transparent 32%),
+                linear-gradient(180deg, #faf6ef 0%, var(--bg) 46%, #e8e0d1 100%);
             background-attachment: fixed;
             display: grid;
             gap: 14px;
             grid-template-columns: 330px minmax(0, 1fr);
-            grid-template-areas:
-                "sidebar main"
-                "right main";
+            grid-template-areas: "sidebar main";
             align-items: start;
         }
 
@@ -167,12 +165,11 @@
         }
 
         h1, h2, h3, .sidebar nav a {
-            font-family: 'Sora', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             letter-spacing: -0.02em;
         }
 
         .sidebar,
-        .right-sidebar,
         .hero-section,
         .experience-card,
         .project-card,
@@ -180,6 +177,7 @@
         .sidebar-education-card,
         .sidebar-highlight-pill,
         .passion-item,
+        .focus-item,
         .highlight-item {
             animation: riseIn 0.7s ease both;
         }
@@ -208,14 +206,14 @@
             top: 18px;
             width: 100%;
             max-height: calc(100vh - 36px);
-            color: #f0f7ff;
+            color: #eef3ee;
             padding: 32px 24px;
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-xl);
             background:
-                linear-gradient(200deg, rgba(151, 191, 243, 0.3) 0%, transparent 32%),
-                linear-gradient(145deg, #2b5f97 0%, #244f80 100%);
+                linear-gradient(210deg, rgba(100, 144, 212, 0.24) 0%, transparent 34%),
+                linear-gradient(145deg, #0f2340 0%, #0a1a31 100%);
             backdrop-filter: blur(3px);
         }
 
@@ -241,13 +239,13 @@
         }
 
         .sidebar .role {
-            color: #0084d4;
+            color: #95c4ff;
             font-size: 0.96rem;
             font-weight: 600;
         }
 
         .sidebar-summary {
-            color: rgba(237, 255, 252, 0.72);
+            color: rgba(230, 244, 237, 0.75);
             font-size: 0.87rem;
             line-height: 1.65;
             margin-top: 14px;
@@ -261,7 +259,7 @@
 
         .sidebar nav a {
             display: block;
-            color: rgba(237, 255, 252, 0.72);
+            color: rgba(228, 244, 236, 0.74);
             text-decoration: none;
             padding: 9px 0;
             font-size: 0.88rem;
@@ -294,7 +292,7 @@
         }
 
         .sidebar-info-item .label {
-            color: rgba(173, 212, 204, 0.8);
+            color: rgba(184, 224, 216, 0.82);
             font-size: 0.74rem;
             text-transform: uppercase;
             letter-spacing: 0.13em;
@@ -336,198 +334,130 @@
         .sidebar-social a:hover,
         .sidebar-social a:focus {
             transform: translateY(-2px);
-            background: rgba(0, 84, 212, 0.24);
+            background: rgba(121, 208, 191, 0.22);
             outline: none;
         }
 
-        /* RIGHT SIDEBAR */
-
-        .right-sidebar {
-            grid-area: right;
-            position: sticky;
-            top: 18px;
-            width: 100%;
-            max-height: calc(100vh - 36px);
-            background: rgba(248, 252, 255, 0.95);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-xl);
-            padding: 18px 14px;
-            overflow-y: auto;
-            backdrop-filter: blur(8px);
+        .profile-columns {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 22px;
+            padding: 34px 44px;
+            border-top: 1px solid #e3d7c6;
+            background:
+                radial-gradient(circle at 82% 16%, rgba(177, 93, 50, 0.13), transparent 42%),
+                linear-gradient(180deg, #fffaf2 0%, #f7efe1 100%);
         }
 
-        .right-sidebar-section {
-            margin-bottom: 14px;
-            padding-bottom: 8px;
+        .profile-column {
+            background: rgba(255, 252, 246, 0.9);
+            border: 1px solid #e2d6c6;
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(40, 35, 27, 0.08);
         }
 
-        .right-sidebar-section + .right-sidebar-section {
-            border-top: 1px solid var(--line);
-            padding-top: 10px;
-        }
-
-        .right-sidebar-section h2 {
-            font-size: 1.15rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: #0e2040;
-        }
-
-        .right-sidebar-section p {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .right-sidebar-section h3.sidebar-subtitle {
-            font-size: 0.79rem;
-            margin: 16px 0 8px;
+        .profile-column h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.45rem;
             font-weight: 800;
-            color: #3f5070;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            color: #1c3f73;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
         }
 
-        .sidebar-experience-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .profile-column .column-subtitle {
+            font-size: 0.92rem;
+            color: #626976;
+            margin-bottom: 14px;
         }
 
-        .sidebar-experience-item {
-            margin-bottom: 13px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed #d4e1f0;
+        .background-grid,
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
         }
 
-        .sidebar-experience-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        .education-card {
+            background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
+            border-radius: var(--radius-lg);
+            padding: 20px 18px 17px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #e2d6c6;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .sidebar-experience-role {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #0e2040;
+        .education-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 13px 24px rgba(33, 59, 102, 0.14);
+            border-color: #b8c9e7;
         }
 
-        .sidebar-experience-company {
-            font-size: 0.83rem;
-            color: #0066cc;
-            font-weight: 600;
-        }
-
-        .sidebar-experience-dates {
-            font-size: 0.8rem;
-            color: #5a6a80;
-        }
-
-        .sidebar-education-card {
-            background: transparent;
-            border-radius: 0;
-            padding: 8px 0;
-            margin-bottom: 6px;
-            border: 0;
-            border-bottom: 1px dashed #d4e1f0;
-            box-shadow: none;
-        }
-
-        .sidebar-education-card:last-child {
-            border-bottom: 0;
-            margin-bottom: 0;
-        }
-
-        .sidebar-education-card h3 {
-            font-size: 0.9rem;
+        .education-card h3 {
+            font-size: 1rem;
             margin-bottom: 4px;
             font-weight: 700;
-            color: #0e2a4a;
+            color: #1c3f73;
         }
 
-        .sidebar-education-card .university {
-            font-size: 0.83rem;
-            color: #0066cc;
+        .education-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .education-head h3 {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .university-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 1px solid #dbe7f6;
+            background: #ffffff;
+            padding: 4px;
+            flex-shrink: 0;
+            filter: grayscale(10%) opacity(0.85);
+            transition: filter 0.25s ease;
+        }
+
+        .education-card:hover .university-logo {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        .card-university-link {
+            color: #1f4f8f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: color 0.2s ease;
+        }
+
+        .card-university-link:hover {
+            color: var(--accent-strong);
+            text-decoration: underline;
+        }
+
+        .education-card .university {
+            font-size: 0.88rem;
+            color: #1f4f8f;
             margin-bottom: 2px;
             font-weight: 600;
         }
 
-        .sidebar-education-card .year {
-            font-size: 0.78rem;
+        .education-card .year {
+            font-size: 0.82rem;
             color: #5a6a80;
         }
 
-        #sidebar-highlights h2 {
-            font-size: 1.04rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: #0e2040;
-        }
-
-        .sidebar-highlights-list {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .sidebar-highlight-pill {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            padding: 7px 6px 7px 8px;
-            border-radius: 10px;
-            background: transparent;
-            border: 0;
-            border-left: 2px solid #cadbf1;
-            box-shadow: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-
-        .sidebar-highlight-pill:hover,
-        .sidebar-highlight-pill:focus {
-            background: #eef5ff;
-            border-left-color: var(--accent);
-            transform: translateY(-1px);
-            outline: none;
-        }
-
-        .sidebar-pill-icon {
-            font-size: 1.18rem;
+        .education-card .year + .year {
             margin-top: 1px;
-            flex-shrink: 0;
-        }
-
-        .sidebar-pill-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar-pill-title {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #0e2a4a;
-            line-height: 1.35;
-        }
-
-        .sidebar-pill-meta {
-            font-size: 0.79rem;
-            color: #5a6a80;
-            line-height: 1.35;
-        }
-
-        .sidebar-pill-links {
-            margin-top: 4px;
-            font-size: 0.77rem;
-        }
-
-        .sidebar-pill-links a {
-            color: #0066cc;
-            text-decoration: none;
-            margin-right: 8px;
-            font-weight: 700;
-        }
-
-        .sidebar-pill-links a:hover {
-            text-decoration: underline;
         }
 
         /* MAIN CONTENT */
@@ -538,11 +468,125 @@
             min-height: 100vh;
             width: 100%;
             overflow-x: hidden;
-            background: rgba(255, 255, 255, 0.82);
-            border: 1px solid #dbe7f6;
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid #e2d6c6;
             min-width: 0;
             border-radius: 24px;
-            box-shadow: 0 14px 28px rgba(22, 54, 95, 0.08);
+            box-shadow: 0 14px 28px rgba(44, 34, 22, 0.12);
+        }
+
+        .main-tabs {
+            display: flex;
+            gap: 10px;
+            padding: 18px 20px;
+            border-bottom: 1px solid #e2d6c6;
+            background: rgba(250, 244, 235, 0.96);
+            border-radius: 24px 24px 0 0;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+
+        .main-tab-btn {
+            border: 1px solid #d5c8b6;
+            background: #f8f1e6;
+            color: #203c63;
+            border-radius: 999px;
+            padding: 9px 15px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.22s ease;
+        }
+
+        .main-tab-btn:hover,
+        .main-tab-btn:focus-visible {
+            background: #f0e4d2;
+            border-color: #c8b49a;
+            color: #142f54;
+            outline: none;
+        }
+
+        .main-tab-btn.active {
+            color: #ffffff;
+            border-color: transparent;
+            background: linear-gradient(115deg, var(--accent), var(--accent-strong));
+            box-shadow: 0 8px 18px rgba(7, 76, 64, 0.25);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .identity-ticker {
+            margin: 14px 44px 0;
+            border: 1px solid #d7cab9;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle at 10% 50%, rgba(31, 79, 143, 0.12), transparent 35%),
+                radial-gradient(circle at 85% 45%, rgba(177, 93, 50, 0.14), transparent 38%),
+                linear-gradient(90deg, #fff8ed 0%, #f7ecdc 100%);
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 8px 18px rgba(24, 44, 79, 0.08);
+        }
+
+        .identity-ticker::before,
+        .identity-ticker::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 46px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .identity-ticker::before {
+            left: 0;
+            background: linear-gradient(90deg, #fff8ed 0%, rgba(255,248,237,0) 100%);
+        }
+
+        .identity-ticker::after {
+            right: 0;
+            background: linear-gradient(270deg, #f7ecdc 0%, rgba(247,236,220,0) 100%);
+        }
+
+        .identity-ticker-track {
+            display: flex;
+            gap: 12px;
+            width: max-content;
+            padding: 10px 18px;
+            animation: tickerMove 26s linear infinite;
+            color: #2f3c52;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .identity-ticker-track span {
+            padding: 6px 11px;
+            border-radius: 999px;
+            border: 1px solid #d8c9b5;
+            background: rgba(255, 255, 255, 0.66);
+            backdrop-filter: blur(4px);
+            white-space: nowrap;
+        }
+
+        @keyframes tickerMove {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         .hero-section {
@@ -551,11 +595,11 @@
             padding: 42px 44px;
             width: 100%;
             overflow: hidden;
-            border-radius: 24px 24px 0 0;
+            border-radius: 0;
             background:
-                radial-gradient(circle at 14% 22%, rgba(176, 212, 255, 0.35), transparent 33%),
-                radial-gradient(circle at 88% 2%, rgba(185, 219, 255, 0.32), transparent 34%),
-                linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
+                radial-gradient(circle at 15% 28%, rgba(31, 79, 143, 0.18), transparent 34%),
+                radial-gradient(circle at 84% 6%, rgba(177, 93, 50, 0.16), transparent 34%),
+                linear-gradient(180deg, #fffcf6 0%, #f7ecdc 100%);
         }
 
         .hero-section::before {
@@ -565,7 +609,7 @@
             width: 380px;
             height: 380px;
             border-radius: 50%;
-            background: linear-gradient(180deg, rgba(98, 153, 222, 0.22), rgba(98, 153, 222, 0));
+            background: linear-gradient(180deg, rgba(31, 79, 143, 0.20), rgba(31, 79, 143, 0));
             pointer-events: none;
         }
 
@@ -577,61 +621,97 @@
 
         .hero-highlights {
             display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(12, minmax(0, 1fr));
             gap: 18px;
             margin-top: 4px;
         }
 
         .hero-featured {
-            background: rgba(255, 255, 255, 0.88);
-            border: 1px solid #d4e1f0;
-            box-shadow: none;
-            padding: 24px 24px 22px;
+            background: rgba(252, 252, 249, 0.94);
+            border: 1px solid #dfd1bf;
+            box-shadow: 0 12px 24px rgba(18, 28, 22, 0.08);
+            padding: 28px 26px 24px;
             border-radius: var(--radius-md);
-            grid-column: 1 / -1;
+            grid-column: 1 / span 8;
         }
 
         .hero-kicker {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            font-size: 0.72rem;
+            font-size: 0.74rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: #2d7bd6;
+            color: #1f4f8f;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            background: #dce7f8;
+            border-radius: 999px;
+            padding: 5px 11px;
         }
 
         .hero-featured h2 {
-            font-size: clamp(1.45rem, 3.2vw, 2.25rem);
-            line-height: 1.18;
-            margin-bottom: 8px;
-            color: #0f2f57;
-            max-width: 24ch;
+            font-size: clamp(1.55rem, 3.3vw, 2.55rem);
+            line-height: 1.08;
+            margin-bottom: 10px;
+            color: #17243a;
+            max-width: 23ch;
         }
 
         .hero-featured p {
-            color: #4f6279;
-            font-size: 0.95rem;
-            line-height: 1.58;
-            max-width: 66ch;
+            color: #546074;
+            font-size: 0.96rem;
+            line-height: 1.62;
+            max-width: 62ch;
+            margin-bottom: 0;
+        }
+
+        .hero-proof-grid {
+            grid-column: span 4;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .hero-proof-item {
+            background: rgba(250, 251, 247, 0.95);
+            border: 1px solid #ddcfbe;
+            border-radius: 12px;
+            padding: 14px;
+            min-height: 102px;
+        }
+
+        .hero-proof-item strong {
+            display: block;
+            font-size: 1.24rem;
+            color: #1f3f72;
+            line-height: 1.15;
+            margin-bottom: 4px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-proof-item span {
+            font-size: 0.74rem;
+            color: #5b6677;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
         }
 
         .hero-pillar {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(250, 251, 247, 0.94);
             backdrop-filter: none;
             padding: 17px;
             border-radius: var(--radius-md);
-            border: 1px solid #d4e1f0;
-            grid-column: span 2;
+            border: 1px solid #dfd1bf;
+            grid-column: span 4;
             transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
 
         .hero-pillar:hover {
             transform: translateY(-3px);
-            border-color: #9ebfe8;
-            background: #f7fbff;
+            border-color: #b8c9e7;
+            background: #fcf6ec;
         }
 
         .hero-pillar-label {
@@ -639,7 +719,7 @@
             font-size: 0.72rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: #0084d4;
+            color: #1f4f8f;
             margin-bottom: 6px;
             font-weight: 700;
         }
@@ -647,12 +727,12 @@
         .hero-pillar h3 {
             font-size: 1.02rem;
             margin-bottom: 6px;
-            color: #123763;
+            color: #193a6c;
             font-weight: 700;
         }
 
         .hero-pillar p {
-            color: #4f6279;
+            color: #596274;
             font-size: 0.85rem;
             line-height: 1.5;
         }
@@ -666,8 +746,8 @@
         }
 
         .hero-metric {
-            background: rgba(255, 255, 255, 0.82);
-            border: 1px solid #d4e1f0;
+            background: rgba(250, 251, 247, 0.9);
+            border: 1px solid #cfd5c9;
             border-radius: 12px;
             padding: 12px 14px;
         }
@@ -675,14 +755,14 @@
         .hero-metric strong {
             display: block;
             font-size: 1.1rem;
-            color: #123763;
+            color: #14332b;
             line-height: 1.2;
         }
 
         .hero-metric span {
             display: block;
             margin-top: 3px;
-            color: #5a6a80;
+            color: #526057;
             font-size: 0.76rem;
             text-transform: uppercase;
             letter-spacing: 0.07em;
@@ -697,9 +777,9 @@
         }
 
         .hero-project {
-            background: rgba(255, 255, 255, 0.84);
-            border: 1px solid #d4e1f0;
-            padding: 16px;
+            background: rgba(250, 251, 247, 0.92);
+            border: 1px solid #dfd1bf;
+            padding: 18px;
             border-radius: var(--radius-md);
         }
 
@@ -708,7 +788,7 @@
             font-size: 0.7rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #0084d4;
+            color: #1f4f8f;
             margin-bottom: 6px;
             font-weight: 700;
         }
@@ -716,29 +796,54 @@
         .hero-project h3 {
             font-size: 1rem;
             margin-bottom: 7px;
-            color: #123763;
+            color: #193a6c;
             font-weight: 700;
             line-height: 1.3;
         }
 
         .hero-project h3 a {
-            color: #003f87;
+            color: #1a3e72;
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
         .hero-project h3 a:hover {
-            color: #0066cc;
+            color: #b15d32;
         }
 
         .hero-project p {
-            color: #4f6279;
+            color: #596274;
             font-size: 0.85rem;
             line-height: 1.5;
         }
 
+        .hero-talk-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .hero-talk-list a {
+            color: #1a3e72;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hero-talk-list a:hover,
+        .hero-talk-list a:focus {
+            color: #b15d32;
+            border-color: rgba(177, 93, 50, 0.45);
+            outline: none;
+        }
+
         .hero-project p strong {
-            color: #2d7bd6;
+            color: #0f6d5c;
             font-weight: 600;
         }
 
@@ -810,6 +915,62 @@
             margin-bottom: 3px;
             color: #0e2a4a;
             font-weight: 700;
+        }
+
+        .card-header-brand {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .card-header-brand h3 {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 28px;
+            object-fit: contain;
+            object-position: right center;
+            flex-shrink: 0;
+            border-radius: 6px;
+            filter: grayscale(20%) opacity(0.85);
+            transition: filter 0.25s ease;
+        }
+
+        .experience-card:hover .company-logo {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        .card-company-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s ease;
+        }
+
+        .card-company-link:hover {
+            color: var(--accent-strong);
+            text-decoration: underline;
+        }
+
+        .project-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .project-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid #d4e1f0;
+            flex-shrink: 0;
         }
 
         .experience-card .company {
@@ -937,6 +1098,347 @@
             border: 1px solid #cfe0f7;
         }
 
+        .talks-year {
+            margin-bottom: 26px;
+        }
+
+        .talks-year:last-child {
+            margin-bottom: 0;
+        }
+
+        .talks-year-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.28rem;
+            color: #123763;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .talks-year-title::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, var(--warm), var(--accent));
+            box-shadow: 0 0 0 4px rgba(45, 123, 214, 0.12);
+        }
+
+        .talks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .talk-card,
+        .sport-card {
+            background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
+            border: 1px solid #d4e1f0;
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+        }
+
+        .talk-card:hover,
+        .sport-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(22, 54, 95, 0.14);
+            border-color: #aac9ef;
+        }
+
+        .talk-card h3,
+        .sport-card h3 {
+            font-size: 1.03rem;
+            color: #0e2a4a;
+            margin-bottom: 5px;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .talk-meta,
+        .sport-meta {
+            color: #0066cc;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.01em;
+        }
+
+        .talk-card p,
+        .sport-card p {
+            color: #3d4f6a;
+            font-size: 0.9rem;
+            line-height: 1.56;
+        }
+
+        .talk-links,
+        .sport-links {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .talk-links a,
+        .sport-links a {
+            color: var(--accent-strong);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: #f7ecdc;
+            border: 1px solid #dfd1bf;
+            transition: all 0.2s ease;
+        }
+
+        .talk-links a:hover,
+        .talk-links a:focus,
+        .sport-links a:hover,
+        .sport-links a:focus {
+            color: #ffffff;
+            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
+            border-color: transparent;
+            outline: none;
+        }
+
+        .sport-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .sport-showcase {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+            align-items: start;
+        }
+
+        .sport-primary-column {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        #sport .section-subtitle {
+            margin-bottom: 24px;
+        }
+
+        .sport-video-card,
+        .sport-photo-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f7efe1 100%);
+            border: 1px solid #d7cab9;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .sport-video-card:hover,
+        .sport-photo-card:hover {
+            transform: translateY(-4px);
+            border-color: #aac9ef;
+            box-shadow: 0 16px 30px rgba(22, 54, 95, 0.18);
+        }
+
+        .sport-video-wrap {
+            position: relative;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(31, 79, 143, 0.2), transparent 52%),
+                linear-gradient(180deg, #061022 0%, #0f2340 100%);
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .sport-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sport-photo-rail {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            align-items: start;
+        }
+
+        .sport-photo-card {
+            position: relative;
+            padding: 5px;
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 238, 224, 0.95) 52%, rgba(231, 241, 255, 0.92) 100%);
+        }
+
+        .sport-photo-frame {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #d8c7b2;
+            background: #0f223f;
+        }
+
+        .sport-photo-trigger {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            cursor: zoom-in;
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sport-photo-trigger::after {
+            content: 'View';
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #eaf2ff;
+            background: rgba(11, 30, 56, 0.68);
+            border: 1px solid rgba(198, 221, 255, 0.45);
+            border-radius: 999px;
+            padding: 4px 8px;
+            opacity: 0;
+            transform: translateY(3px);
+            transition: opacity 0.24s ease, transform 0.24s ease;
+            pointer-events: none;
+        }
+
+        .sport-photo-card:hover .sport-photo-trigger::after,
+        .sport-photo-trigger:focus-visible::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sport-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .sport-photo-card:hover .sport-photo-frame img {
+            transform: scale(1.05);
+        }
+
+        .sport-photo-card--misano {
+            background:
+                linear-gradient(150deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 236, 226, 0.95) 60%, rgba(231, 241, 255, 0.94) 100%);
+        }
+
+        .sport-photo-card--misano .sport-photo-frame {
+            aspect-ratio: 16 / 10;
+            background:
+                radial-gradient(circle at 78% 16%, rgba(31, 79, 143, 0.32), transparent 48%),
+                linear-gradient(180deg, #102747 0%, #0b1e38 100%);
+        }
+
+        .sport-photo-card--misano .sport-photo-frame img {
+            object-fit: contain;
+            object-position: center;
+            padding: 5px;
+        }
+
+        .sport-photo-trigger:focus-visible {
+            outline: 3px solid rgba(0, 102, 204, 0.45);
+            outline-offset: 2px;
+        }
+
+        .sport-photo-lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            z-index: 1200;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(31, 79, 143, 0.32), transparent 42%),
+                rgba(6, 15, 29, 0.92);
+            backdrop-filter: blur(8px);
+        }
+
+        .sport-photo-lightbox.is-open {
+            display: flex;
+            animation: lightboxIn 0.28s ease;
+        }
+
+        @keyframes lightboxIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .sport-photo-lightbox img {
+            width: min(1100px, 92vw);
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 16px;
+            border: 1px solid rgba(208, 225, 252, 0.55);
+            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.45);
+            background: rgba(10, 20, 36, 0.85);
+            padding: 6px;
+        }
+
+        .sport-photo-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            border: 1px solid rgba(200, 221, 250, 0.7);
+            background: rgba(12, 30, 54, 0.72);
+            color: #f6fbff;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .sport-photo-lightbox-close:hover,
+        .sport-photo-lightbox-close:focus-visible {
+            background: rgba(24, 53, 90, 0.95);
+            outline: none;
+        }
+
+        .sport-photo-lightbox-caption {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            color: #eff5ff;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+            text-align: center;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(8, 23, 43, 0.72);
+        }
+
+        #sport .sport-grid {
+            margin-top: 0;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1005,17 +1507,18 @@
             width: 100%;
             overflow: hidden;
             background:
-                radial-gradient(circle at 75% 20%, rgba(152, 197, 255, 0.35), transparent 40%),
-                linear-gradient(180deg, #f8fbff 0%, #f2f7ff 100%);
-            border-top: 1px solid #dbe7f6;
+                radial-gradient(circle at 78% 22%, rgba(31, 79, 143, 0.16), transparent 40%),
+                radial-gradient(circle at 14% 82%, rgba(177, 93, 50, 0.13), transparent 38%),
+                linear-gradient(180deg, #fff9f0 0%, #f4e6d2 100%);
+            border-top: 1px solid #e3d7c6;
         }
 
         .passions-section .section-title {
-            color: #103360;
+            color: #173666;
         }
 
         .passions-section .section-subtitle {
-            color: #5a6a80;
+            color: #5f6878;
         }
 
         .passions-grid {
@@ -1025,29 +1528,44 @@
             margin-top: 26px;
         }
 
-        .passion-item {
-            text-align: center;
-            padding: 15px 8px;
-            background: #ffffff;
-            border-radius: 13px;
-            border: 1px solid #d4e1f0;
-            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        .focus-item {
+            padding: 16px 14px;
+            background: rgba(255, 255, 255, 0.82);
+            border-radius: 14px;
+            border: 1px solid #dfd1bf;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .passion-item:hover {
-            background: #edf4ff;
-            border-color: #a9c8ef;
+        .focus-item:hover {
+            background: #fffdf8;
+            border-color: #b8c9e7;
             transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(21, 40, 71, 0.11);
         }
 
-        .passion-item .icon {
-            font-size: 1.55rem;
-            margin-bottom: 5px;
+        .focus-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1f4f8f;
+            background: #dce7f8;
+            border-radius: 999px;
+            padding: 3px 9px;
+            margin-bottom: 8px;
+            font-weight: 700;
         }
 
-        .passion-item h3 {
-            font-size: 0.86rem;
-            color: #244974;
+        .focus-item h3 {
+            font-size: 0.95rem;
+            color: #1d3f74;
+            margin-bottom: 4px;
+        }
+
+        .focus-item p {
+            font-size: 0.82rem;
+            color: #5f6878;
+            line-height: 1.45;
         }
 
         footer {
@@ -1067,7 +1585,6 @@
 
         /* Scrollbars */
         .sidebar::-webkit-scrollbar,
-        .right-sidebar::-webkit-scrollbar,
         .chat-messages::-webkit-scrollbar {
             width: 6px;
         }
@@ -1077,7 +1594,6 @@
             border-radius: 20px;
         }
 
-        .right-sidebar::-webkit-scrollbar-thumb,
         .chat-messages::-webkit-scrollbar-thumb {
             background: rgba(45, 123, 214, 0.3);
             border-radius: 20px;
@@ -1541,6 +2057,13 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
+            .hero-featured,
+            .hero-proof-grid,
+            .hero-pillar,
+            .hero-projects-speaking {
+                grid-column: 1 / -1;
+            }
+
             .hero-pillar {
                 grid-column: auto;
             }
@@ -1555,14 +2078,12 @@
                 grid-template-columns: 1fr;
                 grid-template-areas:
                     "sidebar"
-                    "main"
-                    "right";
+                    "main";
                 gap: 14px;
                 padding: 12px;
             }
 
-            .sidebar,
-            .right-sidebar {
+            .sidebar {
                 position: relative;
                 width: 100%;
                 height: auto;
@@ -1576,13 +2097,6 @@
                 border-radius: 20px;
             }
 
-            .right-sidebar {
-                border: 1px solid var(--line);
-                backdrop-filter: none;
-                background: #f7faff;
-                border-radius: 20px;
-            }
-
             .main-content {
                 margin-left: 0;
                 margin-right: 0;
@@ -1592,11 +2106,13 @@
 
             .hero-section,
             section,
-            .passions-section {
+            .passions-section,
+            .profile-columns {
                 padding: 30px 18px;
             }
 
             .hero-highlights,
+            .hero-proof-grid,
             .hero-metrics,
             .hero-projects-speaking {
                 grid-template-columns: 1fr;
@@ -1611,18 +2127,48 @@
             .projects-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+
+            .talks-grid,
+            .sport-grid,
+            .background-grid,
+            .education-grid,
+            .profile-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .sport-showcase {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .sport-primary-column {
+                gap: 10px;
+            }
+
+            .sport-photo-rail {
+                grid-template-columns: 1fr;
+            }
+
+            .sport-photo-card--misano .sport-photo-frame {
+                aspect-ratio: 16 / 10;
+            }
+
+            .sport-photo-card--misano .sport-photo-frame img {
+                object-fit: contain;
+                object-position: center;
+            }
         }
 
         @media (max-width: 768px) {
-            .sidebar,
-            .right-sidebar {
+            .sidebar {
                 margin: 0;
                 padding: 22px 16px;
             }
 
             .hero-section,
             section,
-            .passions-section {
+            .passions-section,
+            .profile-columns {
                 padding: 24px 12px;
             }
 
@@ -1635,9 +2181,44 @@
             }
 
             .hero-highlights,
+            .hero-proof-grid,
             .projects-grid,
-            .skills-grid {
+            .skills-grid,
+            .talks-grid,
+            .sport-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .sport-photo-rail {
+                grid-template-columns: 1fr;
+            }
+
+            .sport-photo-card--misano .sport-photo-frame {
+                aspect-ratio: 16 / 9;
+            }
+
+            .sport-photo-card--misano .sport-photo-frame img {
+                object-fit: contain;
+                object-position: center;
+                padding: 4px;
+            }
+
+            .sport-photo-lightbox {
+                padding: 12px;
+            }
+
+            .sport-photo-lightbox img {
+                width: min(96vw, 96vw);
+                max-height: 76vh;
+            }
+
+            .identity-ticker {
+                margin: 12px 12px 0;
+            }
+
+            .identity-ticker-track {
+                font-size: 0.7rem;
+                gap: 18px;
             }
 
             .passions-grid {
@@ -1651,6 +2232,32 @@
 
             footer {
                 padding: 28px 16px;
+            }
+
+            .main-tabs {
+                padding: 14px 12px;
+                gap: 8px;
+                border-radius: 20px 20px 0 0;
+            }
+
+            .main-tab-btn {
+                font-size: 0.76rem;
+                padding: 8px 12px;
+            }
+
+            .company-logo {
+                width: 60px;
+                height: 24px;
+            }
+
+            .university-logo {
+                width: 36px;
+                height: 36px;
+            }
+
+            .project-logo {
+                width: 30px;
+                height: 30px;
             }
 
             .chat-container {
@@ -1753,17 +2360,17 @@
             <img src="assets/profile.jpg" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image">
             <h1 itemprop="name">Daniele Raimondi</h1>
             <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
-            <p class="sidebar-summary">I design and scale end-to-end AI and Data Science products that transform complex data into measurable decisions.
-                My work spans LLM pipelines, GenAI systems, machine learning, and quantitative finance -- always with a production-first mindset.
-                Former Italian National Team athlete: discipline and high-performance execution in every project.</p>
+            <p class="sidebar-summary">Senior Data Scientist and ML leader with 8+ years delivering end-to-end AI and GenAI systems from prototype to production.
+                Proven impact across revenue growth, churn reduction, and large-scale automation by leading cross-functional teams and translating ML strategy into execution.
+                Deep expertise in LLMs, NLP, causal inference, and production pipelines. Former Italian National Team athlete with a high-performance mindset.</p>
         </div>
 
         <nav aria-label="Primary">
-            <a href="#experience-sidebar">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#passions">Passions</a>
-            <a href="#education-sidebar">Education</a>
+            <a href="#tab-home" data-tab-link="tab-home" class="nav-active">Home</a>
+            <a href="#tab-projects" data-tab-link="tab-projects">Projects</a>
+            <a href="#tab-skills" data-tab-link="tab-skills">Skills</a>
+            <a href="#tab-talks" data-tab-link="tab-talks">Talks</a>
+            <a href="#tab-sport" data-tab-link="tab-sport">Sport</a>
         </nav>
 
         <div class="sidebar-info">
@@ -1776,11 +2383,11 @@
             </div>
             <div class="sidebar-info-item">
                 <div class="label">Current Role</div>
-                <div class="value">Senior Data Scientist - AI</div>
+                <div class="value">Senior Data Scientist, Tech Lead</div>
             </div>
             <div class="sidebar-info-item">
                 <div class="label">Specialization</div>
-                <div class="value">ML · AI · Finance</div>
+                <div class="value">LLM · NLP · Causal Inference</div>
             </div>
         </div>
 
@@ -1797,8 +2404,6 @@
         </div>
     </aside>
 
-<!-- RIGHT SIDEBAR -->
-        
     <!-- AI Chatbot Section -->
     <div class="chat-container">
         <div class="chat-header">
@@ -1836,314 +2441,236 @@
         </div>
     </div>
 
-    <aside class="right-sidebar">
-        <div class="right-sidebar-section" id="experience-sidebar">
-            <h2>Experience</h2>
-            <ul class="sidebar-experience-list">
-                <li class="sidebar-experience-item">
-                    <div class="sidebar-experience-role">Senior Data Scientist</div>
-                    <div class="sidebar-experience-company">MDPI · Basel, Switzerland 🇨🇭</div>
-                    <div class="sidebar-experience-dates">2023 – Present</div>
-                </li>
-                <li class="sidebar-experience-item">
-                    <div class="sidebar-experience-role">Lead Data Scientist</div>
-                    <div class="sidebar-experience-company">Esselunga · Milan, Italy 🇮🇹</div>
-                    <div class="sidebar-experience-dates">2017 – 2023</div>
-                </li>
-                <li class="sidebar-experience-item">
-                    <div class="sidebar-experience-role">Finance and Risk Analyst</div>
-                    <div class="sidebar-experience-company">Accenture · Milan, Italy 🇮🇹</div>
-                    <div class="sidebar-experience-dates">2017</div>
-                </li>
-                <li class="sidebar-experience-item">
-                    <div class="sidebar-experience-role">Risk Management Analyst</div>
-                    <div class="sidebar-experience-company">Fiditalia · Milan, Italy 🇮🇹</div>
-                    <div class="sidebar-experience-dates">2016 – 2017</div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="right-sidebar-section" id="education-sidebar">
-            <h2>Education</h2>
-
-            <div class="sidebar-education-card">
-                <h3>Master's Degree - Data Science</h3>
-                <p class="university">University of Milan Bicocca</p>
-                <p class="year">2021</p>
-            </div>
-
-            <div class="sidebar-education-card">
-                <h3>Master of Science - Economic Statistics</h3>
-                <p class="university">University of Milan Bicocca</p>
-                <p class="year">Specialization: Financial Markets &amp; Insurance</p>
-                <p class="year">2017</p>
-            </div>
-
-            <div class="sidebar-education-card">
-                <h3>Bachelor of Science - Statistics</h3>
-                <p class="university">University of Milan Bicocca</p>
-                <p class="year">2014</p>
-            </div>
-        </div>
-
-        <!-- HIGHLIGHTS SECTION -->
-        <div class="right-sidebar-section" id="sidebar-highlights">
-            <h2>Highlights</h2>
-
-            <div class="sidebar-highlights-list">
-                <!-- Golden Gala 2012 -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🏃‍♂️</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">Italian National Team – Golden Gala 2012</span>
-                        <span class="sidebar-pill-meta">
-                            4x400m relay at the Golden Gala in Rome with the Italian senior national team.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="http://www.fidal.it/content/Compeed-Golden-Gala-ecco-gli-azzurri/50442" target="_blank" rel="noopener">Squad list</a>
-                            <a href="https://youtu.be/8t6FIpT9WYU" target="_blank" rel="noopener">Race video</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- European U23 – Tampere -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🏃‍♂️</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">Italian National Team – European U23 Championships 2013</span>
-                        <span class="sidebar-pill-meta">
-                            Selected for the 4x400m relay in Tampere. Classified 2nd in Europe.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.fidal.it/content/EuroUnder23-la-squadra-per-Tampere/51654" target="_blank" rel="noopener">Squad list</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- EuroSciPy 2024 Talk -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎤</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">EuroSciPy 2024 – Talk</span>
-                        <span class="sidebar-pill-meta">
-                            Talk on tracking rejected manuscripts using Qdrant and Specter2 at EuroSciPy 2024.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7234846476726599680/" target="_blank" rel="noopener">LinkedIn</a>
-                            <a href="https://pretalx.com/euroscipy-2024/talk/HCMV78/" target="_blank" rel="noopener">Conference page</a>
-                            <a href="https://www.mdpi.com/journal/mining/news-and-conferences/news/9297" target="_blank" rel="noopener">MDPI news</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- EIC Summit – Houston -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎤</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">EIC Summit – Houston</span>
-                        <span class="sidebar-pill-meta">
-                            Speaker on AI at MDPI's EIC Summit in Houston.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7345715886734897152/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7345715886734897152%29" target="_blank" rel="noopener">LinkedIn</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- EIC Summit – Paris -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎤</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">EIC Summit – Paris</span>
-                        <span class="sidebar-pill-meta">
-                            Speaker on AI at MDPI's EIC Summit in Paris.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7341724783098695681/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7341724783098695681%29" target="_blank" rel="noopener">LinkedIn</a>
-                            <a href="https://www.mdpi.com/journal/ebj/news-and-conferences/news/12475" target="_blank" rel="noopener">MDPI news</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- EIC Summit – Barcelona -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎤</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">EIC Summit – Barcelona</span>
-                        <span class="sidebar-pill-meta">
-                            Speaker on AI at MDPI's EIC Summit in Barcelona.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7333020940362055680/" target="_blank" rel="noopener">LinkedIn</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- BiDigital – Biella -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎤</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">BiDigital Conference – Biella</span>
-                        <span class="sidebar-pill-meta">
-                            Session on my Data Science models on Bitcoin.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7249003545394352130/" target="_blank" rel="noopener">LinkedIn</a>
-                            <a href="https://www.youtube.com/live/5UO6pHJ9yNM?t=28361s" target="_blank" rel="noopener">Full video</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- Università Cattolica – Career Path -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎓</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">Università Cattolica – Career Path</span>
-                        <span class="sidebar-pill-meta">
-                            Invited speaker on data analyst and data scientist career paths.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://studenticattolica.unicatt.it/evt-career-path-percorsi-e-professioni-data-analyst" target="_blank" rel="noopener">Event page</a>
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:6917024883033939968/" target="_blank" rel="noopener">LinkedIn</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- Università Cattolica – Student Projects -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎓</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">Università Cattolica – Student Projects</span>
-                        <span class="sidebar-pill-meta">
-                            Industry projects for graduating students in analytics.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:6768481078073151488/" target="_blank" rel="noopener">LinkedIn</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- LIUC University Invite -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎓</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">LIUC University – Guest Lecture</span>
-                        <span class="sidebar-pill-meta">
-                            Talk on data and analytics for business and engineering students.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:6801445190168051712/" target="_blank" rel="noopener">LinkedIn</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- Python Biella Group -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎤</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">Python Biella Group – Talks</span>
-                        <span class="sidebar-pill-meta">
-                            Two talks on Python, data pipelines and AI for the Python Biella Group community.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.youtube.com/watch?v=x-ri6MJ2iCY" target="_blank" rel="noopener">Talk 1</a>
-                            <a href="https://www.youtube.com/watch?v=hzfIZ7IpYqM" target="_blank" rel="noopener">Talk 2</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- Joinrs Interview -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🎧</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">Interview on Joinrs</span>
-                        <span class="sidebar-pill-meta">
-                            Interview on my career path as Data Scientist at Esselunga.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://www.joinrs.com/fr/daniele-raimondi-esselunga/" target="_blank" rel="noopener">Link</a>
-                        </span>
-                    </span>
-                </div>
-
-                <!-- HFT Trading Competitions -->
-                <div class="sidebar-highlight-pill">
-                    <span class="sidebar-pill-icon">🏆</span>
-                    <span class="sidebar-pill-text">
-                        <span class="sidebar-pill-title">HFT Trading Competitions</span>
-                        <span class="sidebar-pill-meta">
-                            Winner of algorithmic trading contests, including a HitBTC high-frequency trading challenge.
-                        </span>
-                        <span class="sidebar-pill-links">
-                            <a href="https://hitbtc.com/trading-contest/38" target="_blank" rel="noopener">Contest page</a>
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </aside>
-
     <!-- MAIN CONTENT -->
     <main class="main-content" role="main">
-        <section class="hero-section" aria-label="Introduction">
-            <div class="hero-content">
-                <div class="hero-highlights">
-                    <article class="hero-featured">
-                        <span class="hero-kicker">Strategic Focus</span>
-                        <h2>Turning complex data into executive-grade AI decisions</h2>
-                        <p>From discovery to deployment, I build reliable systems that connect data science rigor, product vision, and measurable business outcomes.</p>
-                    </article>
+        <div class="main-tabs" role="tablist" aria-label="Main content tabs">
+            <button class="main-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-home" id="tab-btn-home" data-tab-target="tab-home">Home</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects">Projects</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills">Skills</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-talks" id="tab-btn-talks" data-tab-target="tab-talks">Talks</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-sport" id="tab-btn-sport" data-tab-target="tab-sport">Sport</button>
+        </div>
 
-                    <article class="hero-pillar">
-                        <span class="hero-pillar-label">Leadership</span>
-                        <h3>Data Intelligence Direction</h3>
-                        <p>Defining roadmaps, prioritizing use cases, and aligning teams on high-impact AI initiatives.</p>
-                    </article>
+        <div id="tab-home" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-home">
+            <div class="identity-ticker" aria-hidden="true">
+                <div class="identity-ticker-track">
+                    <span>AI Leadership</span>
+                    <span>Production LLM Systems</span>
+                    <span>Quantitative Thinking</span>
+                    <span>Business Impact</span>
+                    <span>Execution Discipline</span>
+                    <span>Basel / Milan</span>
+                    <span>AI Leadership</span>
+                    <span>Production LLM Systems</span>
+                    <span>Quantitative Thinking</span>
+                    <span>Business Impact</span>
+                    <span>Execution Discipline</span>
+                    <span>Basel / Milan</span>
+                </div>
+            </div>
+            <section class="hero-section" aria-label="Introduction">
+                <div class="hero-content">
+                    <div class="hero-highlights">
+                        <article class="hero-featured">
+                            <span class="hero-kicker">Identity Statement</span>
+                            <h2>I lead AI products from strategy to production, with measurable business impact.</h2>
+                            <p>As a hands-on Tech Lead, I define roadmaps, align product and engineering stakeholders, and deliver reliable ML and LLM systems that improve revenue, retention, and operational efficiency at scale.</p>
+                        </article>
 
-                    <article class="hero-pillar">
-                        <span class="hero-pillar-label">Execution</span>
-                        <h3>Production-Ready AI Systems</h3>
-                        <p>Designing LLM, GenAI, and ML pipelines with reliability, observability, and delivery discipline.</p>
-                    </article>
-
-                    <article class="hero-pillar">
-                        <span class="hero-pillar-label">Domain</span>
-                        <h3>Quantitative and Business Context</h3>
-                        <p>Applying advanced analytics to finance and operations where decisions require both speed and precision.</p>
-                    </article>
-
-                    <div class="hero-metrics" aria-label="Career highlights">
-                        <div class="hero-metric">
-                            <strong>8+ years</strong>
-                            <span>AI and Data Science</span>
+                        <div class="hero-proof-grid" aria-label="Proof points">
+                            <div class="hero-proof-item">
+                                <strong>8+ years</strong>
+                                <span>Data science and AI delivery</span>
+                            </div>
+                            <div class="hero-proof-item">
+                                <strong>3% uplift</strong>
+                                <span>Revenue and margin from pricing strategies</span>
+                            </div>
+                            <div class="hero-proof-item">
+                                <strong>-20% churn</strong>
+                                <span>With ML pipelines on 6M+ customers</span>
+                            </div>
+                            <div class="hero-proof-item">
+                                <strong>90%+ savings</strong>
+                                <span>Time reduction in DS workflows</span>
+                            </div>
                         </div>
-                        <div class="hero-metric">
-                            <strong>4+ sectors</strong>
-                            <span>Retail, Publishing, Banking, Insurance</span>
+
+                        <article class="hero-pillar">
+                            <span class="hero-pillar-label">How I Lead</span>
+                            <h3>Roadmap ownership and stakeholder alignment</h3>
+                            <p>I lead AI initiatives end to end, set technical direction, and align editorial, engineering, and product teams on shared priorities and milestones.</p>
+                        </article>
+
+                        <article class="hero-pillar">
+                            <span class="hero-pillar-label">How I Build</span>
+                            <h3>Production ML and LLM systems at scale</h3>
+                            <p>I architect pipelines for classification, clustering, forecasting, causal inference, and semantic retrieval using Azure OpenAI, Qdrant, Prefect, and Python.</p>
+                        </article>
+
+                        <article class="hero-pillar">
+                            <span class="hero-pillar-label">How I Think</span>
+                            <h3>Quantitative rigor with decision clarity</h3>
+                            <p>I combine experimentation and causal reasoning with business context to support C-level decisions in retail, publishing, banking, and insurance.</p>
+                        </article>
+
+                        <div class="hero-projects-speaking">
+                            <article class="hero-project">
+                                <span class="hero-project-label">Flagship Initiative</span>
+                                <div class="project-logo-wrap">
+                                    <a href="https://alphaquants.net" target="_blank" rel="noopener">
+                                        <img src="assets/project_logo/alphaquants.jpeg" alt="alphaquants.net logo" class="project-logo">
+                                    </a>
+                                    <h3><a href="https://alphaquants.net" target="_blank" rel="noopener">alphaquants.net</a></h3>
+                                </div>
+                                <p>Applied AI for quantitative finance: models, analysis workflows, and decision systems designed for practical investing and risk-aware execution.</p>
+                            </article>
+                            <article class="hero-project">
+                                <span class="hero-project-label">Public Voice 2026</span>
+                                <h3>Conference talks and technical community</h3>
+                                <ul class="hero-talk-list">
+                                    <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a></li>
+                                    <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong> · Zurich</a></li>
+                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> · Talk 1</a></li>
+                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> · Talk 2</a></li>
+                                </ul>
+                            </article>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <div class="hero-projects-speaking">
-                        <article class="hero-project">
-                            <span class="hero-project-label">Personal Project</span>
-                            <h3><a href="https://alphaquants.net" target="_blank" rel="noopener">alphaquants.net</a></h3>
-                            <p>AI meets quantitative finance and investing. Building intelligent systems for data-driven investment decisions.</p>
+            <section id="profile-overview" class="profile-columns" aria-label="Background and Education">
+                <div class="profile-column">
+                    <h2>Background</h2>
+                    <p class="column-subtitle">Professional track record in descending chronological order.</p>
+                    <div class="background-grid">
+                        <article class="experience-card">
+                            <div class="card-header-brand">
+                                <h3>Senior Data Scientist, Tech Lead</h3>
+                                <a href="https://www.mdpi.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/company_logo/mdpi.png" alt="MDPI" class="company-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="company"><a href="https://www.mdpi.com/" target="_blank" rel="noopener" class="card-company-link">MDPI</a> · Basel, Switzerland 🇨🇭</div>
+                            <div class="period">2023 – Present</div>
+                            <p>Tech Lead for Data Intelligence: owning roadmap and delivery of ML and LLM products, including multimillion-record semantic tagging, ontology-based graph clustering, and production pipelines with Azure OpenAI, Qdrant, and Prefect.</p>
                         </article>
-                        <article class="hero-project">
-                            <span class="hero-project-label">Speaking 2026</span>
-                            <h3>4 Conference Talks</h3>
-                            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;margin-top:2px;">
-                                <li><strong>PyData London 2026</strong></li>
-                                <li><strong>Swiss Data Science Conference</strong> · Zurich</li>
-                                <li><strong>EuroSciPy Krakow 2026</strong> · Talk 1</li>
-                                <li><strong>EuroSciPy Krakow 2026</strong> · Talk 2</li>
-                            </ul>
+                        <article class="experience-card">
+                            <div class="card-header-brand">
+                                <h3>Lead Data Scientist</h3>
+                                <a href="https://www.esselunga.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/company_logo/esselunga.svg" alt="Esselunga" class="company-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="company"><a href="https://www.esselunga.it/" target="_blank" rel="noopener" class="card-company-link">Esselunga</a> · Milan, Italy 🇮🇹</div>
+                            <div class="period">2017 – 2023</div>
+                            <p>Led data science across a multi-billion-euro retail operation: delivered 3% revenue and margin uplift, reduced churn by 20% on 6M+ customers, improved CLV by 15%, and automated workflows with 90%+ time savings.</p>
+                        </article>
+                        <article class="experience-card">
+                            <div class="card-header-brand">
+                                <h3>Finance and Risk Analyst</h3>
+                                <a href="https://www.accenture.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/company_logo/accenture.png" alt="Accenture" class="company-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="company"><a href="https://www.accenture.com/" target="_blank" rel="noopener" class="card-company-link">Accenture</a> · Milan, Italy 🇮🇹</div>
+                            <div class="period">2017</div>
+                            <p>Delivered quantitative consulting for banking clients using SPSS, SAS, and Python across finance and risk transformation projects.</p>
+                        </article>
+                        <article class="experience-card">
+                            <div class="card-header-brand">
+                                <h3>Risk Management Analyst</h3>
+                                <a href="https://www.fiditalia.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/company_logo/fiditalia.png" alt="Fiditalia" class="company-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="company"><a href="https://www.fiditalia.it/" target="_blank" rel="noopener" class="card-company-link">Fiditalia</a> · Milan, Italy 🇮🇹</div>
+                            <div class="period">2016 – 2017</div>
+                            <p>Built statistical models for credit risk and scoring, including Machine Learning, Value at Risk, Expected Loss, Loss Given Default, and Exposure at Default.</p>
                         </article>
                     </div>
                 </div>
-            </div>
-        </section>
 
+                <div class="profile-column">
+                    <h2>Education</h2>
+                    <p class="column-subtitle">Quantitative training spanning statistics, economics, finance, and modern data science.</p>
+                    <div class="education-grid">
+                        <article class="education-card">
+                            <div class="education-head">
+                                <h3>Master's Degree · Data Science</h3>
+                                <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
+                            <p class="year">2021 · Advanced ML, NLP, and data products</p>
+                        </article>
+                        <article class="education-card">
+                            <div class="education-head">
+                                <h3>MSc · Economic Statistics</h3>
+                                <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
+                            <p class="year">2017 · Financial Markets, Insurance, and risk analytics</p>
+                        </article>
+                        <article class="education-card">
+                            <div class="education-head">
+                                <h3>BSc · Statistics</h3>
+                                <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
+                                </a>
+                            </div>
+                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
+                            <p class="year">2014 · Statistical modeling and econometrics</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="passions" class="passions-section">
+                <h2 class="section-title">Beyond Work</h2>
+                <p class="section-subtitle">
+                    Six areas that define my curiosity, energy, and long-term growth.
+                </p>
+                <div class="passions-grid">
+                    <article class="focus-item">
+                        <span class="focus-label">Core Interest</span>
+                        <h3>Data Science and AI</h3>
+                        <p>Continuous experimentation on models, LLM systems, and practical AI applications with real-world impact.</p>
+                    </article>
+                    <article class="focus-item">
+                        <span class="focus-label">Markets</span>
+                        <h3>Quantitative Finance</h3>
+                        <p>Research on market behavior, portfolio logic, and data-driven investing across traditional and digital assets.</p>
+                    </article>
+                    <article class="focus-item">
+                        <span class="focus-label">Community</span>
+                        <h3>Speaking and Mentoring</h3>
+                        <p>Sharing practical lessons through conferences, mentoring, and collaboration with professionals and students.</p>
+                    </article>
+                    <article class="focus-item">
+                        <span class="focus-label">Discipline</span>
+                        <h3>Competitive Sport Mindset</h3>
+                        <p>Former Italian National Team athlete focused on consistency, resilience, and performance under pressure.</p>
+                    </article>
+                    <article class="focus-item">
+                        <span class="focus-label">Systems</span>
+                        <h3>Automation and Productivity</h3>
+                        <p>Designing efficient workflows and scalable processes to amplify execution quality and team output.</p>
+                    </article>
+                    <article class="focus-item">
+                        <span class="focus-label">Hobbies</span>
+                        <h3>Numismatics, Billiards, Soccer, Music</h3>
+                        <p>Personal interests that keep me creative and balanced, with a special place for italodance culture.</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <div id="tab-projects" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-projects">
         <section id="projects">
             <h2 class="section-title">Some Projects</h2>
             <p class="section-subtitle">
@@ -2245,7 +2772,9 @@
                 </div>
             </div>
         </section>
+        </div>
 
+        <div id="tab-skills" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-skills">
         <section id="skills" class="section-alt">
             <h2 class="section-title">Technical Expertise</h2>
             <p class="section-subtitle">
@@ -2301,43 +2830,256 @@
                 </div>
             </div>
         </section>
+        </div>
 
-        <section id="passions" class="passions-section">
-            <h2 class="section-title">Beyond Work</h2>
-            <p class="section-subtitle">
-                Interests that keep my curiosity sharp and continuously fuel new ideas.
-            </p>
-            <div class="passions-grid">
-                <div class="passion-item">
-                    <div class="icon">📈</div>
-                    <h3>Data Science</h3>
+        <div id="tab-talks" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-talks">
+            <section id="talks" class="section-alt">
+                <h2 class="section-title">Talks</h2>
+                <p class="section-subtitle">
+                    Conference sessions, invited talks, and academic events grouped by year.
+                </p>
+
+                <div class="talks-year">
+                    <h3 class="talks-year-title">2026 · Upcoming and Recent</h3>
+                    <div class="talks-grid">
+                        <article class="talk-card">
+                            <h3>Swiss Data Science Conference 2026</h3>
+                            <div class="talk-meta">Zurich, Switzerland · 2026</div>
+                            <p>Invited speaking engagement focused on applied AI and real-world data science impact.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener">LinkedIn</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>PyData London 2026</h3>
+                            <div class="talk-meta">London, United Kingdom · 2026</div>
+                            <p>Talk accepted for PyData London on practical AI and data product delivery.</p>
+                            <div class="talk-links">
+                                <a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener">Talk page</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>EuroSciPy Krakow 2026 · Talk 1</h3>
+                            <div class="talk-meta">Krakow, Poland · 2026</div>
+                            <p>First accepted EuroSciPy talk within the 2026 conference program.</p>
+                            <div class="talk-links">
+                                <a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener">Talk page</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>EuroSciPy Krakow 2026 · Talk 2</h3>
+                            <div class="talk-meta">Krakow, Poland · 2026</div>
+                            <p>Second accepted EuroSciPy talk, expanding on production-ready open-source AI workflows.</p>
+                            <div class="talk-links">
+                                <a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener">Talk page</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <div class="passion-item">
-                    <div class="icon">🤖</div>
-                    <h3>AI</h3>
+
+                <div class="talks-year">
+                    <h3 class="talks-year-title">2025</h3>
+                    <div class="talks-grid">
+                        <article class="talk-card">
+                            <h3>EIC Summit</h3>
+                            <div class="talk-meta">Houston, United States · 2025</div>
+                            <p>Speaker on AI initiatives and publishing innovation at MDPI's EIC Summit.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7345715886734897152/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7345715886734897152%29" target="_blank" rel="noopener">LinkedIn</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>EIC Summit</h3>
+                            <div class="talk-meta">Paris, France · 2025</div>
+                            <p>Talk on AI strategy, editorial operations, and scalable data-driven processes.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7341724783098695681/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7341724783098695681%29" target="_blank" rel="noopener">LinkedIn</a>
+                                <a href="https://www.mdpi.com/journal/ebj/news-and-conferences/news/12475" target="_blank" rel="noopener">MDPI news</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>EIC Summit</h3>
+                            <div class="talk-meta">Barcelona, Spain · 2025</div>
+                            <p>Session on applied AI systems and impact-driven experimentation.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7333020940362055680/" target="_blank" rel="noopener">LinkedIn</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <div class="passion-item">
-                    <div class="icon">💹</div>
-                    <h3>Finance &amp; Investing</h3>
+
+                <div class="talks-year">
+                    <h3 class="talks-year-title">2024</h3>
+                    <div class="talks-grid">
+                        <article class="talk-card">
+                            <h3>EuroSciPy 2024</h3>
+                            <div class="talk-meta">Europe · 2024</div>
+                            <p>Talk on tracking rejected manuscripts using Qdrant and Specter2.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7234846476726599680/" target="_blank" rel="noopener">LinkedIn</a>
+                                <a href="https://pretalx.com/euroscipy-2024/talk/HCMV78/" target="_blank" rel="noopener">Talk page</a>
+                                <a href="https://www.mdpi.com/journal/mining/news-and-conferences/news/9297" target="_blank" rel="noopener">MDPI news</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>BiDigital Conference</h3>
+                            <div class="talk-meta">Biella, Italy · 2024</div>
+                            <p>Session on data science models for Bitcoin and decision support.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7249003545394352130/" target="_blank" rel="noopener">LinkedIn</a>
+                                <a href="https://www.youtube.com/live/5UO6pHJ9yNM?t=28361s" target="_blank" rel="noopener">Video</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <div class="passion-item">
-                    <div class="icon">🌍</div>
-                    <h3>Macroeconomics</h3>
+
+                <div class="talks-year">
+                    <h3 class="talks-year-title">2022</h3>
+                    <div class="talks-grid">
+                        <article class="talk-card">
+                            <h3>Python Biella Group · Talk 1</h3>
+                            <div class="talk-meta">Biella, Italy · 2022</div>
+                            <p>Community session on Python, data pipelines, and practical engineering workflows.</p>
+                            <div class="talk-links">
+                                <a href="https://www.youtube.com/watch?v=x-ri6MJ2iCY" target="_blank" rel="noopener">Talk 1</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>Python Biella Group · Talk 2</h3>
+                            <div class="talk-meta">Biella, Italy · 2022</div>
+                            <p>Follow-up talk on AI experimentation and production thinking for Python practitioners.</p>
+                            <div class="talk-links">
+                                <a href="https://www.youtube.com/watch?v=hzfIZ7IpYqM" target="_blank" rel="noopener">Talk 2</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>Università Cattolica · Career Path</h3>
+                            <div class="talk-meta">Milan, Italy · 2022</div>
+                            <p>Invited talk on data analyst and data scientist career paths.</p>
+                            <div class="talk-links">
+                                <a href="https://studenticattolica.unicatt.it/evt-career-path-percorsi-e-professioni-data-analyst" target="_blank" rel="noopener">Event page</a>
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6917024883033939968/" target="_blank" rel="noopener">LinkedIn</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <div class="passion-item">
-                    <div class="icon">🪙</div>
-                    <h3>Numismatics</h3>
+
+                <div class="talks-year">
+                    <h3 class="talks-year-title">2021</h3>
+                    <div class="talks-grid">
+                        <article class="talk-card">
+                            <h3>LIUC University · Guest Lecture</h3>
+                            <div class="talk-meta">Castellanza, Italy · 2021</div>
+                            <p>Talk on data and analytics applications for business and engineering students.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6801445190168051712/" target="_blank" rel="noopener">LinkedIn</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>Università Cattolica · Student Projects</h3>
+                            <div class="talk-meta">Milan, Italy · 2021</div>
+                            <p>Industry projects with graduating students focused on analytics and problem solving.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6768481078073151488/" target="_blank" rel="noopener">LinkedIn</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>Joinrs Interview</h3>
+                            <div class="talk-meta">Online · 2021</div>
+                            <p>Interview about my career path as Data Scientist at Esselunga.</p>
+                            <div class="talk-links">
+                                <a href="https://www.joinrs.com/fr/daniele-raimondi-esselunga/" target="_blank" rel="noopener">Interview</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <div class="passion-item">
-                    <div class="icon">🎱</div>
-                    <h3>Billiards</h3>
+            </section>
+        </div>
+
+        <div id="tab-sport" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-sport">
+            <section id="sport" class="section-alt">
+                <h2 class="section-title">Sport</h2>
+                <p class="section-subtitle">
+                    Athletic milestones from my years with the Italian national 4x400m relay teams.
+                </p>
+                <div class="sport-showcase">
+                    <div class="sport-primary-column">
+                        <article class="sport-video-card">
+                            <div class="sport-video-wrap">
+                                <video controls preload="metadata" poster="assets/athletics/rome-diamond-league-2012-poster.jpg">
+                                    <source src="assets/athletics/rome-diamond-league-2012-4x400.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </article>
+
+                        <div class="sport-grid">
+                            <article class="sport-card">
+                                <h3>Golden Gala 2012 · Italian Senior National Team</h3>
+                                <div class="sport-meta">Rome, Italy · 2012</div>
+                                <p>Selected for the 4x400m relay at the Golden Gala in Rome, competing with the Italian senior national team in one of the premier European track events.</p>
+                                <div class="sport-links">
+                                    <a href="http://www.fidal.it/content/Compeed-Golden-Gala-ecco-gli-azzurri/50442" target="_blank" rel="noopener">FIDAL</a>
+                                    <a href="https://youtu.be/8t6FIpT9WYU" target="_blank" rel="noopener">Race video</a>
+                                </div>
+                            </article>
+
+                            <article class="sport-card">
+                                <h3>European U23 Championships · Italian National Team</h3>
+                                <div class="sport-meta">Tampere, Finland · 2013</div>
+                                <p>Member of the Italian 4x400m relay team at the European U23 Championships in Tampere, where we finished second in Europe.</p>
+                                <div class="sport-links">
+                                    <a href="https://www.fidal.it/content/EuroUnder23-la-squadra-per-Tampere/51654" target="_blank" rel="noopener">FIDAL</a>
+                                    <a href="https://www.youtube.com/results?search_query=european+u23+championships+2013+4x400+relay+tampere" target="_blank" rel="noopener">Race video</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="sport-photo-rail" aria-label="Athletics highlights gallery">
+                        <article class="sport-photo-card">
+                            <figure class="sport-photo-frame">
+                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG2.JPG" data-caption="Golden Gala 2012 · block start">
+                                    <img src="assets/athletics/GG2.JPG" alt="Daniele Raimondi with teammates at Golden Gala 2012" loading="lazy" decoding="async">
+                                </button>
+                            </figure>
+                        </article>
+
+                        <article class="sport-photo-card">
+                            <figure class="sport-photo-frame">
+                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG3.JPG" data-caption="Golden Gala 2012 · block drive phase">
+                                    <img src="assets/athletics/GG3.JPG" alt="Italian relay team at Golden Gala event area" loading="lazy" decoding="async">
+                                </button>
+                            </figure>
+                        </article>
+
+                        <article class="sport-photo-card sport-photo-card--misano">
+                            <figure class="sport-photo-frame">
+                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/misano.JPG" data-caption="Campionati Italiani U23 2012 · Misano">
+                                    <img src="assets/athletics/misano.JPG" alt="Italian U23 Championships race in Misano 2012" loading="lazy" decoding="async">
+                                </button>
+                            </figure>
+                        </article>
+                    </div>
                 </div>
-                <div class="passion-item">
-                    <div class="icon">🎵</div>
-                    <h3>Italodance</h3>
+
+                <div class="sport-photo-lightbox" id="sport-photo-lightbox" aria-hidden="true">
+                    <button class="sport-photo-lightbox-close" type="button" aria-label="Close image">×</button>
+                    <img src="" alt="Expanded sport photo" id="sport-photo-lightbox-image">
+                    <div class="sport-photo-lightbox-caption" id="sport-photo-lightbox-caption"></div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <footer>
             <p>© 2026 Daniele Raimondi · Senior Data Scientist</p>
@@ -2345,55 +3087,106 @@
         </footer>
     </main>
     
-    <!-- Active nav highlight via IntersectionObserver -->
+    <!-- Main tab switching -->
     <script>
     (function () {
-        const navLinks = document.querySelectorAll('.sidebar nav a');
-        if (!navLinks.length || !('IntersectionObserver' in window)) return;
+        const tabButtons = document.querySelectorAll('.main-tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        const sidebarLinks = document.querySelectorAll('.sidebar nav a[data-tab-link]');
 
-        // Build a map: section id → nav link
-        const linkMap = {};
-        navLinks.forEach(link => {
-            const id = link.getAttribute('href').replace('#', '');
-            linkMap[id] = link;
-        });
+        if (!tabButtons.length || !tabPanels.length) return;
 
-        // Right sidebar is fixed on desktop — its sections are always "in viewport".
-        // Only run the observer on elements inside .main-content to avoid false positives.
-        const mainContent = document.querySelector('.main-content');
-        const rightSidebarIds = new Set(['experience-sidebar', 'education-sidebar']);
+        const activateTab = (tabId, pushHash = true) => {
+            let hasTab = false;
 
-        const visibilityMap = {};
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                visibilityMap[entry.target.id] = entry.intersectionRatio;
+            tabButtons.forEach(button => {
+                const isActive = button.dataset.tabTarget === tabId;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-selected', String(isActive));
+                if (isActive) hasTab = true;
             });
 
-            // Find the main-content section with the highest intersection ratio
-            let topId = null;
-            let topRatio = 0;
-            Object.keys(visibilityMap).forEach(id => {
-                if (visibilityMap[id] > topRatio) {
-                    topRatio = visibilityMap[id];
-                    topId = id;
-                }
+            if (!hasTab) return;
+
+            tabPanels.forEach(panel => {
+                panel.classList.toggle('active', panel.id === tabId);
             });
 
-            navLinks.forEach(link => link.classList.remove('nav-active'));
-            if (topId && linkMap[topId]) {
-                linkMap[topId].classList.add('nav-active');
+            sidebarLinks.forEach(link => {
+                link.classList.toggle('nav-active', link.dataset.tabLink === tabId);
+            });
+
+            if (pushHash) {
+                history.replaceState(null, '', '#' + tabId);
             }
-        }, {
-            threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0],
-            rootMargin: '-10% 0px -10% 0px'
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                activateTab(button.dataset.tabTarget);
+            });
         });
 
-        // Only observe sections inside the scrollable main content
-        Object.keys(linkMap).forEach(id => {
-            if (rightSidebarIds.has(id)) return; // skip fixed right-sidebar elements
-            const el = document.getElementById(id);
-            if (el && mainContent && mainContent.contains(el)) observer.observe(el);
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                activateTab(link.dataset.tabLink);
+            });
+        });
+
+        const initialHash = window.location.hash.replace('#', '');
+        if (initialHash) {
+            activateTab(initialHash, false);
+        }
+    })();
+    </script>
+
+    <script>
+    (function () {
+        const lightbox = document.getElementById('sport-photo-lightbox');
+        const lightboxImage = document.getElementById('sport-photo-lightbox-image');
+        const lightboxCaption = document.getElementById('sport-photo-lightbox-caption');
+        const closeBtn = lightbox ? lightbox.querySelector('.sport-photo-lightbox-close') : null;
+        const photoButtons = document.querySelectorAll('.sport-photo-trigger');
+
+        if (!lightbox || !lightboxImage || !closeBtn || !photoButtons.length) return;
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImage.src = '';
+            lightboxCaption.textContent = '';
+            document.body.style.overflow = '';
+        };
+
+        photoButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const fullSrc = button.dataset.fullSrc;
+                const caption = button.dataset.caption || button.querySelector('img')?.alt || '';
+                if (!fullSrc) return;
+
+                lightboxImage.src = fullSrc;
+                lightboxCaption.textContent = caption;
+                lightbox.classList.add('is-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', event => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+                closeLightbox();
+            }
         });
     })();
     </script>
