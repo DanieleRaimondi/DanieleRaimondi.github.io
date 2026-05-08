@@ -4,30 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO Meta Tags -->
-    <title>Daniele Raimondi | Senior Data Scientist & AI in Basel</title>
-    <meta name="description" content="Senior Data Scientist in Basel, building LLM, GenAI and ML solutions with a focus on quantitative finance and data products.">
-    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
+    <title>Daniele Raimondi | AI and Data Science Lead in Basel</title>
+    <meta name="description" content="Senior Data Scientist in Basel building production AI systems, LLM products, and measurable business outcomes.">
+    <meta name="keywords" content="Daniele Raimondi, AI, Data Science, Machine Learning, LLM, GenAI, Basel, Switzerland, Tech Lead">
     <meta name="author" content="Daniele Raimondi">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://danieleraimondi.github.io/">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0e2a45">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Preconnect to chatbot backend -->
     <link rel="preconnect" href="https://ai-twin-backend.vercel.app">
 
-    <!-- Geo Targeting -->
     <meta name="geo.region" content="CH-BS">
     <meta name="geo.placename" content="Basel">
     <meta name="geo.position" content="47.5596;7.5886">
     <meta name="ICBM" content="47.5596, 7.5886">
 
-    <!-- Favicon -->
     <link rel="icon" href="/assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
@@ -36,23 +31,20 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png">
     <link rel="manifest" href="/manifest.json">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://danieleraimondi.github.io/">
     <meta property="og:title" content="Daniele Raimondi - Senior Data Scientist">
-    <meta property="og:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland.">
+    <meta property="og:description" content="Tech lead for AI products from roadmap to production, focused on measurable business impact.">
     <meta property="og:image" content="https://danieleraimondi.github.io/assets/profile2.jpeg">
     <meta property="og:site_name" content="Daniele Raimondi Portfolio">
     <meta property="og:locale" content="en_US">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://danieleraimondi.github.io/">
     <meta property="twitter:title" content="Daniele Raimondi - Senior Data Scientist">
-    <meta property="twitter:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland.">
+    <meta property="twitter:description" content="AI leadership, production ML and LLM systems, and quantitative product delivery.">
     <meta property="twitter:image" content="https://danieleraimondi.github.io/assets/profile2.jpeg">
 
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -75,12 +67,6 @@
         "addressLocality": "Basel",
         "addressCountry": "CH"
       },
-      "alumniOf": [
-        {
-          "@type": "EducationalOrganization",
-          "name": "University of Milan Bicocca"
-        }
-      ],
       "knowsAbout": [
         "Machine Learning",
         "Artificial Intelligence",
@@ -97,1577 +83,590 @@
 
     <style>
         :root {
-            --bg: #f3ede2;
-            --surface: #fffdf8;
-            --surface-alt: #f7f2e8;
-            --text: #1a1f2a;
-            --muted: #596172;
-            --line: #d8cfc0;
-            --accent: #1f4f8f;
-            --accent-strong: #14386a;
-            --accent-soft: #d8e3f6;
-            --warm: #b15d32;
-            --hero-bg: #0f2340;
-            --hero-bg-soft: #1d3a67;
-            --shadow-soft: 0 8px 28px rgba(14, 30, 60, 0.08);
-            --shadow-strong: 0 16px 42px rgba(10, 20, 50, 0.16);
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 30px;
-            --container-max: 1620px;
+            --ink: #0f2033;
+            --ink-soft: #334a64;
+            --sand: #f3ebde;
+            --sand-deep: #e3d4bd;
+            --paper: #fffdf9;
+            --navy: #0e2a45;
+            --navy-soft: #1f4f75;
+            --teal: #1f6d63;
+            --amber: #b46b2d;
+            --line: #d8c9b5;
+            --line-strong: #cbb79d;
+            --shadow-soft: 0 12px 30px rgba(19, 35, 52, 0.08);
+            --shadow-chat: 0 20px 42px rgba(10, 30, 53, 0.16);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --max-width: 1360px;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         html {
-            overflow-x: hidden;
             scroll-behavior: smooth;
-            width: 100%;
         }
 
         body {
-            font-family: 'Public Sans', sans-serif;
-            line-height: 1.7;
-            color: var(--text);
-            margin: 0;
-            padding: 18px;
-            max-width: var(--container-max);
+            font-family: 'Manrope', sans-serif;
+            color: var(--ink);
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 0%, rgba(31, 109, 99, 0.12), transparent 30%),
+                radial-gradient(circle at 90% 0%, rgba(180, 107, 45, 0.12), transparent 26%),
+                linear-gradient(180deg, #faf5eb 0%, var(--sand) 48%, #e9dcc8 100%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page-shell {
+            max-width: var(--max-width);
             margin: 0 auto;
-            min-height: 100vh;
-            width: 100%;
-            background:
-                radial-gradient(circle at 7% 10%, rgba(31, 79, 143, 0.12), transparent 34%),
-                radial-gradient(circle at 86% 10%, rgba(177, 93, 50, 0.14), transparent 32%),
-                linear-gradient(180deg, #faf6ef 0%, var(--bg) 46%, #e8e0d1 100%);
-            background-attachment: fixed;
-            display: grid;
-            gap: 14px;
-            grid-template-columns: 330px minmax(0, 1fr);
-            grid-template-areas: "sidebar main";
-            align-items: start;
+            padding: 18px;
         }
 
-        a,
-        button,
-        textarea {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        a:focus-visible,
-        button:focus-visible,
-        textarea:focus-visible {
-            outline: 3px solid rgba(0, 102, 204, 0.38);
-            outline-offset: 2px;
-        }
-
-        h1, h2, h3, .sidebar nav a {
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.02em;
-        }
-
-        .sidebar,
-        .hero-section,
-        .experience-card,
-        .project-card,
-        .skill-card,
-        .sidebar-education-card,
-        .sidebar-highlight-pill,
-        .passion-item,
-        .focus-item,
-        .highlight-item {
-            animation: riseIn 0.7s ease both;
-        }
-
-        @keyframes riseIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes photoGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 102, 204, 0); }
-            50% { box-shadow: 0 0 0 10px rgba(0, 102, 204, 0.2); }
-        }
-
-        /* LEFT SIDEBAR */
-
-        .sidebar {
-            grid-area: sidebar;
-            position: sticky;
-            top: 18px;
-            width: 100%;
-            max-height: calc(100vh - 36px);
-            color: #eef3ee;
-            padding: 32px 24px;
-            overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-xl);
-            background:
-                linear-gradient(210deg, rgba(100, 144, 212, 0.24) 0%, transparent 34%),
-                linear-gradient(145deg, #0f2340 0%, #0a1a31 100%);
-            backdrop-filter: blur(3px);
-        }
-
-        .sidebar-profile {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar-photo {
-            width: 156px;
-            height: 156px;
-            border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            object-fit: cover;
-            margin-bottom: 16px;
-            animation: photoGlow 3.5s ease-in-out infinite;
-        }
-
-        .sidebar h1 {
-            font-size: 1.5rem;
-            margin-bottom: 4px;
-            font-weight: 700;
-        }
-
-        .sidebar .role {
-            color: #95c4ff;
-            font-size: 0.96rem;
-            font-weight: 600;
-        }
-
-        .sidebar-summary {
-            color: rgba(230, 244, 237, 0.75);
-            font-size: 0.87rem;
-            line-height: 1.65;
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .sidebar nav {
-            margin: 28px 0;
-        }
-
-        .sidebar nav a {
-            display: block;
-            color: rgba(228, 244, 236, 0.74);
-            text-decoration: none;
-            padding: 9px 0;
-            font-size: 0.88rem;
-            min-height: 42px;
-            display: flex;
-            align-items: center;
-            border-left: 3px solid transparent;
-            padding-left: 12px;
-            margin-left: -12px;
-            transition: all 0.25s ease;
-        }
-
-        .sidebar nav a:hover,
-        .sidebar nav a:focus,
-        .sidebar nav a.nav-active {
-            color: #ffffff;
-            border-left-color: var(--warm);
-            padding-left: 16px;
-            outline: none;
-        }
-
-        .sidebar-info {
-            margin-top: 28px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .sidebar-info-item {
-            margin-bottom: 14px;
-        }
-
-        .sidebar-info-item .label {
-            color: rgba(184, 224, 216, 0.82);
-            font-size: 0.74rem;
-            text-transform: uppercase;
-            letter-spacing: 0.13em;
-            margin-bottom: 4px;
-            font-weight: 700;
-        }
-
-        .sidebar-info-item .value {
-            color: #f0f7ff;
-            font-size: 0.92rem;
-            font-weight: 500;
-        }
-
-        .sidebar-social {
-            margin-top: 24px;
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .sidebar-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.09);
-            transition: transform 0.25s ease, background 0.25s ease;
-        }
-
-        .sidebar-social img {
-            width: 20px;
-            height: 20px;
-            display: block;
-            border-radius: 4px;
-        }
-
-        .sidebar-social a:hover,
-        .sidebar-social a:focus {
-            transform: translateY(-2px);
-            background: rgba(121, 208, 191, 0.22);
-            outline: none;
-        }
-
-        .profile-columns {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 22px;
-            padding: 34px 44px;
-            border-top: 1px solid #e3d7c6;
-            background:
-                radial-gradient(circle at 82% 16%, rgba(177, 93, 50, 0.13), transparent 42%),
-                linear-gradient(180deg, #fffaf2 0%, #f7efe1 100%);
-        }
-
-        .profile-column {
-            background: rgba(255, 252, 246, 0.9);
-            border: 1px solid #e2d6c6;
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            box-shadow: 0 8px 24px rgba(40, 35, 27, 0.08);
-        }
-
-        .profile-column h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 800;
-            color: #1c3f73;
-            margin-bottom: 4px;
-            letter-spacing: -0.02em;
-        }
-
-        .profile-column .column-subtitle {
-            font-size: 0.92rem;
-            color: #626976;
-            margin-bottom: 14px;
-        }
-
-        .background-grid,
-        .education-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
-        }
-
-        .education-card {
-            background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
-            border-radius: var(--radius-lg);
-            padding: 20px 18px 17px;
+        .topbar {
+            background: rgba(255, 252, 247, 0.9);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            backdrop-filter: blur(7px);
             box-shadow: var(--shadow-soft);
-            border: 1px solid #e2d6c6;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-
-        .education-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 13px 24px rgba(33, 59, 102, 0.14);
-            border-color: #b8c9e7;
-        }
-
-        .education-card h3 {
-            font-size: 1rem;
-            margin-bottom: 4px;
-            font-weight: 700;
-            color: #1c3f73;
-        }
-
-        .education-head {
+            padding: 12px 18px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
             gap: 12px;
-            margin-bottom: 4px;
-        }
-
-        .education-head h3 {
-            margin-bottom: 0;
-            flex: 1;
-        }
-
-        .university-logo {
-            width: 42px;
-            height: 42px;
-            object-fit: contain;
-            border-radius: 10px;
-            border: 1px solid #dbe7f6;
-            background: #ffffff;
-            padding: 4px;
-            flex-shrink: 0;
-            filter: grayscale(10%) opacity(0.85);
-            transition: filter 0.25s ease;
-        }
-
-        .education-card:hover .university-logo {
-            filter: grayscale(0%) opacity(1);
-        }
-
-        .card-university-link {
-            color: #1f4f8f;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.88rem;
-            transition: color 0.2s ease;
-        }
-
-        .card-university-link:hover {
-            color: var(--accent-strong);
-            text-decoration: underline;
-        }
-
-        .education-card .university {
-            font-size: 0.88rem;
-            color: #1f4f8f;
-            margin-bottom: 2px;
-            font-weight: 600;
-        }
-
-        .education-card .year {
-            font-size: 0.82rem;
-            color: #5a6a80;
-        }
-
-        .education-card .year + .year {
-            margin-top: 1px;
-        }
-
-        /* MAIN CONTENT */
-
-        .main-content {
-            grid-area: main;
-            margin: 0;
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
-            background: rgba(255, 253, 248, 0.9);
-            border: 1px solid #e2d6c6;
             min-width: 0;
-            border-radius: 24px;
-            box-shadow: 0 14px 28px rgba(44, 34, 22, 0.12);
         }
 
-        .main-tabs {
-            display: flex;
-            gap: 10px;
-            padding: 18px 20px;
-            border-bottom: 1px solid #e2d6c6;
-            background: rgba(250, 244, 235, 0.96);
-            border-radius: 24px 24px 0 0;
-            overflow-x: auto;
-            scroll-behavior: smooth;
+        .brand-photo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 6px 14px rgba(11, 32, 53, 0.2);
+            object-fit: cover;
         }
 
-        .main-tab-btn {
-            border: 1px solid #d5c8b6;
-            background: #f8f1e6;
-            color: #203c63;
-            border-radius: 999px;
-            padding: 9px 15px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+        .brand-name {
+            font-family: 'Sora', sans-serif;
             font-weight: 700;
-            letter-spacing: 0.01em;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.22s ease;
+            font-size: 1rem;
+            color: var(--navy);
+            letter-spacing: -0.01em;
         }
 
-        .main-tab-btn:hover,
-        .main-tab-btn:focus-visible {
-            background: #f0e4d2;
-            border-color: #c8b49a;
-            color: #142f54;
-            outline: none;
+        .brand-role {
+            font-size: 0.84rem;
+            color: var(--ink-soft);
         }
 
-        .main-tab-btn.active {
-            color: #ffffff;
-            border-color: transparent;
-            background: linear-gradient(115deg, var(--accent), var(--accent-strong));
-            box-shadow: 0 8px 18px rgba(7, 76, 64, 0.25);
-        }
-
-        .tab-panel {
-            display: none;
-        }
-
-        .tab-panel.active {
-            display: block;
-        }
-
-        .identity-ticker {
-            margin: 14px 44px 0;
-            border: 1px solid #d7cab9;
-            border-radius: 999px;
-            background:
-                radial-gradient(circle at 10% 50%, rgba(31, 79, 143, 0.12), transparent 35%),
-                radial-gradient(circle at 85% 45%, rgba(177, 93, 50, 0.14), transparent 38%),
-                linear-gradient(90deg, #fff8ed 0%, #f7ecdc 100%);
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 8px 18px rgba(24, 44, 79, 0.08);
-        }
-
-        .identity-ticker::before,
-        .identity-ticker::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 46px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .identity-ticker::before {
-            left: 0;
-            background: linear-gradient(90deg, #fff8ed 0%, rgba(255,248,237,0) 100%);
-        }
-
-        .identity-ticker::after {
-            right: 0;
-            background: linear-gradient(270deg, #f7ecdc 0%, rgba(247,236,220,0) 100%);
-        }
-
-        .identity-ticker-track {
+        .top-links {
             display: flex;
-            gap: 12px;
-            width: max-content;
-            padding: 10px 18px;
-            animation: tickerMove 26s linear infinite;
-            color: #2f3c52;
-            font-size: 0.72rem;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .top-links a {
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.78rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .identity-ticker-track span {
-            padding: 6px 11px;
+            color: var(--navy);
+            padding: 8px 12px;
             border-radius: 999px;
-            border: 1px solid #d8c9b5;
-            background: rgba(255, 255, 255, 0.66);
-            backdrop-filter: blur(4px);
-            white-space: nowrap;
-        }
-
-        @keyframes tickerMove {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .hero-section {
-            position: relative;
-            color: var(--text);
-            padding: 30px 44px;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 0;
-            background:
-                radial-gradient(circle at 15% 28%, rgba(31, 79, 143, 0.18), transparent 34%),
-                radial-gradient(circle at 84% 6%, rgba(177, 93, 50, 0.16), transparent 34%),
-                linear-gradient(180deg, #fffcf6 0%, #f7ecdc 100%);
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            inset: auto -120px -170px auto;
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            background: linear-gradient(180deg, rgba(31, 79, 143, 0.20), rgba(31, 79, 143, 0));
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 100%;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-highlights {
-            display: grid;
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-            gap: 18px;
-            margin-top: 4px;
-        }
-
-        .hero-featured {
-            background: rgba(252, 252, 249, 0.94);
-            border: 1px solid #dfd1bf;
-            box-shadow: 0 12px 24px rgba(18, 28, 22, 0.08);
-            padding: 28px 26px 24px;
-            border-radius: var(--radius-md);
-            grid-column: 1 / -1;
-        }
-
-        .hero-featured h2 {
-            font-size: clamp(1.55rem, 3.3vw, 2.55rem);
-            line-height: 1.08;
-            margin-bottom: 10px;
-            color: #17243a;
-            max-width: 30ch;
-        }
-
-        .hero-featured p {
-            color: #546074;
-            font-size: 0.96rem;
-            line-height: 1.62;
-            max-width: 62ch;
-            margin-bottom: 0;
-        }
-
-        .hero-pillar {
-            background: rgba(250, 251, 247, 0.94);
-            backdrop-filter: none;
-            padding: 17px;
-            border-radius: var(--radius-md);
-            border: 1px solid #dfd1bf;
-            grid-column: span 4;
-            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-        }
-
-        .hero-pillar:hover {
-            transform: translateY(-3px);
-            border-color: #b8c9e7;
-            background: #fcf6ec;
-        }
-
-        .hero-pillar-label {
-            display: block;
-            font-size: 0.72rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: #1f4f8f;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .hero-pillar h3 {
-            font-size: 1.02rem;
-            margin-bottom: 6px;
-            color: #193a6c;
-            font-weight: 700;
-        }
-
-        .hero-pillar p {
-            color: #596274;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .hero-metrics {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 2px;
-        }
-
-        .hero-metric {
-            background: rgba(250, 251, 247, 0.9);
-            border: 1px solid #cfd5c9;
-            border-radius: 12px;
-            padding: 12px 14px;
-        }
-
-        .hero-metric strong {
-            display: block;
-            font-size: 1.1rem;
-            color: #14332b;
-            line-height: 1.2;
-        }
-
-        .hero-metric span {
-            display: block;
-            margin-top: 3px;
-            color: #526057;
-            font-size: 0.76rem;
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
-        }
-
-        .hero-projects-speaking {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            margin-top: 4px;
-        }
-
-        .hero-project {
-            background: rgba(250, 251, 247, 0.92);
-            border: 1px solid #dfd1bf;
-            padding: 18px;
-            border-radius: var(--radius-md);
-        }
-
-        .hero-project-label {
-            display: block;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #1f4f8f;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .hero-project h3 {
-            font-size: 1rem;
-            margin-bottom: 7px;
-            color: #193a6c;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .hero-project h3 a {
-            color: #1a3e72;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .hero-project h3 a:hover {
-            color: #b15d32;
-        }
-
-        .hero-project p {
-            color: #596274;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .hero-talk-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: 2px;
-        }
-
-        .hero-talk-list a {
-            color: #1a3e72;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid transparent;
-            transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .hero-talk-list a:hover,
-        .hero-talk-list a:focus {
-            color: #b15d32;
-            border-color: rgba(177, 93, 50, 0.45);
-            outline: none;
-        }
-
-        .hero-project p strong {
-            color: #0f6d5c;
-            font-weight: 600;
-        }
-
-        section {
-            padding: 36px 44px;
-            max-width: 1500px;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        #experience,
-        #projects,
-        #skills {
-            margin-top: 10px;
-        }
-
-        .section-alt {
-            background: transparent;
-        }
-
-        h2.section-title {
-            font-size: clamp(1.6rem, 3vw, 2.45rem);
-            margin-bottom: 10px;
-            font-weight: 800;
-            color: #0e1e30;
-            padding-bottom: 13px;
-        }
-
-        h2.section-title::after {
-            content: '';
-            display: block;
-            width: 48px;
-            height: 4px;
-            border-radius: 999px;
-            margin-top: 10px;
-            background: linear-gradient(90deg, var(--warm), var(--accent));
-        }
-
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--muted);
-            margin-bottom: 34px;
-            max-width: 68ch;
-        }
-
-        .experience-compact {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .experience-card {
-            background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
-            border-radius: var(--radius-lg);
-            padding: 20px 18px 17px;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid #d4e1f0;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(15, 93, 81, 0.16);
-            border-color: #93b8e8;
-        }
-
-        .experience-card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 3px;
-            color: #0e2a4a;
-            font-weight: 700;
-        }
-
-        .card-header-brand {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 6px;
-        }
-
-        .card-header-brand h3 {
-            margin-bottom: 0;
-            flex: 1;
-        }
-
-        .company-logo {
-            width: 80px;
-            height: 28px;
-            object-fit: contain;
-            object-position: right center;
-            flex-shrink: 0;
-            border-radius: 6px;
-            filter: grayscale(20%) opacity(0.85);
-            transition: filter 0.25s ease;
-        }
-
-        .experience-card:hover .company-logo {
-            filter: grayscale(0%) opacity(1);
-        }
-
-        .card-company-link {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 700;
-            transition: color 0.2s ease;
-        }
-
-        .card-company-link:hover {
-            color: var(--accent-strong);
-            text-decoration: underline;
-        }
-
-        .project-logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .project-logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 1px solid #d4e1f0;
-            flex-shrink: 0;
-        }
-
-        .experience-card .company {
-            font-size: 0.9rem;
-            color: #0066cc;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .experience-card .period {
-            font-size: 0.82rem;
-            color: #5a6a80;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .experience-card p {
-            font-size: 0.92rem;
-            color: #2d4066;
-            line-height: 1.55;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 24px;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid #d4e1f0;
-            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-        }
-
-        .project-card:hover,
-        .project-card:focus-within {
-            transform: translateY(-8px) rotate(-0.2deg);
-            box-shadow: var(--shadow-strong);
-            border-color: #a9c8ef;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .project-content {
-            padding: 22px;
-        }
-
-        .project-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #0e2040;
-            font-weight: 800;
-        }
-
-        .project-card p {
-            color: #3d4f6a;
-            margin-bottom: 16px;
-            line-height: 1.55;
-            font-size: 0.92rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .tag {
-            background: #edf4ff;
-            color: #2e4f7f;
-            padding: 6px 11px;
-            border-radius: 999px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            border: 1px solid #d4e1f0;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-strong);
-            text-decoration: none;
-            font-weight: 800;
-            transition: all 0.25s ease;
-            padding: 10px 16px;
-            background: #edf4ff;
-            border-radius: 11px;
-            font-size: 0.84rem;
-            border: 1px solid #d4e1f0;
-        }
-
-        .project-link:hover,
-        .project-link:focus {
-            gap: 12px;
-            color: #fff;
-            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
-            border-color: transparent;
-            outline: none;
-        }
-
-        .project-link::after {
-            content: '→';
-            font-size: 1.1em;
-        }
-
-        .project-private-badge {
-            padding: 10px 15px;
-            background: #edf4ff;
-            border-radius: 12px;
-            font-size: 0.82rem;
-            color: #1f5fb4;
-            font-weight: 800;
-            text-align: center;
-            display: block;
-            border: 1px solid #cfe0f7;
-        }
-
-        .talks-year {
-            margin-bottom: 26px;
-        }
-
-        .talks-year:last-child {
-            margin-bottom: 0;
-        }
-
-        .talks-year-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.28rem;
-            color: #123763;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .talks-year-title::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: linear-gradient(180deg, var(--warm), var(--accent));
-            box-shadow: 0 0 0 4px rgba(45, 123, 214, 0.12);
-        }
-
-        .talks-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .talk-card,
-        .sport-card {
-            background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
-            border: 1px solid #d4e1f0;
-            border-radius: var(--radius-lg);
-            padding: 18px;
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
-        }
-
-        .talk-card:hover,
-        .sport-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 30px rgba(22, 54, 95, 0.14);
-            border-color: #aac9ef;
-        }
-
-        .talk-card h3,
-        .sport-card h3 {
-            font-size: 1.03rem;
-            color: #0e2a4a;
-            margin-bottom: 5px;
-            font-weight: 800;
-            line-height: 1.35;
-        }
-
-        .talk-meta,
-        .sport-meta {
-            color: #0066cc;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 0.01em;
-        }
-
-        .talk-card p,
-        .sport-card p {
-            color: #3d4f6a;
-            font-size: 0.9rem;
-            line-height: 1.56;
-        }
-
-        .talk-links,
-        .sport-links {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .talk-links a,
-        .sport-links a {
-            color: var(--accent-strong);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 800;
-            padding: 7px 10px;
-            border-radius: 999px;
-            background: #f7ecdc;
-            border: 1px solid #dfd1bf;
+            border: 1px solid transparent;
             transition: all 0.2s ease;
         }
 
-        .talk-links a:hover,
-        .talk-links a:focus,
-        .sport-links a:hover,
-        .sport-links a:focus {
-            color: #ffffff;
-            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
-            border-color: transparent;
+        .top-links a:hover,
+        .top-links a:focus-visible {
+            border-color: var(--line);
+            background: #fff;
             outline: none;
         }
 
-        .sport-grid {
+        .hero-layout {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .sport-showcase {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-            gap: 12px;
-            margin-bottom: 12px;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, 470px);
+            gap: 16px;
             align-items: start;
         }
 
-        .sport-primary-column {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            align-items: start;
-        }
-
-        #sport .section-subtitle {
-            margin-bottom: 24px;
-        }
-
-        .sport-video-card,
-        .sport-photo-card {
-            background: linear-gradient(180deg, #ffffff 0%, #f7efe1 100%);
-            border: 1px solid #d7cab9;
+        .hero-intro {
+            background: linear-gradient(145deg, rgba(255, 253, 249, 0.95), rgba(252, 244, 230, 0.9));
+            border: 1px solid var(--line);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-soft);
             overflow: hidden;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .sport-video-card:hover,
-        .sport-photo-card:hover {
-            transform: translateY(-4px);
-            border-color: #aac9ef;
-            box-shadow: 0 16px 30px rgba(22, 54, 95, 0.18);
+        .hero-intro-main {
+            padding: 34px 34px 24px;
         }
 
-        .sport-video-wrap {
-            position: relative;
-            background:
-                radial-gradient(circle at 85% 15%, rgba(31, 79, 143, 0.2), transparent 52%),
-                linear-gradient(180deg, #061022 0%, #0f2340 100%);
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-        }
-
-        .sport-video-wrap video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .sport-photo-rail {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            align-items: start;
-        }
-
-        .sport-photo-card {
-            position: relative;
-            padding: 5px;
-            background:
-                linear-gradient(160deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 238, 224, 0.95) 52%, rgba(231, 241, 255, 0.92) 100%);
-        }
-
-        .sport-photo-frame {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid #d8c7b2;
-            background: #0f223f;
-        }
-
-        .sport-photo-trigger {
-            width: 100%;
-            border: none;
-            background: transparent;
-            padding: 0;
-            margin: 0;
-            cursor: zoom-in;
-            display: block;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .sport-photo-trigger::after {
-            content: 'View';
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            font-size: 0.68rem;
-            letter-spacing: 0.08em;
+        .intro-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             font-weight: 800;
-            color: #eaf2ff;
-            background: rgba(11, 30, 56, 0.68);
-            border: 1px solid rgba(198, 221, 255, 0.45);
+            color: var(--navy-soft);
+            background: #dde9f2;
+            border: 1px solid #c9d9e8;
             border-radius: 999px;
-            padding: 4px 8px;
-            opacity: 0;
-            transform: translateY(3px);
-            transition: opacity 0.24s ease, transform 0.24s ease;
-            pointer-events: none;
+            padding: 6px 11px;
+            margin-bottom: 14px;
         }
 
-        .sport-photo-card:hover .sport-photo-trigger::after,
-        .sport-photo-trigger:focus-visible::after {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-intro h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.9rem, 4.2vw, 3rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: #132a42;
+            max-width: 18ch;
+            margin-bottom: 12px;
         }
 
-        .sport-photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.45s ease;
+        .hero-intro p {
+            color: var(--ink-soft);
+            font-size: 1.02rem;
+            line-height: 1.6;
+            max-width: 62ch;
         }
 
-        .sport-photo-card:hover .sport-photo-frame img {
-            transform: scale(1.05);
-        }
-
-        .sport-photo-card--misano {
-            background:
-                linear-gradient(150deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 236, 226, 0.95) 60%, rgba(231, 241, 255, 0.94) 100%);
-        }
-
-        .sport-photo-card--misano .sport-photo-frame {
-            aspect-ratio: 16 / 10;
-            background:
-                radial-gradient(circle at 78% 16%, rgba(31, 79, 143, 0.32), transparent 48%),
-                linear-gradient(180deg, #102747 0%, #0b1e38 100%);
-        }
-
-        .sport-photo-card--misano .sport-photo-frame img {
-            object-fit: contain;
-            object-position: center;
-            padding: 5px;
-        }
-
-        .sport-photo-trigger:focus-visible {
-            outline: 3px solid rgba(0, 102, 204, 0.45);
-            outline-offset: 2px;
-        }
-
-        .sport-photo-lightbox {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 22px;
-            z-index: 1200;
-            background:
-                radial-gradient(circle at 20% 10%, rgba(31, 79, 143, 0.32), transparent 42%),
-                rgba(6, 15, 29, 0.92);
-            backdrop-filter: blur(8px);
-        }
-
-        .sport-photo-lightbox.is-open {
+        .prompt-pills {
+            padding: 0 34px 28px;
             display: flex;
-            animation: lightboxIn 0.28s ease;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        @keyframes lightboxIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .sport-photo-lightbox img {
-            width: min(1100px, 92vw);
-            max-height: 82vh;
-            object-fit: contain;
-            border-radius: 16px;
-            border: 1px solid rgba(208, 225, 252, 0.55);
-            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.45);
-            background: rgba(10, 20, 36, 0.85);
-            padding: 6px;
-        }
-
-        .sport-photo-lightbox-close {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            border: 1px solid rgba(200, 221, 250, 0.7);
-            background: rgba(12, 30, 54, 0.72);
-            color: #f6fbff;
-            width: 42px;
-            height: 42px;
+        .prompt-pill {
+            border: 1px solid #c9d8e4;
+            background: rgba(239, 246, 252, 0.85);
+            color: #23476b;
             border-radius: 999px;
-            font-size: 1.35rem;
-            line-height: 1;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.79rem;
+            font-weight: 700;
+            padding: 9px 14px;
             cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .sport-photo-lightbox-close:hover,
-        .sport-photo-lightbox-close:focus-visible {
-            background: rgba(24, 53, 90, 0.95);
+        .prompt-pill:hover,
+        .prompt-pill:focus-visible {
+            transform: translateY(-2px);
+            background: #ffffff;
             outline: none;
         }
 
-        .sport-photo-lightbox-caption {
-            position: absolute;
-            left: 50%;
-            bottom: 20px;
-            transform: translateX(-50%);
-            color: #eff5ff;
-            font-size: 0.88rem;
-            letter-spacing: 0.02em;
-            text-align: center;
-            padding: 7px 12px;
-            border-radius: 999px;
-            background: rgba(8, 23, 43, 0.72);
-        }
-
-        #sport .sport-grid {
-            margin-top: 0;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .skills-grid {
+        .impact-strip {
+            border-top: 1px solid var(--line);
+            background: linear-gradient(90deg, #f7efe0 0%, #f3e8d7 100%);
+            padding: 18px 24px;
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .skill-card {
-            background: linear-gradient(180deg, #ffffff 0%, #f0f5fd 100%);
-            padding: 20px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-soft);
-            border: 1px solid #d4e1f0;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 13px 24px rgba(24, 68, 125, 0.14);
-            border-color: #a9c8ef;
-        }
-
-        .skill-card h3 {
-            font-size: 1.02rem;
-            margin-bottom: 11px;
-            color: #1a3f72;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
             gap: 10px;
         }
 
-        .skill-card h3::before {
-            content: '';
-            width: 5px;
-            height: 25px;
-            border-radius: 3px;
-            background: linear-gradient(to bottom, var(--warm), var(--accent));
+        .impact-item {
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.62);
+            border: 1px solid #dfcfba;
         }
 
-        .skill-card ul {
-            list-style: none;
+        .impact-item strong {
+            display: block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.18rem;
+            line-height: 1.2;
+            color: #173a61;
         }
 
-        .skill-card li {
-            padding: 6px 0;
-            color: #2d4066;
-            font-size: 0.9rem;
-            line-height: 1.35;
-            border-bottom: 1px solid #e5edf8;
-            transition: color 0.2s ease, padding-left 0.2s ease;
-        }
-
-        .skill-card li:last-child {
-            border-bottom: none;
-        }
-
-        .skill-card li:hover {
-            color: var(--accent-strong);
-            padding-left: 6px;
-        }
-
-        .passions-section {
-            position: relative;
-            color: var(--text);
-            padding: 36px 44px;
-            width: 100%;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 78% 22%, rgba(31, 79, 143, 0.16), transparent 40%),
-                radial-gradient(circle at 14% 82%, rgba(177, 93, 50, 0.13), transparent 38%),
-                linear-gradient(180deg, #fff9f0 0%, #f4e6d2 100%);
-            border-top: 1px solid #e3d7c6;
-        }
-
-        .passions-section .section-title {
-            color: #173666;
-        }
-
-        .passions-section .section-subtitle {
-            color: #5f6878;
-        }
-
-        .passions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-            gap: 14px;
-            margin-top: 26px;
-        }
-
-        .focus-item {
-            padding: 16px 14px;
-            background: rgba(255, 255, 255, 0.82);
-            border-radius: 14px;
-            border: 1px solid #dfd1bf;
-            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .focus-item:hover {
-            background: #fffdf8;
-            border-color: #b8c9e7;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(21, 40, 71, 0.11);
-        }
-
-        .focus-label {
-            display: inline-block;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
+        .impact-item span {
+            display: block;
+            margin-top: 2px;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #1f4f8f;
-            background: #dce7f8;
-            border-radius: 999px;
-            padding: 3px 9px;
-            margin-bottom: 8px;
+            color: #4f5f74;
             font-weight: 700;
         }
 
-        .focus-item h3 {
-            font-size: 0.95rem;
-            color: #1d3f74;
-            margin-bottom: 4px;
+        .chatbot-stage {
+            position: sticky;
+            top: 18px;
         }
 
-        .focus-item p {
-            font-size: 0.82rem;
-            color: #5f6878;
-            line-height: 1.45;
+        .chat-shell-note {
+            margin-bottom: 10px;
+            border: 1px solid #c9d8e4;
+            background: linear-gradient(180deg, #f4f9fd 0%, #e8f1fa 100%);
+            border-radius: 14px;
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            color: #2a5278;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
-
-        footer {
-            background: #1f4f86;
-            color: white;
-            padding: 34px;
-            text-align: center;
-            width: 100%;
-            border-radius: 0 0 24px 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        footer p {
-            color: #d3e5fb;
-            font-size: 0.9rem;
-        }
-
-        /* Scrollbars */
-        .sidebar::-webkit-scrollbar,
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-        }
-
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: rgba(45, 123, 214, 0.3);
-            border-radius: 20px;
-        }
-
-        /* ===== AI CHATBOT STYLES ===== */
 
         .chat-container {
-            position: fixed;
-            bottom: 18px;
-            right: 18px;
-            width: clamp(340px, 28vw, 430px);
-            max-height: min(700px, calc(100vh - 36px));
-            border: 1px solid rgba(0, 102, 204, 0.18);
             border-radius: 20px;
+            border: 1px solid #adc4dc;
+            background: #f7fbff;
+            box-shadow: var(--shadow-chat);
             overflow: hidden;
-            background: #ffffff;
-            box-shadow: 0 20px 48px rgba(0, 102, 204, 0.22);
-            z-index: 9999;
             display: flex;
             flex-direction: column;
-            transition: transform 0.22s ease, height 0.3s ease, max-height 0.3s ease, width 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .chat-container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 24px 56px rgba(0, 102, 204, 0.28);
+            height: min(78vh, 720px);
+            min-height: 520px;
         }
 
         .chat-header {
-            background: linear-gradient(135deg, #0066cc 0%, #003f87 100%);
-            color: white;
-            padding: 1.1rem 1.2rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.28);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            justify-content: space-between;
+            padding: 14px;
+            gap: 10px;
+            border-bottom: 1px solid #bfd1e3;
+            background: linear-gradient(145deg, #10395e 0%, #184c79 100%);
+            color: #e8f3ff;
+            cursor: pointer;
         }
 
         .chat-header-info {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 10px;
+            min-width: 0;
         }
 
         .chat-header-avatar {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.35);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.35);
         }
 
         .chat-header-text h3 {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.01em;
             font-family: 'Sora', sans-serif;
+            font-size: 0.98rem;
+            letter-spacing: -0.01em;
         }
 
-        .chat-header-text .status {
-            font-size: 0.78rem;
-            opacity: 0.94;
-            margin-top: 2px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .chat-header-text .status::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #f0f9ff;
-            box-shadow: 0 0 0 4px rgba(240, 249, 255, 0.22);
+        .status {
+            display: block;
+            margin-top: 1px;
+            font-size: 0.76rem;
+            color: #c8dcf2;
+            line-height: 1.35;
         }
 
         .chat-header-buttons {
             display: flex;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
-        .clear-btn,
-        .minimize-btn {
-            background: rgba(255, 255, 255, 0.18);
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background 0.2s ease, transform 0.2s ease;
-            line-height: 1;
-        }
-
+        .minimize-btn,
         .clear-btn {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            border-radius: 8px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 6px 9px;
+            cursor: pointer;
+            line-height: 1;
+            transition: background 0.2s ease;
+        }
+
+        .minimize-btn:hover,
+        .clear-btn:hover,
+        .minimize-btn:focus-visible,
+        .clear-btn:focus-visible {
+            background: rgba(255, 255, 255, 0.26);
+            outline: none;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            background:
+                radial-gradient(circle at 90% 2%, rgba(31, 109, 99, 0.08), transparent 20%),
+                linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-end;
+            gap: 9px;
+        }
+
+        .assistant-message {
+            justify-content: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #cbdae8;
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-width: 84%;
+        }
+
+        .message-bubble {
+            border-radius: 14px;
+            padding: 10px 12px;
+            border: 1px solid #c9d8e4;
+            background: #ffffff;
+            color: #1b3958;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .assistant-message .message-bubble {
+            border-top-left-radius: 6px;
+        }
+
+        .user-message .message-bubble {
+            border-top-right-radius: 6px;
+            border-color: #b5d8cc;
+            background: #e8f6f1;
+            color: #1a4a44;
+        }
+
+        .message-time {
+            font-size: 0.68rem;
+            color: #6a7e96;
+            padding: 0 2px;
+        }
+
+        .typing-bubble {
+            border-radius: 14px;
+            border: 1px solid #c9d8e4;
+            background: #ffffff;
+            padding: 10px 12px;
+            min-width: 155px;
+        }
+
+        .typing-text {
+            display: block;
             font-size: 0.72rem;
             font-weight: 700;
-            padding: 0.45rem 0.7rem;
+            color: #5a728d;
+            margin-bottom: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.08em;
         }
 
-        .minimize-btn {
-            font-size: 1.25rem;
-            padding: 0.42rem 0.72rem;
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
         }
 
-        .clear-btn:hover,
-        .minimize-btn:hover {
-            background: rgba(255, 255, 255, 0.32);
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #5e7fa2;
+            animation: pulse 1.1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        .inline-code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.86em;
+            border: 1px solid #d6d9de;
+            border-radius: 6px;
+            padding: 1px 5px;
+            background: #f4f7fb;
+            color: #0c2f4f;
+        }
+
+        .suggested-questions {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccdae8;
+            border-radius: 14px;
+            padding: 11px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .suggestions-title {
+            font-size: 0.73rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #3e5f81;
+            font-weight: 800;
+        }
+
+        .suggestion-btn {
+            border: 1px solid #c6d6e8;
+            background: #f0f7ff;
+            color: #1f4f75;
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-btn:hover,
+        .suggestion-btn:focus-visible {
+            background: #ffffff;
             transform: translateY(-1px);
+            outline: none;
+        }
+
+        .chat-input-container {
+            border-top: 1px solid #c3d2e2;
+            background: #f1f6fd;
+            padding: 10px;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        #chat-input {
+            resize: none;
+            width: 100%;
+            min-height: 46px;
+            max-height: 120px;
+            border-radius: 12px;
+            border: 1px solid #b8cde0;
+            padding: 10px 12px;
+            font: inherit;
+            font-size: 0.9rem;
+            color: #183755;
+            line-height: 1.45;
+            background: #ffffff;
+        }
+
+        #chat-input:focus-visible {
+            outline: 2px solid rgba(31, 79, 117, 0.25);
+            outline-offset: 1px;
+        }
+
+        #chat-send {
+            width: 44px;
+            height: 44px;
+            border: 1px solid #0f4f7f;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #0f4f7f 0%, #0c3d61 100%);
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        #chat-send:hover,
+        #chat-send:focus-visible {
+            transform: translateY(-1px);
+            outline: none;
+        }
+
+        #chat-send:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+            transform: none;
+        }
+
+        .chat-disclaimer {
+            border-top: 1px solid #c3d2e2;
+            padding: 8px 11px;
+            background: #eaf2fb;
+            font-size: 0.73rem;
+            color: #486786;
+            line-height: 1.5;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .chat-disclaimer a {
+            color: #204d77;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .chat-disclaimer a:hover {
+            text-decoration: underline;
         }
 
         .chat-container.minimized {
-            height: 68px;
-            max-height: 68px;
-            width: 320px;
+            min-height: 0;
+            height: auto;
         }
 
         .chat-container.minimized .chat-messages,
@@ -1676,619 +675,169 @@
             display: none;
         }
 
-        .chat-container.minimized .chat-header {
-            cursor: pointer;
-            padding: 0.85rem 1.1rem;
-            background: linear-gradient(135deg, #0084d4 0%, #003f87 100%);
+        .content-zone {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 12px;
         }
 
-        .chat-container.minimized .chat-header:hover {
-            background: linear-gradient(135deg, #0099ff 0%, #0052a3 100%);
+        .block {
+            background: rgba(255, 252, 246, 0.92);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: var(--shadow-soft);
         }
 
-        .chat-container.minimized::before {
-            content: '💬';
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            font-size: 1.2rem;
-            opacity: 0.9;
+        .block h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.38rem;
+            color: #14314e;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
         }
 
-        .chat-container.minimized .chat-header-avatar {
-            width: 38px;
-            height: 38px;
+        .block p {
+            color: var(--ink-soft);
+            line-height: 1.6;
         }
 
-        .chat-container.minimized .chat-header-text h3 {
-            font-size: 0.9rem;
+        .block-list {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
         }
 
-        .chat-container.minimized .chat-header-text .status,
-        .chat-container.minimized .clear-btn {
-            display: none;
-        }
-
-        .chat-container.minimized .minimize-btn {
-            font-size: 1.08rem;
-            padding: 0.35rem 0.6rem;
-        }
-
-        .chat-messages {
-            height: 472px;
-            overflow-y: auto;
-            padding: 1.2rem;
-            background: linear-gradient(180deg, #f5f8fd 0%, #e8eff9 100%);
-            flex: 1;
-            scroll-behavior: smooth;
-        }
-
-        .chat-message {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.2rem;
-            animation: chatSlide 0.25s ease-out;
-            align-items: flex-end;
-        }
-
-        @keyframes chatSlide {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-            border: 2px solid white;
-        }
-
-        .message-content {
-            max-width: 79%;
-            position: relative;
-        }
-
-        .message-bubble {
-            padding: 0.72rem 0.95rem;
+        .block-list li {
+            border: 1px solid #d7cab8;
             border-radius: 12px;
-            word-wrap: break-word;
-            line-height: 1.52;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
+            background: rgba(255, 255, 255, 0.74);
+            padding: 10px 12px;
+            font-size: 0.92rem;
+            color: #2d445c;
         }
 
-        .user-message {
-            flex-direction: row-reverse;
+        .block-list strong {
+            color: #17395d;
         }
 
-        .user-message .message-content {
-            margin-left: auto;
+        .about {
+            grid-column: span 5;
         }
 
-        .user-message .message-bubble {
-            background: linear-gradient(135deg, #c8f2e8 0%, #b4eadf 100%);
-            color: #113d35;
-            border-bottom-right-radius: 4px;
-            font-weight: 600;
+        .projects {
+            grid-column: span 7;
         }
 
-        .assistant-message .message-bubble {
-            background: #ffffff;
-            color: #1d3733;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #dbe9e4;
+        .skills {
+            grid-column: span 4;
         }
 
-        .message-bubble .inline-code {
-            background: #e8f4f1;
-            padding: 1px 5px;
-            border-radius: 4px;
-            font-family: 'SF Mono', 'Consolas', monospace;
-            font-size: 0.85em;
-            color: #0c7b6d;
+        .talks {
+            grid-column: span 4;
         }
 
-        .message-time {
-            font-size: 0.7rem;
-            color: #708883;
-            margin-top: 0.27rem;
-            text-align: right;
-            font-weight: 600;
+        .sport {
+            grid-column: span 4;
         }
 
-        .assistant-message .message-time {
-            text-align: left;
-        }
-
-        .typing-indicator-container {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.2rem;
-            align-items: flex-end;
-        }
-
-        .typing-bubble {
-            background: white;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            border-bottom-left-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-            border: 1px solid #d4e1f0;
-        }
-
-        .typing-text {
-            font-size: 0.84rem;
-            color: #5e6e80;
-            font-style: italic;
-            font-weight: 600;
-        }
-
-        .typing-indicator {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-        }
-
-        .typing-indicator span {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #7ab7ab;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-indicator span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-indicator span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-            30% { transform: translateY(-8px); opacity: 1; }
-        }
-
-        .suggested-questions {
-            margin: 1rem 0;
-            padding: 0;
-        }
-
-        .suggestions-title {
-            font-weight: 800;
-            color: #3f5f59;
-            margin-bottom: 0.85rem;
-            font-size: 0.83rem;
+        .footer {
+            margin-top: 16px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255, 252, 246, 0.85);
             text-align: center;
-            letter-spacing: 0.03em;
-        }
-
-        .suggestion-btn {
-            display: block;
-            width: 100%;
-            margin: 0.55rem auto;
-            max-width: 90%;
-            padding: 0.8rem 1rem;
-            background: white;
-            border: 1.5px solid #d4e7e1;
-            border-radius: 11px;
-            color: #264642;
-            cursor: pointer;
-            text-align: left;
+            padding: 10px;
+            color: #54637a;
             font-size: 0.84rem;
-            transition: all 0.2s;
-            font-family: inherit;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
             font-weight: 600;
-            min-height: 44px;
         }
 
-        .suggestion-btn:hover {
-            background: #f5fbf8;
-            border-color: #88d8c8;
-            transform: translateX(4px);
-            box-shadow: 0 5px 12px rgba(0, 102, 204, 0.15);
-        }
-
-        .chat-input-container {
-            display: flex;
-            padding: 0.95rem 1.1rem;
-            background: #ffffff;
-            border-top: 1px solid #d4e1f0;
-            gap: 0.8rem;
-            align-items: flex-end;
-            position: relative;
-        }
-
-        #chat-input {
-            flex: 1;
-            padding: 0.82rem 1rem;
-            border: 1.5px solid #d9e8e3;
-            border-radius: 22px;
-            background: #f8fcfb;
-            resize: none;
-            overflow-y: hidden;
-            font-family: inherit;
-            font-size: 0.9rem;
-            max-height: 120px;
-            transition: all 0.2s;
-        }
-
-        #chat-input:focus {
-            outline: none;
-            border-color: #71d2bf;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.11);
-        }
-
-        #chat-input:disabled {
-            background: #edf4f2;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        #chat-send {
-            width: 45px;
-            height: 45px;
-            flex-shrink: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0066cc 0%, #003f87 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 5px 14px rgba(0, 102, 204, 0.35);
-        }
-
-        .clear-btn,
-        .minimize-btn,
-        #chat-send {
-            min-height: 40px;
-            touch-action: manipulation;
-        }
-
-        #chat-send:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 18px rgba(0, 102, 204, 0.45);
-        }
-
-        #chat-send:disabled {
-            background: #c8d8f0;
-            box-shadow: none;
-            cursor: not-allowed;
-            opacity: 0.65;
-        }
-
-        .chat-disclaimer {
-            padding: 0.75rem 1.1rem;
-            text-align: center;
-            background: #f5f8fd;
-            border-top: 1px solid #d4e1f0;
-            font-size: 0.76rem;
-            color: #5a6a80;
-            font-weight: 600;
-            line-height: 1.55;
-        }
-
-        .chat-disclaimer a {
-            color: #0052a3;
+        .footer a {
+            color: #1f4f75;
             text-decoration: none;
             font-weight: 700;
-            margin: 0 2px;
         }
 
-        .chat-disclaimer a:hover {
+        .footer a:hover {
             text-decoration: underline;
-            color: #0066cc;
         }
 
-        /* Responsive */
-
-        @media (max-width: 1400px) {
-            body {
-                grid-template-columns: 300px minmax(0, 1fr);
-                padding: 14px;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 1320px) {
-            .hero-highlights {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .hero-featured,
-            .hero-pillar,
-            .hero-projects-speaking {
-                grid-column: 1 / -1;
-            }
-
-            .hero-pillar {
-                grid-column: auto;
-            }
-
-            .hero-pillar:last-of-type {
-                grid-column: 1 / -1;
-            }
-        }
-
-        @media (max-width: 1120px) {
-            body {
+        @media (max-width: 1160px) {
+            .hero-layout {
                 grid-template-columns: 1fr;
-                grid-template-areas:
-                    "sidebar"
-                    "main";
-                gap: 14px;
-                padding: 12px;
             }
 
-            .sidebar {
+            .chatbot-stage {
                 position: relative;
-                width: 100%;
-                height: auto;
-                max-height: none;
-                margin: 0;
-                top: auto;
-            }
-
-            .sidebar {
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 20px;
-            }
-
-            .main-content {
-                margin-left: 0;
-                margin-right: 0;
-                width: 100%;
-                border-radius: 20px;
-            }
-
-            .hero-section,
-            section,
-            .passions-section,
-            .profile-columns {
-                padding: 30px 18px;
-            }
-
-            .hero-highlights,
-            .hero-metrics,
-            .hero-projects-speaking {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-featured,
-            .hero-metrics,
-            .hero-projects-speaking {
-                grid-column: auto;
-            }
-
-            .projects-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .talks-grid,
-            .sport-grid,
-            .background-grid,
-            .education-grid,
-            .profile-columns {
-                grid-template-columns: 1fr;
-            }
-
-            .sport-showcase {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .sport-primary-column {
-                gap: 10px;
-            }
-
-            .sport-photo-rail {
-                grid-template-columns: 1fr;
-            }
-
-            .sport-photo-card--misano .sport-photo-frame {
-                aspect-ratio: 16 / 10;
-            }
-
-            .sport-photo-card--misano .sport-photo-frame img {
-                object-fit: contain;
-                object-position: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                margin: 0;
-                padding: 22px 16px;
-            }
-
-            .hero-section,
-            section,
-            .passions-section,
-            .profile-columns {
-                padding: 24px 12px;
-            }
-
-            .hero-content h2 {
-                max-width: 100%;
-            }
-
-            .hero-content .tagline {
-                font-size: 1rem;
-            }
-
-            .hero-highlights,
-            .projects-grid,
-            .skills-grid,
-            .talks-grid,
-            .sport-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sport-photo-rail {
-                grid-template-columns: 1fr;
-            }
-
-            .sport-photo-card--misano .sport-photo-frame {
-                aspect-ratio: 16 / 9;
-            }
-
-            .sport-photo-card--misano .sport-photo-frame img {
-                object-fit: contain;
-                object-position: center;
-                padding: 4px;
-            }
-
-            .sport-photo-lightbox {
-                padding: 12px;
-            }
-
-            .sport-photo-lightbox img {
-                width: min(96vw, 96vw);
-                max-height: 76vh;
-            }
-
-            .identity-ticker {
-                margin: 12px 12px 0;
-            }
-
-            .identity-ticker-track {
-                font-size: 0.7rem;
-                gap: 18px;
-            }
-
-            .passions-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .sidebar-photo {
-                width: 136px;
-                height: 136px;
-            }
-
-            footer {
-                padding: 28px 16px;
-            }
-
-            .main-tabs {
-                padding: 14px 12px;
-                gap: 8px;
-                border-radius: 20px 20px 0 0;
-            }
-
-            .main-tab-btn {
-                font-size: 0.76rem;
-                padding: 8px 12px;
-            }
-
-            .company-logo {
-                width: 60px;
-                height: 24px;
-            }
-
-            .university-logo {
-                width: 36px;
-                height: 36px;
-            }
-
-            .project-logo {
-                width: 30px;
-                height: 30px;
+                top: 0;
             }
 
             .chat-container {
-                bottom: 0;
-                right: 0;
-                left: 0;
-                width: 100%;
-                max-height: 87vh;
-                border-radius: 18px 18px 0 0;
-                border-left: none;
-                border-right: none;
-                border-bottom: none;
+                height: min(72vh, 680px);
             }
 
-            .chat-container:hover {
-                transform: none;
+            .content-zone {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .chat-container.minimized {
-                left: auto;
-                right: 12px;
-                bottom: 12px;
-                width: 244px;
-                max-height: 68px;
-                border: 1px solid #c8d8f0;
-                border-radius: 15px;
-            }
-
-            .chat-header {
-                padding-top: max(0.95rem, env(safe-area-inset-top));
-            }
-
-            .chat-messages {
-                height: 360px;
-            }
-
-            .message-content {
-                max-width: 84%;
-            }
-
-            .suggestion-btn {
-                font-size: 0.8rem;
-                padding: 0.72rem 0.88rem;
-                max-width: 96%;
-            }
-
-            .chat-input-container {
-                padding-bottom: max(0.9rem, env(safe-area-inset-bottom));
-            }
-
-            .chat-disclaimer {
-                padding-bottom: max(0.72rem, env(safe-area-inset-bottom));
+            .about,
+            .projects,
+            .skills,
+            .talks,
+            .sport {
+                grid-column: span 1;
             }
         }
 
-        @media (max-width: 560px) {
-            .chat-header {
-                padding: 0.9rem 0.85rem;
+        @media (max-width: 820px) {
+            .page-shell {
+                padding: 12px;
             }
 
-            .chat-header-buttons {
-                gap: 0.35rem;
+            .topbar {
+                border-radius: 20px;
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            .chat-header-text h3 {
-                font-size: 0.92rem;
+            .top-links {
+                justify-content: flex-start;
             }
 
-            .chat-header-text .status {
-                font-size: 0.72rem;
+            .hero-intro-main,
+            .prompt-pills {
+                padding-left: 18px;
+                padding-right: 18px;
             }
 
-            .clear-btn {
-                padding: 0.4rem 0.56rem;
-                font-size: 0.67rem;
-                min-width: 54px;
+            .hero-intro-main {
+                padding-top: 24px;
+                padding-bottom: 18px;
             }
 
-            .minimize-btn {
-                padding: 0.4rem 0.56rem;
-                font-size: 1.1rem;
+            .impact-strip {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                padding: 14px;
+            }
+
+            .chat-shell-note {
+                font-size: 0.74rem;
+            }
+
+            .chat-container {
+                min-height: 500px;
+                height: min(74vh, 600px);
+            }
+
+            .content-zone {
+                grid-template-columns: 1fr;
+            }
+
+            .block {
+                padding: 18px;
             }
         }
 
@@ -2302,826 +851,178 @@
         }
     </style>
 </head>
-<body itemscope itemtype="https://schema.org/Person">
-
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-        <div class="sidebar-profile">
-            <img src="assets/profile.jpg" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image">
-            <h1 itemprop="name">Daniele Raimondi</h1>
-            <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
-            <p class="sidebar-summary">Senior Data Scientist and ML leader with 8+ years delivering end-to-end AI and GenAI systems from prototype to production.
-                Proven impact across revenue growth, churn reduction, and large-scale automation by leading cross-functional teams and translating ML strategy into execution.
-                Deep expertise in LLMs, NLP, causal inference, and production pipelines. Former Italian National Team athlete with a high-performance mindset.</p>
-        </div>
-
-        <nav aria-label="Primary">
-            <a href="#tab-home" data-tab-link="tab-home" class="nav-active">Home</a>
-            <a href="#tab-projects" data-tab-link="tab-projects">Projects</a>
-            <a href="#tab-skills" data-tab-link="tab-skills">Skills</a>
-            <a href="#tab-talks" data-tab-link="tab-talks">Talks</a>
-            <a href="#tab-sport" data-tab-link="tab-sport">Sport</a>
-        </nav>
-
-        <div class="sidebar-info">
-            <div class="sidebar-info-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                <div class="label">Location</div>
-                <div class="value">
-                    <span itemprop="addressLocality">Basel</span>,
-                    <span itemprop="addressCountry">Switzerland</span> 🇨🇭
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">
+                <img src="assets/profile2.jpeg" alt="Daniele Raimondi" class="brand-photo" loading="lazy">
+                <div>
+                    <div class="brand-name">Daniele Raimondi</div>
+                    <div class="brand-role">Senior Data Scientist · Basel</div>
                 </div>
             </div>
-            <div class="sidebar-info-item">
-                <div class="label">Current Role</div>
-                <div class="value">Senior Data Scientist</div>
-            </div>
-            <div class="sidebar-info-item">
-                <div class="label">Specialization</div>
-                <div class="value">LLM · NLP · Causal Inference</div>
-            </div>
-        </div>
+            <nav class="top-links" aria-label="Quick links">
+                <a href="#chatbot">Chatbot</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#talks">Talks</a>
+                <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" rel="noopener">LinkedIn</a>
+            </nav>
+        </header>
 
-        <div class="sidebar-social" aria-label="Social profiles">
-            <a href="https://github.com/DanieleRaimondi" target="_blank" title="GitHub" itemprop="sameAs" rel="noopener">
-                <img src="assets/github.png" alt="GitHub logo">
-            </a>
-            <a href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" title="LinkedIn" itemprop="sameAs" rel="noopener">
-                <img src="assets/linkedin.jpeg" alt="LinkedIn logo">
-            </a>
-            <a href="https://www.kaggle.com/danieleraimondi" target="_blank" title="Kaggle" itemprop="sameAs" rel="noopener">
-                <img src="assets/kaggle.png" alt="Kaggle logo">
-            </a>
-        </div>
-    </aside>
-
-    <!-- AI Chatbot Section -->
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="chat-header-info">
-                <img src="assets/profile2.jpeg" alt="Daniele" class="chat-header-avatar">
-                <div class="chat-header-text">
-                    <h3>Daniele Raimondi</h3>
-                    <span class="status">AI Twin • Ask me anything!</span>
+        <section class="hero-layout" id="home" aria-label="Hero">
+            <article class="hero-intro">
+                <div class="hero-intro-main">
+                    <span class="intro-kicker">AI Product Leadership</span>
+                    <h1>I build production AI systems that move business metrics, not just demos.</h1>
+                    <p>I am a hands-on tech lead working across strategy, delivery, and adoption. I focus on robust ML and LLM pipelines, pragmatic experimentation, and clear decision support for product and executive teams.</p>
                 </div>
-            </div>
-            <div class="chat-header-buttons">
-                <button id="chat-minimize" class="minimize-btn" title="Minimize" aria-label="Minimize chat">−</button>
-                <button id="chat-clear" class="clear-btn" title="Clear conversation">Clear</button>
-            </div>
-        </div>
-        
-        <div class="chat-messages" id="chat-messages"></div>
-        
-        <div class="chat-input-container">
-            <textarea 
-                id="chat-input" 
-                placeholder="Ask about my work, projects, or career..."
-                rows="2"
-                aria-label="Type your message"
-            ></textarea>
-            <button id="chat-send" aria-label="Send message">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-        </div>
-        
-        <div class="chat-disclaimer">
-            ⚠️ AI-powered. May make mistakes. 
-            <a href="https://ai-twin-backend.vercel.app/api/admin?action=disclaimer" target="_blank">Disclaimer</a> • 
-            <a href="https://ai-twin-backend.vercel.app/api/admin?action=privacy" target="_blank">Privacy</a>
-        </div>
+                <div class="prompt-pills" aria-label="Quick prompts">
+                    <button class="prompt-pill" data-prompt="What's your experience in AI and Data Science?">Ask about AI experience</button>
+                    <button class="prompt-pill" data-prompt="Tell me about your athletic career as a national athlete">Ask about sport mindset</button>
+                    <button class="prompt-pill" data-prompt="What projects have you built with Machine Learning?">Ask about ML projects</button>
+                    <button class="prompt-pill" data-prompt="Quali risultati business hai ottenuto con i tuoi modelli?">Chiedi i risultati business</button>
+                </div>
+                <div class="impact-strip" aria-label="Impact highlights">
+                    <div class="impact-item">
+                        <strong>8+ years</strong>
+                        <span>Data science and AI delivery</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>3% uplift</strong>
+                        <span>Revenue and margin impact</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>-20% churn</strong>
+                        <span>ML at 6M+ customer scale</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>90%+ savings</strong>
+                        <span>Workflow time reduction</span>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="chatbot-stage" id="chatbot" aria-label="AI Twin Chatbot">
+                <div class="chat-shell-note">Live AI Twin · Try it now</div>
+                <div class="chat-container" role="region" aria-label="Chatbot conversation">
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <img src="assets/profile2.jpeg" alt="Daniele" class="chat-header-avatar">
+                            <div class="chat-header-text">
+                                <h3>Daniele AI Twin</h3>
+                                <span class="status">Online now · Ask in English or Italian</span>
+                            </div>
+                        </div>
+                        <div class="chat-header-buttons">
+                            <button id="chat-minimize" class="minimize-btn" title="Minimize" aria-label="Minimize chat">-</button>
+                            <button id="chat-clear" class="clear-btn" title="Clear conversation">Clear</button>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages"></div>
+
+                    <div class="chat-input-container">
+                        <textarea
+                            id="chat-input"
+                            placeholder="Ask about projects, metrics, talks, or career..."
+                            rows="2"
+                            aria-label="Type your message"
+                        ></textarea>
+                        <button id="chat-send" aria-label="Send message">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="chat-disclaimer">
+                        AI-powered and may make mistakes.
+                        <a href="https://ai-twin-backend.vercel.app/api/admin?action=disclaimer" target="_blank" rel="noopener">Disclaimer</a>
+                        ·
+                        <a href="https://ai-twin-backend.vercel.app/api/admin?action=privacy" target="_blank" rel="noopener">Privacy</a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="content-zone" aria-label="Portfolio details">
+            <article class="block about" id="about">
+                <h2>How I Work</h2>
+                <p>I connect business direction, experimentation rigor, and engineering execution. The goal is simple: deliver reliable AI products that teams trust and use daily.</p>
+                <ul class="block-list">
+                    <li><strong>Lead:</strong> roadmap ownership, stakeholder alignment, and technical decision-making.</li>
+                    <li><strong>Build:</strong> production LLM and ML pipelines with Azure OpenAI, Qdrant, Prefect, and Python.</li>
+                    <li><strong>Think:</strong> quantitative analysis with causal reasoning for high-stakes business decisions.</li>
+                </ul>
+            </article>
+
+            <article class="block projects" id="projects">
+                <h2>Selected Projects</h2>
+                <ul class="block-list">
+                    <li><strong>alphaquants.net:</strong> applied AI for quantitative finance workflows and decision systems.</li>
+                    <li><strong>AI Twin:</strong> RAG-style conversational assistant for professional profile and project exploration.</li>
+                    <li><strong>Bitcoin Data Science:</strong> predictive models and market behavior analytics.</li>
+                    <li><strong>Music Classification:</strong> handcrafted embeddings, explainable modeling, and similarity search.</li>
+                </ul>
+            </article>
+
+            <article class="block skills" id="skills">
+                <h2>Core Stack</h2>
+                <ul class="block-list">
+                    <li><strong>ML and AI:</strong> LLM pipelines, NLP, forecasting, clustering, causal inference.</li>
+                    <li><strong>Engineering:</strong> Python APIs, vector search, ETL, deployment, automation.</li>
+                    <li><strong>Data:</strong> SQL, Polars/Pandas, model monitoring, quality and reliability controls.</li>
+                </ul>
+            </article>
+
+            <article class="block talks" id="talks">
+                <h2>Talks 2026</h2>
+                <ul class="block-list">
+                    <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a></li>
+                    <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong></a></li>
+                    <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> Talk 1</a></li>
+                    <li><a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> Talk 2</a></li>
+                </ul>
+            </article>
+
+            <article class="block sport" id="sport">
+                <h2>Beyond Work</h2>
+                <p>Former athlete on the Italian National Team. Sport shaped how I build systems: discipline, consistency, and performance under pressure.</p>
+                <ul class="block-list">
+                    <li>Competitive mindset applied to long-term technical execution.</li>
+                    <li>Focus on measurable progress, not short-term noise.</li>
+                    <li>Energy for speaking, mentoring, and community contribution.</li>
+                </ul>
+            </article>
+        </section>
+
+        <footer class="footer">
+            Built and maintained by Daniele Raimondi · <a href="https://github.com/DanieleRaimondi" target="_blank" rel="noopener">GitHub</a> · <span id="year"></span>
+        </footer>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content" role="main">
-        <div class="main-tabs" role="tablist" aria-label="Main content tabs">
-            <button class="main-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-home" id="tab-btn-home" data-tab-target="tab-home">Home</button>
-            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects">Projects</button>
-            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills">Skills</button>
-            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-talks" id="tab-btn-talks" data-tab-target="tab-talks">Talks</button>
-            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-sport" id="tab-btn-sport" data-tab-target="tab-sport">Sport</button>
-        </div>
-
-        <div id="tab-home" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-home">
-            <div class="identity-ticker" aria-hidden="true">
-                <div class="identity-ticker-track">
-                    <span>AI Leadership</span>
-                    <span>Production LLM Systems</span>
-                    <span>Quantitative Thinking</span>
-                    <span>Business Impact</span>
-                    <span>Execution Discipline</span>
-                    <span>Basel / Milan</span>
-                    <span>AI Leadership</span>
-                    <span>Production LLM Systems</span>
-                    <span>Quantitative Thinking</span>
-                    <span>Business Impact</span>
-                    <span>Execution Discipline</span>
-                    <span>Basel / Milan</span>
-                </div>
-            </div>
-            <section class="hero-section" aria-label="Introduction">
-                <div class="hero-content">
-                    <div class="hero-highlights">
-                        <article class="hero-featured">
-                            <h2>I lead AI products from strategy to production, with measurable business impact.</h2>
-                            <p>As a hands-on Tech Lead, I define roadmaps, align product and engineering stakeholders, and deliver reliable ML and LLM systems that improve revenue, retention, and operational efficiency at scale.</p>
-                        </article>
-
-                        <article class="hero-pillar">
-                            <span class="hero-pillar-label">How I Lead</span>
-                            <h3>Roadmap ownership and stakeholder alignment</h3>
-                            <p>I lead AI initiatives end to end, set technical direction, and align editorial, engineering, and product teams on shared priorities and milestones.</p>
-                        </article>
-
-                        <article class="hero-pillar">
-                            <span class="hero-pillar-label">How I Build</span>
-                            <h3>Production ML and LLM systems at scale</h3>
-                            <p>I architect pipelines for classification, clustering, forecasting, causal inference, and semantic retrieval using Azure OpenAI, Qdrant, Prefect, and Python.</p>
-                        </article>
-
-                        <article class="hero-pillar">
-                            <span class="hero-pillar-label">How I Think</span>
-                            <h3>Quantitative rigor with decision clarity</h3>
-                            <p>I combine experimentation and causal reasoning with business context to support C-level decisions in retail, publishing, banking, and insurance.</p>
-                        </article>
-
-                        <div class="hero-projects-speaking">
-                            <article class="hero-project">
-                                <span class="hero-project-label">Flagship Initiative</span>
-                                <div class="project-logo-wrap">
-                                    <a href="https://alphaquants.net" target="_blank" rel="noopener">
-                                        <img src="assets/project_logo/alphaquants.jpeg" alt="alphaquants.net logo" class="project-logo">
-                                    </a>
-                                    <h3><a href="https://alphaquants.net" target="_blank" rel="noopener">alphaquants.net</a></h3>
-                                </div>
-                                <p>Applied AI for quantitative finance: models, analysis workflows, and decision systems designed for practical investing and risk-aware execution.</p>
-                            </article>
-                            <article class="hero-project">
-                                <span class="hero-project-label">Public Voice 2026</span>
-                                <h3>Conference talks and technical community</h3>
-                                <ul class="hero-talk-list">
-                                    <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a></li>
-                                    <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong> · Zurich</a></li>
-                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> · Talk 1</a></li>
-                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> · Talk 2</a></li>
-                                </ul>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="profile-overview" class="profile-columns" aria-label="Background and Education">
-                <div class="profile-column">
-                    <h2>Background</h2>
-                    <p class="column-subtitle">Professional track record in descending chronological order.</p>
-                    <div class="background-grid">
-                        <article class="experience-card">
-                            <div class="card-header-brand">
-                                <h3>Senior Data Scientist, Tech Lead</h3>
-                                <a href="https://www.mdpi.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/company_logo/mdpi.png" alt="MDPI" class="company-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <div class="company"><a href="https://www.mdpi.com/" target="_blank" rel="noopener" class="card-company-link">MDPI</a> · Basel, Switzerland 🇨🇭</div>
-                            <div class="period">2023 – Present</div>
-                            <p>Tech Lead for Data Intelligence: owning roadmap and delivery of ML and LLM products, including multimillion-record semantic tagging, ontology-based graph clustering, and production pipelines with Azure OpenAI, Qdrant, and Prefect.</p>
-                        </article>
-                        <article class="experience-card">
-                            <div class="card-header-brand">
-                                <h3>Lead Data Scientist</h3>
-                                <a href="https://www.esselunga.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/company_logo/esselunga.svg" alt="Esselunga" class="company-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <div class="company"><a href="https://www.esselunga.it/" target="_blank" rel="noopener" class="card-company-link">Esselunga</a> · Milan, Italy 🇮🇹</div>
-                            <div class="period">2017 – 2023</div>
-                            <p>Led data science across a multi-billion-euro retail operation: delivered 3% revenue and margin uplift, reduced churn by 20% on 6M+ customers, improved CLV by 15%, and automated workflows with 90%+ time savings.</p>
-                        </article>
-                        <article class="experience-card">
-                            <div class="card-header-brand">
-                                <h3>Finance and Risk Analyst</h3>
-                                <a href="https://www.accenture.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/company_logo/accenture.png" alt="Accenture" class="company-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <div class="company"><a href="https://www.accenture.com/" target="_blank" rel="noopener" class="card-company-link">Accenture</a> · Milan, Italy 🇮🇹</div>
-                            <div class="period">2017</div>
-                            <p>Delivered quantitative consulting for banking clients using SPSS, SAS, and Python across finance and risk transformation projects.</p>
-                        </article>
-                        <article class="experience-card">
-                            <div class="card-header-brand">
-                                <h3>Risk Management Analyst</h3>
-                                <a href="https://www.fiditalia.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/company_logo/fiditalia.png" alt="Fiditalia" class="company-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <div class="company"><a href="https://www.fiditalia.it/" target="_blank" rel="noopener" class="card-company-link">Fiditalia</a> · Milan, Italy 🇮🇹</div>
-                            <div class="period">2016 – 2017</div>
-                            <p>Built statistical models for credit risk and scoring, including Machine Learning, Value at Risk, Expected Loss, Loss Given Default, and Exposure at Default.</p>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="profile-column">
-                    <h2>Education</h2>
-                    <p class="column-subtitle">Quantitative training spanning statistics, economics, finance, and modern data science.</p>
-                    <div class="education-grid">
-                        <article class="education-card">
-                            <div class="education-head">
-                                <h3>Master's Degree · Data Science</h3>
-                                <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
-                            <p class="year">2021 · Advanced ML, NLP, and data products</p>
-                        </article>
-                        <article class="education-card">
-                            <div class="education-head">
-                                <h3>MSc · Economic Statistics</h3>
-                                <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
-                            <p class="year">2017 · Financial Markets, Insurance, and risk analytics</p>
-                        </article>
-                        <article class="education-card">
-                            <div class="education-head">
-                                <h3>BSc · Statistics</h3>
-                                <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
-                                </a>
-                            </div>
-                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
-                            <p class="year">2014 · Statistical modeling and econometrics</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section id="passions" class="passions-section">
-                <h2 class="section-title">Beyond Work</h2>
-                <p class="section-subtitle">
-                    Six areas that define my curiosity, energy, and long-term growth.
-                </p>
-                <div class="passions-grid">
-                    <article class="focus-item">
-                        <span class="focus-label">Core Interest</span>
-                        <h3>Data Science and AI</h3>
-                        <p>Continuous experimentation on models, LLM systems, and practical AI applications with real-world impact.</p>
-                    </article>
-                    <article class="focus-item">
-                        <span class="focus-label">Markets</span>
-                        <h3>Quantitative Finance</h3>
-                        <p>Research on market behavior, portfolio logic, and data-driven investing across traditional and digital assets.</p>
-                    </article>
-                    <article class="focus-item">
-                        <span class="focus-label">Community</span>
-                        <h3>Speaking and Mentoring</h3>
-                        <p>Sharing practical lessons through conferences, mentoring, and collaboration with professionals and students.</p>
-                    </article>
-                    <article class="focus-item">
-                        <span class="focus-label">Discipline</span>
-                        <h3>Competitive Sport Mindset</h3>
-                        <p>Former Italian National Team athlete focused on consistency, resilience, and performance under pressure.</p>
-                    </article>
-                    <article class="focus-item">
-                        <span class="focus-label">Systems</span>
-                        <h3>Automation and Productivity</h3>
-                        <p>Designing efficient workflows and scalable processes to amplify execution quality and team output.</p>
-                    </article>
-                    <article class="focus-item">
-                        <span class="focus-label">Hobbies</span>
-                        <h3>Numismatics, Billiards, Soccer, Music</h3>
-                        <p>Personal interests that keep me creative and balanced, with a special place for italodance culture.</p>
-                    </article>
-                </div>
-            </section>
-        </div>
-
-        <div id="tab-projects" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-projects">
-        <section id="projects">
-            <h2 class="section-title">Some Projects</h2>
-            <p class="section-subtitle">
-                A curated selection of projects across machine learning, NLP, and AI product engineering.
-            </p>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="assets/Thermomodel.png" alt="Data Science framework analyzing Bitcoin market dynamics" loading="lazy">
-                    <div class="project-content">
-                        <h3>Bitcoin DataScience</h3>
-                        <p>
-                            Data Science framework for analyzing Bitcoin market dynamics, price patterns,
-                            and trading signals with predictive models.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Time Series</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <a href="https://github.com/DanieleRaimondi/bitcoin_datascience" class="project-link" target="_blank" rel="noopener">
-                            View Project
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="assets/Chatbot.png" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy">
-                    <div class="project-content">
-                        <h3>AI Twin</h3>
-                        <p>
-                            Conversational AI chatbot powered by LLM technology that acts as a digital twin, 
-                            answering questions about my work, projects, and career using RAG architecture 
-                            and streaming responses.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tag">LLM</span>
-                            <span class="tag">GenAI</span>
-                            <span class="tag">RAG</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <div class="project-private-badge">Private Project</div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="assets/BitcoinSentiment.png" alt="Sentiment analysis pipeline on Bitcoin news and social media" loading="lazy">
-                    <div class="project-content">
-                        <h3>Sentiment Analysis Bitcoin</h3>
-                        <p>
-                            NLP pipeline aggregating sentiment from social media and news to detect Bitcoin trend reversals
-                            and support trading decisions.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tag">NLP</span>
-                            <span class="tag">Sentiment Analysis</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <a href="https://github.com/DanieleRaimondi/Sentiment_Analysis_Bitcoin" class="project-link" target="_blank" rel="noopener">
-                            View Project
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="assets/BettingDataScience.png" alt="Betting exchange scrapers and live football data pipeline" loading="lazy">
-                    <div class="project-content">
-                        <h3>Betting Exchange Scrapers</h3>
-                        <p>
-                            Real-time scraping and data pipeline for betting exchange odds and live football statistics
-                            to power sports analytics strategies.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tag">Web Scraping</span>
-                            <span class="tag">Modelling</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank" rel="noopener">
-                            View Project
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="assets/MusicClassifier.png" alt="Handcrafted Music Embeddings for Genre Classification and Similarity Search" loading="lazy">
-                    <div class="project-content">
-                        <h3>Music Classification</h3>
-                        <p>
-                            End-to-end pipeline for handcrafted music embeddings, genre classification with SHAP, and similarity search on an Italodance/Trance dataset.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tag">Audio Processing</span>
-                            <span class="tag">Embeddings</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <a href="https://github.com/DanieleRaimondi/MusicClassifier" class="project-link" target="_blank" rel="noopener">
-                            View Project
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        </div>
-
-        <div id="tab-skills" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-skills">
-        <section id="skills" class="section-alt">
-            <h2 class="section-title">Technical Expertise</h2>
-            <p class="section-subtitle">
-                End-to-end capabilities from statistical research to production-grade AI systems.
-            </p>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>AI &amp; Machine Learning</h3>
-                    <ul>
-                        <li>LLM Pipelines &amp; GenAI</li>
-                        <li>RAG &amp; Semantic Embeddings</li>
-                        <li>NLP &amp; Text Mining</li>
-                        <li>Classification &amp; Clustering</li>
-                        <li>Time Series Forecasting</li>
-                        <li>Causal Inference</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Tech Stack &amp; Frameworks</h3>
-                    <ul>
-                        <li>Python, R, SQL</li>
-                        <li>Pandas/Polars, NumPy, Scikit-learn</li>
-                        <li>PyTorch, TensorFlow, Keras</li>
-                        <li>HuggingFace, LangChain</li>
-                        <li>Qdrant &amp; Vector Databases</li>
-                        <li>Streamlit, Plotly, ECharts</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Data Engineering &amp; MLOps</h3>
-                    <ul>
-                        <li>ETL &amp; Data Pipelines</li>
-                        <li>Production Deployment &amp; APIs</li>
-                        <li>Docker &amp; Containerization</li>
-                        <li>Vercel &amp; Serverless Functions</li>
-                        <li>Apache Airflow, DataOps</li>
-                        <li>Big Data Processing</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Quantitative Finance</h3>
-                    <ul>
-                        <li>ETF &amp; Portfolio Optimization</li>
-                        <li>Crypto &amp; Traditional Markets</li>
-                        <li>Risk Management &amp; Pricing</li>
-                        <li>Macroeconomic Analysis</li>
-                        <li>Financial Modeling</li>
-                        <li>Investment Strategy Development</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        </div>
-
-        <div id="tab-talks" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-talks">
-            <section id="talks" class="section-alt">
-                <h2 class="section-title">Talks</h2>
-                <p class="section-subtitle">
-                    Conference sessions, invited talks, and academic events grouped by year.
-                </p>
-
-                <div class="talks-year">
-                    <h3 class="talks-year-title">2026 · Upcoming and Recent</h3>
-                    <div class="talks-grid">
-                        <article class="talk-card">
-                            <h3>Swiss Data Science Conference 2026</h3>
-                            <div class="talk-meta">Zurich, Switzerland · 2026</div>
-                            <p>Invited speaking engagement focused on applied AI and real-world data science impact.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>PyData London 2026</h3>
-                            <div class="talk-meta">London, United Kingdom · 2026</div>
-                            <p>Talk accepted for PyData London on practical AI and data product delivery.</p>
-                            <div class="talk-links">
-                                <a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener">Talk page</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 1</h3>
-                            <div class="talk-meta">Krakow, Poland · 2026</div>
-                            <p>First accepted EuroSciPy talk within the 2026 conference program.</p>
-                            <div class="talk-links">
-                                <a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener">Talk page</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 2</h3>
-                            <div class="talk-meta">Krakow, Poland · 2026</div>
-                            <p>Second accepted EuroSciPy talk, expanding on production-ready open-source AI workflows.</p>
-                            <div class="talk-links">
-                                <a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener">Talk page</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="talks-year">
-                    <h3 class="talks-year-title">2025</h3>
-                    <div class="talks-grid">
-                        <article class="talk-card">
-                            <h3>EIC Summit</h3>
-                            <div class="talk-meta">Houston, United States · 2025</div>
-                            <p>Speaker on AI initiatives and publishing innovation at MDPI's EIC Summit.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7345715886734897152/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7345715886734897152%29" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>EIC Summit</h3>
-                            <div class="talk-meta">Paris, France · 2025</div>
-                            <p>Talk on AI strategy, editorial operations, and scalable data-driven processes.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7341724783098695681/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7341724783098695681%29" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="https://www.mdpi.com/journal/ebj/news-and-conferences/news/12475" target="_blank" rel="noopener">MDPI news</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>EIC Summit</h3>
-                            <div class="talk-meta">Barcelona, Spain · 2025</div>
-                            <p>Session on applied AI systems and impact-driven experimentation.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7333020940362055680/" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="talks-year">
-                    <h3 class="talks-year-title">2024</h3>
-                    <div class="talks-grid">
-                        <article class="talk-card">
-                            <h3>EuroSciPy 2024</h3>
-                            <div class="talk-meta">Europe · 2024</div>
-                            <p>Talk on tracking rejected manuscripts using Qdrant and Specter2.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7234846476726599680/" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="https://pretalx.com/euroscipy-2024/talk/HCMV78/" target="_blank" rel="noopener">Talk page</a>
-                                <a href="https://www.mdpi.com/journal/mining/news-and-conferences/news/9297" target="_blank" rel="noopener">MDPI news</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>BiDigital Conference</h3>
-                            <div class="talk-meta">Biella, Italy · 2024</div>
-                            <p>Session on data science models for Bitcoin and decision support.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7249003545394352130/" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="https://www.youtube.com/live/5UO6pHJ9yNM?t=28361s" target="_blank" rel="noopener">Video</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="talks-year">
-                    <h3 class="talks-year-title">2022</h3>
-                    <div class="talks-grid">
-                        <article class="talk-card">
-                            <h3>Python Biella Group · Talk 1</h3>
-                            <div class="talk-meta">Biella, Italy · 2022</div>
-                            <p>Community session on Python, data pipelines, and practical engineering workflows.</p>
-                            <div class="talk-links">
-                                <a href="https://www.youtube.com/watch?v=x-ri6MJ2iCY" target="_blank" rel="noopener">Talk 1</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>Python Biella Group · Talk 2</h3>
-                            <div class="talk-meta">Biella, Italy · 2022</div>
-                            <p>Follow-up talk on AI experimentation and production thinking for Python practitioners.</p>
-                            <div class="talk-links">
-                                <a href="https://www.youtube.com/watch?v=hzfIZ7IpYqM" target="_blank" rel="noopener">Talk 2</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>Università Cattolica · Career Path</h3>
-                            <div class="talk-meta">Milan, Italy · 2022</div>
-                            <p>Invited talk on data analyst and data scientist career paths.</p>
-                            <div class="talk-links">
-                                <a href="https://studenticattolica.unicatt.it/evt-career-path-percorsi-e-professioni-data-analyst" target="_blank" rel="noopener">Event page</a>
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6917024883033939968/" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="talks-year">
-                    <h3 class="talks-year-title">2021</h3>
-                    <div class="talks-grid">
-                        <article class="talk-card">
-                            <h3>LIUC University · Guest Lecture</h3>
-                            <div class="talk-meta">Castellanza, Italy · 2021</div>
-                            <p>Talk on data and analytics applications for business and engineering students.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6801445190168051712/" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>Università Cattolica · Student Projects</h3>
-                            <div class="talk-meta">Milan, Italy · 2021</div>
-                            <p>Industry projects with graduating students focused on analytics and problem solving.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6768481078073151488/" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>Joinrs Interview</h3>
-                            <div class="talk-meta">Online · 2021</div>
-                            <p>Interview about my career path as Data Scientist at Esselunga.</p>
-                            <div class="talk-links">
-                                <a href="https://www.joinrs.com/fr/daniele-raimondi-esselunga/" target="_blank" rel="noopener">Interview</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div id="tab-sport" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-sport">
-            <section id="sport" class="section-alt">
-                <h2 class="section-title">Sport</h2>
-                <p class="section-subtitle">
-                    Athletic milestones from my years with the Italian national 4x400m relay teams.
-                </p>
-                <div class="sport-showcase">
-                    <div class="sport-primary-column">
-                        <article class="sport-video-card">
-                            <div class="sport-video-wrap">
-                                <video controls preload="metadata" poster="assets/athletics/rome-diamond-league-2012-poster.jpg">
-                                    <source src="assets/athletics/rome-diamond-league-2012-4x400.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </article>
-
-                        <div class="sport-grid">
-                            <article class="sport-card">
-                                <h3>Golden Gala 2012 · Italian Senior National Team</h3>
-                                <div class="sport-meta">Rome, Italy · 2012</div>
-                                <p>Selected for the 4x400m relay at the Golden Gala in Rome, competing with the Italian senior national team in one of the premier European track events.</p>
-                                <div class="sport-links">
-                                    <a href="http://www.fidal.it/content/Compeed-Golden-Gala-ecco-gli-azzurri/50442" target="_blank" rel="noopener">FIDAL</a>
-                                    <a href="https://youtu.be/8t6FIpT9WYU" target="_blank" rel="noopener">Race video</a>
-                                </div>
-                            </article>
-
-                            <article class="sport-card">
-                                <h3>European U23 Championships · Italian National Team</h3>
-                                <div class="sport-meta">Tampere, Finland · 2013</div>
-                                <p>Member of the Italian 4x400m relay team at the European U23 Championships in Tampere, where we finished second in Europe.</p>
-                                <div class="sport-links">
-                                    <a href="https://www.fidal.it/content/EuroUnder23-la-squadra-per-Tampere/51654" target="_blank" rel="noopener">FIDAL</a>
-                                    <a href="https://www.youtube.com/results?search_query=european+u23+championships+2013+4x400+relay+tampere" target="_blank" rel="noopener">Race video</a>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-
-                    <div class="sport-photo-rail" aria-label="Athletics highlights gallery">
-                        <article class="sport-photo-card">
-                            <figure class="sport-photo-frame">
-                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG2.JPG" data-caption="Golden Gala 2012 · block start">
-                                    <img src="assets/athletics/GG2.JPG" alt="Daniele Raimondi with teammates at Golden Gala 2012" loading="lazy" decoding="async">
-                                </button>
-                            </figure>
-                        </article>
-
-                        <article class="sport-photo-card">
-                            <figure class="sport-photo-frame">
-                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG3.JPG" data-caption="Golden Gala 2012 · block drive phase">
-                                    <img src="assets/athletics/GG3.JPG" alt="Italian relay team at Golden Gala event area" loading="lazy" decoding="async">
-                                </button>
-                            </figure>
-                        </article>
-
-                        <article class="sport-photo-card sport-photo-card--misano">
-                            <figure class="sport-photo-frame">
-                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/misano.JPG" data-caption="Campionati Italiani U23 2012 · Misano">
-                                    <img src="assets/athletics/misano.JPG" alt="Italian U23 Championships race in Misano 2012" loading="lazy" decoding="async">
-                                </button>
-                            </figure>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="sport-photo-lightbox" id="sport-photo-lightbox" aria-hidden="true">
-                    <button class="sport-photo-lightbox-close" type="button" aria-label="Close image">×</button>
-                    <img src="" alt="Expanded sport photo" id="sport-photo-lightbox-image">
-                    <div class="sport-photo-lightbox-caption" id="sport-photo-lightbox-caption"></div>
-                </div>
-            </section>
-        </div>
-
-        <footer>
-            <p>© 2026 Daniele Raimondi · Senior Data Scientist</p>
-            <p style="margin-top: 6px;">Basel, Switzerland 🇨🇭</p>
-        </footer>
-    </main>
-    
-    <!-- Main tab switching -->
+    <script src="js/chatbot.js" defer></script>
     <script>
-    (function () {
-        const tabButtons = document.querySelectorAll('.main-tab-btn');
-        const tabPanels = document.querySelectorAll('.tab-panel');
-        const sidebarLinks = document.querySelectorAll('.sidebar nav a[data-tab-link]');
+        (function() {
+            const yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-        if (!tabButtons.length || !tabPanels.length) return;
-
-        const activateTab = (tabId, pushHash = true) => {
-            let hasTab = false;
-
-            tabButtons.forEach(button => {
-                const isActive = button.dataset.tabTarget === tabId;
-                button.classList.toggle('active', isActive);
-                button.setAttribute('aria-selected', String(isActive));
-                if (isActive) hasTab = true;
+            const pills = document.querySelectorAll('.prompt-pill');
+            pills.forEach((pill) => {
+                pill.addEventListener('click', () => {
+                    const prompt = pill.getAttribute('data-prompt');
+                    const input = document.getElementById('chat-input');
+                    const send = document.getElementById('chat-send');
+                    if (!prompt || !input || !send) return;
+                    input.value = prompt;
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                    send.click();
+                    document.getElementById('chatbot')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
             });
-
-            if (!hasTab) return;
-
-            tabPanels.forEach(panel => {
-                panel.classList.toggle('active', panel.id === tabId);
-            });
-
-            sidebarLinks.forEach(link => {
-                link.classList.toggle('nav-active', link.dataset.tabLink === tabId);
-            });
-
-            if (pushHash) {
-                history.replaceState(null, '', '#' + tabId);
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                activateTab(button.dataset.tabTarget);
-            });
-        });
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', event => {
-                event.preventDefault();
-                activateTab(link.dataset.tabLink);
-            });
-        });
-
-        const initialHash = window.location.hash.replace('#', '');
-        if (initialHash) {
-            activateTab(initialHash, false);
-        }
-    })();
+        })();
     </script>
-
-    <script>
-    (function () {
-        const lightbox = document.getElementById('sport-photo-lightbox');
-        const lightboxImage = document.getElementById('sport-photo-lightbox-image');
-        const lightboxCaption = document.getElementById('sport-photo-lightbox-caption');
-        const closeBtn = lightbox ? lightbox.querySelector('.sport-photo-lightbox-close') : null;
-        const photoButtons = document.querySelectorAll('.sport-photo-trigger');
-
-        if (!lightbox || !lightboxImage || !closeBtn || !photoButtons.length) return;
-
-        const closeLightbox = () => {
-            lightbox.classList.remove('is-open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            lightboxImage.src = '';
-            lightboxCaption.textContent = '';
-            document.body.style.overflow = '';
-        };
-
-        photoButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const fullSrc = button.dataset.fullSrc;
-                const caption = button.dataset.caption || button.querySelector('img')?.alt || '';
-                if (!fullSrc) return;
-
-                lightboxImage.src = fullSrc;
-                lightboxCaption.textContent = caption;
-                lightbox.classList.add('is-open');
-                lightbox.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        closeBtn.addEventListener('click', closeLightbox);
-
-        lightbox.addEventListener('click', event => {
-            if (event.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
-                closeLightbox();
-            }
-        });
-    })();
-    </script>
-
-    <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260315"></script>
 </body>
 </html>
