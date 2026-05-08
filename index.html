@@ -632,7 +632,7 @@
             box-shadow: 0 12px 24px rgba(18, 28, 22, 0.08);
             padding: 28px 26px 24px;
             border-radius: var(--radius-md);
-            grid-column: 1 / span 8;
+            grid-column: 1 / -1;
         }
 
         .hero-kicker {
@@ -655,7 +655,7 @@
             line-height: 1.08;
             margin-bottom: 10px;
             color: #17243a;
-            max-width: 23ch;
+            max-width: 30ch;
         }
 
         .hero-featured p {
@@ -664,38 +664,6 @@
             line-height: 1.62;
             max-width: 62ch;
             margin-bottom: 0;
-        }
-
-        .hero-proof-grid {
-            grid-column: span 4;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .hero-proof-item {
-            background: rgba(250, 251, 247, 0.95);
-            border: 1px solid #ddcfbe;
-            border-radius: 12px;
-            padding: 14px;
-            min-height: 102px;
-        }
-
-        .hero-proof-item strong {
-            display: block;
-            font-size: 1.24rem;
-            color: #1f3f72;
-            line-height: 1.15;
-            margin-bottom: 4px;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .hero-proof-item span {
-            font-size: 0.74rem;
-            color: #5b6677;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
         }
 
         .hero-pillar {
@@ -2058,7 +2026,6 @@
             }
 
             .hero-featured,
-            .hero-proof-grid,
             .hero-pillar,
             .hero-projects-speaking {
                 grid-column: 1 / -1;
@@ -2112,7 +2079,6 @@
             }
 
             .hero-highlights,
-            .hero-proof-grid,
             .hero-metrics,
             .hero-projects-speaking {
                 grid-template-columns: 1fr;
@@ -2181,7 +2147,6 @@
             }
 
             .hero-highlights,
-            .hero-proof-grid,
             .projects-grid,
             .skills-grid,
             .talks-grid,
@@ -2383,7 +2348,7 @@
             </div>
             <div class="sidebar-info-item">
                 <div class="label">Current Role</div>
-                <div class="value">Senior Data Scientist, Tech Lead</div>
+                <div class="value">Senior Data Scientist</div>
             </div>
             <div class="sidebar-info-item">
                 <div class="label">Specialization</div>
@@ -2476,25 +2441,6 @@
                             <h2>I lead AI products from strategy to production, with measurable business impact.</h2>
                             <p>As a hands-on Tech Lead, I define roadmaps, align product and engineering stakeholders, and deliver reliable ML and LLM systems that improve revenue, retention, and operational efficiency at scale.</p>
                         </article>
-
-                        <div class="hero-proof-grid" aria-label="Proof points">
-                            <div class="hero-proof-item">
-                                <strong>8+ years</strong>
-                                <span>Data science and AI delivery</span>
-                            </div>
-                            <div class="hero-proof-item">
-                                <strong>3% uplift</strong>
-                                <span>Revenue and margin from pricing strategies</span>
-                            </div>
-                            <div class="hero-proof-item">
-                                <strong>-20% churn</strong>
-                                <span>With ML pipelines on 6M+ customers</span>
-                            </div>
-                            <div class="hero-proof-item">
-                                <strong>90%+ savings</strong>
-                                <span>Time reduction in DS workflows</span>
-                            </div>
-                        </div>
 
                         <article class="hero-pillar">
                             <span class="hero-pillar-label">How I Lead</span>
