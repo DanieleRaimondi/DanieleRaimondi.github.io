@@ -490,9 +490,9 @@
             background: #f1f5fb;
             color: #203c63;
             border-radius: 999px;
-            padding: 9px 15px;
+            padding: 12px 22px;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.92rem;
             font-weight: 700;
             letter-spacing: 0.01em;
             cursor: pointer;
@@ -649,9 +649,8 @@
 
         .hero-featured p {
             color: #546074;
-            font-size: 0.96rem;
-            line-height: 1.62;
-            max-width: 62ch;
+            font-size: 1.02rem;
+            line-height: 1.6;
             margin-bottom: 0;
         }
 
@@ -1647,8 +1646,6 @@
             display: flex;
             gap: 16px;
             overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
             padding: 4px 4px 14px;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
@@ -1664,7 +1661,6 @@
             aspect-ratio: 16 / 9;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            scroll-snap-align: center;
             border: 1px solid #cfd9e8;
             box-shadow: 0 14px 30px rgba(30, 38, 60, 0.14);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1779,29 +1775,6 @@
             border-radius: 999px;
             padding: 4px 11px;
             backdrop-filter: blur(3px);
-        }
-
-        .hl-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 4px;
-        }
-
-        .hl-dots button {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            border: none;
-            padding: 0;
-            background: #b9c7dd;
-            cursor: pointer;
-            transition: background 0.25s ease, transform 0.25s ease;
-        }
-
-        .hl-dots button.active {
-            background: var(--accent);
-            transform: scale(1.35);
         }
 
         footer {
@@ -2536,8 +2509,8 @@
             }
 
             .main-tab-btn {
-                font-size: 0.76rem;
-                padding: 8px 12px;
+                font-size: 0.84rem;
+                padding: 10px 16px;
             }
 
             .company-logo {
@@ -2768,7 +2741,7 @@
                     <article class="hero-featured">
                         <span class="hero-kicker">Senior Data Scientist · AI Tech Lead</span>
                         <h2>AI &amp; Data Science, from idea to production.</h2>
-                        <p>LLM systems, machine learning and quantitative methods — designed, shipped and led hands-on.</p>
+                        <p>Production AI systems, from LLM pipelines to quantitative finance.</p>
                         <div class="hero-chips" aria-label="Core focus areas">
                             <span>LLM &amp; GenAI</span>
                             <span>Machine Learning</span>
@@ -2796,22 +2769,22 @@
 
                 <div class="hl-track" id="hl-track" tabindex="0" aria-label="Highlights carousel, scroll horizontally">
                     <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/camera-deputati-2026.webp" alt="Daniele Raimondi speaking on the panel at the Camera dei Deputati press room in Rome" decoding="async" width="1600" height="1104">
+                        <img src="assets/highlights/camera-deputati-2026-a.webp" alt="Daniele Raimondi with the panel speakers at the Camera dei Deputati in Rome" decoding="async" width="1600" height="1476">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Institutions</span>
                             <h3>Camera dei Deputati · Rome</h3>
-                            <p>Speaking on AI at the Italian Parliament's press conference room.</p>
+                            <p>Presenting an AI platform for public-policy decisions at the Italian Parliament.</p>
                         </figcaption>
                     </figure>
 
                     <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/pydata-london-2026.webp" alt="Daniele Raimondi on stage at PyData London 2026 presenting LLM keyword pipelines" loading="lazy" decoding="async" width="1800" height="809">
+                        <img src="assets/highlights/camera-deputati-2026.webp" alt="Daniele Raimondi speaking on the press conference panel at the Camera dei Deputati" loading="lazy" decoding="async" width="1600" height="1104">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
-                            <span class="hl-tag">Speaking · AI</span>
-                            <h3>PyData London 2026</h3>
-                            <p>On stage with LLM pipelines at scale, for one of Europe's leading data communities.</p>
+                            <span class="hl-tag">Institutions</span>
+                            <h3>Press Conference · Camera dei Deputati</h3>
+                            <p>On the panel in the Parliament's press room, speaking on AI for research and innovation.</p>
                         </figcaption>
                     </figure>
 
@@ -2826,12 +2799,52 @@
                     </figure>
 
                     <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/sds-zurich-2026.webp" alt="Daniele Raimondi presenting at the Swiss Data Science Conference in Zurich" loading="lazy" decoding="async" width="1600" height="1200">
+                        <img src="assets/highlights/pydata-london-2026.webp" alt="Daniele Raimondi on stage at PyData London 2026 presenting LLM keyword pipelines" loading="lazy" decoding="async" width="1800" height="809">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
-                            <h3>Swiss Data Science Conference · Zurich</h3>
-                            <p>Applied AI and real-world data science impact, presented to the Swiss data community.</p>
+                            <h3>PyData London 2026</h3>
+                            <p>On stage with LLM pipelines at scale, for one of Europe's leading data communities.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo">
+                        <img src="assets/highlights/eic-barcelona-2025.webp" alt="Daniele Raimondi presenting at the EIC Summit in Barcelona" loading="lazy" decoding="async" width="1600" height="1065">
+                        <span class="hl-slide-year">2025</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Speaking · AI</span>
+                            <h3>EIC Summit · Barcelona</h3>
+                            <p>Applied AI systems and impact-driven experimentation.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo">
+                        <img src="assets/highlights/euroscipy-szczecin-2024.webp" alt="Daniele Raimondi with colleagues at the EuroSciPy 2024 poster session in Szczecin" loading="lazy" decoding="async" width="1600" height="1200">
+                        <span class="hl-slide-year">2024</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Speaking · AI</span>
+                            <h3>EuroSciPy · Szczecin</h3>
+                            <p>Tracking rejected manuscripts with Qdrant and Specter2, presented to the scientific Python community.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo">
+                        <img src="assets/highlights/bidigital-biella.webp" alt="Daniele Raimondi speaking at the BiDigital conference in Biella" loading="lazy" decoding="async" width="1600" height="1155">
+                        <span class="hl-slide-year">2024</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Speaking · AI</span>
+                            <h3>BiDigital · Biella</h3>
+                            <p>Data science models for Bitcoin and decision support.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo hl-slide--top">
+                        <img src="assets/highlights/eic-houston-2025.webp" alt="Daniele Raimondi at the podium during the EIC Summit in Houston" loading="lazy" decoding="async" width="1066" height="1600">
+                        <span class="hl-slide-year">2025</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Speaking · AI</span>
+                            <h3>EIC Summit · Houston</h3>
+                            <p>AI initiatives and publishing innovation, presented in the United States.</p>
                         </figcaption>
                     </figure>
 
@@ -2855,43 +2868,13 @@
                         </figcaption>
                     </figure>
 
-                    <figure class="hl-slide hl-slide--photo hl-slide--top">
-                        <img src="assets/highlights/eic-houston-2025.webp" alt="Daniele Raimondi at the podium during the EIC Summit in Houston" loading="lazy" decoding="async" width="1066" height="1600">
-                        <span class="hl-slide-year">2025</span>
-                        <figcaption class="hl-caption">
-                            <span class="hl-tag">Speaking · AI</span>
-                            <h3>EIC Summit · Houston</h3>
-                            <p>AI initiatives and publishing innovation, presented in the United States.</p>
-                        </figcaption>
-                    </figure>
-
                     <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/euroscipy-szczecin-2024.webp" alt="Daniele Raimondi with colleagues at the EuroSciPy 2024 poster session in Szczecin" loading="lazy" decoding="async" width="1600" height="1200">
-                        <span class="hl-slide-year">2024</span>
+                        <img src="assets/highlights/sds-zurich-2026.webp" alt="Daniele Raimondi presenting at the Swiss Data Science Conference in Zurich" loading="lazy" decoding="async" width="1600" height="1200">
+                        <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
-                            <h3>EuroSciPy · Szczecin</h3>
-                            <p>Tracking rejected manuscripts with Qdrant and Specter2, presented to the scientific Python community.</p>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/eic-barcelona-2025.webp" alt="Daniele Raimondi presenting at the EIC Summit in Barcelona" loading="lazy" decoding="async" width="1600" height="1065">
-                        <span class="hl-slide-year">2025</span>
-                        <figcaption class="hl-caption">
-                            <span class="hl-tag">Speaking · AI</span>
-                            <h3>EIC Summit · Barcelona</h3>
-                            <p>Applied AI systems and impact-driven experimentation.</p>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/bidigital-biella.webp" alt="Daniele Raimondi speaking at the BiDigital conference in Biella" loading="lazy" decoding="async" width="1600" height="1155">
-                        <span class="hl-slide-year">2024</span>
-                        <figcaption class="hl-caption">
-                            <span class="hl-tag">Speaking · AI</span>
-                            <h3>BiDigital · Biella</h3>
-                            <p>Data science models for Bitcoin and decision support.</p>
+                            <h3>Swiss Data Science Conference · Zurich</h3>
+                            <p>Applied AI and real-world data science impact, presented to the Swiss data community.</p>
                         </figcaption>
                     </figure>
 
@@ -2904,8 +2887,6 @@
                         </figcaption>
                     </figure>
                 </div>
-
-                <div class="hl-dots" id="hl-dots" role="tablist" aria-label="Highlight slides"></div>
             </section>
 
             <section class="feature-row" aria-label="Flagship project and speaking">
@@ -2925,7 +2906,7 @@
                         <h3>International stages, from PyData to Parliament</h3>
                         <ul class="hero-talk-list">
                             <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a> <span class="talk-status done">Delivered</span></li>
-                            <li><strong>Camera dei Deputati</strong> · Rome <span class="talk-status done">Delivered</span></li>
+                            <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7470041107175870464/" target="_blank" rel="noopener"><strong>Camera dei Deputati</strong> · Rome</a> <span class="talk-status done">Delivered</span></li>
                             <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong> · Zurich</a> <span class="talk-status done">Delivered</span></li>
                             <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow</strong> · 2 talks</a> <span class="talk-status upcoming">July 2026</span></li>
                         </ul>
@@ -3271,8 +3252,13 @@
 
                         <article class="talk-card">
                             <h3>Camera dei Deputati · Italian Parliament</h3>
-                            <div class="talk-meta">Rome, Italy · 2026</div>
-                            <p>Invited intervention at the Italian Chamber of Deputies, bringing an applied AI and data science perspective to the institutional debate.</p>
+                            <div class="talk-meta">Rome, Italy · June 2026</div>
+                            <p>Presented an AI platform supporting public-policy decisions in research and innovation, at a press conference of the Italian Chamber of Deputies.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7470041107175870464/" target="_blank" rel="noopener">LinkedIn</a>
+                                <a href="https://www.lafrecciaweb.it/2026/06/09/alla-camera-dei-deputati-presentata-una-piattaforma-di-intelligenza-artificiale-per-le-politiche-pubbliche/" target="_blank" rel="noopener">Press · La Freccia</a>
+                                <a href="https://www.agenziagiornalisticaopinione.it/opinionmix/fdi-fratelli-ditalia-camera-ia-baldelli-fdi-presentata-piattaforma-per-supportare-decisioni-in-ambito-di-ricerca-e-innovazione/" target="_blank" rel="noopener">Press · Opinione</a>
+                            </div>
                         </article>
 
                         <article class="talk-card">
@@ -3621,87 +3607,86 @@
     })();
     </script>
 
-    <!-- Highlights carousel -->
+    <!-- Highlights carousel: continuous auto-scroll (marquee) -->
     <script>
     (function () {
         const track = document.getElementById('hl-track');
-        const dotsWrap = document.getElementById('hl-dots');
         const prevBtn = document.getElementById('hl-prev');
         const nextBtn = document.getElementById('hl-next');
-        if (!track || !dotsWrap) return;
+        if (!track) return;
 
-        const slides = Array.from(track.querySelectorAll('.hl-slide'));
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let current = 0;
-        let autoTimer = null;
+        const originals = Array.from(track.querySelectorAll('.hl-slide'));
+        if (!originals.length) return;
 
-        slides.forEach((slide, i) => {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.setAttribute('aria-label', 'Go to highlight ' + (i + 1));
-            dot.addEventListener('click', () => { goTo(i); restartAuto(); });
-            dotsWrap.appendChild(dot);
-        });
-        const dots = Array.from(dotsWrap.children);
-
-        const setActiveDot = index => {
-            current = index;
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        };
-
-        const goTo = index => {
-            const i = (index + slides.length) % slides.length;
-            const slide = slides[i];
-            track.scrollTo({
-                left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2,
-                behavior: reducedMotion ? 'auto' : 'smooth'
+        // Duplicate the slide set once so the loop wraps seamlessly
+        if (!reducedMotion) {
+            originals.forEach(slide => {
+                const clone = slide.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                track.appendChild(clone);
             });
-            setActiveDot(i);
+        }
+
+        const SPEED = 34; // px per second
+        let paused = false;
+        let resumeTimer = null;
+        let lastTime = null;
+
+        const halfWidth = () => track.scrollWidth / 2;
+
+        function step(time) {
+            if (lastTime !== null && !paused && !document.hidden) {
+                const delta = Math.min((time - lastTime) / 1000, 0.1);
+                track.scrollLeft += SPEED * delta;
+                if (track.scrollLeft >= halfWidth()) {
+                    track.scrollLeft -= halfWidth();
+                }
+            }
+            lastTime = time;
+            requestAnimationFrame(step);
+        }
+
+        const pause = () => { paused = true; };
+        const resume = () => { paused = false; };
+        const pauseThenResume = (ms) => {
+            pause();
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(resume, ms);
         };
 
-        // Sync dots while the user scrolls/swipes manually
-        let scrollDebounce = null;
-        track.addEventListener('scroll', () => {
-            clearTimeout(scrollDebounce);
-            scrollDebounce = setTimeout(() => {
-                const center = track.scrollLeft + track.clientWidth / 2;
-                let best = 0;
-                let bestDist = Infinity;
-                slides.forEach((slide, i) => {
-                    const dist = Math.abs(slide.offsetLeft + slide.clientWidth / 2 - center);
-                    if (dist < bestDist) { bestDist = dist; best = i; }
-                });
-                setActiveDot(best);
-            }, 80);
-        }, { passive: true });
+        track.addEventListener('pointerenter', pause);
+        track.addEventListener('pointerleave', resume);
+        track.addEventListener('focusin', pause);
+        track.addEventListener('focusout', resume);
+        track.addEventListener('touchstart', pause, { passive: true });
+        track.addEventListener('touchend', () => pauseThenResume(4000), { passive: true });
+        track.addEventListener('wheel', () => pauseThenResume(3000), { passive: true });
 
-        if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); restartAuto(); });
-        if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); restartAuto(); });
-
-        const stopAuto = () => { clearInterval(autoTimer); autoTimer = null; };
-        const startAuto = () => {
-            if (reducedMotion || autoTimer) return;
-            autoTimer = setInterval(() => goTo(current + 1), 5500);
+        const slideStep = () => {
+            const styles = getComputedStyle(track);
+            const gap = parseFloat(styles.columnGap || styles.gap) || 16;
+            return originals[0].getBoundingClientRect().width + gap;
         };
-        const restartAuto = () => { stopAuto(); startAuto(); };
 
-        track.addEventListener('pointerenter', stopAuto);
-        track.addEventListener('pointerleave', startAuto);
-        track.addEventListener('focusin', stopAuto);
-        track.addEventListener('focusout', startAuto);
-        track.addEventListener('touchstart', stopAuto, { passive: true });
-        track.addEventListener('touchend', () => setTimeout(startAuto, 4000), { passive: true });
-        document.addEventListener('visibilitychange', () => {
-            document.hidden ? stopAuto() : startAuto();
-        });
+        const nudge = dir => {
+            pauseThenResume(4500);
+            // Jump forward by one loop before scrolling back past the start
+            if (dir < 0 && track.scrollLeft < slideStep()) {
+                track.scrollLeft += halfWidth();
+            }
+            track.scrollBy({ left: dir * slideStep(), behavior: 'smooth' });
+        };
+
+        if (prevBtn) prevBtn.addEventListener('click', () => nudge(-1));
+        if (nextBtn) nextBtn.addEventListener('click', () => nudge(1));
 
         track.addEventListener('keydown', event => {
-            if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); restartAuto(); }
-            if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); restartAuto(); }
+            if (event.key === 'ArrowRight') { event.preventDefault(); nudge(1); }
+            if (event.key === 'ArrowLeft') { event.preventDefault(); nudge(-1); }
         });
 
-        setActiveDot(0);
-        startAuto();
+        if (!reducedMotion) requestAnimationFrame(step);
     })();
     </script>
 
