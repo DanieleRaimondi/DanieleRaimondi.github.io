@@ -222,10 +222,20 @@
     }
   }
 
+  // Score-based detection: count stopwords of each language, majority wins
+  const IT_WORDS = new Set(['il', 'la', 'lo', 'le', 'gli', 'di', 'che', 'un', 'una', 'per', 'con', 'sono', 'del', 'della', 'nel', 'nella', 'mio', 'mia', 'miei', 'più', 'anche', 'come', 'cosa', 'quale', 'quali', 'dove', 'quando', 'perché', 'chi', 'sei', 'hai', 'ho', 'puoi', 'raccontami', 'dimmi', 'parlami', 'grazie', 'ciao', 'molto', 'lavoro', 'progetti', 'carriera', 'questo', 'questa', 'tra', 'ed', 'è']);
+  const EN_WORDS = new Set(['the', 'of', 'and', 'to', 'in', 'is', 'was', 'my', 'your', 'what', 'tell', 'me', 'about', 'have', 'has', 'with', 'for', 'at', 'on', 'i', 'you', 'it', 'are', 'do', 'did', 'how', 'where', 'when', 'why', 'who', 'work', 'projects', 'career', 'this', 'that']);
+
   function detectLanguage(text) {
-    const italianWords = ['cosa', 'come', 'quando', 'dove', 'perché', 'chi', 'sei', 'hai', 'puoi', 'raccontami', 'dimmi'];
-    const words = text.toLowerCase().split(/[^a-zàèéìòù]+/);
-    return italianWords.some(word => words.includes(word)) ? 'it' : 'en';
+    const words = (text || '').toLowerCase().split(/[^a-zàèéìòù']+/);
+    let it = 0;
+    let en = 0;
+    words.forEach(w => {
+      if (IT_WORDS.has(w)) it++;
+      if (EN_WORDS.has(w)) en++;
+    });
+    if (it === 0 && en === 0) return uiLang();
+    return it > en ? 'it' : 'en';
   }
 
   function renderSuggestedQuestions() {
@@ -499,7 +509,8 @@
       trimAndSaveHistory();
 
       assistantReplies++;
-      const lang = detectLanguage(message);
+      // The bot's own reply is the most reliable language signal
+      const lang = detectLanguage(fullResponse || message);
       renderFollowups(lang);
       if (assistantReplies >= 2 && !sessionStorage.getItem('chatbot_cta_shown')) {
         sessionStorage.setItem('chatbot_cta_shown', '1');
