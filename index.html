@@ -611,6 +611,25 @@
             border-radius: 50%;
             background: linear-gradient(180deg, rgba(29, 93, 201, 0.20), rgba(29, 93, 201, 0));
             pointer-events: none;
+            animation: heroDrift 12s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: -110px;
+            left: -90px;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(14, 165, 196, 0.20), transparent 65%);
+            pointer-events: none;
+            animation: heroDrift 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes heroDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-26px, -18px) scale(1.1); }
         }
 
         .hero-content {
@@ -642,15 +661,43 @@
         }
 
         .hero-featured h2 {
-            font-size: clamp(1.55rem, 3.3vw, 2.45rem);
-            line-height: 1.08;
-            margin-bottom: 8px;
+            font-size: clamp(1.9rem, 4vw, 3.1rem);
+            line-height: 1.06;
+            margin-bottom: 10px;
             color: #17243a;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-rotator {
+            display: inline-block;
+            background: linear-gradient(100deg, #1d5dc9 5%, #0ea5c4 95%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        @supports not (background-clip: text) {
+            .hero-rotator { color: var(--accent); -webkit-text-fill-color: currentColor; }
+        }
+
+        .hero-rotator.is-out {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        .hero-rotator.is-in {
+            animation: wordIn 0.42s ease;
+        }
+
+        @keyframes wordIn {
+            from { opacity: 0; transform: translateY(-14px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-featured p {
             color: #546074;
-            font-size: 1.02rem;
+            font-size: 1.06rem;
             line-height: 1.6;
             margin-bottom: 0;
         }
@@ -2797,8 +2844,8 @@
                 <div class="hero-content">
                     <article class="hero-featured">
                         <span class="hero-kicker">Senior Data Scientist · AI Tech Lead</span>
-                        <h2>AI &amp; Data Science, from idea to production.</h2>
-                        <p>Production AI systems, from LLM pipelines to quantitative finance.</p>
+                        <h2>Turning data into <span class="hero-rotator" id="hero-rotator">intelligence</span>.</h2>
+                        <p>A decade of Data Science and AI — scientific depth meets quantitative rigor.</p>
                         <div class="hero-chips" aria-label="Core focus areas">
                             <span>LLM &amp; GenAI</span>
                             <span>Agentic AI</span>
@@ -3675,6 +3722,28 @@
                 closeLightbox();
             }
         });
+    })();
+    </script>
+
+    <!-- Hero rotating word -->
+    <script>
+    (function () {
+        const el = document.getElementById('hero-rotator');
+        if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const words = ['intelligence', 'decisions', 'foresight', 'alpha'];
+        let index = 0;
+
+        setInterval(() => {
+            el.classList.add('is-out');
+            setTimeout(() => {
+                index = (index + 1) % words.length;
+                el.textContent = words[index];
+                el.classList.remove('is-out');
+                el.classList.add('is-in');
+                setTimeout(() => el.classList.remove('is-in'), 450);
+            }, 380);
+        }, 3200);
     })();
     </script>
 
