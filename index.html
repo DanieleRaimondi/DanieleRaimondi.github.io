@@ -6,8 +6,8 @@
 
     <!-- SEO Meta Tags -->
     <title>Daniele Raimondi | Senior Data Scientist & AI in Basel</title>
-    <meta name="description" content="Senior Data Scientist in Basel, building LLM, GenAI and ML solutions with a focus on quantitative finance and data products.">
-    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
+    <meta name="description" content="Senior Data Scientist and AI Tech Lead in Basel. LLM, GenAI, agentic AI and quantitative finance systems in production. International speaker: PyData London, EuroSciPy, Swiss Data Science Conference, Italian Parliament.">
+    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Agentic AI, AI Speaker, AI Advisor, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
     <meta name="author" content="Daniele Raimondi">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://danieleraimondi.github.io/">
@@ -85,16 +85,17 @@
         }
       ],
       "knowsAbout": [
-        "Machine Learning",
         "Artificial Intelligence",
         "Data Science",
+        "Machine Learning",
         "LLM",
         "GenAI",
-        "Python",
+        "Agentic AI",
         "Quantitative Finance",
+        "Python",
         "Statistics"
       ],
-      "description": "Senior Data Scientist specializing in LLM pipelines, GenAI, Machine Learning, and Quantitative Finance."
+      "description": "Senior Data Scientist and AI Tech Lead specializing in LLM and agentic AI systems, Machine Learning, and Quantitative Finance. International conference speaker."
     }
     </script>
 
@@ -1034,6 +1035,62 @@
             text-align: center;
             display: block;
             border: 1px solid #cfe0f7;
+        }
+
+        /* ===== FEATURED TALK VIDEO ===== */
+
+        .talk-video-feature {
+            display: grid;
+            grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+            gap: 22px;
+            align-items: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f4fa 100%);
+            border: 1px solid #d2dbe9;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: 18px;
+            margin-bottom: 36px;
+        }
+
+        .talk-video-wrap {
+            aspect-ratio: 5 / 4;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cfd9e8;
+            background: #07142a;
+        }
+
+        .talk-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .talk-video-caption h3 {
+            font-size: 1.15rem;
+            color: #0e2a4a;
+            font-weight: 800;
+            margin: 10px 0 6px;
+        }
+
+        .talk-video-caption p {
+            color: #3d4f6a;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            max-width: 52ch;
+        }
+
+        .talk-video-caption .hl-tag {
+            background: rgba(29, 93, 201, 0.9);
+        }
+
+        @media (max-width: 900px) {
+            .talk-video-feature {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                padding: 14px;
+            }
         }
 
         /* ===== TALKS TIMELINE ===== */
@@ -2628,9 +2685,9 @@
             <img src="assets/profile.webp" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image" width="512" height="504" fetchpriority="high">
             <h1 itemprop="name">Daniele Raimondi</h1>
             <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
-            <p class="sidebar-summary">Senior Data Scientist and ML leader with 8+ years delivering end-to-end AI and GenAI systems from prototype to production.
-                Proven impact across revenue growth, churn reduction, and large-scale automation by leading cross-functional teams and translating ML strategy into execution.
-                Deep expertise in LLMs, NLP, causal inference, and production pipelines. Former Italian National Team athlete with a high-performance mindset.</p>
+            <p class="sidebar-summary">Senior Data Scientist and AI leader with 8+ years taking AI, LLM and GenAI systems from prototype to production.
+                Tech Lead of cross-functional teams and international speaker — from PyData London to the Italian Parliament.
+                Deep expertise in Data Science, agentic AI systems, and quantitative finance. Former Italian National Team athlete with a high-performance mindset.</p>
         </div>
 
         <nav aria-label="Primary">
@@ -2655,7 +2712,7 @@
             </div>
             <div class="sidebar-info-item">
                 <div class="label">Specialization</div>
-                <div class="value">LLM · NLP · Causal Inference</div>
+                <div class="value">AI · Data Science · Finance</div>
             </div>
         </div>
 
@@ -2744,10 +2801,10 @@
                         <p>Production AI systems, from LLM pipelines to quantitative finance.</p>
                         <div class="hero-chips" aria-label="Core focus areas">
                             <span>LLM &amp; GenAI</span>
+                            <span>Agentic AI</span>
                             <span>Machine Learning</span>
-                            <span>NLP</span>
+                            <span>Data Science</span>
                             <span>Causal Inference</span>
-                            <span>Forecasting</span>
                             <span>Quant Finance</span>
                             <span>MLOps</span>
                         </div>
@@ -2768,7 +2825,7 @@
                 </div>
 
                 <div class="hl-track" id="hl-track" tabindex="0" aria-label="Highlights carousel, scroll horizontally">
-                    <figure class="hl-slide hl-slide--photo">
+                    <figure class="hl-slide hl-slide--photo hl-slide--top">
                         <img src="assets/highlights/camera-deputati-2026-a.webp" alt="Daniele Raimondi with the panel speakers at the Camera dei Deputati in Rome" decoding="async" width="1600" height="1476">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
@@ -3212,6 +3269,20 @@
                 <p class="section-subtitle">
                     Conference sessions, invited talks, and academic events grouped by year.
                 </p>
+
+                <article class="talk-video-feature">
+                    <div class="talk-video-wrap">
+                        <video controls preload="metadata" poster="assets/highlights/camera-deputati-2026-talk-poster.webp">
+                            <source src="assets/highlights/camera-deputati-2026-talk.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="talk-video-caption">
+                        <span class="hl-tag">Featured · Institutions</span>
+                        <h3>Camera dei Deputati · Rome — June 2026</h3>
+                        <p>My intervention at the Italian Parliament, presenting an AI platform for public-policy decisions in research and innovation (in Italian).</p>
+                    </div>
+                </article>
 
                 <div class="talks-timeline">
 
