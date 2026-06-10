@@ -11,7 +11,10 @@
     <meta name="author" content="Daniele Raimondi">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://danieleraimondi.github.io/">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0f2340">
+
+    <!-- Content Security Policy (defense in depth; GitHub Pages cannot set headers) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://ai-twin-backend.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -133,7 +136,6 @@
             font-family: 'Public Sans', sans-serif;
             line-height: 1.7;
             color: var(--text);
-            margin: 0;
             padding: 18px;
             max-width: var(--container-max);
             margin: 0 auto;
@@ -174,11 +176,8 @@
         .experience-card,
         .project-card,
         .skill-card,
-        .sidebar-education-card,
-        .sidebar-highlight-pill,
-        .passion-item,
-        .focus-item,
-        .highlight-item {
+        .hl-slide,
+        .focus-item {
             animation: riseIn 0.7s ease both;
         }
 
@@ -690,37 +689,6 @@
             line-height: 1.5;
         }
 
-        .hero-metrics {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 2px;
-        }
-
-        .hero-metric {
-            background: rgba(250, 251, 247, 0.9);
-            border: 1px solid #cfd5c9;
-            border-radius: 12px;
-            padding: 12px 14px;
-        }
-
-        .hero-metric strong {
-            display: block;
-            font-size: 1.1rem;
-            color: #14332b;
-            line-height: 1.2;
-        }
-
-        .hero-metric span {
-            display: block;
-            margin-top: 3px;
-            color: #526057;
-            font-size: 0.76rem;
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
-        }
-
         .hero-projects-speaking {
             grid-column: 1 / -1;
             display: grid;
@@ -798,6 +766,30 @@
         .hero-project p strong {
             color: #0f6d5c;
             font-weight: 600;
+        }
+
+        .talk-status {
+            display: inline-block;
+            font-size: 0.64rem;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-left: 6px;
+            vertical-align: 1px;
+        }
+
+        .talk-status.done {
+            color: #0f6d4a;
+            background: #ddf2e6;
+            border: 1px solid #b7e0c8;
+        }
+
+        .talk-status.upcoming {
+            color: #8a4516;
+            background: #fdeede;
+            border: 1px solid #ecd3b8;
         }
 
         section {
@@ -1606,6 +1598,214 @@
             line-height: 1.45;
         }
 
+        /* ===== HIGHLIGHTS CAROUSEL ===== */
+
+        .highlights-section {
+            padding: 34px 44px 38px;
+            border-top: 1px solid #e3d7c6;
+            background:
+                radial-gradient(circle at 12% 20%, rgba(31, 79, 143, 0.10), transparent 38%),
+                radial-gradient(circle at 88% 80%, rgba(177, 93, 50, 0.10), transparent 36%),
+                linear-gradient(180deg, #fdf8ef 0%, #f6eedf 100%);
+        }
+
+        .highlights-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .highlights-head .section-subtitle {
+            margin-bottom: 0;
+        }
+
+        .hl-nav {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .hl-nav button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid #cdbfa9;
+            background: #fffdf8;
+            color: #1c3f73;
+            font-size: 1.15rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hl-nav button:hover,
+        .hl-nav button:focus-visible {
+            background: linear-gradient(115deg, var(--accent), var(--accent-strong));
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .hl-track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 4px 4px 14px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .hl-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hl-slide {
+            position: relative;
+            flex: 0 0 min(540px, 86%);
+            aspect-ratio: 16 / 9;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            scroll-snap-align: center;
+            border: 1px solid #d8c9b5;
+            box-shadow: 0 14px 30px rgba(30, 38, 60, 0.14);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hl-slide:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(30, 38, 60, 0.2);
+        }
+
+        .hl-slide--photo img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hl-slide--photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 18, 36, 0) 38%, rgba(8, 18, 36, 0.82) 100%);
+            pointer-events: none;
+        }
+
+        .hl-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 18px 20px 16px;
+            color: #f4f8ff;
+        }
+
+        .hl-tag {
+            display: inline-block;
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: rgba(31, 79, 143, 0.78);
+            border: 1px solid rgba(170, 201, 239, 0.55);
+            border-radius: 999px;
+            padding: 4px 10px;
+            margin-bottom: 8px;
+            backdrop-filter: blur(3px);
+        }
+
+        .hl-tag--warm {
+            background: rgba(177, 93, 50, 0.82);
+            border-color: rgba(244, 203, 176, 0.55);
+        }
+
+        .hl-caption h3 {
+            font-size: 1.18rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 3px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .hl-caption p {
+            font-size: 0.84rem;
+            color: rgba(228, 238, 252, 0.88);
+            line-height: 1.45;
+            max-width: 46ch;
+        }
+
+        .hl-slide--text {
+            display: flex;
+            align-items: flex-end;
+            background:
+                radial-gradient(circle at 82% 14%, rgba(100, 144, 212, 0.35), transparent 46%),
+                linear-gradient(150deg, #16335d 0%, #0a1a31 100%);
+        }
+
+        .hl-slide--text .hl-caption {
+            position: relative;
+            padding: 22px 24px 20px;
+        }
+
+        .hl-slide--text h3 {
+            font-size: clamp(1.3rem, 2.1vw, 1.7rem);
+            max-width: 18ch;
+        }
+
+        .hl-slide--text--warm {
+            background:
+                radial-gradient(circle at 80% 16%, rgba(235, 156, 110, 0.32), transparent 48%),
+                linear-gradient(150deg, #6e3417 0%, #3c1c0b 100%);
+        }
+
+        .hl-slide-year {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            z-index: 2;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: rgba(10, 24, 46, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 999px;
+            padding: 4px 11px;
+            backdrop-filter: blur(3px);
+        }
+
+        .hl-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .hl-dots button {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: none;
+            padding: 0;
+            background: #c9b99f;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .hl-dots button.active {
+            background: var(--accent);
+            transform: scale(1.35);
+        }
+
         footer {
             background: #1f4f86;
             color: white;
@@ -1692,7 +1892,7 @@
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.01em;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .chat-header-text .status {
@@ -2127,10 +2327,6 @@
                 max-height: none;
                 margin: 0;
                 top: auto;
-            }
-
-            .sidebar {
-                border: 1px solid rgba(255, 255, 255, 0.08);
                 border-radius: 20px;
             }
 
@@ -2149,13 +2345,11 @@
             }
 
             .hero-highlights,
-            .hero-metrics,
             .hero-projects-speaking {
                 grid-template-columns: 1fr;
             }
 
             .hero-featured,
-            .hero-metrics,
             .hero-projects-speaking {
                 grid-column: auto;
             }
@@ -2307,6 +2501,28 @@
                 height: 136px;
             }
 
+            .highlights-section {
+                padding: 24px 12px 28px;
+            }
+
+            .highlights-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .hl-nav {
+                display: none;
+            }
+
+            .hl-slide {
+                flex: 0 0 88%;
+            }
+
+            .hl-caption h3 {
+                font-size: 1.02rem;
+            }
+
             footer {
                 padding: 28px 16px;
             }
@@ -2434,7 +2650,7 @@
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-profile">
-            <img src="assets/profile.jpg" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image">
+            <img src="assets/profile.webp" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image" width="512" height="504" fetchpriority="high">
             <h1 itemprop="name">Daniele Raimondi</h1>
             <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
             <p class="sidebar-summary">Senior Data Scientist and ML leader with 8+ years delivering end-to-end AI and GenAI systems from prototype to production.
@@ -2576,25 +2792,108 @@
                                 <span class="hero-project-label">Flagship Initiative</span>
                                 <div class="project-logo-wrap">
                                     <a href="https://alphaquants.net" target="_blank" rel="noopener">
-                                        <img src="assets/project_logo/alphaquants.jpeg" alt="alphaquants.net logo" class="project-logo">
+                                        <img src="assets/project_logo/alphaquants.webp" alt="alphaquants.net logo" class="project-logo" width="128" height="128">
                                     </a>
                                     <h3><a href="https://alphaquants.net" target="_blank" rel="noopener">alphaquants.net</a></h3>
                                 </div>
                                 <p>Applied AI for quantitative finance: models, analysis workflows, and decision systems designed for practical investing and risk-aware execution.</p>
                             </article>
                             <article class="hero-project">
-                                <span class="hero-project-label">Public Voice 2026</span>
-                                <h3>Conference talks and technical community</h3>
+                                <span class="hero-project-label">Speaking 2026</span>
+                                <h3>International stages, from PyData to Parliament</h3>
                                 <ul class="hero-talk-list">
-                                    <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a></li>
-                                    <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong> · Zurich</a></li>
-                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> · Talk 1</a></li>
-                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow 2026</strong> · Talk 2</a></li>
+                                    <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a> <span class="talk-status done">Delivered</span></li>
+                                    <li><strong>Camera dei Deputati</strong> · Rome <span class="talk-status done">Delivered</span></li>
+                                    <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong> · Zurich</a> <span class="talk-status done">Delivered</span></li>
+                                    <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow</strong> · 2 talks</a> <span class="talk-status upcoming">July 2026</span></li>
                                 </ul>
                             </article>
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <section id="highlights" class="highlights-section" aria-label="Career highlights">
+                <div class="highlights-head">
+                    <div>
+                        <h2 class="section-title">Highlights</h2>
+                        <p class="section-subtitle">From international AI stages to the Italian national track team — the moments that define the journey.</p>
+                    </div>
+                    <div class="hl-nav">
+                        <button type="button" id="hl-prev" aria-label="Previous highlight">←</button>
+                        <button type="button" id="hl-next" aria-label="Next highlight">→</button>
+                    </div>
+                </div>
+
+                <div class="hl-track" id="hl-track" tabindex="0" aria-label="Highlights carousel, scroll horizontally">
+                    <figure class="hl-slide hl-slide--text">
+                        <span class="hl-slide-year">2026</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Speaking · AI</span>
+                            <h3>PyData London 2026</h3>
+                            <p>Talk delivered on practical AI and data product delivery to one of Europe's leading data science communities.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo">
+                        <img src="assets/athletics/GG3.webp" alt="Daniele Raimondi competing at Golden Gala 2012, Stadio Olimpico Rome" loading="lazy" decoding="async" width="1600" height="1065">
+                        <span class="hl-slide-year">2012</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag hl-tag--warm">Athletics · National Team</span>
+                            <h3>Golden Gala · Stadio Olimpico, Rome</h3>
+                            <p>4x400m relay with the Italian senior national team at a premier Diamond League event.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--text hl-slide--text--warm">
+                        <span class="hl-slide-year">2026</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag hl-tag--warm">Institutions</span>
+                            <h3>Camera dei Deputati · Rome</h3>
+                            <p>Invited intervention at the Italian Parliament, bringing applied AI and data science into the institutional debate.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo">
+                        <img src="assets/athletics/GG2.webp" alt="Italian relay team at Golden Gala 2012" loading="lazy" decoding="async" width="1600" height="1065">
+                        <span class="hl-slide-year">2012</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag hl-tag--warm">Athletics · National Team</span>
+                            <h3>Italian 4x400m Relay Squad</h3>
+                            <p>Representing Italy on the track — the same discipline I bring to AI delivery today.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--text">
+                        <span class="hl-slide-year">2026</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Speaking · AI</span>
+                            <h3>Swiss Data Science Conference · Zurich</h3>
+                            <p>Invited session on applied AI and real-world data science impact.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--photo">
+                        <img src="assets/athletics/misano.webp" alt="Italian U23 Championships race in Misano 2012" loading="lazy" decoding="async" width="1272" height="1600">
+                        <span class="hl-slide-year">2012</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag hl-tag--warm">Athletics</span>
+                            <h3>Italian U23 Championships · Misano</h3>
+                            <p>Competing at national level before turning the same focus to data science.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hl-slide hl-slide--text hl-slide--text--warm">
+                        <span class="hl-slide-year">July 2026</span>
+                        <figcaption class="hl-caption">
+                            <span class="hl-tag">Next Stop</span>
+                            <h3>EuroSciPy Krakow · 2 Talks</h3>
+                            <p>Two accepted talks on production-ready open-source AI workflows.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="hl-dots" id="hl-dots" role="tablist" aria-label="Highlight slides"></div>
             </section>
 
             <section id="profile-overview" class="profile-columns" aria-label="Background and Education">
@@ -2628,7 +2927,7 @@
                             <div class="card-header-brand">
                                 <h3>Finance and Risk Analyst</h3>
                                 <a href="https://www.accenture.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/company_logo/accenture.png" alt="Accenture" class="company-logo" loading="lazy">
+                                    <img src="assets/company_logo/accenture.webp" alt="Accenture" class="company-logo" loading="lazy">
                                 </a>
                             </div>
                             <div class="company"><a href="https://www.accenture.com/" target="_blank" rel="noopener" class="card-company-link">Accenture</a> · Milan, Italy 🇮🇹</div>
@@ -2639,7 +2938,7 @@
                             <div class="card-header-brand">
                                 <h3>Risk Management Analyst</h3>
                                 <a href="https://www.fiditalia.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/company_logo/fiditalia.png" alt="Fiditalia" class="company-logo" loading="lazy">
+                                    <img src="assets/company_logo/fiditalia.webp" alt="Fiditalia" class="company-logo" loading="lazy">
                                 </a>
                             </div>
                             <div class="company"><a href="https://www.fiditalia.it/" target="_blank" rel="noopener" class="card-company-link">Fiditalia</a> · Milan, Italy 🇮🇹</div>
@@ -2657,7 +2956,7 @@
                             <div class="education-head">
                                 <h3>Master's Degree · Data Science</h3>
                                 <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
+                                    <img src="assets/university_logo/bicocca.webp" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
                                 </a>
                             </div>
                             <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
@@ -2667,7 +2966,7 @@
                             <div class="education-head">
                                 <h3>MSc · Economic Statistics</h3>
                                 <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
+                                    <img src="assets/university_logo/bicocca.webp" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
                                 </a>
                             </div>
                             <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
@@ -2677,7 +2976,7 @@
                             <div class="education-head">
                                 <h3>BSc · Statistics</h3>
                                 <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                                    <img src="assets/university_logo/bicocca.png" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
+                                    <img src="assets/university_logo/bicocca.webp" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
                                 </a>
                             </div>
                             <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
@@ -2735,7 +3034,7 @@
             </p>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="assets/Thermomodel.png" alt="Data Science framework analyzing Bitcoin market dynamics" loading="lazy">
+                    <img src="assets/Thermomodel.webp" alt="Data Science framework analyzing Bitcoin market dynamics" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Bitcoin DataScience</h3>
                         <p>
@@ -2754,7 +3053,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/Chatbot.png" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy">
+                    <img src="assets/Chatbot.webp" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy" width="1238" height="882">
                     <div class="project-content">
                         <h3>AI Twin</h3>
                         <p>
@@ -2773,7 +3072,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/BitcoinSentiment.png" alt="Sentiment analysis pipeline on Bitcoin news and social media" loading="lazy">
+                    <img src="assets/BitcoinSentiment.webp" alt="Sentiment analysis pipeline on Bitcoin news and social media" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Sentiment Analysis Bitcoin</h3>
                         <p>
@@ -2792,7 +3091,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/BettingDataScience.png" alt="Betting exchange scrapers and live football data pipeline" loading="lazy">
+                    <img src="assets/BettingDataScience.webp" alt="Betting exchange scrapers and live football data pipeline" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Betting Exchange Scrapers</h3>
                         <p>
@@ -2811,7 +3110,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/MusicClassifier.png" alt="Handcrafted Music Embeddings for Genre Classification and Similarity Search" loading="lazy">
+                    <img src="assets/MusicClassifier.webp" alt="Handcrafted Music Embeddings for Genre Classification and Similarity Search" loading="lazy" width="1280" height="704">
                     <div class="project-content">
                         <h3>Music Classification</h3>
                         <p>
@@ -2899,29 +3198,11 @@
                 <div class="talks-timeline">
 
                 <div class="talks-year">
-                    <h3 class="talks-year-title">2026 · Upcoming and Recent</h3>
+                    <h3 class="talks-year-title">2026 · Upcoming</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>Swiss Data Science Conference 2026</h3>
-                            <div class="talk-meta">Zurich, Switzerland · 2026</div>
-                            <p>Invited speaking engagement focused on applied AI and real-world data science impact.</p>
-                            <div class="talk-links">
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener">LinkedIn</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>PyData London 2026</h3>
-                            <div class="talk-meta">London, United Kingdom · 2026</div>
-                            <p>Talk accepted for PyData London on practical AI and data product delivery.</p>
-                            <div class="talk-links">
-                                <a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener">Talk page</a>
-                            </div>
-                        </article>
-
-                        <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 1</h3>
-                            <div class="talk-meta">Krakow, Poland · 2026</div>
+                            <h3>EuroSciPy Krakow 2026 · Talk 1 <span class="talk-status upcoming">July 2026</span></h3>
+                            <div class="talk-meta">Krakow, Poland · July 2026</div>
                             <p>First accepted EuroSciPy talk within the 2026 conference program.</p>
                             <div class="talk-links">
                                 <a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener">Talk page</a>
@@ -2929,11 +3210,40 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 2</h3>
-                            <div class="talk-meta">Krakow, Poland · 2026</div>
+                            <h3>EuroSciPy Krakow 2026 · Talk 2 <span class="talk-status upcoming">July 2026</span></h3>
+                            <div class="talk-meta">Krakow, Poland · July 2026</div>
                             <p>Second accepted EuroSciPy talk, expanding on production-ready open-source AI workflows.</p>
                             <div class="talk-links">
                                 <a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener">Talk page</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="talks-year">
+                    <h3 class="talks-year-title">2026 · Delivered</h3>
+                    <div class="talks-grid">
+                        <article class="talk-card">
+                            <h3>PyData London 2026</h3>
+                            <div class="talk-meta">London, United Kingdom · 2026</div>
+                            <p>Delivered a talk at PyData London on practical AI and data product delivery.</p>
+                            <div class="talk-links">
+                                <a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener">Talk page</a>
+                            </div>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>Camera dei Deputati · Italian Parliament</h3>
+                            <div class="talk-meta">Rome, Italy · 2026</div>
+                            <p>Invited intervention at the Italian Chamber of Deputies, bringing an applied AI and data science perspective to the institutional debate.</p>
+                        </article>
+
+                        <article class="talk-card">
+                            <h3>Swiss Data Science Conference 2026</h3>
+                            <div class="talk-meta">Zurich, Switzerland · 2026</div>
+                            <p>Invited session focused on applied AI and real-world data science impact.</p>
+                            <div class="talk-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
                         </article>
                     </div>
@@ -3077,7 +3387,7 @@
                     <div class="sport-primary-column">
                         <article class="sport-video-card">
                             <div class="sport-video-wrap">
-                                <video controls preload="metadata" poster="assets/athletics/rome-diamond-league-2012-poster.jpg">
+                                <video controls preload="metadata" poster="assets/athletics/rome-diamond-league-2012-poster.webp">
                                     <source src="assets/athletics/rome-diamond-league-2012-4x400.mp4" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
@@ -3090,7 +3400,7 @@
                                 <div class="sport-meta">Rome, Italy · 2012</div>
                                 <p>Selected for the 4x400m relay at the Golden Gala in Rome, competing with the Italian senior national team in one of the premier European track events.</p>
                                 <div class="sport-links">
-                                    <a href="http://www.fidal.it/content/Compeed-Golden-Gala-ecco-gli-azzurri/50442" target="_blank" rel="noopener">FIDAL</a>
+                                    <a href="https://www.fidal.it/content/Compeed-Golden-Gala-ecco-gli-azzurri/50442" target="_blank" rel="noopener">FIDAL</a>
                                     <a href="https://youtu.be/8t6FIpT9WYU" target="_blank" rel="noopener">Race video</a>
                                 </div>
                             </article>
@@ -3110,24 +3420,24 @@
                     <div class="sport-photo-rail" aria-label="Athletics highlights gallery">
                         <article class="sport-photo-card">
                             <figure class="sport-photo-frame">
-                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG2.JPG" data-caption="Golden Gala 2012 · block start">
-                                    <img src="assets/athletics/GG2.JPG" alt="Daniele Raimondi with teammates at Golden Gala 2012" loading="lazy" decoding="async">
+                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG2.webp" data-caption="Golden Gala 2012 · block start">
+                                    <img src="assets/athletics/GG2.webp" alt="Daniele Raimondi with teammates at Golden Gala 2012" loading="lazy" decoding="async" width="1600" height="1065">
                                 </button>
                             </figure>
                         </article>
 
                         <article class="sport-photo-card">
                             <figure class="sport-photo-frame">
-                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG3.JPG" data-caption="Golden Gala 2012 · block drive phase">
-                                    <img src="assets/athletics/GG3.JPG" alt="Italian relay team at Golden Gala event area" loading="lazy" decoding="async">
+                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/GG3.webp" data-caption="Golden Gala 2012 · block drive phase">
+                                    <img src="assets/athletics/GG3.webp" alt="Italian relay team at Golden Gala event area" loading="lazy" decoding="async" width="1600" height="1065">
                                 </button>
                             </figure>
                         </article>
 
                         <article class="sport-photo-card sport-photo-card--misano">
                             <figure class="sport-photo-frame">
-                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/misano.JPG" data-caption="Campionati Italiani U23 2012 · Misano">
-                                    <img src="assets/athletics/misano.JPG" alt="Italian U23 Championships race in Misano 2012" loading="lazy" decoding="async">
+                                <button class="sport-photo-trigger" type="button" data-full-src="assets/athletics/misano.webp" data-caption="Campionati Italiani U23 2012 · Misano">
+                                    <img src="assets/athletics/misano.webp" alt="Italian U23 Championships race in Misano 2012" loading="lazy" decoding="async" width="1272" height="1600">
                                 </button>
                             </figure>
                         </article>
@@ -3189,6 +3499,28 @@
                 activateTab(button.dataset.tabTarget);
             });
         });
+
+        // ARIA tabs keyboard pattern: arrows / Home / End move and activate tabs
+        const tabList = document.querySelector('.main-tabs');
+        if (tabList) {
+            tabList.addEventListener('keydown', event => {
+                const buttons = Array.from(tabButtons);
+                const currentIndex = buttons.indexOf(document.activeElement);
+                if (currentIndex === -1) return;
+
+                let nextIndex = null;
+                if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % buttons.length;
+                else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+                else if (event.key === 'Home') nextIndex = 0;
+                else if (event.key === 'End') nextIndex = buttons.length - 1;
+
+                if (nextIndex !== null) {
+                    event.preventDefault();
+                    buttons[nextIndex].focus();
+                    activateTab(buttons[nextIndex].dataset.tabTarget);
+                }
+            });
+        }
 
         sidebarLinks.forEach(link => {
             link.addEventListener('click', event => {
@@ -3252,7 +3584,91 @@
     })();
     </script>
 
+    <!-- Highlights carousel -->
+    <script>
+    (function () {
+        const track = document.getElementById('hl-track');
+        const dotsWrap = document.getElementById('hl-dots');
+        const prevBtn = document.getElementById('hl-prev');
+        const nextBtn = document.getElementById('hl-next');
+        if (!track || !dotsWrap) return;
+
+        const slides = Array.from(track.querySelectorAll('.hl-slide'));
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let current = 0;
+        let autoTimer = null;
+
+        slides.forEach((slide, i) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.setAttribute('aria-label', 'Go to highlight ' + (i + 1));
+            dot.addEventListener('click', () => { goTo(i); restartAuto(); });
+            dotsWrap.appendChild(dot);
+        });
+        const dots = Array.from(dotsWrap.children);
+
+        const setActiveDot = index => {
+            current = index;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        };
+
+        const goTo = index => {
+            const i = (index + slides.length) % slides.length;
+            const slide = slides[i];
+            track.scrollTo({
+                left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2,
+                behavior: reducedMotion ? 'auto' : 'smooth'
+            });
+            setActiveDot(i);
+        };
+
+        // Sync dots while the user scrolls/swipes manually
+        let scrollDebounce = null;
+        track.addEventListener('scroll', () => {
+            clearTimeout(scrollDebounce);
+            scrollDebounce = setTimeout(() => {
+                const center = track.scrollLeft + track.clientWidth / 2;
+                let best = 0;
+                let bestDist = Infinity;
+                slides.forEach((slide, i) => {
+                    const dist = Math.abs(slide.offsetLeft + slide.clientWidth / 2 - center);
+                    if (dist < bestDist) { bestDist = dist; best = i; }
+                });
+                setActiveDot(best);
+            }, 80);
+        }, { passive: true });
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); restartAuto(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); restartAuto(); });
+
+        const stopAuto = () => { clearInterval(autoTimer); autoTimer = null; };
+        const startAuto = () => {
+            if (reducedMotion || autoTimer) return;
+            autoTimer = setInterval(() => goTo(current + 1), 5500);
+        };
+        const restartAuto = () => { stopAuto(); startAuto(); };
+
+        track.addEventListener('pointerenter', stopAuto);
+        track.addEventListener('pointerleave', startAuto);
+        track.addEventListener('focusin', stopAuto);
+        track.addEventListener('focusout', startAuto);
+        track.addEventListener('touchstart', stopAuto, { passive: true });
+        track.addEventListener('touchend', () => setTimeout(startAuto, 4000), { passive: true });
+        document.addEventListener('visibilitychange', () => {
+            document.hidden ? stopAuto() : startAuto();
+        });
+
+        track.addEventListener('keydown', event => {
+            if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); restartAuto(); }
+            if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); restartAuto(); }
+        });
+
+        setActiveDot(0);
+        startAuto();
+    })();
+    </script>
+
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260315"></script>
+    <script src="js/chatbot.js?v=20260610"></script>
 </body>
 </html>

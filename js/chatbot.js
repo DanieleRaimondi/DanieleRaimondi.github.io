@@ -141,8 +141,8 @@
 
   function detectLanguage(text) {
     const italianWords = ['cosa', 'come', 'quando', 'dove', 'perché', 'chi', 'sei', 'hai', 'puoi', 'raccontami', 'dimmi'];
-    const lowerText = text.toLowerCase();
-    return italianWords.some(word => lowerText.includes(word)) ? 'it' : 'en';
+    const words = text.toLowerCase().split(/[^a-zàèéìòù]+/);
+    return italianWords.some(word => words.includes(word)) ? 'it' : 'en';
   }
 
   function renderSuggestedQuestions() {
