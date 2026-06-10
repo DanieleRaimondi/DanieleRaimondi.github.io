@@ -90,14 +90,9 @@
     user: 'assets/user-avatar.svg'
   };
 
-  function uiLang() {
-    return (navigator.language || 'en').toLowerCase().startsWith('it') ? 'it' : 'en';
-  }
-
+  // English is the default UI language; we adapt only once the user writes
   function welcomeMessage() {
-    return uiLang() === 'it'
-      ? "Ciao! Sono il gemello AI di Daniele. Chiedimi del mio lavoro in AI e Data Science, dell'intervento alla Camera dei Deputati o della mia carriera in nazionale! (You can also write in English!)"
-      : "Hi! I'm Daniele's AI twin. Ask me about my work in AI and Data Science, my talk at the Italian Parliament, or my time on the Italian national track team! (Puoi scrivermi anche in italiano!)";
+    return "Hi! I'm Daniele's AI twin. Ask me about my work in AI and Data Science, my talk at the Italian Parliament, or my time on the Italian national track team! (Puoi scrivermi anche in italiano!)";
   }
 
   function initChatbot() {
@@ -174,17 +169,11 @@
 
       // Proactive teaser above the minimized chat — once per session
       if (isMinimized && !sessionStorage.getItem('chatbot_teaser_shown')) {
-        const teasers = uiLang() === 'it'
-          ? [
-              '👋 Chiedimi del mio intervento alla Camera dei Deputati',
-              '👋 Chiedimi del mio talk a PyData London 2026',
-              '👋 Chiedimi della mia carriera in nazionale'
-            ]
-          : [
-              '👋 Ask me about my talk at the Italian Parliament',
-              '👋 Ask me about PyData London 2026',
-              '👋 Ask me about racing for the Italian national team'
-            ];
+        const teasers = [
+          '👋 Ask me about my talk at the Italian Parliament',
+          '👋 Ask me about PyData London 2026',
+          '👋 Ask me about racing for the Italian national team'
+        ];
 
         setTimeout(() => {
           if (!chatContainer.classList.contains('minimized') || sessionStorage.getItem('chatbot_teaser_shown')) return;
@@ -223,8 +212,8 @@
   }
 
   // Score-based detection: count stopwords of each language, majority wins
-  const IT_WORDS = new Set(['il', 'la', 'lo', 'le', 'gli', 'di', 'che', 'un', 'una', 'per', 'con', 'sono', 'del', 'della', 'nel', 'nella', 'mio', 'mia', 'miei', 'più', 'anche', 'come', 'cosa', 'quale', 'quali', 'dove', 'quando', 'perché', 'chi', 'sei', 'hai', 'ho', 'puoi', 'raccontami', 'dimmi', 'parlami', 'grazie', 'ciao', 'molto', 'lavoro', 'progetti', 'carriera', 'questo', 'questa', 'tra', 'ed', 'è']);
-  const EN_WORDS = new Set(['the', 'of', 'and', 'to', 'in', 'is', 'was', 'my', 'your', 'what', 'tell', 'me', 'about', 'have', 'has', 'with', 'for', 'at', 'on', 'i', 'you', 'it', 'are', 'do', 'did', 'how', 'where', 'when', 'why', 'who', 'work', 'projects', 'career', 'this', 'that']);
+  const IT_WORDS = new Set(['il', 'la', 'lo', 'le', 'gli', 'di', 'che', 'un', 'una', 'per', 'con', 'sono', 'del', 'della', 'nel', 'nella', 'mio', 'mia', 'miei', 'più', 'anche', 'come', 'cosa', 'quale', 'quali', 'dove', 'quando', 'perché', 'chi', 'sei', 'hai', 'ho', 'puoi', 'raccontami', 'dimmi', 'parlami', 'spiegami', 'grazie', 'ciao', 'molto', 'lavoro', 'progetti', 'carriera', 'questo', 'questa', 'tra', 'ed', 'è', 'poi', 'meglio', 'ancora', 'continua', 'altro']);
+  const EN_WORDS = new Set(['the', 'of', 'and', 'to', 'in', 'is', 'was', 'my', 'your', 'what', 'tell', 'me', 'about', 'have', 'has', 'with', 'for', 'at', 'on', 'i', 'you', 'it', 'are', 'do', 'did', 'how', 'where', 'when', 'why', 'who', 'work', 'projects', 'career', 'this', 'that', 'more', 'please', 'thanks', 'show', 'give', 'explain', 'can', 'could', 'would']);
 
   function detectLanguage(text) {
     const words = (text || '').toLowerCase().split(/[^a-zàèéìòù']+/);
@@ -234,14 +223,13 @@
       if (IT_WORDS.has(w)) it++;
       if (EN_WORDS.has(w)) en++;
     });
-    if (it === 0 && en === 0) return uiLang();
     return it > en ? 'it' : 'en';
   }
 
   function renderSuggestedQuestions() {
     const chatMessages = document.getElementById('chat-messages');
     const lastUserMessage = conversationHistory.filter(m => m.role === 'user').pop();
-    const lang = lastUserMessage ? detectLanguage(lastUserMessage.content) : uiLang();
+    const lang = lastUserMessage ? detectLanguage(lastUserMessage.content) : 'en';
     
     const suggestionsDiv = document.createElement('div');
     suggestionsDiv.className = 'suggested-questions';
@@ -509,8 +497,8 @@
       trimAndSaveHistory();
 
       assistantReplies++;
-      // The bot's own reply is the most reliable language signal
-      const lang = detectLanguage(fullResponse || message);
+      // Follow-ups and CTA must match the language of the user's last message
+      const lang = detectLanguage(message);
       renderFollowups(lang);
       if (assistantReplies >= 2 && !sessionStorage.getItem('chatbot_cta_shown')) {
         sessionStorage.setItem('chatbot_cta_shown', '1');
