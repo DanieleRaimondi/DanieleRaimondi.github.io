@@ -2378,6 +2378,120 @@
             color: #1d5dc9;
         }
 
+        /* Proactive teaser above the minimized chat */
+        .chat-teaser {
+            position: fixed;
+            right: 18px;
+            bottom: 98px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            max-width: 280px;
+            background: #ffffff;
+            color: #1c3055;
+            border: 1px solid #c4d4ef;
+            border-radius: 14px 14px 4px 14px;
+            box-shadow: 0 14px 30px rgba(18, 49, 126, 0.24);
+            padding: 11px 13px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            line-height: 1.4;
+            cursor: pointer;
+            animation: riseIn 0.5s ease both;
+        }
+
+        .chat-teaser:hover {
+            border-color: #8ab4ed;
+        }
+
+        .chat-teaser-close {
+            border: none;
+            background: #edf3fc;
+            color: #3d5375;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.95rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .chat-teaser-close:hover {
+            background: #dce7f8;
+        }
+
+        /* Contact CTA card inside the chat flow */
+        .chat-cta-card {
+            margin: 0.4rem 0 1.1rem;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: linear-gradient(120deg, #122e75 0%, #1d5dc9 58%, #0e7fa6 100%);
+            color: #f2f7ff;
+            box-shadow: 0 10px 24px rgba(18, 49, 126, 0.3);
+            animation: chatSlide 0.3s ease-out;
+        }
+
+        .chat-cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .chat-cta-card p {
+            font-size: 0.82rem;
+            color: rgba(230, 240, 255, 0.85);
+            margin-bottom: 10px;
+            line-height: 1.45;
+        }
+
+        .chat-cta-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #14387e;
+            font-weight: 800;
+            font-size: 0.84rem;
+            text-decoration: none;
+            border-radius: 999px;
+            padding: 8px 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .chat-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Quick-reply chips under the latest answer */
+        .followup-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 0.2rem 0 1.1rem 46px;
+        }
+
+        .followup-chips button {
+            border: 1px solid #c9d9f0;
+            background: #ffffff;
+            color: #1d4a8f;
+            border-radius: 999px;
+            padding: 7px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .followup-chips button:hover {
+            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
+            color: #ffffff;
+            border-color: transparent;
+        }
+
         /* Responsive */
 
         @media (max-width: 1400px) {
@@ -2658,6 +2772,13 @@
                 border-radius: 15px;
             }
 
+            .chat-teaser {
+                right: 12px;
+                bottom: 90px;
+                max-width: 244px;
+                font-size: 0.82rem;
+            }
+
             .chat-header {
                 padding-top: max(0.95rem, env(safe-area-inset-top));
             }
@@ -2792,7 +2913,7 @@
             </div>
         </div>
         
-        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-messages" id="chat-messages" role="log" aria-live="polite"></div>
         
         <div class="chat-input-container">
             <textarea 
@@ -3831,6 +3952,6 @@
     </script>
 
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260610"></script>
+    <script src="js/chatbot.js?v=20260610b"></script>
 </body>
 </html>

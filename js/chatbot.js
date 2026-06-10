@@ -54,20 +54,51 @@
   const SUGGESTED_QUESTIONS = {
     en: [
       "What's your experience in AI and Data Science?",
-      "Tell me about your athletic career as a national athlete",
+      "Tell me about your talk at the Italian Parliament",
       "What projects have you built with Machine Learning?"
     ],
     it: [
       "Qual è la tua esperienza in AI e Data Science?",
-      "Raccontami della tua carriera da atleta nazionale",
+      "Raccontami del tuo intervento alla Camera dei Deputati",
       "Quali progetti hai sviluppato con Machine Learning?"
     ]
   };
+
+  const FOLLOWUP_QUESTIONS = {
+    en: [
+      "Tell me about your talk at the Italian Parliament",
+      "What do you do in quantitative finance?",
+      "How do you use agentic AI in your work?",
+      "What was it like racing for the Italian national team?",
+      "Which conferences are you speaking at in 2026?",
+      "What's the project you're most proud of?"
+    ],
+    it: [
+      "Raccontami del tuo intervento alla Camera dei Deputati",
+      "Di cosa ti occupi in finanza quantitativa?",
+      "Come usi l'AI agentica nel tuo lavoro?",
+      "Com'era gareggiare per la nazionale italiana?",
+      "A quali conferenze parli nel 2026?",
+      "Qual è il progetto di cui vai più fiero?"
+    ]
+  };
+  const usedFollowups = new Set();
+  let assistantReplies = 0;
 
   const AVATARS = {
     assistant: 'assets/profile2.jpeg',
     user: 'assets/user-avatar.svg'
   };
+
+  function uiLang() {
+    return (navigator.language || 'en').toLowerCase().startsWith('it') ? 'it' : 'en';
+  }
+
+  function welcomeMessage() {
+    return uiLang() === 'it'
+      ? "Ciao! Sono il gemello AI di Daniele. Chiedimi del mio lavoro in AI e Data Science, dell'intervento alla Camera dei Deputati o della mia carriera in nazionale! (You can also write in English!)"
+      : "Hi! I'm Daniele's AI twin. Ask me about my work in AI and Data Science, my talk at the Italian Parliament, or my time on the Italian national track team! (Puoi scrivermi anche in italiano!)";
+  }
 
   function initChatbot() {
     sessionId = localStorage.getItem('chatbot_sessionId');
@@ -89,7 +120,7 @@
     }
     
     if (conversationHistory.length === 0) {
-      addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, data science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
+      addMessage('assistant', welcomeMessage());
       renderSuggestedQuestions();
     }
 
@@ -140,6 +171,54 @@
         minimizeBtn.title = isCurrentlyMinimized ? 'Maximize' : 'Minimize';
         localStorage.setItem('chatbot_minimized', isCurrentlyMinimized);
       }
+
+      // Proactive teaser above the minimized chat — once per session
+      if (isMinimized && !sessionStorage.getItem('chatbot_teaser_shown')) {
+        const teasers = uiLang() === 'it'
+          ? [
+              '👋 Chiedimi del mio intervento alla Camera dei Deputati',
+              '👋 Chiedimi del mio talk a PyData London 2026',
+              '👋 Chiedimi della mia carriera in nazionale'
+            ]
+          : [
+              '👋 Ask me about my talk at the Italian Parliament',
+              '👋 Ask me about PyData London 2026',
+              '👋 Ask me about racing for the Italian national team'
+            ];
+
+        setTimeout(() => {
+          if (!chatContainer.classList.contains('minimized') || sessionStorage.getItem('chatbot_teaser_shown')) return;
+          sessionStorage.setItem('chatbot_teaser_shown', '1');
+
+          const teaser = document.createElement('div');
+          teaser.className = 'chat-teaser';
+          teaser.setAttribute('role', 'status');
+
+          const text = document.createElement('span');
+          text.textContent = teasers[Math.floor(Math.random() * teasers.length)];
+
+          const close = document.createElement('button');
+          close.className = 'chat-teaser-close';
+          close.type = 'button';
+          close.setAttribute('aria-label', 'Dismiss');
+          close.textContent = '×';
+
+          teaser.appendChild(text);
+          teaser.appendChild(close);
+          document.body.appendChild(teaser);
+
+          const removeTeaser = () => teaser.remove();
+          close.addEventListener('click', e => {
+            e.stopPropagation();
+            removeTeaser();
+          });
+          teaser.addEventListener('click', () => {
+            removeTeaser();
+            if (chatContainer.classList.contains('minimized')) toggleMinimize();
+          });
+          setTimeout(removeTeaser, 20000);
+        }, 8000);
+      }
     }
   }
 
@@ -152,7 +231,7 @@
   function renderSuggestedQuestions() {
     const chatMessages = document.getElementById('chat-messages');
     const lastUserMessage = conversationHistory.filter(m => m.role === 'user').pop();
-    const lang = lastUserMessage ? detectLanguage(lastUserMessage.content) : 'en';
+    const lang = lastUserMessage ? detectLanguage(lastUserMessage.content) : uiLang();
     
     const suggestionsDiv = document.createElement('div');
     suggestionsDiv.className = 'suggested-questions';
@@ -193,15 +272,75 @@
 
   function handleSendClick() {
     if (isProcessing) return;
-    
+
     const chatInput = document.getElementById('chat-input');
     const message = chatInput.value.trim();
-    
+
     if (!message) return;
-    
+
     chatInput.value = '';
     chatInput.style.height = 'auto';
     sendMessage(message, 0);
+  }
+
+  // Two fresh quick-reply chips under the latest answer
+  function renderFollowups(lang) {
+    document.getElementById('followups')?.remove();
+    const pool = FOLLOWUP_QUESTIONS[lang].filter(q => !usedFollowups.has(q));
+    if (!pool.length) return;
+
+    const picks = pool.sort(() => Math.random() - 0.5).slice(0, 2);
+    const wrap = document.createElement('div');
+    wrap.className = 'followup-chips';
+    wrap.id = 'followups';
+
+    picks.forEach(question => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = question;
+      btn.addEventListener('click', () => {
+        if (isProcessing) return;
+        usedFollowups.add(question);
+        wrap.remove();
+        const chatInput = document.getElementById('chat-input');
+        chatInput.value = question;
+        handleSendClick();
+      });
+      wrap.appendChild(btn);
+    });
+
+    const chatMessages = document.getElementById('chat-messages');
+    chatMessages.appendChild(wrap);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Discreet contact card, once per session after the 2nd real answer
+  function showContactCTA(lang) {
+    const chatMessages = document.getElementById('chat-messages');
+    const card = document.createElement('div');
+    card.className = 'chat-cta-card';
+
+    const title = document.createElement('div');
+    title.className = 'chat-cta-title';
+    title.textContent = lang === 'it' ? 'Ti va di parlarne di persona?' : 'Want to take this offline?';
+
+    const sub = document.createElement('p');
+    sub.textContent = lang === 'it'
+      ? 'Daniele si confronta volentieri su AI, data science e speaking.'
+      : 'Daniele is always happy to chat about AI, data science and speaking.';
+
+    const link = document.createElement('a');
+    link.href = 'https://www.linkedin.com/in/danieleraimondi92';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.className = 'chat-cta-btn';
+    link.textContent = lang === 'it' ? 'Connettiti su LinkedIn →' : 'Connect on LinkedIn →';
+
+    card.appendChild(title);
+    card.appendChild(sub);
+    card.appendChild(link);
+    chatMessages.appendChild(card);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
   async function sendMessage(message, retryCount = 0) {
@@ -215,6 +354,7 @@
     if (retryCount === 0) {
       isProcessing = true;
       document.getElementById('suggestions')?.remove();
+      document.getElementById('followups')?.remove();
       sendButton.disabled = true;
       chatInput.disabled = true;
 
@@ -241,7 +381,8 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: conversationHistory,
+          // Recent context only: keeps backend token usage bounded
+          messages: conversationHistory.slice(-12),
           sessionId: sessionId
         }),
         signal: currentAbortController.signal
@@ -289,9 +430,27 @@
       const reader = response.body.getReader();
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
+      const STALL_MS = 30000;
 
       while (true) {
-        const { done, value } = await reader.read();
+        // Watchdog: a stream that stops sending chunks must not hang the UI
+        let stallTimer = null;
+        const readPromise = reader.read();
+        readPromise.catch(() => {}); // swallow late rejection after abort
+        const result = await Promise.race([
+          readPromise,
+          new Promise(resolve => { stallTimer = setTimeout(() => resolve({ stalledRead: true }), STALL_MS); })
+        ]);
+        clearTimeout(stallTimer);
+
+        if (result.stalledRead) {
+          currentAbortController.abort();
+          if (fullResponse) break; // keep the partial answer we already have
+          removeMessage(messageId);
+          throw new Error('stream stalled');
+        }
+
+        const { done, value } = result;
         if (done) {
           if (buffer.trim()) {
             const lines = buffer.split('\n');
@@ -339,6 +498,14 @@
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       trimAndSaveHistory();
 
+      assistantReplies++;
+      const lang = detectLanguage(message);
+      renderFollowups(lang);
+      if (assistantReplies >= 2 && !sessionStorage.getItem('chatbot_cta_shown')) {
+        sessionStorage.setItem('chatbot_cta_shown', '1');
+        showContactCTA(lang);
+      }
+
     } catch (error) {
       // User cleared chat during request — discard silently
       if (error.name === 'AbortError') return;
@@ -371,10 +538,11 @@
         return;
       }
 
+      // Never surface internal error details to visitors
       const lang = detectLanguage(message);
       const errorMsg = lang === 'it'
-        ? `❌ Errore: ${error.message}. Riprova.`
-        : `❌ Error: ${error.message}. Try again.`;
+        ? '❌ Qualcosa è andato storto. Riprova tra poco.'
+        : '❌ Something went wrong. Please try again shortly.';
 
       addMessage('assistant', errorMsg);
       conversationHistory.pop();
@@ -501,9 +669,10 @@
     }
 
     conversationHistory = [];
+    usedFollowups.clear();
     localStorage.removeItem('chatbot_history');
     document.getElementById('chat-messages').innerHTML = '';
-    addMessage('assistant', "Hi! I'm Daniele's AI twin. Ask me about my work in AI, Data Science, athletic career, or anything else! (Puoi scrivermi anche in italiano!)");
+    addMessage('assistant', welcomeMessage());
     renderSuggestedQuestions();
   }
 
