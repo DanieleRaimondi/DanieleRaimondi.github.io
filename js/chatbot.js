@@ -110,7 +110,11 @@
     const chatHeader = document.querySelector('.chat-header');
     
     if (minimizeBtn && chatContainer && chatHeader) {
-      let isMinimized = localStorage.getItem('chatbot_minimized') === 'true';
+      const storedMinimized = localStorage.getItem('chatbot_minimized');
+      // First visit on small screens: start minimized so content stays visible
+      let isMinimized = storedMinimized === null
+        ? window.matchMedia('(max-width: 768px)').matches
+        : storedMinimized === 'true';
       if (isMinimized) {
         chatContainer.classList.add('minimized');
         minimizeBtn.textContent = '□';
