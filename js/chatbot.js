@@ -92,6 +92,7 @@
     ]
   };
   const usedFollowups = new Set();
+  let ctaShownThisLoad = false;
 
   const AVATARS = {
     assistant: 'assets/profile2.jpeg',
@@ -193,15 +194,18 @@
         '👋 Ask me about racing for the Italian national team'
       ];
 
-      // Proactive teaser above the minimized chat — once per session.
-      // Armed at load AND whenever the user minimizes the chat; it only fires
-      // if the chat is still minimized when the timer elapses.
+      // Proactive teaser above the minimized chat.
+      // Fires on EVERY page load (and on every minimize) after 8s, as long as
+      // the chat is still minimized. Only an explicit dismiss (×) silences it
+      // for the rest of the tab session.
       function scheduleTeaser(delayMs) {
-        if (sessionStorage.getItem('chatbot_teaser_shown')) return;
+        if (sessionStorage.getItem('chatbot_teaser_dismissed')) return;
 
         setTimeout(() => {
-          if (!chatContainer.classList.contains('minimized') || sessionStorage.getItem('chatbot_teaser_shown')) return;
-          sessionStorage.setItem('chatbot_teaser_shown', '1');
+          if (!chatContainer.classList.contains('minimized')) return;
+          if (sessionStorage.getItem('chatbot_teaser_dismissed')) return;
+          if (document.querySelector('.chat-teaser')) return; // one at a time
+
           const teasers = getTeasers();
 
           const teaser = document.createElement('div');
@@ -224,6 +228,7 @@
           const removeTeaser = () => teaser.remove();
           close.addEventListener('click', e => {
             e.stopPropagation();
+            sessionStorage.setItem('chatbot_teaser_dismissed', '1');
             removeTeaser();
           });
           teaser.addEventListener('click', () => {
@@ -526,11 +531,11 @@
       // Follow-ups and CTA must match the language of the user's last message
       const lang = detectLanguage(message);
       renderFollowups(lang);
-      // CTA after the 2nd assistant reply of the conversation — counted from
-      // the persisted history, so it survives page reloads mid-conversation
+      // LinkedIn CTA: once per page load, as soon as the conversation
+      // (including restored history) reaches 2 assistant replies
       const assistantCount = conversationHistory.filter(m => m.role === 'assistant').length;
-      if (assistantCount >= 2 && !sessionStorage.getItem('chatbot_cta_shown')) {
-        sessionStorage.setItem('chatbot_cta_shown', '1');
+      if (assistantCount >= 2 && !ctaShownThisLoad) {
+        ctaShownThisLoad = true;
         showContactCTA(lang);
       }
 
@@ -698,9 +703,9 @@
 
     conversationHistory = [];
     usedFollowups.clear();
-    // A fresh conversation re-arms the once-per-session teaser and LinkedIn CTA
-    sessionStorage.removeItem('chatbot_cta_shown');
-    sessionStorage.removeItem('chatbot_teaser_shown');
+    // A fresh conversation re-arms the teaser and the LinkedIn CTA
+    ctaShownThisLoad = false;
+    sessionStorage.removeItem('chatbot_teaser_dismissed');
     localStorage.removeItem('chatbot_history');
     document.getElementById('chat-messages').innerHTML = '';
     addMessage('assistant', welcomeMessage());
