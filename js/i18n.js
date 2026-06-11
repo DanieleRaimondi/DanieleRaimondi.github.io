@@ -63,6 +63,7 @@
     'status.delivered': 'Tenuto',
     'city.rome.inline': ' · Roma',
     'city.zurich.inline': ' · Zurigo',
+    'city.london.inline': ' · Londra',
     'misc.twotalks': ' · 2 talk',
 
     // ─── Background ────────────────────────────────────────────────────────

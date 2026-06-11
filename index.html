@@ -207,7 +207,7 @@
             width: 100%;
             max-height: calc(100vh - 36px);
             color: #edf2fa;
-            padding: 32px 24px;
+            padding: 18px 20px;
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-xl);
@@ -219,23 +219,48 @@
 
         .sidebar-profile {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .sidebar-photo {
-            width: 156px;
-            height: 156px;
+            width: 102px;
+            height: 102px;
             border-radius: 50%;
             border: 4px solid rgba(255, 255, 255, 0.2);
             object-fit: cover;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             animation: photoGlow 3.5s ease-in-out infinite;
         }
 
         .sidebar h1 {
-            font-size: 1.5rem;
+            font-size: 1.34rem;
             margin-bottom: 4px;
-            font-weight: 700;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: linear-gradient(110deg, #ffffff 35%, #9cc6ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* "AI" inside RAIMONDI: the gradient theme, slowly shimmering */
+        .sidebar h1 .name-ai {
+            background: linear-gradient(110deg, #22d3ee, #6ee7b7, #ffab4a, #22d3ee);
+            background-size: 250% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: aiShimmer 6s linear infinite;
+        }
+
+        @keyframes aiShimmer {
+            to { background-position: 250% 0; }
+        }
+
+        @supports not (background-clip: text) {
+            .sidebar h1 { color: #ffffff; -webkit-text-fill-color: currentColor; }
+            .sidebar h1 .name-ai { color: #4dd6f0; -webkit-text-fill-color: currentColor; }
         }
 
         .sidebar .role {
@@ -246,24 +271,24 @@
 
         .sidebar-summary {
             color: rgba(226, 236, 250, 0.78);
-            font-size: 0.87rem;
-            line-height: 1.65;
-            margin-top: 14px;
-            padding-top: 14px;
+            font-size: 0.78rem;
+            line-height: 1.48;
+            margin-top: 9px;
+            padding-top: 9px;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .sidebar nav {
-            margin: 28px 0;
+            margin: 10px 0;
         }
 
         .sidebar nav a {
             display: block;
             color: rgba(224, 235, 250, 0.76);
             text-decoration: none;
-            padding: 9px 0;
-            font-size: 0.88rem;
-            min-height: 42px;
+            padding: 4px 0;
+            font-size: 0.86rem;
+            min-height: 30px;
             display: flex;
             align-items: center;
             border-left: 3px solid transparent;
@@ -282,32 +307,38 @@
         }
 
         .sidebar-info {
-            margin-top: 28px;
-            padding-top: 20px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
         }
 
+        /* Compact rows: label left, value right — keeps the sidebar within one viewport */
         .sidebar-info-item {
-            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 2px 10px;
+            margin-bottom: 7px;
         }
 
         .sidebar-info-item .label {
             color: rgba(168, 200, 240, 0.85);
-            font-size: 0.74rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
-            margin-bottom: 4px;
+            letter-spacing: 0.11em;
+            margin-bottom: 0;
             font-weight: 700;
         }
 
         .sidebar-info-item .value {
             color: #f0f7ff;
-            font-size: 0.92rem;
+            font-size: 0.84rem;
             font-weight: 500;
         }
 
         .sidebar-social {
-            margin-top: 24px;
+            margin-top: 12px;
             display: flex;
             gap: 12px;
             justify-content: center;
@@ -670,7 +701,9 @@
 
         .hero-rotator {
             display: inline-block;
-            background: linear-gradient(100deg, #1d5dc9 5%, #0ea5c4 95%);
+            /* Vivid multi-stop gradient: deep blue → cyan → mint → warm orange */
+            background: linear-gradient(94deg, #2643e6 0%, #00b4e6 36%, #4fd6a0 62%, #ff9446 100%);
+            background-size: 130% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -713,19 +746,24 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.78rem;
             font-weight: 700;
-            color: #1c3f73;
-            background: #edf3fc;
-            border: 1px solid #cddcf3;
+            color: #14365f;
+            /* Gradient border: white fill clipped to padding-box, gradient on border-box */
+            border: 1.5px solid transparent;
+            background:
+                linear-gradient(#f8fbff, #f8fbff) padding-box,
+                linear-gradient(110deg, #2643e6, #00b4e6 45%, #4fd6a0 75%, #ff9446) border-box;
             border-radius: 999px;
-            padding: 6px 13px;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            padding: 6px 14px;
+            transition: transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .hero-chips span:hover {
             transform: translateY(-2px);
             color: #ffffff;
-            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
-            border-color: transparent;
+            background:
+                linear-gradient(110deg, #2643e6, #0086c9) padding-box,
+                linear-gradient(110deg, #2643e6, #00b4e6 45%, #4fd6a0 75%, #ff9446) border-box;
+            box-shadow: 0 6px 16px rgba(38, 67, 230, 0.25);
         }
 
         .feature-row {
@@ -785,8 +823,21 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 0;
             margin-top: 2px;
+        }
+
+        .hero-talk-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 6px 0;
+            border-bottom: 1px dashed rgba(29, 93, 201, 0.16);
+        }
+
+        .hero-talk-list li:last-child {
+            border-bottom: none;
         }
 
         .hero-talk-list a {
@@ -819,6 +870,8 @@
             border-radius: 999px;
             margin-left: 6px;
             vertical-align: 1px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .talk-status.done {
@@ -2494,6 +2547,30 @@
 
         /* Responsive */
 
+        /* Short laptop screens: compact the fixed sidebar further so it never scrolls */
+        @media (min-width: 1121px) and (max-height: 880px) {
+            .sidebar-photo {
+                width: 86px;
+                height: 86px;
+            }
+
+            .sidebar-summary {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 4;
+                overflow: hidden;
+            }
+
+            .sidebar nav a {
+                min-height: 27px;
+                padding: 2px 0;
+            }
+
+            .sidebar nav {
+                margin: 8px 0;
+            }
+        }
+
         @media (max-width: 1400px) {
             body {
                 grid-template-columns: 300px minmax(0, 1fr);
@@ -2708,8 +2785,10 @@
                 display: none;
             }
 
+            /* Taller slides on mobile: 16/9 leaves the photo too short */
             .hl-slide {
                 flex: 0 0 88%;
+                aspect-ratio: 1 / 1;
             }
 
             .hl-caption h3 {
@@ -2871,16 +2950,16 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .lang-btn svg {
-            width: 26px;
-            height: 16px;
-            border-radius: 3px;
+            width: 36px;
+            height: 22px;
+            border-radius: 4px;
             display: block;
         }
         .lang-btn:hover { opacity: 0.85; transform: translateY(-1px); }
         .lang-btn.active { opacity: 1; box-shadow: 0 0 0 2px rgba(31, 79, 143, 0.35); }
         @media (max-width: 768px) {
-            .lang-toggle { top: 10px; right: 10px; padding: 4px 7px; }
-            .lang-btn svg { width: 23px; height: 14px; }
+            .lang-toggle { top: 10px; right: 10px; padding: 5px 8px; }
+            .lang-btn svg { width: 31px; height: 19px; }
         }
     </style>
 </head>
@@ -2900,7 +2979,7 @@
     <aside class="sidebar">
         <div class="sidebar-profile">
             <img src="assets/profile.webp" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image" width="512" height="504" fetchpriority="high">
-            <h1 itemprop="name">Daniele Raimondi</h1>
+            <h1 itemprop="name">Daniele R<span class="name-ai">ai</span>mondi</h1>
             <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
             <p class="sidebar-summary" data-i18n="sidebar.summary">Senior Data Scientist and AI leader with 10 years taking Data Science, AI, LLM and GenAI systems from prototype to production.
                 Tech Lead of cross-functional teams and international speaker, from PyData London to the Italian Parliament.
@@ -3020,9 +3099,9 @@
                         <div class="hero-chips" aria-label="Core focus areas">
                             <span>LLM &amp; GenAI</span>
                             <span>Agentic AI</span>
-                            <span>Machine Learning</span>
                             <span>Data Science</span>
-                            <span>Causal Inference</span>
+                            <span>Machine Learning</span>
+                            <span>Statistics</span>
                             <span>Quant Finance</span>
                             <span>MLOps</span>
                         </div>
@@ -3180,7 +3259,7 @@
                         <span class="hero-project-label">Speaking 2026</span>
                         <h3 data-i18n="feat.speaking.title">International stages, from PyData to Parliament</h3>
                         <ul class="hero-talk-list">
-                            <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
+                            <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData 2026</strong><span data-i18n="city.london.inline"> · London</span></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
                             <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7470041107175870464/" target="_blank" rel="noopener"><strong>Camera dei Deputati</strong><span data-i18n="city.rome.inline"> · Rome</span></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
                             <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong><span data-i18n="city.zurich.inline"> · Zurich</span></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
                             <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow</strong><span data-i18n="misc.twotalks"> · 2 talks</span></a> <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></li>
@@ -4007,6 +4086,6 @@
     <script src="js/chatbot.js?v=20260611"></script>
 
     <!-- Language toggle (EN/IT) -->
-    <script src="js/i18n.js?v=20260611"></script>
+    <script src="js/i18n.js?v=20260611b"></script>
 </body>
 </html>
