@@ -2843,9 +2843,58 @@
                 scroll-behavior: auto !important;
             }
         }
+        /* ─── Language toggle ──────────────────────────────────────────── */
+        .lang-toggle {
+            position: fixed;
+            top: 14px;
+            right: 16px;
+            z-index: 1300;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            background: rgba(255, 253, 248, 0.9);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid #d8cfc0;
+            border-radius: 999px;
+            padding: 5px 8px;
+            box-shadow: 0 6px 18px rgba(10, 20, 50, 0.12);
+        }
+        .lang-btn {
+            border: 0;
+            background: none;
+            padding: 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            line-height: 0;
+            opacity: 0.45;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .lang-btn svg {
+            width: 26px;
+            height: 16px;
+            border-radius: 3px;
+            display: block;
+        }
+        .lang-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .lang-btn.active { opacity: 1; box-shadow: 0 0 0 2px rgba(31, 79, 143, 0.35); }
+        @media (max-width: 768px) {
+            .lang-toggle { top: 10px; right: 10px; padding: 4px 7px; }
+            .lang-btn svg { width: 23px; height: 14px; }
+        }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Person">
+
+    <!-- Language toggle (EN default / IT) -->
+    <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="en" aria-label="English" aria-pressed="true" title="English">
+            <svg viewBox="0 0 60 36" aria-hidden="true"><rect width="60" height="36" fill="#012169"/><path d="M0 0 60 36 M60 0 0 36" stroke="#fff" stroke-width="7"/><path d="M0 0 60 36 M60 0 0 36" stroke="#C8102E" stroke-width="3"/><path d="M30 0 V36 M0 18 H60" stroke="#fff" stroke-width="12"/><path d="M30 0 V36 M0 18 H60" stroke="#C8102E" stroke-width="7"/></svg>
+        </button>
+        <button type="button" class="lang-btn" data-lang="it" aria-label="Italiano" aria-pressed="false" title="Italiano">
+            <svg viewBox="0 0 60 36" aria-hidden="true"><rect width="20" height="36" fill="#009246"/><rect x="20" width="20" height="36" fill="#fff"/><rect x="40" width="20" height="36" fill="#CE2B37"/></svg>
+        </button>
+    </div>
 
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
@@ -2853,33 +2902,33 @@
             <img src="assets/profile.webp" alt="Portrait of Daniele Raimondi, Senior Data Scientist" class="sidebar-photo" itemprop="image" width="512" height="504" fetchpriority="high">
             <h1 itemprop="name">Daniele Raimondi</h1>
             <p class="role" itemprop="jobTitle">Senior Data Scientist</p>
-            <p class="sidebar-summary">Senior Data Scientist and AI leader with 10 years taking Data Science, AI, LLM and GenAI systems from prototype to production.
+            <p class="sidebar-summary" data-i18n="sidebar.summary">Senior Data Scientist and AI leader with 10 years taking Data Science, AI, LLM and GenAI systems from prototype to production.
                 Tech Lead of cross-functional teams and international speaker, from PyData London to the Italian Parliament.
                 Deep expertise in Data Science, AI systems, and quantitative finance. Former Italian National Team athlete with a high-performance mindset.</p>
         </div>
 
         <nav aria-label="Primary">
             <a href="#tab-home" data-tab-link="tab-home" class="nav-active">Home</a>
-            <a href="#tab-projects" data-tab-link="tab-projects">Projects</a>
-            <a href="#tab-skills" data-tab-link="tab-skills">Skills</a>
+            <a href="#tab-projects" data-tab-link="tab-projects" data-i18n="nav.projects">Projects</a>
+            <a href="#tab-skills" data-tab-link="tab-skills" data-i18n="nav.skills">Skills</a>
             <a href="#tab-talks" data-tab-link="tab-talks">Talks</a>
             <a href="#tab-sport" data-tab-link="tab-sport">Sport</a>
         </nav>
 
         <div class="sidebar-info">
             <div class="sidebar-info-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                <div class="label">Location</div>
+                <div class="label" data-i18n="sidebar.location.label">Location</div>
                 <div class="value">
-                    <span itemprop="addressLocality">Basel</span>,
-                    <span itemprop="addressCountry">Switzerland</span> 🇨🇭
+                    <span itemprop="addressLocality" data-i18n="sidebar.city">Basel</span>,
+                    <span itemprop="addressCountry" data-i18n="sidebar.country">Switzerland</span> 🇨🇭
                 </div>
             </div>
             <div class="sidebar-info-item">
-                <div class="label">Current Role</div>
+                <div class="label" data-i18n="sidebar.role.label">Current Role</div>
                 <div class="value">Senior Data Scientist</div>
             </div>
             <div class="sidebar-info-item">
-                <div class="label">Specialization</div>
+                <div class="label" data-i18n="sidebar.spec.label">Specialization</div>
                 <div class="value">AI · Data Science · Finance</div>
             </div>
         </div>
@@ -2904,12 +2953,12 @@
                 <img src="assets/profile2.jpeg" alt="Daniele" class="chat-header-avatar">
                 <div class="chat-header-text">
                     <h3>Daniele Raimondi</h3>
-                    <span class="status">AI Twin • Ask me anything!</span>
+                    <span class="status" data-i18n="chat.status">AI Twin • Ask me anything!</span>
                 </div>
             </div>
             <div class="chat-header-buttons">
                 <button id="chat-minimize" class="minimize-btn" title="Minimize" aria-label="Minimize chat">−</button>
-                <button id="chat-clear" class="clear-btn" title="Clear conversation">Clear</button>
+                <button id="chat-clear" class="clear-btn" title="Clear conversation" data-i18n="chat.clear">Clear</button>
             </div>
         </div>
         
@@ -2919,6 +2968,7 @@
             <textarea 
                 id="chat-input" 
                 placeholder="Ask about my work, projects, or career..."
+                data-i18n-placeholder="chat.placeholder"
                 rows="2"
                 aria-label="Type your message"
             ></textarea>
@@ -2928,7 +2978,7 @@
         </div>
         
         <div class="chat-disclaimer">
-            ⚠️ AI-powered. May make mistakes. 
+            <span data-i18n="chat.disclaimer">⚠️ AI-powered. May make mistakes. </span>
             <a href="https://ai-twin-backend.vercel.app/api/admin?action=disclaimer" target="_blank">Disclaimer</a> • 
             <a href="https://ai-twin-backend.vercel.app/api/admin?action=privacy" target="_blank">Privacy</a>
         </div>
@@ -2938,8 +2988,8 @@
     <main class="main-content" role="main">
         <div class="main-tabs" role="tablist" aria-label="Main content tabs">
             <button class="main-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-home" id="tab-btn-home" data-tab-target="tab-home">Home</button>
-            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects">Projects</button>
-            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills">Skills</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects" data-i18n="nav.projects">Projects</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills" data-i18n="nav.skills">Skills</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-talks" id="tab-btn-talks" data-tab-target="tab-talks">Talks</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-sport" id="tab-btn-sport" data-tab-target="tab-sport">Sport</button>
         </div>
@@ -2948,25 +2998,25 @@
             <div class="identity-ticker" aria-hidden="true">
                 <div class="identity-ticker-track">
                     <span>AI Leadership</span>
-                    <span>Production LLM Systems</span>
-                    <span>Quantitative Thinking</span>
-                    <span>Business Impact</span>
-                    <span>Execution Discipline</span>
-                    <span>Basel / Milan</span>
+                    <span data-i18n="ticker.llm">Production LLM Systems</span>
+                    <span data-i18n="ticker.quant">Quantitative Thinking</span>
+                    <span data-i18n="ticker.impact">Business Impact</span>
+                    <span data-i18n="ticker.discipline">Execution Discipline</span>
+                    <span data-i18n="ticker.cities">Basel / Milan</span>
                     <span>AI Leadership</span>
-                    <span>Production LLM Systems</span>
-                    <span>Quantitative Thinking</span>
-                    <span>Business Impact</span>
-                    <span>Execution Discipline</span>
-                    <span>Basel / Milan</span>
+                    <span data-i18n="ticker.llm">Production LLM Systems</span>
+                    <span data-i18n="ticker.quant">Quantitative Thinking</span>
+                    <span data-i18n="ticker.impact">Business Impact</span>
+                    <span data-i18n="ticker.discipline">Execution Discipline</span>
+                    <span data-i18n="ticker.cities">Basel / Milan</span>
                 </div>
             </div>
             <section class="hero-section" aria-label="Introduction">
                 <div class="hero-content">
                     <article class="hero-featured">
                         <span class="hero-kicker">Senior Data Scientist · AI Tech Lead</span>
-                        <h2>Turning data into <span class="hero-rotator" id="hero-rotator">intelligence</span>.</h2>
-                        <p>A decade of Data Science and AI — scientific depth meets quantitative rigor.</p>
+                        <h2><span data-i18n="hero.title.pre">Turning data into </span><span class="hero-rotator" id="hero-rotator">intelligence</span><span data-i18n="hero.title.post">.</span></h2>
+                        <p data-i18n="hero.sub">A decade of Data Science and AI — scientific depth meets quantitative rigor.</p>
                         <div class="hero-chips" aria-label="Core focus areas">
                             <span>LLM &amp; GenAI</span>
                             <span>Agentic AI</span>
@@ -2984,7 +3034,7 @@
                 <div class="highlights-head">
                     <div>
                         <h2 class="section-title">Highlights</h2>
-                        <p class="section-subtitle">From international AI stages to the Italian national track team — the moments that define the journey.</p>
+                        <p class="section-subtitle" data-i18n="hl.subtitle">From international AI stages to the Italian national track team — the moments that define the journey.</p>
                     </div>
                     <div class="hl-nav">
                         <button type="button" id="hl-prev" aria-label="Previous highlight">←</button>
@@ -2997,9 +3047,9 @@
                         <img src="assets/highlights/camera-deputati-2026-a.webp" alt="Daniele Raimondi with the panel speakers at the Camera dei Deputati in Rome" decoding="async" width="1600" height="1476">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
-                            <span class="hl-tag">Institutions</span>
-                            <h3>Camera dei Deputati · Rome</h3>
-                            <p>Presenting an AI platform for public-policy decisions at the Italian Parliament.</p>
+                            <span class="hl-tag" data-i18n="tag.institutions">Institutions</span>
+                            <h3 data-i18n="hl.camera1.title">Camera dei Deputati · Rome</h3>
+                            <p data-i18n="hl.camera1">Presenting an AI platform for public-policy decisions at the Italian Parliament.</p>
                         </figcaption>
                     </figure>
 
@@ -3007,9 +3057,9 @@
                         <img src="assets/highlights/camera-deputati-2026.webp" alt="Daniele Raimondi speaking on the press conference panel at the Camera dei Deputati" loading="lazy" decoding="async" width="1600" height="1104">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
-                            <span class="hl-tag">Institutions</span>
-                            <h3>Press Conference · Camera dei Deputati</h3>
-                            <p>On the panel in the Parliament's press room, speaking on AI for research and innovation.</p>
+                            <span class="hl-tag" data-i18n="tag.institutions">Institutions</span>
+                            <h3 data-i18n="hl.camera2.title">Press Conference · Camera dei Deputati</h3>
+                            <p data-i18n="hl.camera2">On the panel in the Parliament's press room, speaking on AI for research and innovation.</p>
                         </figcaption>
                     </figure>
 
@@ -3017,9 +3067,9 @@
                         <img src="assets/athletics/GG3.webp" alt="Daniele Raimondi competing at Golden Gala 2012, Stadio Olimpico Rome" loading="lazy" decoding="async" width="1600" height="1065">
                         <span class="hl-slide-year">2012</span>
                         <figcaption class="hl-caption">
-                            <span class="hl-tag hl-tag--warm">Athletics · National Team</span>
-                            <h3>Golden Gala · Stadio Olimpico, Rome</h3>
-                            <p>4x400m relay with the Italian senior national team at a premier Diamond League event.</p>
+                            <span class="hl-tag hl-tag--warm" data-i18n="tag.athletics">Athletics · National Team</span>
+                            <h3 data-i18n="hl.gg.title">Golden Gala · Stadio Olimpico, Rome</h3>
+                            <p data-i18n="hl.gg">4x400m relay with the Italian senior national team at a premier Diamond League event.</p>
                         </figcaption>
                     </figure>
 
@@ -3029,7 +3079,7 @@
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
                             <h3>PyData London 2026</h3>
-                            <p>On stage with LLM pipelines at scale, for one of Europe's leading data communities.</p>
+                            <p data-i18n="hl.pydata">On stage with LLM pipelines at scale, for one of Europe's leading data communities.</p>
                         </figcaption>
                     </figure>
 
@@ -3039,7 +3089,7 @@
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
                             <h3>EIC Summit · Barcelona</h3>
-                            <p>Applied AI systems and impact-driven experimentation.</p>
+                            <p data-i18n="hl.eicbcn">Applied AI systems and impact-driven experimentation.</p>
                         </figcaption>
                     </figure>
 
@@ -3049,7 +3099,7 @@
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
                             <h3>EuroSciPy · Szczecin</h3>
-                            <p>Tracking rejected manuscripts with Qdrant and Specter2, presented to the scientific Python community.</p>
+                            <p data-i18n="hl.euroscipy24">Tracking rejected manuscripts with Qdrant and Specter2, presented to the scientific Python community.</p>
                         </figcaption>
                     </figure>
 
@@ -3059,7 +3109,7 @@
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
                             <h3>BiDigital · Biella</h3>
-                            <p>Data science models for Bitcoin and decision support.</p>
+                            <p data-i18n="hl.bidigital">Data science models for Bitcoin and decision support.</p>
                         </figcaption>
                     </figure>
 
@@ -3069,7 +3119,7 @@
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
                             <h3>EIC Summit · Houston</h3>
-                            <p>AI initiatives and publishing innovation, presented in the United States.</p>
+                            <p data-i18n="hl.eichou">AI initiatives and publishing innovation, presented in the United States.</p>
                         </figcaption>
                     </figure>
 
@@ -3079,7 +3129,7 @@
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
                             <h3>EIC Summit · Paris</h3>
-                            <p>AI strategy and scalable data-driven processes for editorial operations.</p>
+                            <p data-i18n="hl.eicparis">AI strategy and scalable data-driven processes for editorial operations.</p>
                         </figcaption>
                     </figure>
 
@@ -3087,9 +3137,9 @@
                         <img src="assets/highlights/golden-gala-team-2012.webp" alt="Italian national 4x400m relay teams lined up at Golden Gala 2012" loading="lazy" decoding="async" width="800" height="533">
                         <span class="hl-slide-year">2012</span>
                         <figcaption class="hl-caption">
-                            <span class="hl-tag hl-tag--warm">Athletics · National Team</span>
-                            <h3>Italian 4x400m Relay Squad</h3>
-                            <p>The azzurri lineup in Rome — the same discipline I bring to AI delivery today.</p>
+                            <span class="hl-tag hl-tag--warm" data-i18n="tag.athletics">Athletics · National Team</span>
+                            <h3 data-i18n="hl.relay.title">Italian 4x400m Relay Squad</h3>
+                            <p data-i18n="hl.relay">The azzurri lineup in Rome — the same discipline I bring to AI delivery today.</p>
                         </figcaption>
                     </figure>
 
@@ -3098,17 +3148,17 @@
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
-                            <h3>Swiss Data Science Conference · Zurich</h3>
-                            <p>Applied AI and real-world data science impact, presented to the Swiss data community.</p>
+                            <h3 data-i18n="hl.sds.title">Swiss Data Science Conference · Zurich</h3>
+                            <p data-i18n="hl.sds">Applied AI and real-world data science impact, presented to the Swiss data community.</p>
                         </figcaption>
                     </figure>
 
                     <figure class="hl-slide hl-slide--text">
-                        <span class="hl-slide-year">July 2026</span>
+                        <span class="hl-slide-year" data-i18n="status.july2026">July 2026</span>
                         <figcaption class="hl-caption">
-                            <span class="hl-tag">Next Stop</span>
+                            <span class="hl-tag" data-i18n="tag.nextstop">Next Stop</span>
                             <h3>EuroSciPy Krakow · 2 Talks</h3>
-                            <p>Two accepted talks on production-ready open-source AI workflows.</p>
+                            <p data-i18n="hl.krakow">Two accepted talks on production-ready open-source AI workflows.</p>
                         </figcaption>
                     </figure>
                 </div>
@@ -3117,23 +3167,23 @@
             <section class="feature-row" aria-label="Flagship project and speaking">
                 <div class="hero-projects-speaking">
                     <article class="hero-project">
-                        <span class="hero-project-label">Flagship Initiative</span>
+                        <span class="hero-project-label" data-i18n="feat.flagship.label">Flagship Initiative</span>
                         <div class="project-logo-wrap">
                             <a href="https://alphaquants.net" target="_blank" rel="noopener">
                                 <img src="assets/project_logo/alphaquants.webp" alt="alphaquants.net logo" class="project-logo" width="128" height="128">
                             </a>
                             <h3><a href="https://alphaquants.net" target="_blank" rel="noopener">alphaquants.net</a></h3>
                         </div>
-                        <p>Applied AI for quantitative finance: models, analysis workflows, and decision systems designed for practical investing and risk-aware execution.</p>
+                        <p data-i18n="feat.flagship.desc">Applied AI for quantitative finance: models, analysis workflows, and decision systems designed for practical investing and risk-aware execution.</p>
                     </article>
                     <article class="hero-project">
                         <span class="hero-project-label">Speaking 2026</span>
-                        <h3>International stages, from PyData to Parliament</h3>
+                        <h3 data-i18n="feat.speaking.title">International stages, from PyData to Parliament</h3>
                         <ul class="hero-talk-list">
-                            <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a> <span class="talk-status done">Delivered</span></li>
-                            <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7470041107175870464/" target="_blank" rel="noopener"><strong>Camera dei Deputati</strong> · Rome</a> <span class="talk-status done">Delivered</span></li>
-                            <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong> · Zurich</a> <span class="talk-status done">Delivered</span></li>
-                            <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow</strong> · 2 talks</a> <span class="talk-status upcoming">July 2026</span></li>
+                            <li><a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener"><strong>PyData London 2026</strong></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
+                            <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7470041107175870464/" target="_blank" rel="noopener"><strong>Camera dei Deputati</strong><span data-i18n="city.rome.inline"> · Rome</span></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
+                            <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener"><strong>Swiss Data Science Conference</strong><span data-i18n="city.zurich.inline"> · Zurich</span></a> <span class="talk-status done" data-i18n="status.delivered">Delivered</span></li>
+                            <li><a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener"><strong>EuroSciPy Krakow</strong><span data-i18n="misc.twotalks"> · 2 talks</span></a> <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></li>
                         </ul>
                     </article>
                 </div>
@@ -3141,8 +3191,8 @@
 
             <section id="profile-overview" class="profile-columns" aria-label="Background and Education">
                 <div class="profile-column">
-                    <h2>Background</h2>
-                    <p class="column-subtitle">Professional track record in descending chronological order.</p>
+                    <h2 data-i18n="bg.title">Background</h2>
+                    <p class="column-subtitle" data-i18n="bg.subtitle">Professional track record in descending chronological order.</p>
                     <div class="background-grid">
                         <article class="experience-card">
                             <div class="card-header-brand">
@@ -3151,9 +3201,9 @@
                                     <img src="assets/company_logo/mdpi.png" alt="MDPI" class="company-logo" loading="lazy">
                                 </a>
                             </div>
-                            <div class="company"><a href="https://www.mdpi.com/" target="_blank" rel="noopener" class="card-company-link">MDPI</a> · Basel, Switzerland 🇨🇭</div>
-                            <div class="period">2023 – Present</div>
-                            <p>Tech Lead for Data Intelligence Team: owning roadmap and delivery of ML and LLM products, including multimillion-record semantic tagging, ontology-based graph clustering, and production pipelines with Azure OpenAI, Qdrant, and Prefect.</p>
+                            <div class="company"><a href="https://www.mdpi.com/" target="_blank" rel="noopener" class="card-company-link">MDPI</a><span data-i18n="city.basel.inline"> · Basel, Switzerland 🇨🇭</span></div>
+                            <div class="period" data-i18n="period.present">2023 – Present</div>
+                            <p data-i18n="bg.mdpi">Tech Lead for Data Intelligence Team: owning roadmap and delivery of ML and LLM products, including multimillion-record semantic tagging, ontology-based graph clustering, and production pipelines with Azure OpenAI, Qdrant, and Prefect.</p>
                         </article>
                         <article class="experience-card">
                             <div class="card-header-brand">
@@ -3162,9 +3212,9 @@
                                     <img src="assets/company_logo/esselunga.svg" alt="Esselunga" class="company-logo" loading="lazy">
                                 </a>
                             </div>
-                            <div class="company"><a href="https://www.esselunga.it/" target="_blank" rel="noopener" class="card-company-link">Esselunga</a> · Milan, Italy 🇮🇹</div>
+                            <div class="company"><a href="https://www.esselunga.it/" target="_blank" rel="noopener" class="card-company-link">Esselunga</a><span data-i18n="city.milan.inline"> · Milan, Italy 🇮🇹</span></div>
                             <div class="period">2017 – 2023</div>
-                            <p>Led data science across a multi-billion-euro retail operation: delivered 3% revenue and margin uplift, reduced churn by 20% on 6M+ customers, improved CLV by 15%, and automated workflows with 90%+ time savings.</p>
+                            <p data-i18n="bg.esselunga">Led data science across a multi-billion-euro retail operation: delivered 3% revenue and margin uplift, reduced churn by 20% on 6M+ customers, improved CLV by 15%, and automated workflows with 90%+ time savings.</p>
                         </article>
                         <article class="experience-card">
                             <div class="card-header-brand">
@@ -3173,9 +3223,9 @@
                                     <img src="assets/company_logo/accenture.webp" alt="Accenture" class="company-logo" loading="lazy">
                                 </a>
                             </div>
-                            <div class="company"><a href="https://www.accenture.com/" target="_blank" rel="noopener" class="card-company-link">Accenture</a> · Milan, Italy 🇮🇹</div>
+                            <div class="company"><a href="https://www.accenture.com/" target="_blank" rel="noopener" class="card-company-link">Accenture</a><span data-i18n="city.milan.inline"> · Milan, Italy 🇮🇹</span></div>
                             <div class="period">2017</div>
-                            <p>Delivered quantitative consulting for banking clients using SPSS, SAS, and Python across finance and risk transformation projects.</p>
+                            <p data-i18n="bg.accenture">Delivered quantitative consulting for banking clients using SPSS, SAS, and Python across finance and risk transformation projects.</p>
                         </article>
                         <article class="experience-card">
                             <div class="card-header-brand">
@@ -3184,86 +3234,86 @@
                                     <img src="assets/company_logo/fiditalia.webp" alt="Fiditalia" class="company-logo" loading="lazy">
                                 </a>
                             </div>
-                            <div class="company"><a href="https://www.fiditalia.it/" target="_blank" rel="noopener" class="card-company-link">Fiditalia</a> · Milan, Italy 🇮🇹</div>
+                            <div class="company"><a href="https://www.fiditalia.it/" target="_blank" rel="noopener" class="card-company-link">Fiditalia</a><span data-i18n="city.milan.inline"> · Milan, Italy 🇮🇹</span></div>
                             <div class="period">2016 – 2017</div>
-                            <p>Built statistical models for credit risk and scoring, including Machine Learning, Value at Risk, Expected Loss, Loss Given Default, and Exposure at Default.</p>
+                            <p data-i18n="bg.fiditalia">Built statistical models for credit risk and scoring, including Machine Learning, Value at Risk, Expected Loss, Loss Given Default, and Exposure at Default.</p>
                         </article>
                     </div>
                 </div>
 
                 <div class="profile-column">
-                    <h2>Education</h2>
-                    <p class="column-subtitle">Quantitative training spanning statistics, economics, finance, and modern data science.</p>
+                    <h2 data-i18n="edu.title">Education</h2>
+                    <p class="column-subtitle" data-i18n="edu.subtitle">Quantitative training spanning statistics, economics, finance, and modern data science.</p>
                     <div class="education-grid">
                         <article class="education-card">
                             <div class="education-head">
-                                <h3>Master's Degree · Data Science</h3>
+                                <h3 data-i18n="edu.master.title">Master's Degree · Data Science</h3>
                                 <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
                                     <img src="assets/university_logo/bicocca.webp" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
                                 </a>
                             </div>
-                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
-                            <p class="year">2021 · Advanced ML, NLP, and data products</p>
+                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link" data-i18n="edu.unimib">University of Milan Bicocca</a></p>
+                            <p class="year" data-i18n="edu.master.year">2021 · Advanced ML, NLP, and data products</p>
                         </article>
                         <article class="education-card">
                             <div class="education-head">
-                                <h3>MSc · Economic Statistics</h3>
+                                <h3 data-i18n="edu.msc.title">MSc · Economic Statistics</h3>
                                 <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
                                     <img src="assets/university_logo/bicocca.webp" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
                                 </a>
                             </div>
-                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
-                            <p class="year">2017 · Financial Markets, Insurance, and risk analytics</p>
+                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link" data-i18n="edu.unimib">University of Milan Bicocca</a></p>
+                            <p class="year" data-i18n="edu.msc.year">2017 · Financial Markets, Insurance, and risk analytics</p>
                         </article>
                         <article class="education-card">
                             <div class="education-head">
-                                <h3>BSc · Statistics</h3>
+                                <h3 data-i18n="edu.bsc.title">BSc · Statistics</h3>
                                 <a href="https://www.unimib.it/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
                                     <img src="assets/university_logo/bicocca.webp" alt="University of Milan Bicocca" class="university-logo" loading="lazy">
                                 </a>
                             </div>
-                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link">University of Milan Bicocca</a></p>
-                            <p class="year">2014 · Statistical modeling and econometrics</p>
+                            <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link" data-i18n="edu.unimib">University of Milan Bicocca</a></p>
+                            <p class="year" data-i18n="edu.bsc.year">2014 · Statistical modeling and econometrics</p>
                         </article>
                     </div>
                 </div>
             </section>
 
             <section id="passions" class="passions-section">
-                <h2 class="section-title">Beyond Work</h2>
-                <p class="section-subtitle">
+                <h2 class="section-title" data-i18n="passions.title">Beyond Work</h2>
+                <p class="section-subtitle" data-i18n="passions.subtitle">
                     Six areas that define my curiosity, energy, and long-term growth.
                 </p>
                 <div class="passions-grid">
                     <article class="focus-item">
-                        <span class="focus-label">Core Interest</span>
-                        <h3>Data Science and AI</h3>
-                        <p>Continuous experimentation on models, LLM systems, and practical AI applications with real-world impact.</p>
+                        <span class="focus-label" data-i18n="passions.core.label">Core Interest</span>
+                        <h3 data-i18n="passions.core.title">Data Science and AI</h3>
+                        <p data-i18n="passions.core">Continuous experimentation on models, LLM systems, and practical AI applications with real-world impact.</p>
                     </article>
                     <article class="focus-item">
-                        <span class="focus-label">Markets</span>
-                        <h3>Quantitative Finance</h3>
-                        <p>Research on market behavior, portfolio logic, and data-driven investing across traditional and digital assets.</p>
+                        <span class="focus-label" data-i18n="passions.markets.label">Markets</span>
+                        <h3 data-i18n="passions.markets.title">Quantitative Finance</h3>
+                        <p data-i18n="passions.markets">Research on market behavior, portfolio logic, and data-driven investing across traditional and digital assets.</p>
                     </article>
                     <article class="focus-item">
                         <span class="focus-label">Community</span>
-                        <h3>Speaking and Mentoring</h3>
-                        <p>Sharing practical lessons through conferences, mentoring, and collaboration with professionals and students.</p>
+                        <h3 data-i18n="passions.community.title">Speaking and Mentoring</h3>
+                        <p data-i18n="passions.community">Sharing practical lessons through conferences, mentoring, and collaboration with professionals and students.</p>
                     </article>
                     <article class="focus-item">
-                        <span class="focus-label">Discipline</span>
-                        <h3>Competitive Sport Mindset</h3>
-                        <p>Former Italian National Team athlete focused on consistency, resilience, and performance under pressure.</p>
+                        <span class="focus-label" data-i18n="passions.discipline.label">Discipline</span>
+                        <h3 data-i18n="passions.discipline.title">Competitive Sport Mindset</h3>
+                        <p data-i18n="passions.discipline">Former Italian National Team athlete focused on consistency, resilience, and performance under pressure.</p>
                     </article>
                     <article class="focus-item">
-                        <span class="focus-label">Systems</span>
-                        <h3>Automation and Productivity</h3>
-                        <p>Designing efficient workflows and scalable processes to amplify execution quality and team output.</p>
+                        <span class="focus-label" data-i18n="passions.systems.label">Systems</span>
+                        <h3 data-i18n="passions.systems.title">Automation and Productivity</h3>
+                        <p data-i18n="passions.systems">Designing efficient workflows and scalable processes to amplify execution quality and team output.</p>
                     </article>
                     <article class="focus-item">
-                        <span class="focus-label">Hobbies</span>
-                        <h3>Numismatics, Billiards, Soccer, Music</h3>
-                        <p>Personal interests that keep me creative and balanced, with a special place for italodance genre.</p>
+                        <span class="focus-label" data-i18n="passions.hobbies.label">Hobbies</span>
+                        <h3 data-i18n="passions.hobbies.title">Numismatics, Billiards, Soccer, Music</h3>
+                        <p data-i18n="passions.hobbies">Personal interests that keep me creative and balanced, with a special place for italodance genre.</p>
                     </article>
                 </div>
             </section>
@@ -3271,8 +3321,8 @@
 
         <div id="tab-projects" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-projects">
         <section id="projects">
-            <h2 class="section-title">Some Projects</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="projects.title">Some Projects</h2>
+            <p class="section-subtitle" data-i18n="projects.subtitle">
                 A curated selection of projects across machine learning, NLP, and AI product engineering.
             </p>
             <div class="projects-grid">
@@ -3280,7 +3330,7 @@
                     <img src="assets/Thermomodel.webp" alt="Data Science framework analyzing Bitcoin market dynamics" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Bitcoin DataScience</h3>
-                        <p>
+                        <p data-i18n="projects.bitcoin">
                             Data Science framework for analyzing Bitcoin market dynamics, price patterns,
                             and trading signals with predictive models.
                         </p>
@@ -3289,7 +3339,7 @@
                             <span class="tag">Time Series</span>
                             <span class="tag">Python</span>
                         </div>
-                        <a href="https://github.com/DanieleRaimondi/bitcoin_datascience" class="project-link" target="_blank" rel="noopener">
+                        <a href="https://github.com/DanieleRaimondi/bitcoin_datascience" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">
                             View Project
                         </a>
                     </div>
@@ -3299,9 +3349,9 @@
                     <img src="assets/Chatbot.webp" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy" width="1238" height="882">
                     <div class="project-content">
                         <h3>AI Twin</h3>
-                        <p>
-                            Conversational AI chatbot powered by LLM technology that acts as a digital twin, 
-                            answering questions about my work, projects, and career using RAG architecture 
+                        <p data-i18n="projects.aitwin">
+                            Conversational AI chatbot powered by LLM technology that acts as a digital twin,
+                            answering questions about my work, projects, and career using RAG architecture
                             and streaming responses.
                         </p>
                         <div class="tech-tags">
@@ -3310,7 +3360,7 @@
                             <span class="tag">RAG</span>
                             <span class="tag">Python</span>
                         </div>
-                        <div class="project-private-badge">Private Project</div>
+                        <div class="project-private-badge" data-i18n="projects.private">Private Project</div>
                     </div>
                 </div>
 
@@ -3318,7 +3368,7 @@
                     <img src="assets/BitcoinSentiment.webp" alt="Sentiment analysis pipeline on Bitcoin news and social media" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Sentiment Analysis Bitcoin</h3>
-                        <p>
+                        <p data-i18n="projects.sentiment">
                             NLP pipeline aggregating sentiment from social media and news to detect Bitcoin trend reversals
                             and support trading decisions.
                         </p>
@@ -3327,7 +3377,7 @@
                             <span class="tag">Sentiment Analysis</span>
                             <span class="tag">Python</span>
                         </div>
-                        <a href="https://github.com/DanieleRaimondi/Sentiment_Analysis_Bitcoin" class="project-link" target="_blank" rel="noopener">
+                        <a href="https://github.com/DanieleRaimondi/Sentiment_Analysis_Bitcoin" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">
                             View Project
                         </a>
                     </div>
@@ -3337,7 +3387,7 @@
                     <img src="assets/BettingDataScience.webp" alt="Betting exchange scrapers and live football data pipeline" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Betting Exchange Scrapers</h3>
-                        <p>
+                        <p data-i18n="projects.betting">
                             Real-time scraping and data pipeline for betting exchange odds and live football statistics
                             to power sports analytics strategies.
                         </p>
@@ -3346,7 +3396,7 @@
                             <span class="tag">Modelling</span>
                             <span class="tag">Python</span>
                         </div>
-                        <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank" rel="noopener">
+                        <a href="https://github.com/DanieleRaimondi/Betting_Livescore_Scrapers" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">
                             View Project
                         </a>
                     </div>
@@ -3356,7 +3406,7 @@
                     <img src="assets/MusicClassifier.webp" alt="Handcrafted Music Embeddings for Genre Classification and Similarity Search" loading="lazy" width="1280" height="704">
                     <div class="project-content">
                         <h3>Music Classification</h3>
-                        <p>
+                        <p data-i18n="projects.music">
                             End-to-end pipeline for handcrafted music embeddings, genre classification with SHAP, and similarity search on an Italodance/Trance dataset.
                         </p>
                         <div class="tech-tags">
@@ -3364,7 +3414,7 @@
                             <span class="tag">Embeddings</span>
                             <span class="tag">Python</span>
                         </div>
-                        <a href="https://github.com/DanieleRaimondi/MusicClassifier" class="project-link" target="_blank" rel="noopener">
+                        <a href="https://github.com/DanieleRaimondi/MusicClassifier" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">
                             View Project
                         </a>
                     </div>
@@ -3375,8 +3425,8 @@
 
         <div id="tab-skills" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-skills">
         <section id="skills" class="section-alt">
-            <h2 class="section-title">Technical Expertise</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="skills.title">Technical Expertise</h2>
+            <p class="section-subtitle" data-i18n="skills.subtitle">
                 End-to-end capabilities from statistical research to production-grade AI systems.
             </p>
             <div class="skills-grid">
@@ -3417,14 +3467,14 @@
                 </div>
 
                 <div class="skill-card">
-                    <h3>Quantitative Finance</h3>
+                    <h3 data-i18n="skills.quant.title">Quantitative Finance</h3>
                     <ul>
-                        <li>ETF &amp; Portfolio Optimization</li>
-                        <li>Crypto &amp; Traditional Markets</li>
+                        <li data-i18n="skills.quant.etf">ETF &amp; Portfolio Optimization</li>
+                        <li data-i18n="skills.quant.crypto">Crypto &amp; Traditional Markets</li>
                         <li>Risk Management &amp; Pricing</li>
-                        <li>Macroeconomic Analysis</li>
-                        <li>Financial Modeling</li>
-                        <li>Investment Strategy Development</li>
+                        <li data-i18n="skills.quant.macro">Macroeconomic Analysis</li>
+                        <li data-i18n="skills.quant.modeling">Financial Modeling</li>
+                        <li data-i18n="skills.quant.strategy">Investment Strategy Development</li>
                     </ul>
                 </div>
             </div>
@@ -3434,7 +3484,7 @@
         <div id="tab-talks" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-talks">
             <section id="talks" class="section-alt">
                 <h2 class="section-title">Talks</h2>
-                <p class="section-subtitle">
+                <p class="section-subtitle" data-i18n="talks.subtitle">
                     Conference sessions, invited talks, and academic events grouped by year.
                 </p>
 
@@ -3446,64 +3496,64 @@
                         </video>
                     </div>
                     <div class="talk-video-caption">
-                        <span class="hl-tag">Featured · Institutions</span>
-                        <h3>Camera dei Deputati · Rome — June 2026</h3>
-                        <p>My intervention at the Italian Parliament, presenting an AI platform for public-policy decisions in research and innovation (in Italian).</p>
+                        <span class="hl-tag" data-i18n="talks.featured.tag">Featured · Institutions</span>
+                        <h3 data-i18n="talks.featured.title">Camera dei Deputati · Rome — June 2026</h3>
+                        <p data-i18n="talks.featured.desc">My intervention at the Italian Parliament, presenting an AI platform for public-policy decisions in research and innovation (in Italian).</p>
                     </div>
                 </article>
 
                 <div class="talks-timeline">
 
                 <div class="talks-year">
-                    <h3 class="talks-year-title">2026 · Upcoming</h3>
+                    <h3 class="talks-year-title" data-i18n="talks.upcoming">2026 · Upcoming</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 1 <span class="talk-status upcoming">July 2026</span></h3>
-                            <div class="talk-meta">Krakow, Poland · July 2026</div>
-                            <p>First accepted EuroSciPy talk within the 2026 conference program.</p>
+                            <h3>EuroSciPy Krakow 2026 · Talk 1 <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></h3>
+                            <div class="talk-meta" data-i18n="meta.krakow">Krakow, Poland · July 2026</div>
+                            <p data-i18n="talks.euroscipy1">First accepted EuroSciPy talk within the 2026 conference program.</p>
                             <div class="talk-links">
-                                <a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener">Talk page</a>
+                                <a href="https://pretalx.com/euroscipy-2026/talk/PRCPUX/" target="_blank" rel="noopener" data-i18n="link.talkpage">Talk page</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 2 <span class="talk-status upcoming">July 2026</span></h3>
-                            <div class="talk-meta">Krakow, Poland · July 2026</div>
-                            <p>Second accepted EuroSciPy talk, expanding on production-ready open-source AI workflows.</p>
+                            <h3>EuroSciPy Krakow 2026 · Talk 2 <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></h3>
+                            <div class="talk-meta" data-i18n="meta.krakow">Krakow, Poland · July 2026</div>
+                            <p data-i18n="talks.euroscipy2">Second accepted EuroSciPy talk, expanding on production-ready open-source AI workflows.</p>
                             <div class="talk-links">
-                                <a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener">Talk page</a>
+                                <a href="https://pretalx.com/euroscipy-2026/talk/G7BJFJ/" target="_blank" rel="noopener" data-i18n="link.talkpage">Talk page</a>
                             </div>
                         </article>
                     </div>
                 </div>
 
                 <div class="talks-year">
-                    <h3 class="talks-year-title">2026 · Delivered</h3>
+                    <h3 class="talks-year-title" data-i18n="talks.delivered">2026 · Delivered</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
                             <h3>PyData London 2026</h3>
-                            <div class="talk-meta">London, United Kingdom · 2026</div>
-                            <p>Delivered a talk at PyData London on practical AI and data product delivery.</p>
+                            <div class="talk-meta" data-i18n="meta.london">London, United Kingdom · 2026</div>
+                            <p data-i18n="talks.pydata">Delivered a talk at PyData London on practical AI and data product delivery.</p>
                             <div class="talk-links">
-                                <a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener">Talk page</a>
+                                <a href="https://pretalx.com/pydata-london-2026/talk/ZFR8VH/" target="_blank" rel="noopener" data-i18n="link.talkpage">Talk page</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
                             <h3>Camera dei Deputati · Italian Parliament</h3>
-                            <div class="talk-meta">Rome, Italy · June 2026</div>
-                            <p>Presented an AI platform supporting public-policy decisions in research and innovation, at a press conference of the Italian Chamber of Deputies.</p>
+                            <div class="talk-meta" data-i18n="meta.rome26">Rome, Italy · June 2026</div>
+                            <p data-i18n="talks.camera">Presented an AI platform supporting public-policy decisions in research and innovation, at a press conference of the Italian Chamber of Deputies.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7470041107175870464/" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="https://www.lafrecciaweb.it/2026/06/09/alla-camera-dei-deputati-presentata-una-piattaforma-di-intelligenza-artificiale-per-le-politiche-pubbliche/" target="_blank" rel="noopener">Press · La Freccia</a>
-                                <a href="https://www.agenziagiornalisticaopinione.it/opinionmix/fdi-fratelli-ditalia-camera-ia-baldelli-fdi-presentata-piattaforma-per-supportare-decisioni-in-ambito-di-ricerca-e-innovazione/" target="_blank" rel="noopener">Press · Opinione</a>
+                                <a href="https://www.lafrecciaweb.it/2026/06/09/alla-camera-dei-deputati-presentata-una-piattaforma-di-intelligenza-artificiale-per-le-politiche-pubbliche/" target="_blank" rel="noopener" data-i18n="link.press.freccia">Press · La Freccia</a>
+                                <a href="https://www.agenziagiornalisticaopinione.it/opinionmix/fdi-fratelli-ditalia-camera-ia-baldelli-fdi-presentata-piattaforma-per-supportare-decisioni-in-ambito-di-ricerca-e-innovazione/" target="_blank" rel="noopener" data-i18n="link.press.opinione">Press · Opinione</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
                             <h3>Swiss Data Science Conference 2026</h3>
-                            <div class="talk-meta">Zurich, Switzerland · 2026</div>
-                            <p>Invited session focused on applied AI and real-world data science impact.</p>
+                            <div class="talk-meta" data-i18n="meta.zurich">Zurich, Switzerland · 2026</div>
+                            <p data-i18n="talks.sds">Invited session focused on applied AI and real-world data science impact.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7457342095771529217/" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
@@ -3516,8 +3566,8 @@
                     <div class="talks-grid">
                         <article class="talk-card">
                             <h3>EIC Summit</h3>
-                            <div class="talk-meta">Houston, United States · 2025</div>
-                            <p>Speaker on AI initiatives and publishing innovation at MDPI's EIC Summit.</p>
+                            <div class="talk-meta" data-i18n="meta.houston">Houston, United States · 2025</div>
+                            <p data-i18n="talks.eichou">Speaker on AI initiatives and publishing innovation at MDPI's EIC Summit.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7345715886734897152/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7345715886734897152%29" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
@@ -3525,18 +3575,18 @@
 
                         <article class="talk-card">
                             <h3>EIC Summit</h3>
-                            <div class="talk-meta">Paris, France · 2025</div>
-                            <p>Talk on AI strategy, editorial operations, and scalable data-driven processes.</p>
+                            <div class="talk-meta" data-i18n="meta.paris">Paris, France · 2025</div>
+                            <p data-i18n="talks.eicparis">Talk on AI strategy, editorial operations, and scalable data-driven processes.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7341724783098695681/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7341724783098695681%29" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="https://www.mdpi.com/journal/ebj/news-and-conferences/news/12475" target="_blank" rel="noopener">MDPI news</a>
+                                <a href="https://www.mdpi.com/journal/ebj/news-and-conferences/news/12475" target="_blank" rel="noopener" data-i18n="link.mdpinews">MDPI news</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
                             <h3>EIC Summit</h3>
-                            <div class="talk-meta">Barcelona, Spain · 2025</div>
-                            <p>Session on applied AI systems and impact-driven experimentation.</p>
+                            <div class="talk-meta" data-i18n="meta.barcelona">Barcelona, Spain · 2025</div>
+                            <p data-i18n="talks.eicbcn">Session on applied AI systems and impact-driven experimentation.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7333020940362055680/" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
@@ -3549,19 +3599,19 @@
                     <div class="talks-grid">
                         <article class="talk-card">
                             <h3>EuroSciPy 2024</h3>
-                            <div class="talk-meta">Szczecin, Poland · 2024</div>
-                            <p>Talk on tracking rejected manuscripts using Qdrant and Specter2.</p>
+                            <div class="talk-meta" data-i18n="meta.szczecin">Szczecin, Poland · 2024</div>
+                            <p data-i18n="talks.euroscipy24">Talk on tracking rejected manuscripts using Qdrant and Specter2.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7234846476726599680/" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="https://pretalx.com/euroscipy-2024/talk/HCMV78/" target="_blank" rel="noopener">Talk page</a>
-                                <a href="https://www.mdpi.com/journal/mining/news-and-conferences/news/9297" target="_blank" rel="noopener">MDPI news</a>
+                                <a href="https://pretalx.com/euroscipy-2024/talk/HCMV78/" target="_blank" rel="noopener" data-i18n="link.talkpage">Talk page</a>
+                                <a href="https://www.mdpi.com/journal/mining/news-and-conferences/news/9297" target="_blank" rel="noopener" data-i18n="link.mdpinews">MDPI news</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
                             <h3>BiDigital Conference</h3>
-                            <div class="talk-meta">Biella, Italy · 2024</div>
-                            <p>Session on data science models for Bitcoin and decision support.</p>
+                            <div class="talk-meta" data-i18n="meta.biella24">Biella, Italy · 2024</div>
+                            <p data-i18n="talks.bidigital">Session on data science models for Bitcoin and decision support.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:7249003545394352130/" target="_blank" rel="noopener">LinkedIn</a>
                                 <a href="https://www.youtube.com/live/5UO6pHJ9yNM?t=28361s" target="_blank" rel="noopener">Video</a>
@@ -3575,8 +3625,8 @@
                     <div class="talks-grid">
                         <article class="talk-card">
                             <h3>Python Biella Group · Talk 1</h3>
-                            <div class="talk-meta">Biella, Italy · 2022</div>
-                            <p>Community session on Python, data pipelines, and practical engineering workflows.</p>
+                            <div class="talk-meta" data-i18n="meta.biella22">Biella, Italy · 2022</div>
+                            <p data-i18n="talks.pbg1">Community session on Python, data pipelines, and practical engineering workflows.</p>
                             <div class="talk-links">
                                 <a href="https://www.youtube.com/watch?v=x-ri6MJ2iCY" target="_blank" rel="noopener">Talk 1</a>
                             </div>
@@ -3584,8 +3634,8 @@
 
                         <article class="talk-card">
                             <h3>Python Biella Group · Talk 2</h3>
-                            <div class="talk-meta">Biella, Italy · 2022</div>
-                            <p>Follow-up talk on AI experimentation and production thinking for Python practitioners.</p>
+                            <div class="talk-meta" data-i18n="meta.biella22">Biella, Italy · 2022</div>
+                            <p data-i18n="talks.pbg2">Follow-up talk on AI experimentation and production thinking for Python practitioners.</p>
                             <div class="talk-links">
                                 <a href="https://www.youtube.com/watch?v=hzfIZ7IpYqM" target="_blank" rel="noopener">Talk 2</a>
                             </div>
@@ -3593,10 +3643,10 @@
 
                         <article class="talk-card">
                             <h3>Università Cattolica · Career Path</h3>
-                            <div class="talk-meta">Milan, Italy · 2022</div>
-                            <p>Invited talk on data analyst and data scientist career paths.</p>
+                            <div class="talk-meta" data-i18n="meta.milan22">Milan, Italy · 2022</div>
+                            <p data-i18n="talks.cattolica22">Invited talk on data analyst and data scientist career paths.</p>
                             <div class="talk-links">
-                                <a href="https://studenticattolica.unicatt.it/evt-career-path-percorsi-e-professioni-data-analyst" target="_blank" rel="noopener">Event page</a>
+                                <a href="https://studenticattolica.unicatt.it/evt-career-path-percorsi-e-professioni-data-analyst" target="_blank" rel="noopener" data-i18n="link.eventpage">Event page</a>
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:6917024883033939968/" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
                         </article>
@@ -3608,28 +3658,28 @@
                     <div class="talks-grid">
                         <article class="talk-card">
                             <h3>LIUC University · Guest Lecture</h3>
-                            <div class="talk-meta">Castellanza, Italy · 2021</div>
-                            <p>Talk on data and analytics applications for business and engineering students.</p>
+                            <div class="talk-meta" data-i18n="meta.castellanza">Castellanza, Italy · 2021</div>
+                            <p data-i18n="talks.liuc">Talk on data and analytics applications for business and engineering students.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:6801445190168051712/" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
-                            <h3>Università Cattolica · Student Projects</h3>
-                            <div class="talk-meta">Milan, Italy · 2021</div>
-                            <p>Industry projects with graduating students focused on analytics and problem solving.</p>
+                            <h3 data-i18n="talks.cattolica21.title">Università Cattolica · Student Projects</h3>
+                            <div class="talk-meta" data-i18n="meta.milan21">Milan, Italy · 2021</div>
+                            <p data-i18n="talks.cattolica21">Industry projects with graduating students focused on analytics and problem solving.</p>
                             <div class="talk-links">
                                 <a href="https://www.linkedin.com/feed/update/urn:li:activity:6768481078073151488/" target="_blank" rel="noopener">LinkedIn</a>
                             </div>
                         </article>
 
                         <article class="talk-card">
-                            <h3>Joinrs Interview</h3>
+                            <h3 data-i18n="talks.joinrs.title">Joinrs Interview</h3>
                             <div class="talk-meta">Online · 2021</div>
-                            <p>Interview about my career path as Data Scientist at Esselunga.</p>
+                            <p data-i18n="talks.joinrs">Interview about my career path as Data Scientist at Esselunga.</p>
                             <div class="talk-links">
-                                <a href="https://www.joinrs.com/fr/daniele-raimondi-esselunga/" target="_blank" rel="noopener">Interview</a>
+                                <a href="https://www.joinrs.com/fr/daniele-raimondi-esselunga/" target="_blank" rel="noopener" data-i18n="link.interview">Interview</a>
                             </div>
                         </article>
                     </div>
@@ -3642,7 +3692,7 @@
         <div id="tab-sport" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-sport">
             <section id="sport" class="section-alt">
                 <h2 class="section-title">Sport</h2>
-                <p class="section-subtitle">
+                <p class="section-subtitle" data-i18n="sport.subtitle">
                     Athletic milestones from my years with the Italian national 4x400m relay teams.
                 </p>
                 <div class="sport-showcase">
@@ -3658,22 +3708,22 @@
 
                         <div class="sport-grid">
                             <article class="sport-card">
-                                <h3>Golden Gala 2012 · Italian Senior National Team</h3>
-                                <div class="sport-meta">Rome, Italy · 2012</div>
-                                <p>Selected for the 4x400m relay at the Golden Gala in Rome, competing with the Italian senior national team in one of the premier European track events.</p>
+                                <h3 data-i18n="sport.gg.title">Golden Gala 2012 · Italian Senior National Team</h3>
+                                <div class="sport-meta" data-i18n="sport.gg.meta">Rome, Italy · 2012</div>
+                                <p data-i18n="sport.gg.desc">Selected for the 4x400m relay at the Golden Gala in Rome, competing with the Italian senior national team in one of the premier European track events.</p>
                                 <div class="sport-links">
                                     <a href="https://www.fidal.it/content/Compeed-Golden-Gala-ecco-gli-azzurri/50442" target="_blank" rel="noopener">FIDAL</a>
-                                    <a href="https://youtu.be/8t6FIpT9WYU" target="_blank" rel="noopener">Race video</a>
+                                    <a href="https://youtu.be/8t6FIpT9WYU" target="_blank" rel="noopener" data-i18n="link.racevideo">Race video</a>
                                 </div>
                             </article>
 
                             <article class="sport-card">
-                                <h3>European U23 Championships · Italian National Team</h3>
-                                <div class="sport-meta">Tampere, Finland · 2013</div>
-                                <p>Member of the Italian 4x400m relay team at the European U23 Championships in Tampere, where we finished second in Europe.</p>
+                                <h3 data-i18n="sport.u23.title">European U23 Championships · Italian National Team</h3>
+                                <div class="sport-meta" data-i18n="sport.u23.meta">Tampere, Finland · 2013</div>
+                                <p data-i18n="sport.u23.desc">Member of the Italian 4x400m relay team at the European U23 Championships in Tampere, where we finished second in Europe.</p>
                                 <div class="sport-links">
                                     <a href="https://www.fidal.it/content/EuroUnder23-la-squadra-per-Tampere/51654" target="_blank" rel="noopener">FIDAL</a>
-                                    <a href="https://www.youtube.com/results?search_query=european+u23+championships+2013+4x400+relay+tampere" target="_blank" rel="noopener">Race video</a>
+                                    <a href="https://www.youtube.com/results?search_query=european+u23+championships+2013+4x400+relay+tampere" target="_blank" rel="noopener" data-i18n="link.racevideo">Race video</a>
                                 </div>
                             </article>
                         </div>
@@ -3716,7 +3766,7 @@
 
         <footer>
             <p>© 2026 Daniele Raimondi · Senior Data Scientist</p>
-            <p style="margin-top: 6px;">Basel, Switzerland 🇨🇭</p>
+            <p style="margin-top: 6px;" data-i18n="footer.location">Basel, Switzerland 🇨🇭</p>
         </footer>
     </main>
     
@@ -3852,14 +3902,16 @@
         const el = document.getElementById('hero-rotator');
         if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        const words = ['intelligence', 'decisions', 'foresight', 'alpha'];
+        const defaultWords = ['intelligence', 'decisions', 'foresight', 'alpha'];
+        // i18n.js swaps in the Italian word set via this global
+        const words = () => window.__heroRotatorWords || defaultWords;
         let index = 0;
 
         setInterval(() => {
             el.classList.add('is-out');
             setTimeout(() => {
-                index = (index + 1) % words.length;
-                el.textContent = words[index];
+                index = (index + 1) % words().length;
+                el.textContent = words()[index];
                 el.classList.remove('is-out');
                 el.classList.add('is-in');
                 setTimeout(() => el.classList.remove('is-in'), 450);
@@ -3952,6 +4004,9 @@
     </script>
 
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260610b"></script>
+    <script src="js/chatbot.js?v=20260611"></script>
+
+    <!-- Language toggle (EN/IT) -->
+    <script src="js/i18n.js?v=20260611"></script>
 </body>
 </html>

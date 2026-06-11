@@ -90,9 +90,15 @@
     user: 'assets/user-avatar.svg'
   };
 
-  // English is the default UI language; we adapt only once the user writes
+  // Site-wide language chosen via the EN/IT flag toggle (js/i18n.js)
+  function siteLang() {
+    return localStorage.getItem('site_lang') === 'it' ? 'it' : 'en';
+  }
+
   function welcomeMessage() {
-    return "Hi! I'm Daniele's AI twin. Ask me about my work in AI and Data Science, my talk at the Italian Parliament, or my time on the Italian national track team! (Puoi scrivermi anche in italiano!)";
+    return siteLang() === 'it'
+      ? "Ciao! Sono il gemello AI di Daniele. Chiedimi del mio lavoro in AI e Data Science, del mio intervento alla Camera dei Deputati o dei miei anni in Nazionale di atletica! (You can also write in English!)"
+      : "Hi! I'm Daniele's AI twin. Ask me about my work in AI and Data Science, my talk at the Italian Parliament, or my time on the Italian national track team! (Puoi scrivermi anche in italiano!)";
   }
 
   function initChatbot() {
@@ -169,7 +175,11 @@
 
       // Proactive teaser above the minimized chat — once per session
       if (isMinimized && !sessionStorage.getItem('chatbot_teaser_shown')) {
-        const teasers = [
+        const getTeasers = () => siteLang() === 'it' ? [
+          '👋 Chiedimi del mio intervento alla Camera dei Deputati',
+          '👋 Chiedimi di PyData London 2026',
+          '👋 Chiedimi della Nazionale di atletica'
+        ] : [
           '👋 Ask me about my talk at the Italian Parliament',
           '👋 Ask me about PyData London 2026',
           '👋 Ask me about racing for the Italian national team'
@@ -178,6 +188,7 @@
         setTimeout(() => {
           if (!chatContainer.classList.contains('minimized') || sessionStorage.getItem('chatbot_teaser_shown')) return;
           sessionStorage.setItem('chatbot_teaser_shown', '1');
+          const teasers = getTeasers();
 
           const teaser = document.createElement('div');
           teaser.className = 'chat-teaser';
@@ -229,7 +240,7 @@
   function renderSuggestedQuestions() {
     const chatMessages = document.getElementById('chat-messages');
     const lastUserMessage = conversationHistory.filter(m => m.role === 'user').pop();
-    const lang = lastUserMessage ? detectLanguage(lastUserMessage.content) : 'en';
+    const lang = lastUserMessage ? detectLanguage(lastUserMessage.content) : siteLang();
     
     const suggestionsDiv = document.createElement('div');
     suggestionsDiv.className = 'suggested-questions';
@@ -568,7 +579,7 @@
     messageDiv.innerHTML = `
       <img src="${AVATARS.assistant}" alt="Daniele" class="message-avatar">
       <div class="typing-bubble">
-        <span class="typing-text">Daniele is typing</span>
+        <span class="typing-text">${siteLang() === 'it' ? 'Daniele sta scrivendo' : 'Daniele is typing'}</span>
         <div class="typing-indicator">
           <span></span>
           <span></span>
@@ -674,6 +685,17 @@
     addMessage('assistant', welcomeMessage());
     renderSuggestedQuestions();
   }
+
+  // When the site language toggles and the visitor hasn't chatted yet,
+  // re-render the welcome message and suggested questions in the new language
+  window.addEventListener('sitelang-changed', () => {
+    if (conversationHistory.some(m => m.role === 'user')) return;
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+    chatMessages.innerHTML = '';
+    addMessage('assistant', welcomeMessage());
+    renderSuggestedQuestions();
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initChatbot);

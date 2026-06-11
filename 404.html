@@ -66,5 +66,16 @@
         <p>The page you're looking for was moved or never existed. Let's get you back on track.</p>
         <a href="/">← Back to home</a>
     </main>
+    <script>
+    // Follow the language chosen on the main site (EN/IT flag toggle)
+    (function () {
+        if (localStorage.getItem('site_lang') !== 'it') return;
+        document.documentElement.lang = 'it';
+        document.title = '404 · Pagina Non Trovata | Daniele Raimondi';
+        document.querySelector('h2').textContent = 'Questa pagina non esiste';
+        document.querySelector('p').textContent = 'La pagina che cerchi è stata spostata o non è mai esistita. Torniamo in carreggiata.';
+        document.querySelector('a').textContent = '← Torna alla home';
+    })();
+    </script>
 </body>
 </html>
