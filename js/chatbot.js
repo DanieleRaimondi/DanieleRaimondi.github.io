@@ -55,35 +55,43 @@
     en: [
       "What's your experience in AI and Data Science?",
       "Tell me about your talk at the Italian Parliament",
-      "What projects have you built with Machine Learning?"
+      "How did you build a taxonomy of 115,000 scientific concepts?"
     ],
     it: [
       "Qual è la tua esperienza in AI e Data Science?",
       "Raccontami del tuo intervento alla Camera dei Deputati",
-      "Quali progetti hai sviluppato con Machine Learning?"
+      "Come hai costruito una tassonomia di 115.000 concetti scientifici?"
     ]
   };
 
+  // All questions map directly to the backend knowledge base (data/*.txt)
   const FOLLOWUP_QUESTIONS = {
     en: [
       "Tell me about your talk at the Italian Parliament",
-      "What do you do in quantitative finance?",
-      "How do you use agentic AI in your work?",
-      "What was it like racing for the Italian national team?",
+      "How did you build a taxonomy of 115,000 scientific concepts?",
+      "How did you cut churn by 20% on 6 million customers?",
       "Which conferences are you speaking at in 2026?",
+      "What was it like racing for the Italian national team?",
+      "What do you do in quantitative finance?",
+      "How does this AI Twin chatbot work?",
+      "Is it true you produced Italodance music?",
+      "Why did you move from Milan to Basel?",
       "What's the project you're most proud of?"
     ],
     it: [
       "Raccontami del tuo intervento alla Camera dei Deputati",
-      "Di cosa ti occupi in finanza quantitativa?",
-      "Come usi l'AI agentica nel tuo lavoro?",
-      "Com'era gareggiare per la nazionale italiana?",
+      "Come hai costruito una tassonomia di 115.000 concetti scientifici?",
+      "Come hai ridotto il churn del 20% su 6 milioni di clienti?",
       "A quali conferenze parli nel 2026?",
+      "Com'era gareggiare per la nazionale italiana?",
+      "Di cosa ti occupi in finanza quantitativa?",
+      "Come funziona questo chatbot AI Twin?",
+      "È vero che producevi musica italodance?",
+      "Perché ti sei trasferito da Milano a Basilea?",
       "Qual è il progetto di cui vai più fiero?"
     ]
   };
   const usedFollowups = new Set();
-  let assistantReplies = 0;
 
   const AVATARS = {
     assistant: 'assets/profile2.jpeg',
@@ -171,19 +179,25 @@
         minimizeBtn.setAttribute('aria-label', isCurrentlyMinimized ? 'Maximize chat' : 'Minimize chat');
         minimizeBtn.title = isCurrentlyMinimized ? 'Maximize' : 'Minimize';
         localStorage.setItem('chatbot_minimized', isCurrentlyMinimized);
+        // Re-arm the teaser whenever the chat gets minimized
+        if (isCurrentlyMinimized) scheduleTeaser(8000);
       }
 
-      // Proactive teaser above the minimized chat — once per session
-      if (isMinimized && !sessionStorage.getItem('chatbot_teaser_shown')) {
-        const getTeasers = () => siteLang() === 'it' ? [
-          '👋 Chiedimi del mio intervento alla Camera dei Deputati',
-          '👋 Chiedimi di PyData London 2026',
-          '👋 Chiedimi della Nazionale di atletica'
-        ] : [
-          '👋 Ask me about my talk at the Italian Parliament',
-          '👋 Ask me about PyData London 2026',
-          '👋 Ask me about racing for the Italian national team'
-        ];
+      const getTeasers = () => siteLang() === 'it' ? [
+        '👋 Chiedimi del mio intervento alla Camera dei Deputati',
+        '👋 Chiedimi della tassonomia da 115.000 concetti scientifici',
+        '👋 Chiedimi della Nazionale di atletica'
+      ] : [
+        '👋 Ask me about my talk at the Italian Parliament',
+        '👋 Ask me about the 115,000-concept scientific taxonomy',
+        '👋 Ask me about racing for the Italian national team'
+      ];
+
+      // Proactive teaser above the minimized chat — once per session.
+      // Armed at load AND whenever the user minimizes the chat; it only fires
+      // if the chat is still minimized when the timer elapses.
+      function scheduleTeaser(delayMs) {
+        if (sessionStorage.getItem('chatbot_teaser_shown')) return;
 
         setTimeout(() => {
           if (!chatContainer.classList.contains('minimized') || sessionStorage.getItem('chatbot_teaser_shown')) return;
@@ -217,8 +231,10 @@
             if (chatContainer.classList.contains('minimized')) toggleMinimize();
           });
           setTimeout(removeTeaser, 20000);
-        }, 8000);
+        }, delayMs);
       }
+
+      scheduleTeaser(8000);
     }
   }
 
@@ -507,11 +523,13 @@
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       trimAndSaveHistory();
 
-      assistantReplies++;
       // Follow-ups and CTA must match the language of the user's last message
       const lang = detectLanguage(message);
       renderFollowups(lang);
-      if (assistantReplies >= 2 && !sessionStorage.getItem('chatbot_cta_shown')) {
+      // CTA after the 2nd assistant reply of the conversation — counted from
+      // the persisted history, so it survives page reloads mid-conversation
+      const assistantCount = conversationHistory.filter(m => m.role === 'assistant').length;
+      if (assistantCount >= 2 && !sessionStorage.getItem('chatbot_cta_shown')) {
         sessionStorage.setItem('chatbot_cta_shown', '1');
         showContactCTA(lang);
       }
@@ -680,6 +698,9 @@
 
     conversationHistory = [];
     usedFollowups.clear();
+    // A fresh conversation re-arms the once-per-session teaser and LinkedIn CTA
+    sessionStorage.removeItem('chatbot_cta_shown');
+    sessionStorage.removeItem('chatbot_teaser_shown');
     localStorage.removeItem('chatbot_history');
     document.getElementById('chat-messages').innerHTML = '';
     addMessage('assistant', welcomeMessage());
