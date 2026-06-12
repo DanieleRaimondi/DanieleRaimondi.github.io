@@ -111,6 +111,11 @@
             --accent-strong: #133e9e;
             --accent-soft: #d8e3f6;
             --warm: #0e7490;
+            /* Hot fluo accent family: the "energy" color against the blue base */
+            --hot1: #ff1e56;
+            --hot2: #ff5e1a;
+            --hot3: #ffa928;
+            --grad-hot: linear-gradient(94deg, var(--hot1) 0%, var(--hot2) 55%, var(--hot3) 100%);
             --hero-bg: #0f2340;
             --hero-bg-soft: #1d3a67;
             --shadow-soft: 0 8px 28px rgba(14, 30, 60, 0.08);
@@ -238,34 +243,53 @@
         }
 
         .sidebar h1 {
-            font-size: 1.34rem;
+            font-size: 1.58rem;
             margin-bottom: 4px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
             background: linear-gradient(110deg, #ffffff 35%, #9cc6ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* "AI" inside RAIMONDI: the gradient theme, slowly shimmering */
+        /* "AI" inside RAIMONDI: hot fluo gradient, shimmering and glowing */
         .sidebar h1 .name-ai {
-            background: linear-gradient(110deg, #22d3ee, #6ee7b7, #ffab4a, #22d3ee);
+            position: relative;
+            background: linear-gradient(110deg, #ff1e56, #ff7a00, #ffb02e, #ff1e56);
             background-size: 250% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: aiShimmer 6s linear infinite;
+            animation: aiShimmer 5s linear infinite, aiGlow 3.2s ease-in-out infinite;
+        }
+
+        /* Underline marker so "AI" reads as a highlighted token */
+        .sidebar h1 .name-ai::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 1px;
+            bottom: -3px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ff1e56, #ffa928);
         }
 
         @keyframes aiShimmer {
             to { background-position: 250% 0; }
         }
 
+        @keyframes aiGlow {
+            0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 94, 26, 0.35)); }
+            50% { filter: drop-shadow(0 0 11px rgba(255, 94, 26, 0.85)); }
+        }
+
         @supports not (background-clip: text) {
             .sidebar h1 { color: #ffffff; -webkit-text-fill-color: currentColor; }
-            .sidebar h1 .name-ai { color: #4dd6f0; -webkit-text-fill-color: currentColor; }
+            .sidebar h1 .name-ai { color: #ff7a3d; -webkit-text-fill-color: currentColor; }
         }
 
         .sidebar .role {
@@ -312,7 +336,7 @@
         .sidebar nav a:focus,
         .sidebar nav a.nav-active {
             color: #ffffff;
-            border-left-color: var(--warm);
+            border-left-color: var(--hot2);
             padding-left: 16px;
             outline: none;
         }
@@ -394,11 +418,11 @@
         }
 
         .profile-column {
-            background: rgba(255, 252, 246, 0.9);
+            background: rgba(251, 253, 255, 0.92);
             border: 1px solid #dce3ee;
             border-radius: var(--radius-lg);
             padding: 20px;
-            box-shadow: 0 8px 24px rgba(40, 35, 27, 0.08);
+            box-shadow: 0 8px 24px rgba(24, 42, 75, 0.08);
         }
 
         .profile-column h2 {
@@ -512,52 +536,93 @@
             min-height: 100vh;
             width: 100%;
             overflow-x: hidden;
-            background: rgba(255, 253, 248, 0.9);
+            background: rgba(251, 253, 255, 0.93);
             border: 1px solid #dce3ee;
             min-width: 0;
             border-radius: 24px;
-            box-shadow: 0 14px 28px rgba(44, 34, 22, 0.12);
+            box-shadow: 0 14px 28px rgba(18, 36, 70, 0.12);
         }
 
+        /* Tab rail: borderless text tabs over a dark pill that slides to the active one */
         .main-tabs {
+            position: relative;
             display: flex;
-            gap: 10px;
-            padding: 18px 20px;
+            gap: 6px;
+            padding: 14px 20px;
             border-bottom: 1px solid #dce3ee;
-            background: rgba(250, 244, 235, 0.96);
+            background: linear-gradient(180deg, #f7fafe 0%, #eef3fa 100%);
             border-radius: 24px 24px 0 0;
             overflow-x: auto;
             scroll-behavior: smooth;
         }
 
-        .main-tab-btn {
-            border: 1px solid #ccd7e7;
-            background: #f1f5fb;
-            color: #203c63;
+        .main-tabs-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
             border-radius: 999px;
-            padding: 12px 22px;
+            background: linear-gradient(120deg, #0f2340 0%, #1d3a67 100%);
+            box-shadow: 0 8px 20px rgba(15, 35, 64, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            pointer-events: none;
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1), height 0.2s ease, opacity 0.2s ease;
+            will-change: transform, width;
+        }
+
+        .main-tabs-indicator.is-ready {
+            opacity: 1;
+        }
+
+        /* Hot spark inside the pill, anchored to its leading edge */
+        .main-tabs-indicator::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            background: var(--grad-hot);
+            box-shadow: 0 0 10px rgba(255, 94, 26, 0.85);
+        }
+
+        .main-tab-btn {
+            position: relative;
+            z-index: 1;
+            border: none;
+            background: transparent;
+            color: #3c5478;
+            border-radius: 999px;
+            padding: 11px 24px;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.92rem;
+            font-size: 0.94rem;
             font-weight: 700;
             letter-spacing: 0.01em;
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.22s ease;
+            transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
         }
 
         .main-tab-btn:hover,
         .main-tab-btn:focus-visible {
-            background: #e6edf7;
-            border-color: #a9bedd;
-            color: #142f54;
+            background: rgba(29, 93, 201, 0.09);
+            color: #0d2a52;
+            transform: translateY(-1px);
             outline: none;
         }
 
         .main-tab-btn.active {
             color: #ffffff;
-            border-color: transparent;
-            background: linear-gradient(115deg, var(--accent), var(--accent-strong));
-            box-shadow: 0 8px 18px rgba(16, 56, 130, 0.28);
+            background: transparent;
+            transform: none;
+        }
+
+        /* Until JS measures the pill, the active tab still reads as selected */
+        .main-tabs:not(.has-indicator) .main-tab-btn.active {
+            background: linear-gradient(120deg, #0f2340, #1d3a67);
         }
 
         .tab-panel {
@@ -568,17 +633,11 @@
             display: block;
         }
 
+        /* Borderless marquee: plain text beats, separated by hot gradient diamonds */
         .identity-ticker {
-            margin: 14px 44px 0;
-            border: 1px solid #d2dbe9;
-            border-radius: 999px;
-            background:
-                radial-gradient(circle at 10% 50%, rgba(29, 93, 201, 0.12), transparent 35%),
-                radial-gradient(circle at 85% 45%, rgba(14, 116, 144, 0.14), transparent 38%),
-                linear-gradient(90deg, #f8fafd 0%, #eaf0f8 100%);
+            margin: 16px 44px 0;
             overflow: hidden;
             position: relative;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 8px 18px rgba(24, 44, 79, 0.08);
         }
 
         .identity-ticker::before,
@@ -587,41 +646,49 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 46px;
+            width: 56px;
             z-index: 2;
             pointer-events: none;
         }
 
         .identity-ticker::before {
             left: 0;
-            background: linear-gradient(90deg, #f8fafd 0%, rgba(248,250,253,0) 100%);
+            background: linear-gradient(90deg, #fbfdff 0%, rgba(251,253,255,0) 100%);
         }
 
         .identity-ticker::after {
             right: 0;
-            background: linear-gradient(270deg, #eaf0f8 0%, rgba(234,240,248,0) 100%);
+            background: linear-gradient(270deg, #fbfdff 0%, rgba(251,253,255,0) 100%);
         }
 
         .identity-ticker-track {
             display: flex;
-            gap: 12px;
+            align-items: center;
             width: max-content;
-            padding: 10px 18px;
+            padding: 8px 0;
             animation: tickerMove 26s linear infinite;
-            color: #2f3c52;
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
+            color: #44536e;
+            font-size: 0.73rem;
+            letter-spacing: 0.13em;
             text-transform: uppercase;
             font-weight: 700;
         }
 
         .identity-ticker-track span {
-            padding: 6px 11px;
-            border-radius: 999px;
-            border: 1px solid #cfd9e8;
-            background: rgba(255, 255, 255, 0.66);
-            backdrop-filter: blur(4px);
+            display: inline-flex;
+            align-items: center;
             white-space: nowrap;
+        }
+
+        .identity-ticker-track span::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 1px;
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, var(--hot2), var(--accent));
+            margin: 0 16px;
+            flex-shrink: 0;
         }
 
         @keyframes tickerMove {
@@ -653,7 +720,7 @@
             width: 380px;
             height: 380px;
             border-radius: 50%;
-            background: linear-gradient(180deg, rgba(29, 93, 201, 0.20), rgba(29, 93, 201, 0));
+            background: radial-gradient(circle, rgba(255, 94, 26, 0.18), transparent 65%);
             pointer-events: none;
             animation: heroDrift 12s ease-in-out infinite;
         }
@@ -682,49 +749,64 @@
             z-index: 2;
         }
 
+        /* Open-air hero: no card, just large type over the gradient backdrop */
         .hero-featured {
-            background: rgba(252, 252, 249, 0.94);
-            border: 1px solid #d8e0ed;
-            box-shadow: 0 12px 24px rgba(18, 28, 22, 0.08);
-            padding: 26px 28px 22px;
-            border-radius: var(--radius-lg);
-        }
-
-        .hero-kicker {
-            display: inline-block;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.74rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #ffffff;
-            background: linear-gradient(110deg, var(--accent), #0e7490);
-            border-radius: 999px;
-            padding: 5px 13px;
-            margin-bottom: 14px;
+            position: relative;
+            padding: 18px 0 6px;
         }
 
         .hero-featured h2 {
-            font-size: clamp(1.9rem, 4vw, 3.1rem);
-            line-height: 1.06;
-            margin-bottom: 10px;
-            color: #17243a;
-            letter-spacing: -0.025em;
+            font-size: clamp(2.3rem, 4.6vw, 4rem);
+            line-height: 1.04;
+            margin-bottom: 14px;
+            color: #131f33;
+            letter-spacing: -0.035em;
         }
 
         .hero-rotator {
             display: inline-block;
-            /* Vivid multi-stop gradient: deep blue → cyan → mint → warm orange */
-            background: linear-gradient(94deg, #2643e6 0%, #00b4e6 36%, #4fd6a0 62%, #ff9446 100%);
+            /* Hot fluo gradient: red → orange → amber */
+            background: var(--grad-hot);
             background-size: 130% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 3px 16px rgba(255, 94, 26, 0.28));
             transition: opacity 0.38s ease, transform 0.38s ease;
         }
 
         @supports not (background-clip: text) {
-            .hero-rotator { color: var(--accent); -webkit-text-fill-color: currentColor; }
+            .hero-rotator { color: var(--hot2); -webkit-text-fill-color: currentColor; }
+        }
+
+        /* Giant outlined "AI" floating on the right edge of the hero */
+        .hero-watermark {
+            position: absolute;
+            right: 28px;
+            top: 50%;
+            transform: translateY(-50%) rotate(6deg);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(7rem, 13vw, 12rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(29, 93, 201, 0.13);
+            pointer-events: none;
+            user-select: none;
+            z-index: 1;
+        }
+
+        .hero-watermark::after {
+            content: 'AI';
+            position: absolute;
+            inset: 0;
+            -webkit-text-stroke: 0;
+            background: var(--grad-hot);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.10;
         }
 
         .hero-rotator.is-out {
@@ -742,17 +824,18 @@
         }
 
         .hero-featured p {
-            color: #546074;
-            font-size: 1.06rem;
+            color: #4d5a70;
+            font-size: 1.12rem;
             line-height: 1.6;
             margin-bottom: 0;
+            max-width: 56ch;
         }
 
         .hero-chips {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 16px;
+            margin-top: 20px;
         }
 
         .hero-chips span {
@@ -764,7 +847,7 @@
             border: 1.5px solid transparent;
             background:
                 linear-gradient(#f8fbff, #f8fbff) padding-box,
-                linear-gradient(110deg, #2643e6, #00b4e6 45%, #4fd6a0 75%, #ff9446) border-box;
+                linear-gradient(110deg, #1d5dc9, #00a3d9 45%, var(--hot2) 100%) border-box;
             border-radius: 999px;
             padding: 6px 14px;
             transition: transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
@@ -774,9 +857,9 @@
             transform: translateY(-2px);
             color: #ffffff;
             background:
-                linear-gradient(110deg, #2643e6, #0086c9) padding-box,
-                linear-gradient(110deg, #2643e6, #00b4e6 45%, #4fd6a0 75%, #ff9446) border-box;
-            box-shadow: 0 6px 16px rgba(38, 67, 230, 0.25);
+                linear-gradient(110deg, var(--hot1), var(--hot2)) padding-box,
+                linear-gradient(110deg, var(--hot1), var(--hot3)) border-box;
+            box-shadow: 0 6px 16px rgba(255, 64, 64, 0.30);
         }
 
         .feature-row {
@@ -790,7 +873,7 @@
         }
 
         .hero-project {
-            background: rgba(250, 251, 247, 0.92);
+            background: rgba(250, 252, 255, 0.92);
             border: 1px solid #d8e0ed;
             padding: 18px;
             border-radius: var(--radius-md);
@@ -931,7 +1014,7 @@
             height: 4px;
             border-radius: 999px;
             margin-top: 10px;
-            background: linear-gradient(90deg, var(--warm), var(--accent));
+            background: linear-gradient(90deg, var(--accent), var(--hot2));
         }
 
         .section-subtitle {
@@ -1634,63 +1717,127 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
         }
 
+        /* Each card carries its own accent pair, picked up by ribbon, icon and chips */
+        .skill-card:nth-child(1) { --ca: #2643e6; --cb: #00b4e6; }
+        .skill-card:nth-child(2) { --ca: #7c3aed; --cb: #d22ec9; }
+        .skill-card:nth-child(3) { --ca: #0e7490; --cb: #0fb98a; }
+        .skill-card:nth-child(4) { --ca: #ff5e1a; --cb: #ff1e56; }
+
         .skill-card {
-            background: linear-gradient(180deg, #ffffff 0%, #f0f5fd 100%);
-            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #f4f8fe 100%);
+            padding: 24px 24px 22px;
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-soft);
             border: 1px solid #d4e1f0;
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ca), var(--cb));
+        }
+
+        /* Soft accent bloom in the corner, revealed on hover */
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: -70px;
+            right: -70px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--cb), transparent 68%);
+            opacity: 0.10;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 13px 24px rgba(24, 68, 125, 0.14);
+            /* Plain values first: fallback where color-mix is unsupported */
+            box-shadow: 0 16px 32px rgba(24, 68, 125, 0.16);
             border-color: #a9c8ef;
+            box-shadow: 0 16px 32px color-mix(in srgb, var(--ca) 22%, rgba(24, 68, 125, 0.10));
+            border-color: color-mix(in srgb, var(--ca) 38%, #d4e1f0);
+        }
+
+        .skill-card:hover::after {
+            opacity: 0.20;
+            transform: scale(1.25);
+        }
+
+        .skill-card-head {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 16px;
+        }
+
+        .skill-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--ca), var(--cb));
+            box-shadow: 0 7px 16px rgba(38, 67, 130, 0.30);
+            box-shadow: 0 7px 16px color-mix(in srgb, var(--ca) 38%, transparent);
+        }
+
+        .skill-icon svg {
+            width: 22px;
+            height: 22px;
         }
 
         .skill-card h3 {
-            font-size: 1.02rem;
-            margin-bottom: 11px;
-            color: #1a3f72;
+            font-size: 1.14rem;
+            color: #16294a;
             font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-card h3::before {
-            content: '';
-            width: 5px;
-            height: 25px;
-            border-radius: 3px;
-            background: linear-gradient(to bottom, var(--warm), var(--accent));
+            letter-spacing: -0.015em;
+            margin: 0;
         }
 
         .skill-card ul {
             list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .skill-card li {
-            padding: 6px 0;
-            color: #2d4066;
-            font-size: 0.9rem;
+            padding: 6px 13px;
+            border-radius: 999px;
+            color: #243a5e;
+            font-size: 0.85rem;
+            font-weight: 600;
             line-height: 1.35;
-            border-bottom: 1px solid #e5edf8;
-            transition: color 0.2s ease, padding-left 0.2s ease;
-        }
-
-        .skill-card li:last-child {
-            border-bottom: none;
+            border: 1px solid #d4dff0;
+            background: #ffffff;
+            border-color: color-mix(in srgb, var(--ca) 26%, transparent);
+            background: color-mix(in srgb, var(--ca) 6%, #ffffff);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
         }
 
         .skill-card li:hover {
-            color: var(--accent-strong);
-            padding-left: 6px;
+            transform: translateY(-2px);
+            border-color: var(--ca);
+            background: #f4f8ff;
+            background: color-mix(in srgb, var(--ca) 12%, #ffffff);
+            color: #122443;
         }
 
         .passions-section {
@@ -2590,6 +2737,11 @@
                 padding: 14px;
             }
 
+            /* Narrower sidebar: keep the single-line name from overflowing */
+            .sidebar h1 {
+                font-size: 1.4rem;
+            }
+
             .skills-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -2772,7 +2924,10 @@
 
             .identity-ticker-track {
                 font-size: 0.7rem;
-                gap: 18px;
+            }
+
+            .hero-watermark {
+                display: none;
             }
 
             .passions-grid {
@@ -2821,6 +2976,12 @@
             .main-tab-btn {
                 font-size: 0.84rem;
                 padding: 10px 16px;
+            }
+
+            .main-tabs-indicator::before {
+                left: 7px;
+                width: 5px;
+                height: 5px;
             }
 
             .company-logo {
@@ -2944,10 +3105,10 @@
             display: flex;
             gap: 6px;
             align-items: center;
-            background: rgba(255, 253, 248, 0.9);
+            background: rgba(251, 253, 255, 0.9);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            border: 1px solid #d8cfc0;
+            border: 1px solid #ccd8e8;
             border-radius: 999px;
             padding: 5px 8px;
             box-shadow: 0 6px 18px rgba(10, 20, 50, 0.12);
@@ -3079,6 +3240,7 @@
     <!-- MAIN CONTENT -->
     <main class="main-content" role="main">
         <div class="main-tabs" role="tablist" aria-label="Main content tabs">
+            <span class="main-tabs-indicator" aria-hidden="true"></span>
             <button class="main-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-home" id="tab-btn-home" data-tab-target="tab-home">Home</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects" data-i18n="nav.projects">Projects</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills" data-i18n="nav.skills">Skills</button>
@@ -3104,9 +3266,9 @@
                 </div>
             </div>
             <section class="hero-section" aria-label="Introduction">
+                <span class="hero-watermark" aria-hidden="true">AI</span>
                 <div class="hero-content">
                     <article class="hero-featured">
-                        <span class="hero-kicker">Senior Data Scientist · AI Tech Lead</span>
                         <h2><span data-i18n="hero.title.pre">Turning data into </span><span class="hero-rotator" id="hero-rotator">intelligence</span><span data-i18n="hero.title.post">.</span></h2>
                         <p data-i18n="hero.sub">A decade of Data Science and AI — scientific depth meets quantitative rigor.</p>
                         <div class="hero-chips" aria-label="Core focus areas">
@@ -3523,7 +3685,12 @@
             </p>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <h3>AI &amp; Machine Learning</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7L19 15z"/></svg>
+                        </span>
+                        <h3>AI &amp; Machine Learning</h3>
+                    </div>
                     <ul>
                         <li>LLM Pipelines &amp; GenAI</li>
                         <li>RAG &amp; Semantic Embeddings</li>
@@ -3535,7 +3702,12 @@
                 </div>
 
                 <div class="skill-card">
-                    <h3>Tech Stack &amp; Frameworks</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg>
+                        </span>
+                        <h3>Tech Stack &amp; Frameworks</h3>
+                    </div>
                     <ul>
                         <li>Python, R, SQL</li>
                         <li>Pandas/Polars, NumPy, Scikit-learn</li>
@@ -3547,7 +3719,12 @@
                 </div>
 
                 <div class="skill-card">
-                    <h3>Data Engineering &amp; MLOps</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.66-4.03 3-9 3s-9-1.34-9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+                        </span>
+                        <h3>Data Engineering &amp; MLOps</h3>
+                    </div>
                     <ul>
                         <li>ETL &amp; Data Pipelines</li>
                         <li>Production Deployment &amp; APIs</li>
@@ -3559,7 +3736,12 @@
                 </div>
 
                 <div class="skill-card">
-                    <h3 data-i18n="skills.quant.title">Quantitative Finance</h3>
+                    <div class="skill-card-head">
+                        <span class="skill-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </span>
+                        <h3 data-i18n="skills.quant.title">Quantitative Finance</h3>
+                    </div>
                     <ul>
                         <li data-i18n="skills.quant.etf">ETF &amp; Portfolio Optimization</li>
                         <li data-i18n="skills.quant.crypto">Crypto &amp; Traditional Markets</li>
@@ -3871,6 +4053,21 @@
 
         if (!tabButtons.length || !tabPanels.length) return;
 
+        // Sliding pill behind the active tab
+        const indicator = document.querySelector('.main-tabs-indicator');
+        const tabsRail = document.querySelector('.main-tabs');
+
+        const positionIndicator = () => {
+            if (!indicator || !tabsRail) return;
+            const active = tabsRail.querySelector('.main-tab-btn.active');
+            if (!active) return;
+            indicator.style.height = active.offsetHeight + 'px';
+            indicator.style.width = active.offsetWidth + 'px';
+            indicator.style.transform = 'translate(' + active.offsetLeft + 'px, ' + active.offsetTop + 'px)';
+            indicator.classList.add('is-ready');
+            tabsRail.classList.add('has-indicator');
+        };
+
         const activateTab = (tabId, pushHash = true) => {
             let hasTab = false;
 
@@ -3890,6 +4087,8 @@
             sidebarLinks.forEach(link => {
                 link.classList.toggle('nav-active', link.dataset.tabLink === tabId);
             });
+
+            positionIndicator();
 
             if (pushHash) {
                 history.replaceState(null, '', '#' + tabId);
@@ -3936,6 +4135,17 @@
         const initialHash = window.location.hash.replace('#', '');
         if (initialHash) {
             activateTab(initialHash, false);
+        }
+
+        // Keep the pill aligned through resizes, font loading and i18n label changes
+        positionIndicator();
+        window.addEventListener('resize', positionIndicator);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(positionIndicator);
+        }
+        if (window.ResizeObserver) {
+            const ro = new ResizeObserver(positionIndicator);
+            tabButtons.forEach(button => ro.observe(button));
         }
     })();
     </script>
