@@ -110,7 +110,8 @@
     'passions.hobbies': 'Interessi personali che mi mantengono creativo ed equilibrato, con un posto speciale per il genere italodance.',
 
     // ─── Projects ──────────────────────────────────────────────────────────
-    'projects.title': 'Alcuni Progetti',
+    'projects.title.a': 'Alcuni ',
+    'projects.title.b': 'Progetti',
     'projects.subtitle': 'Una selezione curata di progetti tra machine learning, NLP e AI product engineering.',
     'projects.bitcoin': 'Framework di Data Science per analizzare le dinamiche del mercato Bitcoin, pattern di prezzo e segnali di trading con modelli predittivi.',
     'projects.aitwin': 'Chatbot AI conversazionale basato su tecnologia LLM che agisce da gemello digitale, rispondendo a domande su lavoro, progetti e carriera con architettura RAG e risposte in streaming.',
@@ -121,7 +122,8 @@
     'projects.private': 'Progetto Privato',
 
     // ─── Skills ────────────────────────────────────────────────────────────
-    'skills.title': 'Competenze Tecniche',
+    'skills.title.a': 'Competenze ',
+    'skills.title.b': 'Tecniche',
     'skills.subtitle': 'Capacità end-to-end dalla ricerca statistica ai sistemi AI production-grade.',
     'skills.quant.title': 'Finanza Quantitativa',
     'skills.quant.etf': 'ETF e Ottimizzazione di Portafoglio',
@@ -131,6 +133,8 @@
     'skills.quant.strategy': 'Sviluppo di Strategie di Investimento',
 
     // ─── Talks ─────────────────────────────────────────────────────────────
+    'talks.title.a': 'Talk',
+    'talks.title.b': ' & Conferenze',
     'talks.subtitle': 'Sessioni a conferenze, talk su invito ed eventi accademici raggruppati per anno.',
     'talks.featured.tag': 'In Evidenza · Istituzioni',
     'talks.featured.title': 'Camera dei Deputati · Roma — Giugno 2026',
@@ -176,6 +180,8 @@
     'link.mdpinews': 'News MDPI',
 
     // ─── Sport ─────────────────────────────────────────────────────────────
+    'sport.title.a': 'Traguardi ',
+    'sport.title.b': 'Sportivi',
     'sport.subtitle': 'Tappe sportive dei miei anni con le staffette 4x400m della Nazionale Italiana.',
     'sport.gg.title': 'Golden Gala 2012 · Nazionale Assoluta Italiana',
     'sport.gg.meta': 'Roma, Italia · 2012',
