@@ -201,8 +201,8 @@
         }
 
         @keyframes photoGlow {
-            0%, 100% { box-shadow: 0 0 14px 1px rgba(255, 94, 26, 0.30); }
-            50% { box-shadow: 0 0 26px 5px rgba(255, 30, 110, 0.55); }
+            0%, 100% { box-shadow: 0 0 7px 0 rgba(255, 94, 26, 0.14); }
+            50% { box-shadow: 0 0 15px 1px rgba(255, 94, 26, 0.28); }
         }
 
         @keyframes ringSpin {
@@ -298,18 +298,6 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: aiShimmer 5s linear infinite, aiGlow 3.2s ease-in-out infinite;
-        }
-
-        /* Underline marker so "AI" reads as a highlighted token */
-        .sidebar h1 .name-ai::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 1px;
-            bottom: -3px;
-            height: 3px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #ff1e9d, #ff5e1a, #ffc12e);
         }
 
         @keyframes aiShimmer {
@@ -1026,6 +1014,19 @@
             border-radius: 999px;
             margin-top: 10px;
             background: linear-gradient(90deg, var(--accent), var(--hot2));
+        }
+
+        /* One word per section title rendered in the hot fluo gradient */
+        .title-accent {
+            background: var(--grad-hot);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        @supports not (background-clip: text) {
+            .title-accent { color: var(--hot2); -webkit-text-fill-color: currentColor; }
         }
 
         .section-subtitle {
@@ -3583,7 +3584,7 @@
 
         <div id="tab-projects" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-projects">
         <section id="projects">
-            <h2 class="section-title" data-i18n="projects.title">Some Projects</h2>
+            <h2 class="section-title"><span data-i18n="projects.title.a">Some </span><span class="title-accent" data-i18n="projects.title.b">Projects</span></h2>
             <p class="section-subtitle" data-i18n="projects.subtitle">
                 A curated selection of projects across machine learning, NLP, and AI product engineering.
             </p>
@@ -3687,7 +3688,7 @@
 
         <div id="tab-skills" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-skills">
         <section id="skills" class="section-alt">
-            <h2 class="section-title" data-i18n="skills.title">Technical Expertise</h2>
+            <h2 class="section-title"><span data-i18n="skills.title.a">Technical </span><span class="title-accent" data-i18n="skills.title.b">Expertise</span></h2>
             <p class="section-subtitle" data-i18n="skills.subtitle">
                 End-to-end capabilities from statistical research to production-grade AI systems.
             </p>
@@ -3765,7 +3766,7 @@
 
         <div id="tab-talks" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-talks">
             <section id="talks" class="section-alt">
-                <h2 class="section-title">Talks</h2>
+                <h2 class="section-title"><span class="title-accent" data-i18n="talks.title.a">Talks</span><span data-i18n="talks.title.b"> &amp; Conferences</span></h2>
                 <p class="section-subtitle" data-i18n="talks.subtitle">
                     Conference sessions, invited talks, and academic events grouped by year.
                 </p>
@@ -3973,7 +3974,7 @@
 
         <div id="tab-sport" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-sport">
             <section id="sport" class="section-alt">
-                <h2 class="section-title">Sport</h2>
+                <h2 class="section-title"><span data-i18n="sport.title.a">Athletic </span><span class="title-accent" data-i18n="sport.title.b">Achievements</span></h2>
                 <p class="section-subtitle" data-i18n="sport.subtitle">
                     Athletic milestones from my years with the Italian national 4x400m relay teams.
                 </p>
