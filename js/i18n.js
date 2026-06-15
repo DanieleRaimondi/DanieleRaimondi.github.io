@@ -173,6 +173,7 @@
     'talks.joinrs.title': 'Intervista Joinrs',
     'talks.joinrs': 'Intervista sul mio percorso da Data Scientist in Esselunga.',
     'link.talkpage': 'Pagina del Talk',
+    'link.video': 'Video',
     'link.press.freccia': 'Stampa · La Freccia',
     'link.press.opinione': 'Stampa · Opinione',
     'link.eventpage': 'Pagina Evento',
