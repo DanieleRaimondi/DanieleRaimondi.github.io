@@ -1169,6 +1169,26 @@
             display: block;
         }
 
+        .project-media {
+            position: relative;
+        }
+
+        .project-media video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-media video,
+        .project-card:focus-within .project-media video {
+            opacity: 1;
+        }
+
         .project-content {
             padding: 22px;
         }
@@ -3609,7 +3629,10 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/projects/Chatbot.webp" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy" width="1238" height="882">
+                    <div class="project-media">
+                        <img src="assets/projects/ChatbotPreview.webp" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy" width="404" height="700">
+                        <video class="project-hover-video" src="assets/projects/ai_twin_chat_demo.mp4" muted loop playsinline preload="metadata"></video>
+                    </div>
                     <div class="project-content">
                         <h3>AI Twin</h3>
                         <p data-i18n="projects.aitwin">
@@ -3628,7 +3651,10 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="assets/projects/ComputerScienceBilliard.webp" alt="Computer vision pipeline reconstructing 9-ball pool trajectories" loading="lazy" width="1200" height="901">
+                    <div class="project-media">
+                        <img src="assets/projects/ComputerScienceBilliard.webp" alt="Computer vision pipeline reconstructing 9-ball pool trajectories" loading="lazy" width="1200" height="901">
+                        <video class="project-hover-video" src="assets/projects/pool_trajectories_full.mp4" muted loop playsinline preload="metadata"></video>
+                    </div>
                     <div class="project-content">
                         <h3>Computer Science applied on Sports</h3>
                         <p data-i18n="projects.billiard">
@@ -4331,6 +4357,22 @@
         });
 
         if (!reducedMotion) requestAnimationFrame(step);
+    })();
+    </script>
+
+    <!-- Project cards: play preview video on hover -->
+    <script>
+    (function () {
+        document.querySelectorAll('.project-hover-video').forEach(video => {
+            const card = video.closest('.project-card');
+            if (!card) return;
+            const play = () => { video.currentTime = 0; video.play().catch(() => {}); };
+            const stop = () => { video.pause(); video.currentTime = 0; };
+            card.addEventListener('mouseenter', play);
+            card.addEventListener('mouseleave', stop);
+            card.addEventListener('focusin', play);
+            card.addEventListener('focusout', stop);
+        });
     })();
     </script>
 
