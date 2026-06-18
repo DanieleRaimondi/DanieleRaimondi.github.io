@@ -1167,6 +1167,7 @@
             height: 280px;
             object-fit: cover;
             display: block;
+            cursor: zoom-in;
             transition: transform 0.45s ease;
         }
 
@@ -1182,19 +1183,73 @@
             height: 280px;
             object-fit: cover;
             opacity: 0;
+            cursor: zoom-in;
             transition: opacity 0.3s ease, transform 0.45s ease;
             pointer-events: none;
         }
 
         .project-card:hover img,
         .project-card:focus-within img {
-            transform: scale(1.12);
+            transform: scale(1.28);
         }
 
         .project-card:hover .project-media video,
         .project-card:focus-within .project-media video {
             opacity: 1;
-            transform: scale(1.12);
+            transform: scale(1.28);
+            pointer-events: auto;
+        }
+
+        .project-lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            z-index: 1400;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(29, 93, 201, 0.32), transparent 42%),
+                rgba(6, 15, 29, 0.92);
+            backdrop-filter: blur(8px);
+        }
+
+        .project-lightbox.is-open {
+            display: flex;
+            animation: lightboxIn 0.28s ease;
+        }
+
+        .project-lightbox img,
+        .project-lightbox video {
+            width: min(1100px, 92vw);
+            max-height: 86vh;
+            object-fit: contain;
+            border-radius: 16px;
+            border: 1px solid rgba(208, 225, 252, 0.55);
+            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.45);
+            background: rgba(10, 20, 36, 0.85);
+            padding: 6px;
+        }
+
+        .project-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            border: 1px solid rgba(200, 221, 250, 0.7);
+            background: rgba(12, 30, 54, 0.72);
+            color: #f6fbff;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .project-lightbox-close:hover,
+        .project-lightbox-close:focus-visible {
+            background: rgba(24, 53, 90, 0.95);
+            outline: none;
         }
 
         .project-content {
@@ -3638,7 +3693,7 @@
 
                 <div class="project-card">
                     <div class="project-media">
-                        <img src="assets/projects/ChatbotPreview.webp" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy" width="886" height="490">
+                        <img src="assets/projects/ChatbotPreview.webp" alt="AI Twin chatbot interface with conversational AI capabilities" loading="lazy" width="888" height="490">
                         <video class="project-hover-video" src="assets/projects/ai_twin_chat_demo.mp4" muted loop playsinline preload="metadata"></video>
                     </div>
                     <div class="project-content">
@@ -3735,6 +3790,12 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="project-lightbox" id="project-lightbox" aria-hidden="true">
+                <button class="project-lightbox-close" type="button" aria-label="Close">×</button>
+                <img id="project-lightbox-image" alt="" style="display:none;">
+                <video id="project-lightbox-video" muted loop playsinline autoplay style="display:none;"></video>
             </div>
         </section>
         </div>
@@ -4380,6 +4441,61 @@
             card.addEventListener('mouseleave', stop);
             card.addEventListener('focusin', play);
             card.addEventListener('focusout', stop);
+        });
+    })();
+    </script>
+
+    <!-- Project cards: click image/video to expand in a lightbox -->
+    <script>
+    (function () {
+        const lightbox = document.getElementById('project-lightbox');
+        const lightboxImage = document.getElementById('project-lightbox-image');
+        const lightboxVideo = document.getElementById('project-lightbox-video');
+        const closeBtn = lightbox ? lightbox.querySelector('.project-lightbox-close') : null;
+        if (!lightbox || !lightboxImage || !lightboxVideo || !closeBtn) return;
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            lightboxVideo.pause();
+            lightboxVideo.removeAttribute('src');
+            lightboxImage.removeAttribute('src');
+        };
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            const media = card.querySelector('.project-media') || card;
+            const img = card.querySelector('img');
+            const hoverVideo = card.querySelector('.project-hover-video');
+            if (!img) return;
+
+            media.addEventListener('click', () => {
+                lightboxImage.style.display = 'none';
+                lightboxVideo.style.display = 'none';
+
+                if (hoverVideo) {
+                    lightboxVideo.src = hoverVideo.currentSrc || hoverVideo.src;
+                    lightboxVideo.style.display = 'block';
+                    lightboxVideo.currentTime = 0;
+                    lightboxVideo.play().catch(() => {});
+                } else {
+                    lightboxImage.src = img.currentSrc || img.src;
+                    lightboxImage.alt = img.alt || '';
+                    lightboxImage.style.display = 'block';
+                }
+
+                lightbox.classList.add('is-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', event => {
+            if (event.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
         });
     })();
     </script>
