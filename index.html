@@ -1200,6 +1200,119 @@
             pointer-events: auto;
         }
 
+        .project-carousel {
+            height: 280px;
+        }
+
+        .project-carousel .project-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .project-carousel .project-slide.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .project-carousel .project-slide img,
+        .project-carousel .project-slide video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+            transition: opacity 0.3s ease, transform 0.45s ease;
+        }
+
+        .project-carousel .project-slide video {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-carousel .project-slide.is-active img,
+        .project-card:focus-within .project-carousel .project-slide.is-active img {
+            transform: scale(1.28);
+        }
+
+        .project-card:hover .project-carousel .project-slide.is-active video,
+        .project-card:focus-within .project-carousel .project-slide.is-active video {
+            opacity: 1;
+            transform: scale(1.28);
+            pointer-events: auto;
+        }
+
+        .project-carousel .project-slide:not(.is-active) video {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(10, 20, 36, 0.55);
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.25s ease, background 0.25s ease;
+        }
+
+        .project-carousel:hover .carousel-arrow,
+        .project-carousel:focus-within .carousel-arrow {
+            opacity: 1;
+        }
+
+        .carousel-arrow:hover,
+        .carousel-arrow:focus-visible {
+            background: rgba(10, 20, 36, 0.85);
+            outline: none;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .carousel-dot.is-active {
+            background: #fff;
+        }
+
         .project-lightbox {
             position: fixed;
             inset: 0;
@@ -3714,14 +3827,26 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-media">
-                        <img src="assets/projects/ComputerScienceBilliard.webp" alt="Computer vision pipeline reconstructing 9-ball pool trajectories" loading="lazy" width="1200" height="901">
-                        <video class="project-hover-video" src="assets/projects/pool_trajectories_full.mp4" muted loop playsinline preload="metadata"></video>
+                    <div class="project-media project-carousel">
+                        <div class="project-slide is-active">
+                            <img src="assets/projects/PoolScreenshot.webp" alt="Computer vision pipeline reconstructing 9-ball pool trajectories" loading="lazy" width="1200" height="828">
+                            <video class="carousel-slide-video" src="assets/projects/pool_trajectories.mp4" muted loop playsinline preload="metadata"></video>
+                        </div>
+                        <div class="project-slide">
+                            <img src="assets/projects/GorizianaScreenshot.webp" alt="Computer vision pipeline reconstructing carom billiards trajectories" loading="lazy" width="1200" height="704">
+                            <video class="carousel-slide-video" src="assets/projects/goriziana_trajectories.mp4" muted loop playsinline preload="metadata"></video>
+                        </div>
+                        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous screenshot">‹</button>
+                        <button class="carousel-arrow carousel-next" type="button" aria-label="Next screenshot">›</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot is-active" type="button" data-slide-index="0" aria-label="Show 9-ball pool screenshot"></button>
+                            <button class="carousel-dot" type="button" data-slide-index="1" aria-label="Show carom billiards screenshot"></button>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Computer Science applied on Sports</h3>
                         <p data-i18n="projects.billiard">
-                            Reconstructed ball trajectories across a 9-ball pool match using 
+                            Reconstructed ball trajectories across pool and carom billiards matches using
                             computer vision: color-based detection, Kalman filter multi-object tracking with
                             Hungarian assignment, homography for top-down court mapping, and cushion-bounce
                             physics.
@@ -4463,30 +4588,41 @@
             lightboxImage.removeAttribute('src');
         };
 
+        const openWithVideo = src => {
+            lightboxImage.style.display = 'none';
+            lightboxVideo.style.display = 'block';
+            lightboxVideo.src = src;
+            lightboxVideo.currentTime = 0;
+            lightboxVideo.play().catch(() => {});
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const openWithImage = (src, alt) => {
+            lightboxVideo.style.display = 'none';
+            lightboxImage.style.display = 'block';
+            lightboxImage.src = src;
+            lightboxImage.alt = alt || '';
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+
         document.querySelectorAll('.project-card').forEach(card => {
+            if (card.querySelector('.project-carousel')) return; // handled by the carousel script
+
             const media = card.querySelector('.project-media') || card;
             const img = card.querySelector('img');
             const hoverVideo = card.querySelector('.project-hover-video');
             if (!img) return;
 
             media.addEventListener('click', () => {
-                lightboxImage.style.display = 'none';
-                lightboxVideo.style.display = 'none';
-
                 if (hoverVideo) {
-                    lightboxVideo.src = hoverVideo.currentSrc || hoverVideo.src;
-                    lightboxVideo.style.display = 'block';
-                    lightboxVideo.currentTime = 0;
-                    lightboxVideo.play().catch(() => {});
+                    openWithVideo(hoverVideo.currentSrc || hoverVideo.src);
                 } else {
-                    lightboxImage.src = img.currentSrc || img.src;
-                    lightboxImage.alt = img.alt || '';
-                    lightboxImage.style.display = 'block';
+                    openWithImage(img.currentSrc || img.src, img.alt);
                 }
-
-                lightbox.classList.add('is-open');
-                lightbox.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
             });
         });
 
@@ -4496,6 +4632,61 @@
         });
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+        });
+
+        window.__openProjectLightboxWithVideo = openWithVideo;
+        window.__openProjectLightboxWithImage = openWithImage;
+    })();
+    </script>
+
+    <!-- Project carousel cards: swipe between screenshots, hover/click plays the matching video -->
+    <script>
+    (function () {
+        document.querySelectorAll('.project-carousel').forEach(carousel => {
+            const slides = Array.from(carousel.querySelectorAll('.project-slide'));
+            const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            const card = carousel.closest('.project-card');
+            if (!slides.length || !card) return;
+
+            let activeIndex = slides.findIndex(slide => slide.classList.contains('is-active'));
+            if (activeIndex < 0) activeIndex = 0;
+
+            const activeVideo = () => slides[activeIndex].querySelector('.carousel-slide-video');
+
+            const stopAllVideos = () => {
+                slides.forEach(slide => {
+                    const video = slide.querySelector('.carousel-slide-video');
+                    if (video) { video.pause(); video.currentTime = 0; }
+                });
+            };
+
+            const goTo = index => {
+                stopAllVideos();
+                activeIndex = (index + slides.length) % slides.length;
+                slides.forEach((slide, i) => slide.classList.toggle('is-active', i === activeIndex));
+                dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
+            };
+
+            if (prevBtn) prevBtn.addEventListener('click', event => { event.stopPropagation(); goTo(activeIndex - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', event => { event.stopPropagation(); goTo(activeIndex + 1); });
+            dots.forEach((dot, i) => dot.addEventListener('click', event => { event.stopPropagation(); goTo(i); }));
+
+            const play = () => { const v = activeVideo(); if (v) { v.currentTime = 0; v.play().catch(() => {}); } };
+            const stop = () => { const v = activeVideo(); if (v) { v.pause(); v.currentTime = 0; } };
+            card.addEventListener('mouseenter', play);
+            card.addEventListener('mouseleave', stop);
+            card.addEventListener('focusin', play);
+            card.addEventListener('focusout', stop);
+
+            carousel.addEventListener('click', event => {
+                if (event.target.closest('.carousel-arrow') || event.target.closest('.carousel-dot')) return;
+                const video = activeVideo();
+                if (video && typeof window.__openProjectLightboxWithVideo === 'function') {
+                    window.__openProjectLightboxWithVideo(video.currentSrc || video.src);
+                }
+            });
         });
     })();
     </script>
