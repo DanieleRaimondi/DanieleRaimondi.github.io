@@ -122,6 +122,22 @@
     'projects.view': 'Vedi Progetto',
     'projects.private': 'Progetto Privato',
 
+    // ─── Publications ──────────────────────────────────────────────────────
+    'nav.publications': 'Pubblicazioni',
+    'pub.title.a': 'Le mie ',
+    'pub.title.b': 'Pubblicazioni',
+    'pub.subtitle': 'Libri e saggi che ho scritto — liberi da leggere online o scaricare.',
+    'pub.kicker': "Saggio sull'Intelligenza Artificiale",
+    'pub.pages': 'pagine',
+    'pub.lang': 'Italiano',
+    'pub.aidesc': "Un saggio chiaro e senza tecnicismi sull'intelligenza artificiale, scritto per chi deve prendere decisioni — dirigenti, manager e policymaker. Cos'è davvero l'AI, cosa può e cosa non può fare, e come governarla in modo responsabile.",
+    'pub.tag.essay': 'Saggio',
+    'pub.read': 'Leggi online',
+    'pub.readoverlay': 'Leggi online',
+    'pub.download': 'Scarica PDF',
+    'pub.newtab': 'Apri in una nuova scheda',
+    'pub.close': 'Chiudi',
+
     // ─── Skills ────────────────────────────────────────────────────────────
     'skills.title.a': 'Competenze ',
     'skills.title.b': 'Tecniche',

@@ -1441,6 +1441,279 @@
             border: 1px solid #cfe0f7;
         }
 
+        /* ===== PUBLICATIONS ===== */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .publication-card {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 30px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #d4e1f0;
+            padding: 26px;
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+
+        .publication-card:hover,
+        .publication-card:focus-within {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-strong);
+            border-color: #a9c8ef;
+        }
+
+        .publication-cover {
+            position: relative;
+            border: none;
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(14, 30, 60, 0.18);
+            cursor: zoom-in;
+            align-self: start;
+            background: transparent;
+        }
+
+        .publication-cover img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 682 / 1024;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .publication-card:hover .publication-cover img {
+            transform: scale(1.04);
+        }
+
+        .pub-read-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(8, 18, 36, 0);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transition: opacity 0.3s ease, background 0.3s ease;
+        }
+
+        .publication-cover:hover .pub-read-overlay,
+        .publication-cover:focus-visible .pub-read-overlay {
+            opacity: 1;
+            background: rgba(8, 18, 36, 0.45);
+        }
+
+        .publication-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .publication-kicker {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .publication-content h3 {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: #0e2040;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .publication-subtitle {
+            font-size: 1rem;
+            font-style: italic;
+            color: #3d4f6a;
+            margin-bottom: 14px;
+        }
+
+        .publication-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #50637f;
+            margin-bottom: 14px;
+        }
+
+        .publication-desc {
+            color: #3d4f6a;
+            line-height: 1.6;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .publication-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .pub-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid #d4e1f0;
+            border-radius: 11px;
+            padding: 11px 18px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            font-family: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .pub-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .pub-btn-primary {
+            color: #fff;
+            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
+            border-color: transparent;
+        }
+
+        .pub-btn-primary:hover,
+        .pub-btn-primary:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(19, 62, 158, 0.32);
+            outline: none;
+        }
+
+        .pub-btn-ghost {
+            color: var(--accent-strong);
+            background: #edf4ff;
+        }
+
+        .pub-btn-ghost:hover,
+        .pub-btn-ghost:focus-visible {
+            color: #fff;
+            background: linear-gradient(110deg, var(--accent), var(--accent-strong));
+            border-color: transparent;
+            outline: none;
+        }
+
+        /* PDF reader modal */
+        .pub-reader {
+            position: fixed;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            z-index: 1500;
+            background: rgba(6, 15, 29, 0.94);
+            backdrop-filter: blur(8px);
+        }
+
+        .pub-reader.is-open {
+            display: flex;
+            animation: lightboxIn 0.28s ease;
+        }
+
+        .pub-reader-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(208, 225, 252, 0.2);
+        }
+
+        .pub-reader-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #f6fbff;
+            margin-right: auto;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pub-reader-bar a,
+        .pub-reader-bar button {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 1px solid rgba(200, 221, 250, 0.5);
+            background: rgba(12, 30, 54, 0.72);
+            color: #f6fbff;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            font-family: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+
+        .pub-reader-bar a:hover,
+        .pub-reader-bar button:hover,
+        .pub-reader-bar a:focus-visible,
+        .pub-reader-bar button:focus-visible {
+            background: rgba(24, 53, 90, 0.95);
+            outline: none;
+        }
+
+        .pub-reader-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: #525a68;
+        }
+
+        @media (max-width: 768px) {
+            .publication-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .publication-cover {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .publication-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .pub-read-overlay {
+                opacity: 1;
+                background: rgba(8, 18, 36, 0.32);
+            }
+
+            .pub-reader-title {
+                display: none;
+            }
+
+            .pub-reader-bar a,
+            .pub-reader-bar button {
+                padding: 8px 11px;
+                font-size: 0.78rem;
+            }
+        }
+
         /* ===== FEATURED TALK VIDEO ===== */
 
         .talk-video-feature {
@@ -3371,6 +3644,7 @@
             <a href="#tab-projects" data-tab-link="tab-projects" data-i18n="nav.projects">Projects</a>
             <a href="#tab-skills" data-tab-link="tab-skills" data-i18n="nav.skills">Skills</a>
             <a href="#tab-talks" data-tab-link="tab-talks">Talks</a>
+            <a href="#tab-publications" data-tab-link="tab-publications" data-i18n="nav.publications">Publications</a>
             <a href="#tab-sport" data-tab-link="tab-sport">Sport</a>
         </nav>
 
@@ -3451,6 +3725,7 @@
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects" data-i18n="nav.projects">Projects</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills" data-i18n="nav.skills">Skills</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-talks" id="tab-btn-talks" data-tab-target="tab-talks">Talks</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-publications" id="tab-btn-publications" data-tab-target="tab-publications" data-i18n="nav.publications">Publications</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-sport" id="tab-btn-sport" data-tab-target="tab-sport">Sport</button>
         </div>
 
@@ -4212,6 +4487,62 @@
             </section>
         </div>
 
+        <div id="tab-publications" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-publications">
+        <section id="publications">
+            <h2 class="section-title"><span data-i18n="pub.title.a">Selected </span><span class="title-accent" data-i18n="pub.title.b">Publications</span></h2>
+            <p class="section-subtitle" data-i18n="pub.subtitle">
+                Books and essays I have written — free to read online or download.
+            </p>
+            <div class="publications-grid">
+                <article class="publication-card">
+                    <button class="publication-cover pub-open" type="button" data-pdf-src="assets/publications/l_ai_spiegata_a_chi_deve_decidere.pdf" data-pdf-title="L'AI spiegata a chi deve decidere" aria-label="Read &quot;L'AI spiegata a chi deve decidere&quot; online">
+                        <img src="assets/publications/l_ai_spiegata_a_chi_deve_decidere_cover.webp" alt="Cover of the essay &quot;L'AI spiegata a chi deve decidere&quot; by Daniele Raimondi" loading="lazy" width="682" height="1024">
+                        <span class="pub-read-overlay" data-i18n="pub.readoverlay">Read online</span>
+                    </button>
+                    <div class="publication-content">
+                        <span class="publication-kicker" data-i18n="pub.kicker">Essay on Artificial Intelligence</span>
+                        <h3>L'AI spiegata a chi deve decidere</h3>
+                        <p class="publication-subtitle">Cos'è davvero, cosa può fare, come governarla.</p>
+                        <div class="publication-meta">
+                            <span>📄 58 <span data-i18n="pub.pages">pages</span></span>
+                            <span>🇮🇹 <span data-i18n="pub.lang">Italian</span></span>
+                            <span>PDF</span>
+                            <span>2026</span>
+                        </div>
+                        <p class="publication-desc" data-i18n="pub.aidesc">
+                            A clear, jargon-free essay on artificial intelligence written for the people who have to decide about it — executives, managers and policymakers. What AI really is, what it can and cannot do, and how to govern it responsibly.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">Governance</span>
+                            <span class="tag" data-i18n="pub.tag.essay">Essay</span>
+                        </div>
+                        <div class="publication-actions">
+                            <button class="pub-btn pub-btn-primary pub-open" type="button" data-pdf-src="assets/publications/l_ai_spiegata_a_chi_deve_decidere.pdf" data-pdf-title="L'AI spiegata a chi deve decidere">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                <span data-i18n="pub.read">Read online</span>
+                            </button>
+                            <a class="pub-btn pub-btn-ghost" href="assets/publications/l_ai_spiegata_a_chi_deve_decidere.pdf" download>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span data-i18n="pub.download">Download PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pub-reader" id="pub-reader" aria-hidden="true" role="dialog" aria-modal="true" aria-label="PDF reader">
+                <div class="pub-reader-bar">
+                    <span class="pub-reader-title" id="pub-reader-title"></span>
+                    <a class="pub-reader-open" id="pub-reader-open" href="#" target="_blank" rel="noopener"><span data-i18n="pub.newtab">Open in new tab</span></a>
+                    <a class="pub-reader-download" id="pub-reader-download" href="#" download><span data-i18n="pub.download">Download PDF</span></a>
+                    <button class="pub-reader-close" type="button" aria-label="Close reader">✕ <span data-i18n="pub.close">Close</span></button>
+                </div>
+                <iframe class="pub-reader-frame" id="pub-reader-frame" title="PDF reader"></iframe>
+            </div>
+        </section>
+        </div>
+
         <div id="tab-sport" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-sport">
             <section id="sport" class="section-alt">
                 <h2 class="section-title"><span data-i18n="sport.title.a">Athletic </span><span class="title-accent" data-i18n="sport.title.b">Achievements</span></h2>
@@ -4691,10 +5022,57 @@
     })();
     </script>
 
+    <!-- Publications: in-page PDF reader -->
+    <script>
+    (function () {
+        const reader = document.getElementById('pub-reader');
+        if (!reader) return;
+
+        const frame = document.getElementById('pub-reader-frame');
+        const titleEl = document.getElementById('pub-reader-title');
+        const openLink = document.getElementById('pub-reader-open');
+        const downloadLink = document.getElementById('pub-reader-download');
+        const closeBtn = reader.querySelector('.pub-reader-close');
+        const triggers = document.querySelectorAll('.pub-open');
+        let lastFocus = null;
+
+        const openReader = (src, title) => {
+            if (!src) return;
+            lastFocus = document.activeElement;
+            // #view=FitH is a PDF Open Parameter the native viewer honours; harmless otherwise
+            frame.src = src + '#view=FitH';
+            openLink.href = src;
+            downloadLink.href = src;
+            titleEl.textContent = title || '';
+            reader.classList.add('is-open');
+            reader.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        };
+
+        const closeReader = () => {
+            reader.classList.remove('is-open');
+            reader.setAttribute('aria-hidden', 'true');
+            frame.removeAttribute('src');
+            document.body.style.overflow = '';
+            if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+        };
+
+        triggers.forEach(btn => {
+            btn.addEventListener('click', () => openReader(btn.dataset.pdfSrc, btn.dataset.pdfTitle));
+        });
+
+        closeBtn.addEventListener('click', closeReader);
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && reader.classList.contains('is-open')) closeReader();
+        });
+    })();
+    </script>
+
     <!-- Script Chatbot -->
     <script src="js/chatbot.js?v=20260611d"></script>
 
     <!-- Language toggle (EN/IT) -->
-    <script src="js/i18n.js?v=20260611b"></script>
+    <script src="js/i18n.js?v=20260622a"></script>
 </body>
 </html>
