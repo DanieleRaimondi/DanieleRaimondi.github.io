@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#0f2340">
 
     <!-- Content Security Policy (defense in depth; GitHub Pages cannot set headers) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://ai-twin-backend.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://danieleraimondi.goatcounter.com; media-src 'self'; connect-src 'self' https://ai-twin-backend.vercel.app https://danieleraimondi.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -5074,5 +5074,9 @@
 
     <!-- Language toggle (EN/IT) -->
     <script src="js/i18n.js?v=20260622a"></script>
+
+    <!-- GoatCounter analytics (cookieless, privacy-friendly) -->
+    <script data-goatcounter="https://danieleraimondi.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
