@@ -130,7 +130,7 @@
     'pub.kicker': "Saggio sull'Intelligenza Artificiale",
     'pub.pages': 'pagine',
     'pub.lang': 'Italiano',
-    'pub.aidesc': "Un saggio chiaro e senza tecnicismi sull'intelligenza artificiale, scritto per chi deve prendere decisioni — dirigenti, manager e policymaker. Cos'è davvero l'AI, cosa può e cosa non può fare, e come governarla in modo responsabile.",
+    'pub.aidesc': "Un saggio chiaro e senza tecnicismi sull'intelligenza artificiale, scritto per chi deve prendere decisioni: dirigenti, manager e policymaker. Cos'è davvero l'AI, cosa può e cosa non può fare, e come governarla in modo responsabile.",
     'pub.tag.essay': 'Saggio',
     'pub.read': 'Leggi online',
     'pub.readoverlay': 'Leggi online',
