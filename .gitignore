@@ -3,3 +3,7 @@ Thumbs.db
 *.log
 assets/highlights/_originals/
 backend/
+
+# Local-only tooling — not part of the served site
+CLAUDE.md
+.claude/
