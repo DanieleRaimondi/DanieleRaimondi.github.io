@@ -27,6 +27,10 @@ Two external scripts in **`js/`** are the only non-inline JS:
 - **`js/chatbot.js`** — the "AI Twin" chatbot. Posts to `https://ai-twin-backend.vercel.app/api/chat`. **The backend is not in this repo** (the `backend/` dir is gitignored). Includes a safe DOM-based markdown renderer (never uses `innerHTML` with model output).
 - **`js/i18n.js`** — EN/IT toggle. **English is the default and lives directly in the HTML**; this file holds only the Italian strings and swaps them in via `data-i18n` attributes, caching each element's original. By design, technical terms, job titles, and product names stay in English.
 
+## Commits & pushing
+
+**Never cite Claude or any AI in commits or pushes.** Do not add `Co-Authored-By: Claude` (or any AI co-author) and do not mention AI assistance in commit messages. Every commit must appear authored solely by Daniele Raimondi — the author and committer are always the user, never the AI.
+
 ## Conventions that matter
 
 - **Cache-busting:** `index.html` loads the JS files with a `?v=YYYYMMDD…` query string (e.g. `js/i18n.js?v=20260622a`). **When you edit `js/chatbot.js` or `js/i18n.js`, bump that version token** or browsers will serve the stale cached file.
