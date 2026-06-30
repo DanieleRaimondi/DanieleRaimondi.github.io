@@ -134,6 +134,7 @@
     'pub.tag.essay': 'Saggio',
     'pub.read': 'Leggi online',
     'pub.readoverlay': 'Leggi online',
+    'pub.comingsoon': 'Prossimamente',
     'pub.download': 'Scarica PDF',
     'pub.newtab': 'Apri in una nuova scheda',
     'pub.close': 'Chiudi',
