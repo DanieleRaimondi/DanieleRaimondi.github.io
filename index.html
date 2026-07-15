@@ -226,9 +226,13 @@
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-xl);
+            /* Navy dropped to ~0.86 so the constellation glows — blurred by the
+               backdrop-filter below — through the dark sidebar, where it reads
+               strongest. White text stays legible on this ground. */
             background:
                 linear-gradient(210deg, rgba(100, 144, 212, 0.24) 0%, transparent 34%),
-                linear-gradient(145deg, #0f2340 0%, #0a1a31 100%);
+                linear-gradient(145deg, rgba(15, 35, 64, 0.86) 0%, rgba(10, 26, 49, 0.9) 100%);
+            -webkit-backdrop-filter: blur(3px);
             backdrop-filter: blur(3px);
         }
 
@@ -558,7 +562,13 @@
             min-height: 100vh;
             width: 100%;
             overflow-x: hidden;
-            background: rgba(251, 253, 255, 0.93);
+            /* Translucent "frosted glass" so the constellation shows through the
+               gutters. NO backdrop-filter here on purpose: this panel nests the
+               full-screen fixed overlays (.project-lightbox, .pub-reader,
+               .sport-photo-lightbox) and a filter would make it their containing
+               block, breaking them. Lower the alpha for a stronger constellation,
+               raise it toward 0.9 for crisper content. */
+            background: rgba(250, 252, 255, 0.68);
             border: 1px solid #dce3ee;
             min-width: 0;
             border-radius: 24px;
@@ -729,10 +739,12 @@
             width: 100%;
             overflow: hidden;
             border-radius: 0;
+            /* Base wash dropped so the frosted .main-content + constellation
+               read through the hero — the most open, first-seen area. The two
+               accent radials stay for the hero's colour identity. */
             background:
                 radial-gradient(circle at 15% 28%, rgba(29, 93, 201, 0.18), transparent 34%),
-                radial-gradient(circle at 84% 6%, rgba(14, 116, 144, 0.16), transparent 34%),
-                linear-gradient(180deg, #fcfdff 0%, #eaf0f8 100%);
+                radial-gradient(circle at 84% 6%, rgba(14, 116, 144, 0.16), transparent 34%);
         }
 
         .hero-section::before {
