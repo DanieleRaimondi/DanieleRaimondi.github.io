@@ -6,6 +6,9 @@
    Tuned parameters live in CONFIG — the single place to adjust the look. */
 (() => {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  // Touch devices get no cursor interaction — the animation would only burn
+  // battery, so skip it entirely.
+  if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
 
   const CONFIG = {
     density: 0.95,      // node count factor (scaled by viewport area)

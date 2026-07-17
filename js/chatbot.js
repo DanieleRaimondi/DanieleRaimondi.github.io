@@ -152,9 +152,10 @@
     
     if (minimizeBtn && chatContainer && chatHeader) {
       const storedMinimized = localStorage.getItem('chatbot_minimized');
-      // First visit on small screens: start minimized so content stays visible
+      // First visit: start minimized so content stays visible — the proactive
+      // teaser (8s) is what invites people in, not an open panel over the page
       let isMinimized = storedMinimized === null
-        ? window.matchMedia('(max-width: 768px)').matches
+        ? true
         : storedMinimized === 'true';
       if (isMinimized) {
         chatContainer.classList.add('minimized');
@@ -398,7 +399,9 @@
       addMessage('assistant', lang === 'it'
         ? '⚠️ Nessuna connessione internet. Controlla la rete e riprova.'
         : '⚠️ No internet connection. Check your network and try again.');
-      conversationHistory.pop();
+      // Keep the user's message: the bubble stays visible, so history
+      // and DOM must agree (the error notice itself is not persisted)
+      trimAndSaveHistory();
       return; // finally handles cleanup
     }
 
@@ -436,7 +439,9 @@
             ? `⚠️ Troppi tentativi. ${errorData.message || 'Attendi un momento.'}`
             : `⚠️ Too many requests. ${errorData.message || 'Please wait a moment.'}`;
           addMessage('assistant', msg);
-          conversationHistory.pop();
+          // Keep the user's message: the bubble stays visible, so history
+          // and DOM must agree (the error notice itself is not persisted)
+          trimAndSaveHistory();
           return;
         }
 
@@ -446,7 +451,9 @@
             ? '⚠️ Servizio AI temporaneamente non disponibile. Riprova tra qualche minuto.'
             : '⚠️ AI service temporarily unavailable. Please try again in a few minutes.');
           addMessage('assistant', msg);
-          conversationHistory.pop();
+          // Keep the user's message: the bubble stays visible, so history
+          // and DOM must agree (the error notice itself is not persisted)
+          trimAndSaveHistory();
           return;
         }
 
@@ -578,7 +585,9 @@
         : '❌ Something went wrong. Please try again shortly.';
 
       addMessage('assistant', errorMsg);
-      conversationHistory.pop();
+      // Keep the user's message: the bubble stays visible, so history
+      // and DOM must agree (the error notice itself is not persisted)
+      trimAndSaveHistory();
 
     } finally {
       // Only reset UI when truly done (not when a retry is scheduled)

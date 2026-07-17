@@ -44,16 +44,20 @@
     <meta property="og:url" content="https://danieleraimondi.github.io/">
     <meta property="og:title" content="Daniele Raimondi - Senior Data Scientist">
     <meta property="og:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland.">
-    <meta property="og:image" content="https://danieleraimondi.github.io/assets/profile2.jpeg">
+    <meta property="og:image" content="https://danieleraimondi.github.io/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Daniele Raimondi — Senior Data Scientist and AI Tech Lead, Basel">
     <meta property="og:site_name" content="Daniele Raimondi Portfolio">
     <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="it_IT">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://danieleraimondi.github.io/">
     <meta property="twitter:title" content="Daniele Raimondi - Senior Data Scientist">
     <meta property="twitter:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland.">
-    <meta property="twitter:image" content="https://danieleraimondi.github.io/assets/profile2.jpeg">
+    <meta property="twitter:image" content="https://danieleraimondi.github.io/assets/og-image.jpg">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -118,6 +122,9 @@
             --hot3: #ffc12e;
             /* Wide hot spread (magenta → red → orange → gold) so it never reads mono */
             --grad-hot: linear-gradient(94deg, var(--hot0) 0%, var(--hot1) 30%, var(--hot2) 64%, var(--hot3) 100%);
+            /* Darker hot spread for TEXT clipped over light backgrounds: every
+               stop keeps ≥3:1 contrast on --bg (the fluo golds/oranges don't) */
+            --grad-hot-text: linear-gradient(94deg, #e3117e 0%, #e0263f 45%, #d94a0a 100%);
             --hero-bg: #0f2340;
             --hero-bg-soft: #1d3a67;
             --shadow-soft: 0 8px 28px rgba(14, 30, 60, 0.08);
@@ -200,11 +207,6 @@
             }
         }
 
-        @keyframes photoGlow {
-            0%, 100% { box-shadow: 0 0 7px 0 rgba(255, 94, 26, 0.14); }
-            50% { box-shadow: 0 0 15px 1px rgba(255, 94, 26, 0.28); }
-        }
-
         @keyframes ringSpin {
             to { transform: rotate(360deg); }
         }
@@ -251,7 +253,8 @@
             margin: 0 auto 10px;
             padding: 5px;
             border-radius: 50%;
-            animation: photoGlow 3.5s ease-in-out infinite;
+            /* Static glow: animating box-shadow forces continuous repaints */
+            box-shadow: 0 0 12px 1px rgba(255, 94, 26, 0.22);
         }
 
         .sidebar-photo-ring::before {
@@ -301,16 +304,13 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: aiShimmer 5s linear infinite, aiGlow 3.2s ease-in-out infinite;
+            /* Static glow: animating drop-shadow filters repaints every frame */
+            filter: drop-shadow(0 0 6px rgba(255, 94, 26, 0.55));
+            animation: aiShimmer 5s linear infinite;
         }
 
         @keyframes aiShimmer {
             to { background-position: 250% 0; }
-        }
-
-        @keyframes aiGlow {
-            0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 94, 26, 0.35)); }
-            50% { filter: drop-shadow(0 0 11px rgba(255, 94, 26, 0.85)); }
         }
 
         @supports not (background-clip: text) {
@@ -344,7 +344,6 @@
         }
 
         .sidebar nav a {
-            display: block;
             color: rgba(224, 235, 250, 0.76);
             text-decoration: none;
             padding: 4px 0;
@@ -799,13 +798,13 @@
 
         .hero-rotator {
             display: inline-block;
-            /* Wide hot gradient, slowly panned so the magenta→gold spread stays visible */
-            background: var(--grad-hot);
+            /* Darker text-safe hot gradient, slowly panned so the spread stays visible */
+            background: var(--grad-hot-text);
             background-size: 220% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 3px 16px rgba(255, 94, 26, 0.28));
+            filter: drop-shadow(0 3px 16px rgba(217, 74, 10, 0.25));
             transition: opacity 0.38s ease, transform 0.38s ease;
             animation: heroWordPan 7s ease-in-out infinite alternate;
         }
@@ -816,7 +815,7 @@
         }
 
         @supports not (background-clip: text) {
-            .hero-rotator { color: var(--hot2); -webkit-text-fill-color: currentColor; }
+            .hero-rotator { color: #d94a0a; -webkit-text-fill-color: currentColor; }
         }
 
         .hero-rotator.is-out {
@@ -1028,9 +1027,9 @@
             background: linear-gradient(90deg, var(--accent), var(--hot2));
         }
 
-        /* One word per section title rendered in the hot fluo gradient */
+        /* One word per section title rendered in the (text-safe) hot gradient */
         .title-accent {
-            background: var(--grad-hot);
+            background: var(--grad-hot-text);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -1038,7 +1037,7 @@
         }
 
         @supports not (background-clip: text) {
-            .title-accent { color: var(--hot2); -webkit-text-fill-color: currentColor; }
+            .title-accent { color: #d94a0a; -webkit-text-fill-color: currentColor; }
         }
 
         .section-subtitle {
@@ -1932,7 +1931,7 @@
             border-color: #aac9ef;
         }
 
-        .talk-card h3,
+        .talk-card h4,
         .sport-card h3 {
             font-size: 1.03rem;
             color: #0e2a4a;
@@ -2670,24 +2669,6 @@
             overflow: hidden;
         }
 
-        .chat-header::before {
-            content: '';
-            position: absolute;
-            top: -60%;
-            left: -30%;
-            width: 60%;
-            height: 220%;
-            background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.14) 50%, transparent 100%);
-            transform: skewX(-18deg);
-            animation: headerSheen 6s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes headerSheen {
-            0%, 60%, 100% { left: -60%; }
-            30% { left: 130%; }
-        }
-
         .chat-header-info {
             display: flex;
             align-items: center;
@@ -3264,6 +3245,9 @@
                     "main";
                 gap: 14px;
                 padding: 12px;
+                /* fixed attachment repaints the whole gradient on every scroll
+                   frame on mobile — the fixed constellation canvas stays anyway */
+                background-attachment: scroll;
             }
 
             .sidebar {
@@ -3438,9 +3422,44 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
+            /* Compact "business card": on phones the sidebar sits above the
+               content, so every saved pixel brings the hero closer to the fold */
             .sidebar-photo-ring {
-                width: 150px;
-                height: 150px;
+                width: 96px;
+                height: 96px;
+            }
+
+            .sidebar-summary {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+            }
+
+            /* Nav collapses from 6 rows to wrapped pill chips */
+            .sidebar nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                margin: 14px 0 6px;
+            }
+
+            .sidebar nav a {
+                min-height: 0;
+                margin-left: 0;
+                padding: 7px 14px;
+                border: 1px solid rgba(255, 255, 255, 0.22);
+                border-radius: 999px;
+                font-size: 0.82rem;
+            }
+
+            .sidebar nav a:hover,
+            .sidebar nav a:focus,
+            .sidebar nav a.nav-active {
+                border-color: var(--hot2);
+                background: rgba(255, 94, 26, 0.16);
+                padding-left: 14px;
             }
 
             .highlights-section {
@@ -3475,6 +3494,15 @@
                 padding: 14px 12px;
                 gap: 8px;
                 border-radius: 20px 20px 0 0;
+                /* Scrolling shadows: hint that more tabs sit off-screen. The
+                   covers scroll with the content (attachment: local) and hide
+                   each shadow when that end of the rail is reached. */
+                background:
+                    linear-gradient(90deg, #f2f6fc 46%, rgba(242, 246, 252, 0)) left center / 44px 100% no-repeat local,
+                    linear-gradient(270deg, #f2f6fc 46%, rgba(242, 246, 252, 0)) right center / 44px 100% no-repeat local,
+                    radial-gradient(farthest-side at 0 50%, rgba(15, 35, 64, 0.28), transparent) left center / 14px 100% no-repeat scroll,
+                    radial-gradient(farthest-side at 100% 50%, rgba(15, 35, 64, 0.28), transparent) right center / 14px 100% no-repeat scroll,
+                    #f2f6fc;
             }
 
             .main-tab-btn {
@@ -3835,7 +3863,7 @@
                     </figure>
 
                     <figure class="hl-slide hl-slide--photo">
-                        <img src="assets/highlights/pydata-london-2026.webp" alt="Daniele Raimondi on stage at PyData London 2026 presenting LLM keyword pipelines" loading="lazy" decoding="async" width="1800" height="809">
+                        <img src="assets/highlights/pydata-london-2026.webp" alt="Daniele Raimondi on stage at PyData London 2026 presenting LLM keyword pipelines" loading="lazy" decoding="async" width="1600" height="1067">
                         <span class="hl-slide-year">2026</span>
                         <figcaption class="hl-caption">
                             <span class="hl-tag">Speaking · AI</span>
@@ -4332,7 +4360,7 @@
                     <h3 class="talks-year-title" data-i18n="talks.upcoming">2026 · Upcoming</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 1 <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></h3>
+                            <h4>EuroSciPy Krakow 2026 · Talk 1 <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></h4>
                             <div class="talk-meta" data-i18n="meta.krakow">Krakow, Poland · July 2026</div>
                             <p data-i18n="talks.euroscipy1">First accepted EuroSciPy talk within the 2026 conference program.</p>
                             <div class="talk-links">
@@ -4341,7 +4369,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>EuroSciPy Krakow 2026 · Talk 2 <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></h3>
+                            <h4>EuroSciPy Krakow 2026 · Talk 2 <span class="talk-status upcoming" data-i18n="status.july2026">July 2026</span></h4>
                             <div class="talk-meta" data-i18n="meta.krakow">Krakow, Poland · July 2026</div>
                             <p data-i18n="talks.euroscipy2">Second accepted EuroSciPy talk, expanding on production-ready open-source AI workflows.</p>
                             <div class="talk-links">
@@ -4355,7 +4383,7 @@
                     <h3 class="talks-year-title" data-i18n="talks.delivered">2026 · Delivered</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>PyData London 2026</h3>
+                            <h4>PyData London 2026</h4>
                             <div class="talk-meta" data-i18n="meta.london">London, United Kingdom · 2026</div>
                             <p data-i18n="talks.pydata">Delivered a talk at PyData London on practical AI and data product delivery.</p>
                             <div class="talk-links">
@@ -4365,7 +4393,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>Camera dei Deputati · Italian Parliament</h3>
+                            <h4>Camera dei Deputati · Italian Parliament</h4>
                             <div class="talk-meta" data-i18n="meta.rome26">Rome, Italy · June 2026</div>
                             <p data-i18n="talks.camera">Presented an AI platform supporting public-policy decisions in research and innovation, at a press conference of the Italian Chamber of Deputies.</p>
                             <div class="talk-links">
@@ -4376,7 +4404,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>Swiss Data Science Conference 2026</h3>
+                            <h4>Swiss Data Science Conference 2026</h4>
                             <div class="talk-meta" data-i18n="meta.zurich">Zurich, Switzerland · 2026</div>
                             <p data-i18n="talks.sds">Invited session focused on applied AI and real-world data science impact.</p>
                             <div class="talk-links">
@@ -4390,7 +4418,7 @@
                     <h3 class="talks-year-title">2025</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>EIC Summit</h3>
+                            <h4>EIC Summit</h4>
                             <div class="talk-meta" data-i18n="meta.houston">Houston, United States · 2025</div>
                             <p data-i18n="talks.eichou">Speaker on AI initiatives and publishing innovation at MDPI's EIC Summit.</p>
                             <div class="talk-links">
@@ -4399,7 +4427,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>EIC Summit</h3>
+                            <h4>EIC Summit</h4>
                             <div class="talk-meta" data-i18n="meta.paris">Paris, France · 2025</div>
                             <p data-i18n="talks.eicparis">Talk on AI strategy, editorial operations, and scalable data-driven processes.</p>
                             <div class="talk-links">
@@ -4409,7 +4437,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>EIC Summit</h3>
+                            <h4>EIC Summit</h4>
                             <div class="talk-meta" data-i18n="meta.barcelona">Barcelona, Spain · 2025</div>
                             <p data-i18n="talks.eicbcn">Session on applied AI systems and impact-driven experimentation.</p>
                             <div class="talk-links">
@@ -4423,7 +4451,7 @@
                     <h3 class="talks-year-title">2024</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>EuroSciPy 2024</h3>
+                            <h4>EuroSciPy 2024</h4>
                             <div class="talk-meta" data-i18n="meta.szczecin">Szczecin, Poland · 2024</div>
                             <p data-i18n="talks.euroscipy24">Talk on tracking rejected manuscripts using Qdrant and Specter2.</p>
                             <div class="talk-links">
@@ -4434,7 +4462,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>BiDigital Conference</h3>
+                            <h4>BiDigital Conference</h4>
                             <div class="talk-meta" data-i18n="meta.biella24">Biella, Italy · 2024</div>
                             <p data-i18n="talks.bidigital">Session on data science models for Bitcoin and decision support.</p>
                             <div class="talk-links">
@@ -4449,7 +4477,7 @@
                     <h3 class="talks-year-title">2022</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>Python Biella Group · Talk 1</h3>
+                            <h4>Python Biella Group · Talk 1</h4>
                             <div class="talk-meta" data-i18n="meta.biella22">Biella, Italy · 2022</div>
                             <p data-i18n="talks.pbg1">Community session on Python, data pipelines, and practical engineering workflows.</p>
                             <div class="talk-links">
@@ -4458,7 +4486,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>Python Biella Group · Talk 2</h3>
+                            <h4>Python Biella Group · Talk 2</h4>
                             <div class="talk-meta" data-i18n="meta.biella22">Biella, Italy · 2022</div>
                             <p data-i18n="talks.pbg2">Follow-up talk on AI experimentation and production thinking for Python practitioners.</p>
                             <div class="talk-links">
@@ -4467,7 +4495,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3>Università Cattolica · Career Path</h3>
+                            <h4>Università Cattolica · Career Path</h4>
                             <div class="talk-meta" data-i18n="meta.milan22">Milan, Italy · 2022</div>
                             <p data-i18n="talks.cattolica22">Invited talk on data analyst and data scientist career paths.</p>
                             <div class="talk-links">
@@ -4482,7 +4510,7 @@
                     <h3 class="talks-year-title">2021</h3>
                     <div class="talks-grid">
                         <article class="talk-card">
-                            <h3>LIUC University · Guest Lecture</h3>
+                            <h4>LIUC University · Guest Lecture</h4>
                             <div class="talk-meta" data-i18n="meta.castellanza">Castellanza, Italy · 2021</div>
                             <p data-i18n="talks.liuc">Talk on data and analytics applications for business and engineering students.</p>
                             <div class="talk-links">
@@ -4491,7 +4519,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3 data-i18n="talks.cattolica21.title">Università Cattolica · Student Projects</h3>
+                            <h4 data-i18n="talks.cattolica21.title">Università Cattolica · Student Projects</h4>
                             <div class="talk-meta" data-i18n="meta.milan21">Milan, Italy · 2021</div>
                             <p data-i18n="talks.cattolica21">Industry projects with graduating students focused on analytics and problem solving.</p>
                             <div class="talk-links">
@@ -4500,7 +4528,7 @@
                         </article>
 
                         <article class="talk-card">
-                            <h3 data-i18n="talks.joinrs.title">Joinrs Interview</h3>
+                            <h4 data-i18n="talks.joinrs.title">Joinrs Interview</h4>
                             <div class="talk-meta">Online · 2021</div>
                             <p data-i18n="talks.joinrs">Interview about my career path as Data Scientist at Esselunga.</p>
                             <div class="talk-links">
@@ -4696,7 +4724,15 @@
                 history.replaceState(null, '', '#' + tabId);
             }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Stacked layout (sidebar above content): top of page is the
+            // sidebar, so land on the content instead
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent && window.matchMedia('(max-width: 1120px)').matches) {
+                const top = mainContent.getBoundingClientRect().top + window.scrollY - 12;
+                window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         };
 
         tabButtons.forEach(button => {
@@ -4762,12 +4798,15 @@
 
         if (!lightbox || !lightboxImage || !closeBtn || !photoButtons.length) return;
 
+        let lastFocus = null;
+
         const closeLightbox = () => {
             lightbox.classList.remove('is-open');
             lightbox.setAttribute('aria-hidden', 'true');
             lightboxImage.src = '';
             lightboxCaption.textContent = '';
             document.body.style.overflow = '';
+            if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
         };
 
         photoButtons.forEach(button => {
@@ -4776,11 +4815,13 @@
                 const caption = button.dataset.caption || button.querySelector('img')?.alt || '';
                 if (!fullSrc) return;
 
+                lastFocus = button;
                 lightboxImage.src = fullSrc;
                 lightboxCaption.textContent = caption;
                 lightbox.classList.add('is-open');
                 lightbox.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
+                closeBtn.focus();
             });
         });
 
@@ -4793,8 +4834,13 @@
         });
 
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (event.key === 'Escape') {
                 closeLightbox();
+            } else if (event.key === 'Tab') {
+                // Close button is the only focusable element: trap focus on it
+                event.preventDefault();
+                closeBtn.focus();
             }
         });
     })();
@@ -4812,6 +4858,7 @@
         let index = 0;
 
         setInterval(() => {
+            if (document.hidden) return;
             el.classList.add('is-out');
             setTimeout(() => {
                 index = (index + 1) % words().length;
@@ -4841,6 +4888,8 @@
             originals.forEach(slide => {
                 const clone = slide.cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
+                // aria-hidden content must not hold tab stops
+                clone.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
                 track.appendChild(clone);
             });
         }
@@ -4932,6 +4981,8 @@
         const closeBtn = lightbox ? lightbox.querySelector('.project-lightbox-close') : null;
         if (!lightbox || !lightboxImage || !lightboxVideo || !closeBtn) return;
 
+        let lastFocus = null;
+
         const closeLightbox = () => {
             lightbox.classList.remove('is-open');
             lightbox.setAttribute('aria-hidden', 'true');
@@ -4939,9 +4990,11 @@
             lightboxVideo.pause();
             lightboxVideo.removeAttribute('src');
             lightboxImage.removeAttribute('src');
+            if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
         };
 
         const openWithVideo = src => {
+            lastFocus = document.activeElement;
             lightboxImage.style.display = 'none';
             lightboxVideo.style.display = 'block';
             lightboxVideo.src = src;
@@ -4950,9 +5003,11 @@
             lightbox.classList.add('is-open');
             lightbox.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            closeBtn.focus();
         };
 
         const openWithImage = (src, alt) => {
+            lastFocus = document.activeElement;
             lightboxVideo.style.display = 'none';
             lightboxImage.style.display = 'block';
             lightboxImage.src = src;
@@ -4960,6 +5015,7 @@
             lightbox.classList.add('is-open');
             lightbox.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            closeBtn.focus();
         };
 
         document.querySelectorAll('.project-card').forEach(card => {
@@ -4984,7 +5040,14 @@
             if (event.target === lightbox) closeLightbox();
         });
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+            if (!lightbox.classList.contains('is-open')) return;
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (event.key === 'Tab') {
+                // Close button is the only focusable element: trap focus on it
+                event.preventDefault();
+                closeBtn.focus();
+            }
         });
 
         window.__openProjectLightboxWithVideo = openWithVideo;
@@ -5086,16 +5149,32 @@
 
         closeBtn.addEventListener('click', closeReader);
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && reader.classList.contains('is-open')) closeReader();
+            if (!reader.classList.contains('is-open')) return;
+            if (event.key === 'Escape') {
+                closeReader();
+                return;
+            }
+            // Focus trap: cycle through the reader's own controls
+            if (event.key === 'Tab') {
+                const focusables = [openLink, downloadLink, closeBtn, frame];
+                const index = focusables.indexOf(document.activeElement);
+                if (event.shiftKey && (index === 0 || index === -1)) {
+                    event.preventDefault();
+                    focusables[focusables.length - 1].focus();
+                } else if (!event.shiftKey && (index === focusables.length - 1 || index === -1)) {
+                    event.preventDefault();
+                    focusables[0].focus();
+                }
+            }
         });
     })();
     </script>
 
     <!-- Interactive constellation background -->
-    <script src="js/background.js?v=20260715a"></script>
+    <script src="js/background.js?v=20260717a"></script>
 
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260611d"></script>
+    <script src="js/chatbot.js?v=20260717a"></script>
 
     <!-- Language toggle (EN/IT) -->
     <script src="js/i18n.js?v=20260630a"></script>
