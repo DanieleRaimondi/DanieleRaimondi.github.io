@@ -3650,6 +3650,25 @@
             height: 22px;
         }
 
+        /* The text column must be allowed to shrink (flex min-width) and long
+           unbreakable strings — the email address — must wrap inside the card */
+        .contact-card > span:last-child {
+            min-width: 0;
+        }
+
+        .contact-card strong,
+        .contact-card small {
+            overflow-wrap: anywhere;
+        }
+
+        /* The address is the longest unbreakable string of the three cards:
+           slightly smaller, and the <wbr> before the @ gives it a clean
+           two-line break when the card gets narrow */
+        .contact-card strong.contact-email {
+            font-size: 0.95rem;
+            letter-spacing: -0.02em;
+        }
+
         .contact-card:nth-child(1) .contact-card-icon { background: var(--grad-hot); }
         .contact-card:nth-child(2) .contact-card-icon { background: linear-gradient(135deg, #2643e6, #00b4e6); }
         .contact-card:nth-child(3) .contact-card-icon { background: linear-gradient(135deg, #0a66c2, #0e7fa6); }
@@ -5355,7 +5374,7 @@
                     </span>
                     <span>
                         <span class="contact-card-label">Email</span>
-                        <strong>machinelearner92@gmail.com</strong>
+                        <strong class="contact-email">machinelearner92<wbr>@gmail.com</strong>
                         <small data-i18n="contact.email.desc">For proposals and enquiries</small>
                     </span>
                 </a>
