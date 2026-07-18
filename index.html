@@ -268,6 +268,9 @@
             color: #edf2fa;
             padding: 18px 20px;
             overflow-y: auto;
+            /* Children must never be flex-shrunk below their content: on short
+               viewports that makes texts overlap. The sidebar scrolls instead. */
+            min-height: 0;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-xl);
             /* Navy dropped to ~0.86 so the constellation glows — blurred by the
@@ -278,6 +281,10 @@
                 linear-gradient(145deg, rgba(15, 35, 64, 0.86) 0%, rgba(10, 26, 49, 0.9) 100%);
             -webkit-backdrop-filter: blur(3px);
             backdrop-filter: blur(3px);
+        }
+
+        .sidebar > * {
+            flex-shrink: 0;
         }
 
         .sidebar-profile {
@@ -378,8 +385,10 @@
         /* The nav absorbs spare vertical space, links vertically centered */
         .sidebar nav {
             margin: 10px 0;
-            flex: 1 1 auto;
-            min-height: 0;
+            /* Grows to center the links in leftover space, but never shrinks
+               below its content — a squeezed nav overflows onto the bio and
+               info blocks. On short viewports the sidebar scrolls instead. */
+            flex: 1 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -3702,27 +3711,51 @@
 
         /* Responsive */
 
-        /* Short laptop screens: compact the fixed sidebar further so it never scrolls */
+        /* Short laptop screens: compact the fixed sidebar. The summary is
+           never clamped — full text always shows; the sidebar scrolls if
+           it truly runs out of room. */
         @media (min-width: 1121px) and (max-height: 800px) {
+            .sidebar {
+                padding: 14px 20px;
+            }
+
             .sidebar-photo-ring {
-                width: 100px;
-                height: 100px;
+                width: 88px;
+                height: 88px;
+            }
+
+            .sidebar-profile {
+                margin-bottom: 6px;
             }
 
             .sidebar-summary {
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 4;
-                overflow: hidden;
+                font-size: 0.73rem;
+                line-height: 1.42;
+                margin-top: 7px;
+                padding-top: 7px;
             }
 
             .sidebar nav a {
-                min-height: 27px;
-                padding: 2px 0;
+                min-height: 25px;
+                padding: 1px 0;
             }
 
             .sidebar nav {
-                margin: 8px 0;
+                margin: 6px 0;
+            }
+
+            .sidebar-info {
+                margin-top: 6px;
+                padding-top: 6px;
+            }
+
+            .sidebar-social {
+                margin-top: 8px;
+            }
+
+            .sidebar-social a {
+                width: 30px;
+                height: 30px;
             }
         }
 
@@ -3936,10 +3969,9 @@
             }
 
             .sidebar-summary {
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
-                overflow: hidden;
+                max-width: 62ch;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             /* Nav collapses from 6 rows to wrapped pill chips */
