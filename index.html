@@ -2747,7 +2747,7 @@
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            transition: transform 0.22s ease, height 0.3s ease, max-height 0.3s ease, width 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.22s ease, height 0.3s ease, max-height 0.3s ease, width 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease;
         }
 
         .chat-container:hover {
@@ -2851,10 +2851,25 @@
             transform: translateY(-1px);
         }
 
+        /* Minimized = circular FAB: Daniele's face in a gradient ring, pulsing
+           halo and a chat badge. The persistent teaser pill next to it does the
+           talking — the button itself just has to feel alive and clickable */
         .chat-container.minimized {
-            height: 68px;
-            max-height: 68px;
-            width: 320px;
+            width: 74px;
+            height: 74px;
+            max-height: 74px;
+            border-radius: 50%;
+            border: none;
+            overflow: visible;
+            background: transparent;
+            box-shadow: none;
+            cursor: pointer;
+            animation: fabPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+        }
+
+        .chat-container.minimized:hover {
+            transform: scale(1.07);
+            box-shadow: none;
         }
 
         .chat-container.minimized .chat-messages,
@@ -2863,50 +2878,106 @@
             display: none;
         }
 
+        /* Pulsing halo ring radiating from the FAB */
+        .chat-container.minimized::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(29, 93, 201, 0.55);
+            animation: fabPing 2.6s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+            pointer-events: none;
+        }
+
+        /* Chat badge pinned to the FAB, with a periodic attention wiggle */
+        .chat-container.minimized::after {
+            content: '💬';
+            position: absolute;
+            right: -3px;
+            bottom: -3px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            border-radius: 50%;
+            background: linear-gradient(120deg, #122e75 0%, #1d5dc9 58%, #0e7fa6 100%);
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(18, 49, 126, 0.4);
+            animation: badgeWiggle 9s ease-in-out 5s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fabPop {
+            from { opacity: 0; transform: scale(0.4); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fabPing {
+            0% { transform: scale(0.85); opacity: 0.8; }
+            70%, 100% { transform: scale(1.45); opacity: 0; }
+        }
+
+        @keyframes badgeWiggle {
+            0%, 92%, 100% { transform: rotate(0); }
+            94% { transform: rotate(-12deg) scale(1.12); }
+            97% { transform: rotate(9deg) scale(1.08); }
+        }
+
         .chat-container.minimized .chat-header {
             cursor: pointer;
-            padding: 0.85rem 1.1rem;
+            width: 100%;
+            height: 100%;
+            padding: 4px;
+            border-radius: 50%;
+            border: none;
+            justify-content: center;
             background: linear-gradient(120deg, #122e75 0%, #1d5dc9 58%, #0e7fa6 100%);
+            box-shadow: 0 16px 38px rgba(18, 49, 126, 0.42);
         }
 
         .chat-container.minimized .chat-header:hover {
             background: linear-gradient(120deg, #16399a 0%, #2570e8 58%, #1095c2 100%);
         }
 
-        .chat-container.minimized::before {
-            content: '💬';
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            font-size: 1.2rem;
-            opacity: 0.9;
+        .chat-container.minimized .chat-header-info {
+            gap: 0;
         }
 
         .chat-container.minimized .chat-header-avatar {
-            width: 38px;
-            height: 38px;
+            width: 66px;
+            height: 66px;
+            border-width: 0;
+            box-shadow: none;
         }
 
-        /* The minimized pill must sell the chat, not just the name:
-           show "AI Twin • Ask me anything!" (with its pulsing dot)
-           and hide the plain name instead */
-        .chat-container.minimized .chat-header-text h3 {
+        .chat-container.minimized .chat-header-text {
             display: none;
-        }
-
-        .chat-container.minimized .chat-header-text .status {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-top: 0;
         }
 
         .chat-container.minimized .clear-btn {
             display: none;
         }
 
+        /* Keyboard/screen-reader path: the minimize button stretches into an
+           invisible overlay covering the whole FAB, so the "open chat" action
+           stays a real focusable button */
         .chat-container.minimized .minimize-btn {
-            font-size: 1.08rem;
-            padding: 0.35rem 0.6rem;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border-radius: 50%;
+            background: transparent;
+            color: transparent;
+            font-size: 0;
+        }
+
+        .chat-container.minimized .minimize-btn:hover {
+            background: transparent;
+            transform: none;
         }
 
         .chat-messages {
@@ -2953,6 +3024,19 @@
             line-height: 1.52;
             font-size: 0.9rem;
             box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Live-typing caret while the answer streams in */
+        .message-bubble.streaming::after {
+            content: '▍';
+            display: inline-block;
+            margin-left: 1px;
+            color: var(--accent);
+            animation: caretBlink 0.9s steps(2, start) infinite;
+        }
+
+        @keyframes caretBlink {
+            50% { opacity: 0; }
         }
 
         .user-message {
@@ -3187,11 +3271,11 @@
             color: #1d5dc9;
         }
 
-        /* Proactive teaser above the minimized chat */
+        /* Persistent teaser pill sitting beside the FAB */
         .chat-teaser {
             position: fixed;
-            right: 18px;
-            bottom: 98px;
+            right: 100px;
+            bottom: 32px;
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -4162,18 +4246,24 @@
 
             .chat-container.minimized {
                 left: auto;
-                right: 12px;
-                bottom: 12px;
-                width: 244px;
-                max-height: 68px;
-                border: 1px solid #c4d4ef;
-                border-radius: 15px;
+                right: 14px;
+                bottom: 14px;
+                width: 64px;
+                height: 64px;
+                max-height: 64px;
+                border: none;
+                border-radius: 50%;
+            }
+
+            .chat-container.minimized .chat-header-avatar {
+                width: 56px;
+                height: 56px;
             }
 
             .chat-teaser {
-                right: 12px;
-                bottom: 90px;
-                max-width: 244px;
+                right: 88px;
+                bottom: 25px;
+                max-width: min(60vw, 240px);
                 font-size: 0.82rem;
             }
 
@@ -5973,7 +6063,7 @@
     <script src="js/background.js?v=20260717a"></script>
 
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260718b"></script>
+    <script src="js/chatbot.js?v=20260718d"></script>
 
     <!-- Language toggle (EN/IT) -->
     <script src="js/i18n.js?v=20260718c"></script>

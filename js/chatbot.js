@@ -120,10 +120,15 @@
     const savedHistory = localStorage.getItem('chatbot_history');
     if (savedHistory) {
       try {
-        conversationHistory = JSON.parse(savedHistory);
-        conversationHistory.forEach(msg => {
-          if (msg.role !== 'system') addMessage(msg.role, msg.content);
-        });
+        const parsed = JSON.parse(savedHistory);
+        // Drop empty/malformed entries: an empty assistant message saved by an
+        // old session would re-render as a blank bubble AND break every
+        // subsequent backend call it gets sent back with
+        conversationHistory = (Array.isArray(parsed) ? parsed : []).filter(msg =>
+          msg && (msg.role === 'user' || msg.role === 'assistant') &&
+          typeof msg.content === 'string' && msg.content.trim()
+        );
+        conversationHistory.forEach(msg => addMessage(msg.role, msg.content));
       } catch (e) {
         conversationHistory = [];
       }
@@ -152,37 +157,44 @@
     
     if (minimizeBtn && chatContainer && chatHeader) {
       const storedMinimized = localStorage.getItem('chatbot_minimized');
-      // First visit: start minimized so content stays visible — the proactive
-      // teaser (8s) is what invites people in, not an open panel over the page
+      // First visit: start minimized (a circular FAB) so content stays
+      // visible — the persistent teaser pill is what invites people in,
+      // not an open panel over the page
       let isMinimized = storedMinimized === null
         ? true
         : storedMinimized === 'true';
       if (isMinimized) {
         chatContainer.classList.add('minimized');
         minimizeBtn.textContent = '□';
-        minimizeBtn.setAttribute('aria-label', 'Maximize chat');
-        minimizeBtn.title = 'Maximize';
+        minimizeBtn.setAttribute('aria-label', 'Open chat');
+        minimizeBtn.title = 'Open chat';
       }
-      
+
       minimizeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleMinimize();
       });
-      
+
       chatHeader.addEventListener('click', (e) => {
         if (chatContainer.classList.contains('minimized') && e.target.closest('.chat-header')) {
           toggleMinimize();
         }
       });
-      
+
       function toggleMinimize() {
         const isCurrentlyMinimized = chatContainer.classList.toggle('minimized');
         minimizeBtn.textContent = isCurrentlyMinimized ? '□' : '−';
-        minimizeBtn.setAttribute('aria-label', isCurrentlyMinimized ? 'Maximize chat' : 'Minimize chat');
-        minimizeBtn.title = isCurrentlyMinimized ? 'Maximize' : 'Minimize';
+        minimizeBtn.setAttribute('aria-label', isCurrentlyMinimized ? 'Open chat' : 'Minimize chat');
+        minimizeBtn.title = isCurrentlyMinimized ? 'Open chat' : 'Minimize';
         localStorage.setItem('chatbot_minimized', isCurrentlyMinimized);
-        // Re-arm the teaser whenever the chat gets minimized
-        if (isCurrentlyMinimized) scheduleTeaser(8000);
+        if (isCurrentlyMinimized) {
+          // Re-arm the teaser whenever the chat gets minimized
+          scheduleTeaser(6000);
+        } else {
+          // The pill's job is done once the chat is open
+          document.querySelector('.chat-teaser')?.remove();
+          document.getElementById('chat-input')?.focus();
+        }
       }
 
       const getTeasers = () => siteLang() === 'it' ? [
@@ -195,10 +207,10 @@
         '👋 Ask me about racing for the Italian national team'
       ];
 
-      // Proactive teaser above the minimized chat.
-      // Fires on EVERY page load (and on every minimize) after 8s, as long as
-      // the chat is still minimized. Only an explicit dismiss (×) silences it
-      // for the rest of the tab session.
+      // Persistent teaser pill beside the FAB.
+      // Appears shortly after page load (and again on every minimize) and
+      // stays until the visitor opens the chat or dismisses it (×) — the
+      // dismiss silences it for the rest of the tab session.
       function scheduleTeaser(delayMs) {
         if (sessionStorage.getItem('chatbot_teaser_dismissed')) return;
 
@@ -214,7 +226,14 @@
           teaser.setAttribute('role', 'status');
 
           const text = document.createElement('span');
-          text.textContent = teasers[Math.floor(Math.random() * teasers.length)];
+          // First show: short universal invite; later shows rotate the
+          // specific conversation hooks
+          if (!sessionStorage.getItem('chatbot_teaser_shown')) {
+            sessionStorage.setItem('chatbot_teaser_shown', '1');
+            text.textContent = siteLang() === 'it' ? 'Chiedimi qualcosa! 💬' : 'Ask me anything! 💬';
+          } else {
+            text.textContent = teasers[Math.floor(Math.random() * teasers.length)];
+          }
 
           const close = document.createElement('button');
           close.className = 'chat-teaser-close';
@@ -236,11 +255,10 @@
             removeTeaser();
             if (chatContainer.classList.contains('minimized')) toggleMinimize();
           });
-          setTimeout(removeTeaser, 20000);
         }, delayMs);
       }
 
-      scheduleTeaser(8000);
+      scheduleTeaser(2500);
 
       // Public hook: "Ask my AI Twin" CTAs elsewhere on the page (consulting
       // tab, contact section) open the chat — un-minimizing it if needed —
@@ -440,8 +458,9 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Recent context only: keeps backend token usage bounded
-          messages: conversationHistory.slice(-12),
+          // Recent context only: keeps backend token usage bounded.
+          // Empty messages never reach the backend — they make it error out
+          messages: conversationHistory.slice(-12).filter(m => m.content && m.content.trim()),
           sessionId: sessionId
         }),
         signal: currentAbortController.signal
@@ -493,16 +512,18 @@
       const reader = response.body.getReader();
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
-      const STALL_MS = 30000;
 
       while (true) {
-        // Watchdog: a stream that stops sending chunks must not hang the UI
+        // Watchdog: a stream that stops sending chunks must not hang the UI.
+        // The backend can take >20s before the first token (retrieval + model
+        // fallback), so the first read gets more patience than later ones
+        const stallMs = fullResponse ? 30000 : 45000;
         let stallTimer = null;
         const readPromise = reader.read();
         readPromise.catch(() => {}); // swallow late rejection after abort
         const result = await Promise.race([
           readPromise,
-          new Promise(resolve => { stallTimer = setTimeout(() => resolve({ stalledRead: true }), STALL_MS); })
+          new Promise(resolve => { stallTimer = setTimeout(() => resolve({ stalledRead: true }), stallMs); })
         ]);
         clearTimeout(stallTimer);
 
@@ -558,6 +579,16 @@
         }
       }
 
+      // A 200 stream that carried no text is a failure, not an answer: never
+      // leave a blank bubble or save empty content (it would poison the
+      // history sent on every later request). Treat it like a network error
+      // so the retry/backoff path takes over.
+      if (!fullResponse.trim()) {
+        removeMessage(messageId);
+        throw new Error('empty stream');
+      }
+
+      finishStreaming(messageId);
       conversationHistory.push({ role: 'assistant', content: fullResponse });
       trimAndSaveHistory();
 
@@ -648,6 +679,21 @@
     
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // The backend can take 15-25s before the first token when its primary
+    // model is struggling: after 8s swap in a reassuring status so the wait
+    // reads as work, not as a hang
+    setTimeout(() => {
+      const el = document.getElementById(messageId);
+      if (!el) return;
+      const label = el.querySelector('.typing-text');
+      if (label) {
+        label.textContent = siteLang() === 'it'
+          ? 'Sto cercando nella mia knowledge base…'
+          : 'Searching my knowledge base…';
+      }
+    }, 8000);
+
     return messageId;
   }
 
@@ -683,10 +729,20 @@
     if (messageDiv) {
       const bubble = messageDiv.querySelector('.message-bubble');
       if (bubble) {
+        bubble.classList.add('streaming');
         bubble.innerHTML = '';
         bubble.appendChild(renderMarkdown(content));
         document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
       }
+    }
+  }
+
+  // Drop the blinking caret once the stream is over
+  function finishStreaming(messageId) {
+    const messageDiv = document.getElementById(messageId);
+    if (messageDiv) {
+      const bubble = messageDiv.querySelector('.message-bubble');
+      if (bubble) bubble.classList.remove('streaming');
     }
   }
 
