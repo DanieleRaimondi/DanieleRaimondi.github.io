@@ -134,16 +134,18 @@
             --accent-strong: #133e9e;
             --accent-soft: #d8e3f6;
             --warm: #0e7490;
-            /* Hot fluo accent family: the "energy" color against the blue base */
-            --hot0: #ff1e9d;
-            --hot1: #ff1e56;
-            --hot2: #ff5e1a;
-            --hot3: #ffc12e;
-            /* Wide hot spread (magenta → red → orange → gold) so it never reads mono */
+            /* Ember accent family: the "energy" color against the blue base.
+               Deep berry → crimson → copper → antique gold: same warm role the
+               old fluo set had, tuned editorial so it reads senior, not social */
+            --hot0: #a12d5d;
+            --hot1: #b13342;
+            --hot2: #bd5b26;
+            --hot3: #cf9c3d;
+            /* Wide ember spread (berry → crimson → copper → gold) so it never reads mono */
             --grad-hot: linear-gradient(94deg, var(--hot0) 0%, var(--hot1) 30%, var(--hot2) 64%, var(--hot3) 100%);
-            /* Darker hot spread for TEXT clipped over light backgrounds: every
-               stop keeps ≥3:1 contrast on --bg (the fluo golds/oranges don't) */
-            --grad-hot-text: linear-gradient(94deg, #e3117e 0%, #e0263f 45%, #d94a0a 100%);
+            /* Darker ember spread for TEXT clipped over light backgrounds: every
+               stop keeps ≥4:1 contrast on --bg */
+            --grad-hot-text: linear-gradient(94deg, #8c2153 0%, #a02a38 45%, #a85413 100%);
             --hero-bg: #0f2340;
             --hero-bg-soft: #1d3a67;
             --shadow-soft: 0 8px 28px rgba(14, 30, 60, 0.08);
@@ -303,7 +305,7 @@
             padding: 5px;
             border-radius: 50%;
             /* Static glow: animating box-shadow forces continuous repaints */
-            box-shadow: 0 0 12px 1px rgba(255, 94, 26, 0.22);
+            box-shadow: 0 0 12px 1px rgba(189, 91, 38, 0.22);
         }
 
         .sidebar-photo-ring::before {
@@ -311,7 +313,7 @@
             position: absolute;
             inset: 0;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, #ff1e9d, #ff5e1a, #ffc12e, #ff1e56, #ff1e9d);
+            background: conic-gradient(from 0deg, #a12d5d, #bd5b26, #cf9c3d, #b13342, #a12d5d);
             animation: ringSpin 9s linear infinite;
         }
 
@@ -329,7 +331,7 @@
         }
 
         @supports not (background: conic-gradient(red, blue)) {
-            .sidebar-photo-ring::before { background: linear-gradient(135deg, #ff1e9d, #ffc12e); }
+            .sidebar-photo-ring::before { background: linear-gradient(135deg, #a12d5d, #cf9c3d); }
         }
 
         .sidebar h1 {
@@ -345,16 +347,17 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* "AI" inside RAIMONDI: hot fluo gradient, shimmering and glowing */
+        /* "AI" inside RAIMONDI: warm ember gradient, shimmering — tones kept
+           light enough to stay legible on the navy sidebar */
         .sidebar h1 .name-ai {
             position: relative;
-            background: linear-gradient(110deg, #ff1e9d, #ff1e56, #ff7a00, #ffc12e, #ff1e9d);
+            background: linear-gradient(110deg, #d489a8, #cf6f7f, #d99a5b, #e6c37f, #d489a8);
             background-size: 250% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             /* Static glow: animating drop-shadow filters repaints every frame */
-            filter: drop-shadow(0 0 6px rgba(255, 94, 26, 0.55));
+            filter: drop-shadow(0 0 6px rgba(207, 156, 61, 0.4));
             animation: aiShimmer 5s linear infinite;
         }
 
@@ -575,6 +578,19 @@
             filter: grayscale(0%) opacity(1);
         }
 
+        /* Fills the gap under the third education card and plants the
+           athletics story where recruiters actually look */
+        .education-note {
+            margin-top: 2px;
+            padding: 14px 18px;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: #4d5a70;
+            background: linear-gradient(120deg, rgba(189, 91, 38, 0.10), rgba(161, 45, 93, 0.05));
+            border-left: 3px solid var(--hot2);
+            border-radius: 10px;
+        }
+
         .card-university-link {
             color: #1d5dc9;
             text-decoration: none;
@@ -668,7 +684,7 @@
             border-radius: 50%;
             transform: translateY(-50%);
             background: var(--grad-hot);
-            box-shadow: 0 0 10px rgba(255, 94, 26, 0.85);
+            box-shadow: 0 0 10px rgba(189, 91, 38, 0.6);
         }
 
         .main-tab-btn {
@@ -804,7 +820,7 @@
             width: 380px;
             height: 380px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 94, 26, 0.18), transparent 65%);
+            background: radial-gradient(circle, rgba(189, 91, 38, 0.12), transparent 65%);
             pointer-events: none;
             animation: heroDrift 12s ease-in-out infinite;
         }
@@ -855,7 +871,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 3px 16px rgba(217, 74, 10, 0.25));
+            filter: drop-shadow(0 3px 16px rgba(168, 84, 19, 0.18));
             transition: opacity 0.38s ease, transform 0.38s ease;
             animation: heroWordPan 7s ease-in-out infinite alternate;
         }
@@ -866,7 +882,7 @@
         }
 
         @supports not (background-clip: text) {
-            .hero-rotator { color: #d94a0a; -webkit-text-fill-color: currentColor; }
+            .hero-rotator { color: #a85413; -webkit-text-fill-color: currentColor; }
         }
 
         .hero-rotator.is-out {
@@ -920,7 +936,39 @@
             background:
                 linear-gradient(110deg, var(--hot1), var(--hot2)) padding-box,
                 linear-gradient(110deg, var(--hot1), var(--hot3)) border-box;
-            box-shadow: 0 6px 16px rgba(255, 64, 64, 0.30);
+            box-shadow: 0 6px 16px rgba(161, 45, 66, 0.22);
+        }
+
+        .hero-ask {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        /* Dashed border: reads as "a question you can actually ask",
+           distinct from the solid static focus chips below */
+        .hero-ask-chip {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #31517e;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1.5px dashed #9fb8dc;
+            border-radius: 999px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .hero-ask-chip:hover {
+            border-style: solid;
+            border-color: #1d5dc9;
+            color: #123c77;
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(29, 93, 201, 0.18);
         }
 
         .feature-row {
@@ -1088,7 +1136,7 @@
         }
 
         @supports not (background-clip: text) {
-            .title-accent { color: #d94a0a; -webkit-text-fill-color: currentColor; }
+            .title-accent { color: #a85413; -webkit-text-fill-color: currentColor; }
         }
 
         .section-subtitle {
@@ -2280,10 +2328,10 @@
         }
 
         /* Each card carries its own accent pair, picked up by ribbon, icon and chips */
-        .skill-card:nth-child(1) { --ca: #2643e6; --cb: #00b4e6; }
-        .skill-card:nth-child(2) { --ca: #7c3aed; --cb: #d22ec9; }
-        .skill-card:nth-child(3) { --ca: #0e7490; --cb: #0fb98a; }
-        .skill-card:nth-child(4) { --ca: #ff5e1a; --cb: #ff1e56; }
+        .skill-card:nth-child(1) { --ca: #2643e6; --cb: #1a8fc4; }
+        .skill-card:nth-child(2) { --ca: #5d3a9e; --cb: #964a8c; }
+        .skill-card:nth-child(3) { --ca: #0e7490; --cb: #15997a; }
+        .skill-card:nth-child(4) { --ca: #bd5b26; --cb: #b13342; }
 
         .skill-card {
             position: relative;
@@ -2839,11 +2887,19 @@
             height: 38px;
         }
 
+        /* The minimized pill must sell the chat, not just the name:
+           show "AI Twin • Ask me anything!" (with its pulsing dot)
+           and hide the plain name instead */
         .chat-container.minimized .chat-header-text h3 {
-            font-size: 0.9rem;
+            display: none;
         }
 
-        .chat-container.minimized .chat-header-text .status,
+        .chat-container.minimized .chat-header-text .status {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
         .chat-container.minimized .clear-btn {
             display: none;
         }
@@ -3286,10 +3342,10 @@
             margin-bottom: 44px;
         }
 
-        .consulting-card:nth-child(1) { --ca: #2643e6; --cb: #00b4e6; }
-        .consulting-card:nth-child(2) { --ca: #7c3aed; --cb: #d22ec9; }
-        .consulting-card:nth-child(3) { --ca: #ff5e1a; --cb: #ff1e56; }
-        .consulting-card:nth-child(4) { --ca: #0e7490; --cb: #0fb98a; }
+        .consulting-card:nth-child(1) { --ca: #2643e6; --cb: #1a8fc4; }
+        .consulting-card:nth-child(2) { --ca: #5d3a9e; --cb: #964a8c; }
+        .consulting-card:nth-child(3) { --ca: #bd5b26; --cb: #b13342; }
+        .consulting-card:nth-child(4) { --ca: #0e7490; --cb: #15997a; }
 
         .consulting-card {
             position: relative;
@@ -3445,7 +3501,7 @@
         }
 
         @supports not (background-clip: text) {
-            .consulting-step::before { color: #d94a0a; -webkit-text-fill-color: currentColor; }
+            .consulting-step::before { color: #a85413; -webkit-text-fill-color: currentColor; }
         }
 
         .consulting-step h4 {
@@ -3520,7 +3576,7 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 94, 26, 0.35), transparent 66%);
+            background: radial-gradient(circle, rgba(189, 91, 38, 0.24), transparent 66%);
             pointer-events: none;
         }
 
@@ -4015,7 +4071,7 @@
             .sidebar nav a:focus,
             .sidebar nav a.nav-active {
                 border-color: var(--hot2);
-                background: rgba(255, 94, 26, 0.16);
+                background: rgba(189, 91, 38, 0.18);
                 padding-left: 14px;
             }
 
@@ -4367,6 +4423,20 @@
                     <article class="hero-featured">
                         <h2><span data-i18n="hero.title.pre">Turning data into </span><span class="hero-rotator" id="hero-rotator">intelligence</span><span data-i18n="hero.title.post">.</span></h2>
                         <p data-i18n="hero.sub">A decade of Data Science and AI — scientific depth meets quantitative rigor.</p>
+                        <div class="hero-ask" aria-label="Ask the AI Twin">
+                            <button type="button" class="btn-hot" data-ai-open>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.38 8.38 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 1 1 16.1-3.8z"/></svg>
+                                <span data-i18n="consulting.cta.chat">Ask my AI Twin</span>
+                            </button>
+                            <button type="button" class="hero-ask-chip" data-ai-open
+                                data-ai-prompt-en="Tell me about your talk at the Italian Parliament"
+                                data-ai-prompt-it="Raccontami del tuo intervento alla Camera dei Deputati"
+                                data-i18n="hero.ask.parliament">“Tell me about the Parliament talk”</button>
+                            <button type="button" class="hero-ask-chip" data-ai-open
+                                data-ai-prompt-en="How did you cut churn by 20% on 6 million customers?"
+                                data-ai-prompt-it="Come hai ridotto il churn del 20% su 6 milioni di clienti?"
+                                data-i18n="hero.ask.churn">“How did you cut churn on 6M customers?”</button>
+                        </div>
                         <div class="hero-chips" aria-label="Core focus areas">
                             <span>LLM &amp; GenAI</span>
                             <span>Agentic AI</span>
@@ -4625,6 +4695,7 @@
                             <p class="university"><a href="https://www.unimib.it/" target="_blank" rel="noopener" class="card-university-link" data-i18n="edu.unimib">University of Milan Bicocca</a></p>
                             <p class="year" data-i18n="edu.bsc.year">2014 · Statistical modeling and econometrics</p>
                         </article>
+                        <aside class="education-note" data-i18n="edu.note">Meanwhile, on the track: racing the 400m for Italy — Golden Gala 2012 with the senior national team, silver at the European U23 Championships with the 4x400m relay.</aside>
                     </div>
                 </div>
             </section>
@@ -5905,7 +5976,7 @@
     <script src="js/chatbot.js?v=20260718b"></script>
 
     <!-- Language toggle (EN/IT) -->
-    <script src="js/i18n.js?v=20260718b"></script>
+    <script src="js/i18n.js?v=20260718c"></script>
 
     <!-- Consulting-funnel events → GoatCounter (silent no-op if analytics is blocked) -->
     <script>

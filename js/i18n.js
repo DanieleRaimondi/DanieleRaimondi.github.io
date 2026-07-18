@@ -34,6 +34,8 @@
     'hero.title.pre': 'Trasformo i dati in ',
     'hero.title.post': '.',
     'hero.sub': 'Dieci anni di Data Science e AI — profondità scientifica e rigore quantitativo.',
+    'hero.ask.parliament': '“Raccontami del talk alla Camera dei Deputati”',
+    'hero.ask.churn': '“Come hai ridotto il churn su 6M di clienti?”',
 
     // ─── Highlights ────────────────────────────────────────────────────────
     'hl.subtitle': "Dai palchi internazionali dell'AI alla Nazionale Italiana di atletica — i momenti che definiscono il percorso.",
@@ -90,6 +92,7 @@
     'edu.master.year': '2021 · ML avanzato, NLP e data products',
     'edu.msc.year': '2017 · Mercati finanziari, assicurazioni e risk analytics',
     'edu.bsc.year': '2014 · Modellazione statistica ed econometria',
+    'edu.note': "Intanto, in pista: i 400m per l'Italia — Golden Gala 2012 con la Nazionale assoluta, argento agli Europei U23 con la staffetta 4x400.",
 
     // ─── Beyond Work ───────────────────────────────────────────────────────
     'passions.title': 'Oltre il Lavoro',
