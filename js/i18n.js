@@ -8,6 +8,9 @@
     'sidebar.summary': "Senior Data Scientist e AI leader con 10 anni di esperienza nel portare sistemi di Data Science, AI, LLM e GenAI dal prototipo alla produzione. Tech Lead di team cross-funzionali e speaker internazionale, da PyData London al Parlamento Italiano. Profonda competenza in Data Science, sistemi AI e finanza quantitativa. Ex atleta della Nazionale Italiana con una mentalità ad alte prestazioni.",
     'nav.projects': 'Progetti',
     'nav.skills': 'Competenze',
+    'nav.consulting': 'Consulenza',
+    'nav.contact': 'Contatti',
+    'a11y.skip': 'Salta al contenuto',
     'sidebar.location.label': 'Località',
     'sidebar.city': 'Basilea',
     'sidebar.country': 'Svizzera',
@@ -210,13 +213,56 @@
     'sport.u23.desc': 'Membro della staffetta italiana 4x400m ai Campionati Europei U23 di Tampere, dove abbiamo chiuso secondi in Europa.',
     'link.racevideo': 'Video Gara',
 
+    // ─── Consulting ────────────────────────────────────────────────────────
+    'consulting.badge': 'Disponibile per collaborazioni selezionate',
+    // EN reads "AI Consulting" (accent on "Consulting"); IT flips the word
+    // order so the accent lands on "AI": "Consulenza AI"
+    'consulting.title.a': 'Consulenza ',
+    'consulting.title.b': 'AI',
+    'consulting.subtitle': "Aiuto le aziende a trasformare le ambizioni AI in sistemi funzionanti — la stessa esperienza su LLM, GenAI e data science che applico ogni giorno in produzione, a disposizione del tuo team.",
+    'consulting.strategy.title': 'Strategia AI & Advisory',
+    'consulting.strategy.desc': 'Quali use case vale la pena costruire, quali comprare e quali evitare. Roadmap, analisi di fattibilità e risposte oneste prima di impegnare il budget.',
+    'consulting.strategy.tag1': 'Triage degli use case',
+    'consulting.llm.title': 'Sistemi LLM & GenAI',
+    'consulting.llm.desc': "Progettazione e delivery hands-on di pipeline LLM, RAG e sistemi agentici — con l'evaluation e il monitoring che li rendono production-grade.",
+    'consulting.llm.tag3': 'Evals & Monitoring',
+    'consulting.training.title': 'Workshop & Formazione',
+    'consulting.training.desc': 'Dalle sessioni per executive ai corsi hands-on per i team di ingegneria — lo stesso materiale che porto sui palchi internazionali, adattato al tuo contesto.',
+    'consulting.training.tag1': 'Briefing executive',
+    'consulting.training.tag2': 'Lab hands-on',
+    'consulting.quant.title': 'Data Science & Modelli Quant',
+    'consulting.quant.desc': "Forecasting, modellazione statistica e sistemi di finanza quantitativa, end to end: dall'inquadramento del problema a modelli che il tuo team può mantenere.",
+    'consulting.quant.tag2': 'Statistica',
+    'consulting.how.title': 'Come funziona una collaborazione',
+    'consulting.step1.title': 'Call conoscitiva',
+    'consulting.step1.desc': "Una conversazione gratuita di 30 minuti per capire il problema — e dirti onestamente se l'AI è la risposta giusta.",
+    'consulting.step2.title': 'Proposta su misura',
+    'consulting.step2.desc': 'Un piano chiaro: deliverable, tempi e costi. Nessun incarico a tempo indeterminato, nessuna sorpresa.',
+    'consulting.step3.title': 'Delivery & Handover',
+    'consulting.step3.desc': 'Sprint mirati o advisory continuativa, con knowledge transfer integrato perché il tuo team resti autonomo.',
+    'consulting.nda': 'Riservatezza di default — le collaborazioni sono coperte da NDA e i nomi dei clienti non vengono mai pubblicati. Posso raccontarti approccio e risultati di persona, e le referenze sono disponibili su richiesta.',
+    'consulting.cta.title': 'Hai un progetto in mente?',
+    'consulting.cta.desc': "Racconta al mio AI Twin a cosa stai lavorando — conosce il mio background e può dirti subito se c'è un fit. Oppure contattami direttamente.",
+    'consulting.cta.chat': 'Chiedi al mio AI Twin',
+    'consulting.cta.email': 'Scrivimi',
+
+    // ─── Contact ───────────────────────────────────────────────────────────
+    'contact.title.a': 'Mettiamoci in ',
+    'contact.title.b': 'Contatto',
+    'contact.subtitle': 'Per consulenze, speaking o anche solo per parlare di dati e AI — la mia inbox è aperta.',
+    'contact.ai.label': 'Risposta immediata',
+    'contact.ai.title': 'Chiedi al mio AI Twin',
+    'contact.ai.desc': 'Risposte immediate sul mio lavoro, 24/7',
+    'contact.email.desc': 'Per proposte e richieste',
+    'contact.linkedin.desc': 'Connettiamoci',
+
     // ─── Footer ────────────────────────────────────────────────────────────
     'footer.location': 'Basilea, Svizzera 🇨🇭'
   };
 
   const META_IT = {
-    title: 'Daniele Raimondi | Senior Data Scientist & AI a Basilea',
-    description: 'Senior Data Scientist e AI Tech Lead a Basilea. Sistemi LLM, GenAI, agentic AI e finanza quantitativa in produzione. Speaker internazionale: PyData London, EuroSciPy, Swiss Data Science Conference, Parlamento Italiano.'
+    title: 'Daniele Raimondi | Senior Data Scientist & Consulente AI a Basilea',
+    description: 'Senior Data Scientist e AI Tech Lead a Basilea. Sistemi LLM, GenAI, agentic AI e finanza quantitativa in produzione. Consulenza AI per aziende. Speaker internazionale: PyData London, EuroSciPy, Swiss Data Science Conference, Parlamento Italiano.'
   };
 
   const ROTATOR_IT = ['intelligenza', 'decisioni', 'visione', 'alpha'];

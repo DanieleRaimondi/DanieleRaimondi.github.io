@@ -241,6 +241,28 @@
       }
 
       scheduleTeaser(8000);
+
+      // Public hook: "Ask my AI Twin" CTAs elsewhere on the page (consulting
+      // tab, contact section) open the chat — un-minimizing it if needed —
+      // with an optional prefilled question the visitor can still edit.
+      window.openAITwin = function (prefill) {
+        if (chatContainer.classList.contains('minimized')) toggleMinimize();
+        const input = document.getElementById('chat-input');
+        if (input) {
+          if (prefill) {
+            input.value = prefill;
+            autoResizeTextarea(input);
+          }
+          input.focus();
+        }
+      };
+
+      document.querySelectorAll('[data-ai-open]').forEach(el => {
+        el.addEventListener('click', () => {
+          const prompt = siteLang() === 'it' ? el.dataset.aiPromptIt : el.dataset.aiPromptEn;
+          window.openAITwin(prompt || '');
+        });
+      });
     }
   }
 
@@ -384,6 +406,10 @@
 
     if (retryCount === 0) {
       isProcessing = true;
+      // Funnel signal: one event per user message actually sent
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: 'chat-message-sent', title: 'chat-message-sent', event: true });
+      }
       document.getElementById('suggestions')?.remove();
       document.getElementById('followups')?.remove();
       sendButton.disabled = true;

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Daniele Raimondi | Senior Data Scientist & AI in Basel</title>
-    <meta name="description" content="Senior Data Scientist and AI Tech Lead in Basel. LLM, GenAI, agentic AI and quantitative finance systems in production. International speaker: PyData London, EuroSciPy, Swiss Data Science Conference, Italian Parliament.">
-    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Agentic AI, AI Speaker, AI Advisor, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
+    <title>Daniele Raimondi | Senior Data Scientist & AI Consultant in Basel</title>
+    <meta name="description" content="Senior Data Scientist and AI Tech Lead in Basel. LLM, GenAI, agentic AI and quantitative finance systems in production. AI consulting for companies. International speaker: PyData London, EuroSciPy, Swiss Data Science Conference, Italian Parliament.">
+    <meta name="keywords" content="Daniele Raimondi, Data Scientist, AI, Machine Learning, LLM, GenAI, Agentic AI, AI Consulting, AI Consultant, AI Speaker, AI Advisor, Python, Basel, Switzerland, Tech Lead, MDPI, Quantitative Finance, Statistics, Deep Learning">
     <meta name="author" content="Daniele Raimondi">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://danieleraimondi.github.io/">
@@ -43,7 +43,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://danieleraimondi.github.io/">
     <meta property="og:title" content="Daniele Raimondi - Senior Data Scientist">
-    <meta property="og:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland.">
+    <meta property="og:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland. AI consulting for companies.">
     <meta property="og:image" content="https://danieleraimondi.github.io/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -56,7 +56,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://danieleraimondi.github.io/">
     <meta property="twitter:title" content="Daniele Raimondi - Senior Data Scientist">
-    <meta property="twitter:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland.">
+    <meta property="twitter:description" content="Senior Data Scientist specializing in LLM pipelines, GenAI, and Machine Learning in Basel, Switzerland. AI consulting for companies.">
     <meta property="twitter:image" content="https://danieleraimondi.github.io/assets/og-image.jpg">
 
     <!-- JSON-LD Structured Data -->
@@ -71,7 +71,26 @@
         "name": "MDPI"
       },
       "url": "https://danieleraimondi.github.io/",
+      "email": "mailto:machinelearner92@gmail.com",
       "image": "https://danieleraimondi.github.io/assets/profile2.jpeg",
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "AI Strategy & Advisory", "description": "Use-case triage, build-vs-buy decisions, AI roadmaps and feasibility assessments for companies." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "LLM & GenAI Systems", "description": "Design and hands-on delivery of LLM pipelines, RAG and agentic systems with production-grade evaluation and monitoring." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Workshops & Training", "description": "Executive briefings, keynotes and hands-on AI courses for engineering teams." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Data Science & Quantitative Models", "description": "Forecasting, statistical modelling and quantitative finance systems, end to end." }
+        }
+      ],
       "sameAs": [
         "https://www.linkedin.com/in/danieleraimondi92",
         "https://github.com/DanieleRaimondi",
@@ -99,7 +118,7 @@
         "Python",
         "Statistics"
       ],
-      "description": "Senior Data Scientist and AI Tech Lead specializing in LLM and agentic AI systems, Machine Learning, and Quantitative Finance. International conference speaker."
+      "description": "Senior Data Scientist and AI Tech Lead specializing in LLM and agentic AI systems, Machine Learning, and Quantitative Finance. Independent AI consultant for companies. International conference speaker."
     }
     </script>
 
@@ -179,6 +198,29 @@
         textarea:focus-visible {
             outline: 3px solid rgba(29, 93, 201, 0.38);
             outline-offset: 2px;
+        }
+
+        /* Keyboard/screen-reader shortcut past the sidebar; visible only on focus */
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 10001;
+            background: var(--accent-strong);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 11px 20px;
+            border-radius: 999px;
+            text-decoration: none;
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-250%);
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
         }
 
         h1, h2, h3, .sidebar nav a {
@@ -3194,6 +3236,470 @@
             border-color: transparent;
         }
 
+        /* CONSULTING */
+
+        .consulting-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #0b6e4f;
+            background: #dcf5ea;
+            border: 1px solid #b5e6d2;
+            border-radius: 999px;
+            padding: 5px 14px;
+            margin-bottom: 18px;
+        }
+
+        .consulting-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #12b981;
+            box-shadow: 0 0 0 0 rgba(18, 185, 129, 0.5);
+            animation: availablePulse 2.2s ease-out infinite;
+        }
+
+        @keyframes availablePulse {
+            0% { box-shadow: 0 0 0 0 rgba(18, 185, 129, 0.45); }
+            70% { box-shadow: 0 0 0 9px rgba(18, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(18, 185, 129, 0); }
+        }
+
+        .consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+            gap: 20px;
+            margin-bottom: 44px;
+        }
+
+        .consulting-card:nth-child(1) { --ca: #2643e6; --cb: #00b4e6; }
+        .consulting-card:nth-child(2) { --ca: #7c3aed; --cb: #d22ec9; }
+        .consulting-card:nth-child(3) { --ca: #ff5e1a; --cb: #ff1e56; }
+        .consulting-card:nth-child(4) { --ca: #0e7490; --cb: #0fb98a; }
+
+        .consulting-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #f4f8fe 100%);
+            padding: 24px 24px 22px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #d4e1f0;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .consulting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ca), var(--cb));
+        }
+
+        .consulting-card::after {
+            content: '';
+            position: absolute;
+            top: -70px;
+            right: -70px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--cb), transparent 68%);
+            opacity: 0.10;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .consulting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(24, 68, 125, 0.16);
+            border-color: #a9c8ef;
+            box-shadow: 0 16px 32px color-mix(in srgb, var(--ca) 22%, rgba(24, 68, 125, 0.10));
+            border-color: color-mix(in srgb, var(--ca) 38%, #d4e1f0);
+        }
+
+        .consulting-card:hover::after {
+            opacity: 0.20;
+            transform: scale(1.25);
+        }
+
+        .consulting-card-head {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 12px;
+        }
+
+        .consulting-icon {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--ca), var(--cb));
+            box-shadow: 0 8px 18px color-mix(in srgb, var(--ca) 34%, transparent);
+        }
+
+        .consulting-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .consulting-card h3 {
+            font-size: 1.08rem;
+            color: #14243c;
+        }
+
+        .consulting-card p {
+            color: var(--muted);
+            font-size: 0.93rem;
+            line-height: 1.65;
+        }
+
+        .consulting-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 14px;
+        }
+
+        .consulting-card-tags span {
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: #38506f;
+            background: #e8eff9;
+            border: 1px solid #d5e1f1;
+            border-radius: 999px;
+            padding: 3px 11px;
+        }
+
+        .consulting-how {
+            margin-bottom: 44px;
+        }
+
+        .consulting-how h3.consulting-subhead,
+        .consulting-cta-copy h3 {
+            font-size: 1.3rem;
+            color: #14243c;
+        }
+
+        .consulting-how h3.consulting-subhead {
+            margin-bottom: 20px;
+        }
+
+        .consulting-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            counter-reset: step;
+        }
+
+        .consulting-step {
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #d8e0ed;
+            border-radius: var(--radius-md);
+            padding: 20px 20px 18px 20px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .consulting-step:hover {
+            transform: translateY(-4px);
+            border-color: #b8c9e7;
+            box-shadow: 0 12px 24px rgba(21, 40, 71, 0.11);
+        }
+
+        .consulting-step::before {
+            counter-increment: step;
+            content: '0' counter(step);
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+            background: var(--grad-hot-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        @supports not (background-clip: text) {
+            .consulting-step::before { color: #d94a0a; -webkit-text-fill-color: currentColor; }
+        }
+
+        .consulting-step h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: #14243c;
+            margin-bottom: 6px;
+        }
+
+        .consulting-step p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .consulting-nda {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--surface-alt);
+            border: 1px dashed #b9c8de;
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            margin-bottom: 44px;
+        }
+
+        .consulting-nda svg {
+            flex: 0 0 auto;
+            width: 22px;
+            height: 22px;
+            margin-top: 3px;
+            color: var(--accent);
+        }
+
+        .consulting-nda p {
+            color: #46536a;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        /* Shared CTA banner (consulting tab + contact section) */
+
+        .cta-banner {
+            position: relative;
+            background: linear-gradient(120deg, #10254a 0%, #16386e 55%, #0d4f66 100%);
+            border-radius: var(--radius-lg);
+            padding: 34px 34px 32px;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: var(--grad-hot);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            top: -110px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 94, 26, 0.35), transparent 66%);
+            pointer-events: none;
+        }
+
+        .cta-banner-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 26px;
+            flex-wrap: wrap;
+        }
+
+        .consulting-cta-copy h3,
+        .cta-banner h3 {
+            color: #ffffff;
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+        }
+
+        .cta-banner p {
+            color: rgba(228, 238, 252, 0.85);
+            font-size: 0.95rem;
+            max-width: 52ch;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hot,
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 12px 22px;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+        }
+
+        .btn-hot {
+            color: #ffffff;
+            background: var(--grad-hot);
+            box-shadow: 0 10px 26px rgba(255, 62, 62, 0.35);
+        }
+
+        .btn-hot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(255, 62, 62, 0.45);
+        }
+
+        .btn-ghost {
+            color: #eaf1fc;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .btn-hot svg,
+        .btn-ghost svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* CONTACT */
+
+        .contact-section {
+            margin-top: 46px;
+            padding-top: 8px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-bottom: 26px;
+        }
+
+        .contact-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(180deg, #ffffff 0%, #f4f8fe 100%);
+            border: 1px solid #d4e1f0;
+            border-radius: var(--radius-lg);
+            padding: 20px 22px;
+            box-shadow: var(--shadow-soft);
+            text-decoration: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(24, 68, 125, 0.15);
+            border-color: #a9c8ef;
+        }
+
+        .contact-card-icon {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            color: #ffffff;
+        }
+
+        .contact-card-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .contact-card:nth-child(1) .contact-card-icon { background: var(--grad-hot); }
+        .contact-card:nth-child(2) .contact-card-icon { background: linear-gradient(135deg, #2643e6, #00b4e6); }
+        .contact-card:nth-child(3) .contact-card-icon { background: linear-gradient(135deg, #0a66c2, #0e7fa6); }
+
+        .contact-card-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .contact-card strong {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.02rem;
+            color: #14243c;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-card small {
+            display: block;
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 1px;
+        }
+
+        /* Hot marker on the Consulting nav entries */
+
+        .main-tab-btn[data-tab-target="tab-consulting"]::after,
+        .sidebar nav a[data-tab-link="tab-consulting"]::after {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--grad-hot);
+            margin-left: 7px;
+            vertical-align: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-banner {
+                padding: 26px 22px 24px;
+            }
+
+            .cta-banner-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .consulting-grid,
+            .consulting-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Responsive */
 
         /* Short laptop screens: compact the fixed sidebar further so it never scrolls */
@@ -3670,6 +4176,7 @@
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Person">
+    <a class="skip-link" href="#main-content" data-i18n="a11y.skip">Skip to content</a>
 
     <!-- Language toggle (EN default / IT) -->
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -3696,11 +4203,13 @@
 
         <nav aria-label="Primary">
             <a href="#tab-home" data-tab-link="tab-home" class="nav-active">Home</a>
+            <a href="#tab-consulting" data-tab-link="tab-consulting" data-i18n="nav.consulting">Consulting</a>
             <a href="#tab-projects" data-tab-link="tab-projects" data-i18n="nav.projects">Projects</a>
             <a href="#tab-skills" data-tab-link="tab-skills" data-i18n="nav.skills">Skills</a>
             <a href="#tab-talks" data-tab-link="tab-talks">Talks</a>
             <a href="#tab-publications" data-tab-link="tab-publications" data-i18n="nav.publications">Publications</a>
             <a href="#tab-sport" data-tab-link="tab-sport">Sport</a>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
 
         <div class="sidebar-info">
@@ -3773,10 +4282,11 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <main class="main-content" role="main">
+    <main class="main-content" role="main" id="main-content" tabindex="-1">
         <div class="main-tabs" role="tablist" aria-label="Main content tabs">
             <span class="main-tabs-indicator" aria-hidden="true"></span>
             <button class="main-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-home" id="tab-btn-home" data-tab-target="tab-home">Home</button>
+            <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-consulting" id="tab-btn-consulting" data-tab-target="tab-consulting" data-i18n="nav.consulting">Consulting</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-projects" id="tab-btn-projects" data-tab-target="tab-projects" data-i18n="nav.projects">Projects</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" id="tab-btn-skills" data-tab-target="tab-skills" data-i18n="nav.skills">Skills</button>
             <button class="main-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-talks" id="tab-btn-talks" data-tab-target="tab-talks">Talks</button>
@@ -4106,6 +4616,127 @@
                     </article>
                 </div>
             </section>
+        </div>
+
+        <div id="tab-consulting" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-consulting">
+        <section id="consulting" aria-label="Consulting services">
+            <span class="consulting-badge" data-i18n="consulting.badge">Available for select engagements</span>
+            <h2 class="section-title"><span data-i18n="consulting.title.a">AI </span><span class="title-accent" data-i18n="consulting.title.b">Consulting</span></h2>
+            <p class="section-subtitle" data-i18n="consulting.subtitle">
+                I help companies turn AI ambitions into working systems — the same LLM, GenAI and data science
+                expertise I apply in production every day, available for your team.
+            </p>
+
+            <div class="consulting-grid">
+                <div class="consulting-card">
+                    <div class="consulting-card-head">
+                        <span class="consulting-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                        </span>
+                        <h3 data-i18n="consulting.strategy.title">AI Strategy &amp; Advisory</h3>
+                    </div>
+                    <p data-i18n="consulting.strategy.desc">Which use cases are worth building, which to buy, and which to skip. Roadmaps, feasibility checks and honest answers before you commit budget.</p>
+                    <div class="consulting-card-tags">
+                        <span data-i18n="consulting.strategy.tag1">Use-case triage</span>
+                        <span>Build vs Buy</span>
+                        <span>AI Roadmap</span>
+                    </div>
+                </div>
+
+                <div class="consulting-card">
+                    <div class="consulting-card-head">
+                        <span class="consulting-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                        </span>
+                        <h3 data-i18n="consulting.llm.title">LLM &amp; GenAI Systems</h3>
+                    </div>
+                    <p data-i18n="consulting.llm.desc">Design and hands-on delivery of LLM pipelines, RAG and agentic systems — with the evaluation and monitoring that make them production-grade.</p>
+                    <div class="consulting-card-tags">
+                        <span>RAG</span>
+                        <span>Agentic AI</span>
+                        <span data-i18n="consulting.llm.tag3">Evals &amp; Monitoring</span>
+                    </div>
+                </div>
+
+                <div class="consulting-card">
+                    <div class="consulting-card-head">
+                        <span class="consulting-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </span>
+                        <h3 data-i18n="consulting.training.title">Workshops &amp; Training</h3>
+                    </div>
+                    <p data-i18n="consulting.training.desc">From executive sessions to hands-on courses for engineering teams — the same material I bring to international stages, tailored to your context.</p>
+                    <div class="consulting-card-tags">
+                        <span data-i18n="consulting.training.tag1">Executive briefings</span>
+                        <span data-i18n="consulting.training.tag2">Hands-on labs</span>
+                        <span>Keynotes</span>
+                    </div>
+                </div>
+
+                <div class="consulting-card">
+                    <div class="consulting-card-head">
+                        <span class="consulting-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </span>
+                        <h3 data-i18n="consulting.quant.title">Data Science &amp; Quant Models</h3>
+                    </div>
+                    <p data-i18n="consulting.quant.desc">Forecasting, statistical modelling and quantitative finance systems, end to end: from problem framing to models your team can maintain.</p>
+                    <div class="consulting-card-tags">
+                        <span>Forecasting</span>
+                        <span data-i18n="consulting.quant.tag2">Statistics</span>
+                        <span>Quant Finance</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consulting-how">
+                <h3 class="consulting-subhead" data-i18n="consulting.how.title">How an engagement works</h3>
+                <div class="consulting-steps">
+                    <div class="consulting-step">
+                        <h4 data-i18n="consulting.step1.title">Intro call</h4>
+                        <p data-i18n="consulting.step1.desc">A free 30-minute conversation to understand the problem — and to tell you honestly whether AI is the right answer.</p>
+                    </div>
+                    <div class="consulting-step">
+                        <h4 data-i18n="consulting.step2.title">Scoped proposal</h4>
+                        <p data-i18n="consulting.step2.desc">A clear plan: deliverables, timeline and pricing. No open-ended engagements, no surprises.</p>
+                    </div>
+                    <div class="consulting-step">
+                        <h4 data-i18n="consulting.step3.title">Delivery &amp; handover</h4>
+                        <p data-i18n="consulting.step3.desc">Focused sprints or ongoing advisory, with knowledge transfer built in so your team stays autonomous.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consulting-nda">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <p data-i18n="consulting.nda">Confidentiality by default — engagements run under NDA and client names are never published. I can walk you through approach and results in person, and references are available on request.</p>
+            </div>
+
+            <div class="cta-banner">
+                <div class="cta-banner-inner">
+                    <div class="consulting-cta-copy">
+                        <h3 data-i18n="consulting.cta.title">Have a project in mind?</h3>
+                        <p data-i18n="consulting.cta.desc">Tell my AI Twin what you're working on — it knows my background and can tell you right away whether it's a fit. Or reach out directly.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <button type="button" class="btn-hot" data-ai-open
+                            data-ai-prompt-en="I'd like to talk about a consulting engagement for my company. How do you usually work?"
+                            data-ai-prompt-it="Vorrei parlarti di una consulenza per la mia azienda. Come lavori di solito?">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.38 8.38 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 1 1 16.1-3.8z"/></svg>
+                            <span data-i18n="consulting.cta.chat">Ask my AI Twin</span>
+                        </button>
+                        <a class="btn-ghost" href="mailto:machinelearner92@gmail.com?subject=Consulting%20enquiry">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <span data-i18n="consulting.cta.email">Email me</span>
+                        </a>
+                        <a class="btn-ghost" href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         </div>
 
         <div id="tab-projects" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-projects">
@@ -4668,6 +5299,47 @@
             </section>
         </div>
 
+        <section id="contact" class="contact-section" aria-label="Contact">
+            <h2 class="section-title"><span data-i18n="contact.title.a">Get in </span><span class="title-accent" data-i18n="contact.title.b">Touch</span></h2>
+            <p class="section-subtitle" data-i18n="contact.subtitle">
+                For consulting, speaking, or just to talk data and AI — my inbox is open.
+            </p>
+            <div class="contact-grid">
+                <button type="button" class="contact-card" data-ai-open
+                    data-ai-prompt-en="Hi Daniele! I'd like to get in touch with you — what's the best way?"
+                    data-ai-prompt-it="Ciao Daniele! Vorrei mettermi in contatto con te — qual è il modo migliore?">
+                    <span class="contact-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.38 8.38 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 1 1 16.1-3.8z"/></svg>
+                    </span>
+                    <span>
+                        <span class="contact-card-label" data-i18n="contact.ai.label">Fastest answer</span>
+                        <strong data-i18n="contact.ai.title">Ask my AI Twin</strong>
+                        <small data-i18n="contact.ai.desc">Instant answers about my work, 24/7</small>
+                    </span>
+                </button>
+                <a class="contact-card" href="mailto:machinelearner92@gmail.com">
+                    <span class="contact-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </span>
+                    <span>
+                        <span class="contact-card-label">Email</span>
+                        <strong>machinelearner92@gmail.com</strong>
+                        <small data-i18n="contact.email.desc">For proposals and enquiries</small>
+                    </span>
+                </a>
+                <a class="contact-card" href="https://www.linkedin.com/in/danieleraimondi92" target="_blank" rel="noopener">
+                    <span class="contact-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </span>
+                    <span>
+                        <span class="contact-card-label">LinkedIn</span>
+                        <strong>danieleraimondi92</strong>
+                        <small data-i18n="contact.linkedin.desc">Let's connect</small>
+                    </span>
+                </a>
+            </div>
+        </section>
+
         <footer>
             <p>© 2026 Daniele Raimondi · Senior Data Scientist</p>
             <p style="margin-top: 6px;" data-i18n="footer.location">Basel, Switzerland 🇨🇭</p>
@@ -4699,16 +5371,16 @@
         };
 
         const activateTab = (tabId, pushHash = true) => {
-            let hasTab = false;
+            // Non-tab hashes (e.g. #contact, a plain in-page anchor) must not
+            // touch the tab state — bail before mutating anything.
+            const hasTab = Array.from(tabButtons).some(button => button.dataset.tabTarget === tabId);
+            if (!hasTab) return;
 
             tabButtons.forEach(button => {
                 const isActive = button.dataset.tabTarget === tabId;
                 button.classList.toggle('active', isActive);
                 button.setAttribute('aria-selected', String(isActive));
-                if (isActive) hasTab = true;
             });
-
-            if (!hasTab) return;
 
             tabPanels.forEach(panel => {
                 panel.classList.toggle('active', panel.id === tabId);
@@ -4722,6 +5394,11 @@
 
             if (pushHash) {
                 history.replaceState(null, '', '#' + tabId);
+                // SPA pseudo-pageview: count.js only counts the initial load,
+                // so user-initiated tab switches are reported here
+                if (window.goatcounter && window.goatcounter.count) {
+                    window.goatcounter.count({ path: '/#' + tabId });
+                }
             }
 
             // Stacked layout (sidebar above content): top of page is the
@@ -5174,10 +5851,29 @@
     <script src="js/background.js?v=20260717a"></script>
 
     <!-- Script Chatbot -->
-    <script src="js/chatbot.js?v=20260717a"></script>
+    <script src="js/chatbot.js?v=20260718b"></script>
 
     <!-- Language toggle (EN/IT) -->
-    <script src="js/i18n.js?v=20260630a"></script>
+    <script src="js/i18n.js?v=20260718b"></script>
+
+    <!-- Consulting-funnel events → GoatCounter (silent no-op if analytics is blocked) -->
+    <script>
+    (function () {
+        const track = name => {
+            if (window.goatcounter && window.goatcounter.count) {
+                window.goatcounter.count({ path: name, title: name, event: true });
+            }
+        };
+        const bind = (selector, name) => {
+            document.querySelectorAll(selector).forEach(el => {
+                el.addEventListener('click', () => track(name));
+            });
+        };
+        bind('[data-ai-open]', 'ai-twin-open');
+        bind('a[href^="mailto:"]', 'contact-email');
+        bind('#consulting a[href*="linkedin"], #contact a[href*="linkedin"]', 'contact-linkedin');
+    })();
+    </script>
 
     <!-- GoatCounter analytics (cookieless, privacy-friendly) -->
     <script data-goatcounter="https://danieleraimondi.goatcounter.com/count"
