@@ -1539,6 +1539,12 @@
             font-size: 1.1em;
         }
 
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         .project-private-badge {
             padding: 10px 15px;
             background: #edf4ff;
@@ -4970,6 +4976,34 @@
             </p>
             <div class="projects-grid">
                 <div class="project-card">
+                    <div class="project-media">
+                        <img src="assets/projects/AtlantisTaxonomy.webp" alt="Atlantis interactive WebGL concept map of a 115,000-concept research taxonomy" loading="lazy" width="1200" height="677">
+                        <video class="project-hover-video" src="assets/projects/atlantis_demo.mp4" muted loop playsinline preload="metadata"></video>
+                    </div>
+                    <div class="project-content">
+                        <h3>Atlantis</h3>
+                        <p data-i18n="projects.atlantis">
+                            Interactive WebGL concept map for exploring MDPI's 115,000-concept research taxonomy,
+                            built with Vue 3, deck.gl and D3 on top of SPECTER2 embeddings and ontology-based
+                            clustering. The underlying taxonomy is now public as an open dataset on Hugging Face.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Vue 3</span>
+                            <span class="tag">deck.gl</span>
+                            <span class="tag">TypeScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://atlantis.mdpi.com/" class="project-link" target="_blank" rel="noopener" data-i18n="projects.launch">
+                                Explore Atlantis
+                            </a>
+                            <a href="https://huggingface.co/datasets/mdpi-di/taxonomy" class="project-link" target="_blank" rel="noopener" data-i18n="projects.dataset">
+                                Dataset on Hugging Face
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
                     <img src="assets/projects/Thermomodel.webp" alt="Data Science framework analyzing Bitcoin market dynamics" loading="lazy" width="1200" height="600">
                     <div class="project-content">
                         <h3>Bitcoin DataScience</h3>
@@ -6072,7 +6106,7 @@
     <script src="js/chatbot.js?v=20260718d"></script>
 
     <!-- Language toggle (EN/IT) -->
-    <script src="js/i18n.js?v=20260722a"></script>
+    <script src="js/i18n.js?v=20260807a"></script>
 
     <!-- Consulting-funnel events → GoatCounter (silent no-op if analytics is blocked) -->
     <script>

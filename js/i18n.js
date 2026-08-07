@@ -118,6 +118,7 @@
     'projects.title.a': 'Alcuni ',
     'projects.title.b': 'Progetti',
     'projects.subtitle': 'Una selezione curata di progetti tra machine learning, NLP e AI product engineering.',
+    'projects.atlantis': "Mappa concettuale interattiva in WebGL per esplorare la taxonomy di 115.000 concetti di MDPI, costruita con Vue 3, deck.gl e D3 su embedding SPECTER2 e clustering ontologico. La taxonomy è ora pubblica come dataset open su Hugging Face.",
     'projects.bitcoin': 'Framework di Data Science per analizzare le dinamiche del mercato Bitcoin, pattern di prezzo e segnali di trading con modelli predittivi.',
     'projects.aitwin': 'Chatbot AI conversazionale basato su tecnologia LLM che agisce da gemello digitale, rispondendo a domande su lavoro, progetti e carriera con architettura RAG e risposte in streaming.',
     'projects.billiard': "Ricostruzione delle traiettorie delle bilie su partite di biliardo e biliardo all'italiana usando computer vision classica: detection basata sul colore, tracking multi-oggetto con Kalman filter e Hungarian assignment, homography per la mappa dall'alto e fisica del rimbalzo sulle sponde.",
@@ -125,6 +126,8 @@
     'projects.betting': 'Scraping in tempo reale e data pipeline per le quote dei betting exchange e statistiche calcistiche live a supporto di strategie di sports analytics.',
     'projects.music': 'Pipeline end-to-end per embedding musicali handcrafted, classificazione di genere con SHAP e similarity search su un dataset Italodance/Trance.',
     'projects.view': 'Vedi Progetto',
+    'projects.launch': 'Esplora Atlantis',
+    'projects.dataset': 'Dataset su Hugging Face',
     'projects.private': 'Progetto Privato',
 
     // ─── Publications ──────────────────────────────────────────────────────
