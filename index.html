@@ -94,7 +94,8 @@
       "sameAs": [
         "https://www.linkedin.com/in/danieleraimondi92",
         "https://github.com/DanieleRaimondi",
-        "https://www.kaggle.com/danieleraimondi"
+        "https://www.kaggle.com/danieleraimondi",
+        "https://arxiv.org/abs/2608.07254"
       ],
       "address": {
         "@type": "PostalAddress",
@@ -4999,6 +5000,9 @@
                             <a href="https://huggingface.co/datasets/mdpi-di/taxonomy" class="project-link" target="_blank" rel="noopener" data-i18n="projects.dataset">
                                 Dataset on Hugging Face
                             </a>
+                            <a href="https://arxiv.org/abs/2608.07254" class="project-link" target="_blank" rel="noopener" data-i18n="projects.paper">
+                                Read the paper (arXiv)
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -5429,9 +5433,44 @@
         <section id="publications">
             <h2 class="section-title"><span data-i18n="pub.title.a">Selected </span><span class="title-accent" data-i18n="pub.title.b">Publications</span></h2>
             <p class="section-subtitle" data-i18n="pub.subtitle">
-                Books and essays I have written — free to read online or download.
+                Books, essays, and research papers — free to read online or download.
             </p>
             <div class="publications-grid">
+                <article class="publication-card">
+                    <button type="button" class="publication-cover pub-open" data-pdf-src="assets/publications/scale_taxonomy_paper.pdf" data-pdf-title="SCALE: Scientific Concept Aggregation via LLMs and Embeddings for Fine-Grained Taxonomy Extension" aria-label="Open the SCALE paper in the PDF reader">
+                        <img src="assets/publications/scale_taxonomy_paper_cover.webp" alt="First page of the SCALE research paper by Daniele Raimondi and co-authors" loading="lazy" width="682" height="1024">
+                        <span class="pub-read-overlay" data-i18n="pub.readoverlay">Read online</span>
+                    </button>
+                    <div class="publication-content">
+                        <span class="publication-kicker" data-i18n="pub.kicker.scale">Research Paper · arXiv Preprint</span>
+                        <h3>SCALE: Scientific Concept Aggregation via LLMs and Embeddings</h3>
+                        <p class="publication-subtitle" data-i18n="pub.scale.subtitle">Extending the OpenAlex taxonomy with 114,000 fine-grained scientific Concepts.</p>
+                        <div class="publication-meta">
+                            <span>📄 14 <span data-i18n="pub.pages">pages</span></span>
+                            <span>🇬🇧 <span data-i18n="pub.lang.en">English</span></span>
+                            <span>arXiv:2608.07254</span>
+                            <span>2026</span>
+                        </div>
+                        <p class="publication-desc" data-i18n="pub.scaledesc">
+                            Co-authored with Feichi Lu, Oliver Grun, Mariia Eremina and Andrea Perlato at MDPI Data Intelligence. SCALE extends the OpenAlex taxonomy with a new fifth level of 113,892 fine-grained scientific Concepts, built by combining SPECTER2 embeddings, LLM-based granularity classification, and Leiden graph clustering over nearly three million MDPI author keywords. The resulting taxonomy powers Atlantis and the Taxonomy Explorer, and is already deployed in production to tag MDPI's corpus of close to two million papers.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">LLMs</span>
+                            <span class="tag">Embeddings</span>
+                            <span class="tag">Graph Clustering</span>
+                            <span class="tag" data-i18n="pub.tag.paper">Research Paper</span>
+                        </div>
+                        <div class="publication-actions">
+                            <button type="button" class="pub-btn pub-btn-primary pub-open" data-pdf-src="assets/publications/scale_taxonomy_paper.pdf" data-pdf-title="SCALE: Scientific Concept Aggregation via LLMs and Embeddings for Fine-Grained Taxonomy Extension">
+                                <span data-i18n="pub.read">Read online</span>
+                            </button>
+                            <a class="pub-btn pub-btn-ghost" href="https://arxiv.org/abs/2608.07254" target="_blank" rel="noopener">
+                                <span data-i18n="pub.arxiv">View on arXiv</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
                 <article class="publication-card">
                     <div class="publication-cover" aria-label="L'AI spiegata a chi deve decidere — coming soon">
                         <img src="assets/publications/l_ai_spiegata_a_chi_deve_decidere_cover.webp" alt="Cover of the essay &quot;L'AI spiegata a chi deve decidere&quot; by Daniele Raimondi" loading="lazy" width="682" height="1024">
@@ -6106,7 +6145,7 @@
     <script src="js/chatbot.js?v=20260718d"></script>
 
     <!-- Language toggle (EN/IT) -->
-    <script src="js/i18n.js?v=20260807a"></script>
+    <script src="js/i18n.js?v=20260810a"></script>
 
     <!-- Consulting-funnel events → GoatCounter (silent no-op if analytics is blocked) -->
     <script>
